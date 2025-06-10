@@ -4,7 +4,18 @@ const BASE_URL = "https://api.github.com"
 const GRAPHQL_URL = "https://api.github.com/graphql"
 
 import { Repo } from "@workspace/db";
-export const getUserDetails = async (token:string,username?:string)=>{
+export const getUserDetails = async (token:string,username?:string):
+Promise<{
+    username:string,
+    bio:string|null,
+    location:string|null,
+    website:string|null,
+    githubLink:string,
+    followers:number,
+    following:number,
+    created_at:string,
+    updated_at:string,
+}|false> =>{
     try {
         const res = await fetch(`${BASE_URL}/user`,{
             headers:{
@@ -125,7 +136,7 @@ async function makeGraphQLQuery(token: string, query: string, variables: any): P
     }
 }
 
-export const getAllUserContributionsGraph = async (token: string, username: string,createdAt:string): Promise<any[]> => {
+export const getUserContributionsGraph = async (token: string, username: string,createdAt:string): Promise<any[]> => {
     try {
         const firstContributionYear = getYear(parseISO(createdAt));
         const currentYear = getYear(new Date());

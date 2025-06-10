@@ -15,7 +15,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
-      "dependsOn": ["^dev", "^db:studio"],
+      "dependsOn": ["^dev"],
       "cache": false,
       "persistent": true
     },

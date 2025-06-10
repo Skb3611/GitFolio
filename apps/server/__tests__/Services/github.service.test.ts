@@ -1,5 +1,4 @@
-import { getAllUserContributionsGraph, getUserDetails, getUserRepos } from "../../src/Services/github.service";
-import fs from "fs";
+import { getUserContributionsGraph, getUserDetails, getUserRepos } from "../../src/Services/github.service";
 import dotenv from "dotenv";
 describe("Github Service Tests",()=>{
     let token:string ;
@@ -29,7 +28,7 @@ describe("Github Service Tests",()=>{
     test("Should return user contibutions",async()=>{
         expect(token).toBeDefined()
         if(token){
-          let contributions = await getAllUserContributionsGraph(token,"Skb3611","2023-07-26T06:04:19Z")
+          let contributions = await getUserContributionsGraph(token,"Skb3611","2023-07-26T06:04:19Z")
           expect(contributions).toBeDefined()
           expect(contributions).not.toBeFalsy()
           expect(contributions.length).toBeGreaterThan(0)
