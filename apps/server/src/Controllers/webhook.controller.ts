@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { processClerkWebhook } from "../Services/webhook.service";
+import { processClerkWebhook } from "../Services/clerk.service";
 
 export const webhookController = async (req: Request, res: Response) => {
   try {

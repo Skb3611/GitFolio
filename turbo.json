@@ -3,7 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build","^db:generate"],
+      "dependsOn": ["^build", "^db:generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "env": ["DATABASE_URL"],
       "outputs": [".next/**", "!.next/cache/**"]
@@ -15,22 +15,31 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
-      "dependsOn": ["^dev","^db:studio"],
+      "dependsOn": ["^dev", "^db:studio"],
       "cache": false,
       "persistent": true
     },
+    "test":{},
+    "test:watch":{
+      "cache": false,
+      "persistent": true
+    },
+    "test:coverage": {
+      "cache": false,
+      "outputs": ["./coverage/**"]
+    },
     "db:generate": {
-    "cache": false
-  },
-  "db:migrate": {
-    "cache": false,
-    "persistent": true 
-  },
-  "db:deploy": {
-    "cache": false
-  },
-  "db:studio":{
-    "cache": false
-  }
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:deploy": {
+      "cache": false
+    },
+    "db:studio": {
+      "cache": false
+    }
   }
 }

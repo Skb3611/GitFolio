@@ -24,8 +24,11 @@ model User {
   bio            String?
   location       String?
   website        String?
-  contributions  Json?
-  socialAccounts Json?
+  githubLink     String?
+  followers      Int      @default(0)
+  following      Int      @default(0)
+  contributions  Json[]
+  // socialAccounts Json?
   repos          Repo[]
   updatedAt      DateTime @updatedAt
   createdAt      DateTime @default(now())
@@ -49,6 +52,7 @@ model Repo {
   ownerId     String
   owner       User     @relation(fields: [ownerId], references: [id])
   // contributors String[] for future scope
-  updatedAt   DateTime @updatedAt
-  createdAt   DateTime @default(now())
+  updated_at   DateTime 
+  created_at   DateTime 
+  pushed_at    DateTime
 }

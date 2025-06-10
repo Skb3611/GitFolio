@@ -1,11 +1,17 @@
 {
-    "extends":"@workspace/typescript-config/base.json",
-    "compilerOptions": {
-        "outDir": "dist",
-        "rootDir": "src",
-        "esModuleInterop": true
-    },
-    
-    "include": ["src"],
-    "exclude": ["node_modules","dist"]
+  "extends": "@workspace/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "esModuleInterop": true
+  },
+
+  "include": [
+    "src",
+    "src/**/*.ts",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "__tests__/**/*"
+  ],
+  "exclude": ["node_modules", "dist", "coverage"]
 }
