@@ -5,6 +5,7 @@ import { Code } from "lucide-react";
 import React from "react";
 import { Meteors } from "@workspace/ui/components/magicui/meteors";
 import { scrollToSection } from "../Navbar";
+import { useRouter } from "next/navigation";
 
 const links = [
   {
@@ -21,6 +22,7 @@ const links = [
   },
 ];
 const QuickLinks = () => {
+  const router = useRouter();
   return (
     <div className="relative p-8 flex flex-col h-full w-full items-start justify-end gap-5 ">
       <Meteors />
@@ -46,11 +48,11 @@ const QuickLinks = () => {
         </AnimatedShinyText>
           </div>
         <AnimatedShinyText className="text- text-right w-full">
-         <Button variant={"link"} size={"sm"} className="p-0 px-1 text- ">
+         <Button variant={"link"} size={"sm"} className="p-0 px-1 text- " onClick={()=>router.push("/privacy-policy")}>
            {" "}
            Privacy 
          </Button>
-         <Button variant={"link"} size={"sm"} className="p-0 px-1 text-" >
+         <Button variant={"link"} size={"sm"} className="p-0 px-1 text-"onClick={()=>router.push("/terms-of-service")} >
            {" "}
            Terms
          </Button>
