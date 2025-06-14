@@ -10,7 +10,7 @@ export default function Page() {
     <HeroSection/>
     <GridView/>
     <DevicesSection/>
-    {/* <ContactSection/> */}
+    <ContactSection/>
     <CTASection/>
     </div>
   )
