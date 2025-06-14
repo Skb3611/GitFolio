@@ -1,9 +1,13 @@
-import React from 'react'
-import { BentoGrid,BentoCard } from '@workspace/ui/components/magicui/bento-grid'
-import SocialLinks from './SocialLinks';
-import QuickLinks from './QuickLinks';
-import { Ripple } from '@workspace/ui/components/magicui/ripple';
-import { Code } from 'lucide-react';
+import React from "react";
+import {
+  BentoGrid,
+  BentoCard,
+} from "@workspace/ui/components/magicui/bento-grid";
+import SocialLinks from "./SocialLinks";
+import QuickLinks from "./QuickLinks";
+import { Ripple } from "@workspace/ui/components/magicui/ripple";
+import { Code } from "lucide-react";
+import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 
 const features = [
   {
@@ -12,9 +16,7 @@ const features = [
     href: "#",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-1 min-h-64",
-    background: (
-     <SocialLinks/>
-    ),
+    background: <SocialLinks />,
   },
   {
     name: "",
@@ -22,9 +24,7 @@ const features = [
     href: "#",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2 min-h-64 h-full",
-    background: (
-     <QuickLinks/>
-    ),
+    background: <QuickLinks />,
   },
   {
     name: "",
@@ -33,34 +33,34 @@ const features = [
     cta: "Learn more",
     className: "col-span-3 lg:col-span-3 max-h-84",
     background: (
-      <div className='relative flex justify-center items-center h-full w-full'>
-       <Ripple />
-       <div className="flex items-center space-x-5">
-            <div className="w-32 h-32 rounded-3xl bg-white flex items-center justify-center">
-              <Code className="w-24 h-24 text-black" />
-            </div>
-            <span className="text-9xl font- text-white bg-clip-text">
-              GitFolio
-            </span>
+      <div className="relative flex flex-col gap-2 justify-center items-center h-full w-full">
+        <Ripple />
+        <div className="flex items-center space-x-2 lg:space-x-5">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:h-18 md:w-18 lg:w-24 lg:h-24 rounded-2xl lg:rounded-3xl bg-white flex items-center justify-center">
+            <Code className="w-10 h-10 sm:w-12 sm:h-12 md:h-14 md:w-14 lg:w-18 lg:h-18 text-black" />
           </div>
+          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font- text-white bg-clip-text">
+            GitFolio
+          </span>
+        </div>
+        <AnimatedShinyText className="text-lg md:text-xl">
+          Made with ❤️ by SKB
+        </AnimatedShinyText>
       </div>
     ),
   },
- 
 ];
-
 
 const Footer = () => {
   return (
-    <div className='relative max-w-7xl mx-auto max-h-screen my-10'>
-
-    <BentoGrid className="h-full lg:grid-rows-2 ">
-        {features.map((feature,index) => (
-            <BentoCard key={index} {...feature}/>
+    <div className="relative w-[90%] lg:w-[95%] xl:max-w-7xl mx-auto max-h-screen my-10">
+      <BentoGrid className="h-full lg:grid-rows-2 ">
+        {features.map((feature, index) => (
+          <BentoCard key={index} {...feature} />
         ))}
       </BentoGrid>
-        </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;

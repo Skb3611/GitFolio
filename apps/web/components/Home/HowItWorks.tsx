@@ -16,7 +16,7 @@ const Circle = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex size-20 items-center justify-center rounded-full border-2 bg-black p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
+        "z-10 flex size-12 sm:size-20 items-center justify-center rounded-full border-2 bg-black p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
         className
       )}
     >
@@ -35,42 +35,51 @@ export function HowItWorks() {
 
   return (
     <div
-      className="relative flex flex-col w-full h-full items-start justify-center overflow-hidden p-8"
+      className="relative flex flex-col w-full h-full items-start justify-center overflow-hidden sm:p-8 p-4"
       ref={containerRef}
     >
-      <div>
-        <h1 className="text-2xl inline-flex gap-1 items-center mb-10">
+      <div className="w-full">
+        <h1 className="sm:text-2xl text-xl text-center sm:text-left w-full mb-10">
           How GitFolio Works
         </h1>
       </div>
       <div className="flex size-full flex-col items-stretch justify-between gap-10">
-        <div className="flex flex-row justify-center items-baseline gap-10">
-          <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col sm:flex-row justify-center items-baseline sm:gap-10 gap-2">
+          <div className="flex sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
             <Circle className="mb-4" ref={div1Ref}>
               <Icons.github />
             </Circle>
-            <h2 className="text-lg font-medium">Login with Github</h2>
-            <AnimatedShinyText className="text-center">
-            <span className="text-sm text-center  mx-auto">Connect your GitHub account to sync your repositories.</span>
+            <div className=" flex flex-col w-full items-center">
+
+            <h2 className="text-sm sm:text-lg font-medium text-center">Login with Github</h2>
+            <AnimatedShinyText className=" text-center  w-[80%] sm:w-full mx-auto">
+            <span className="text-xs sm:text-sm   sm:w-full   mx-auto">Connect your GitHub account to sync your repositories.</span>
             </AnimatedShinyText>
+            </div>
           </div>
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
             <Circle className="mb-4" ref={div2Ref}>
               <Icons.theme />
             </Circle>
-            <h2 className="text-lg font-medium">Select a Template</h2>
-            <AnimatedShinyText className="text-center">
-            <span className="text-sm text-center  mx-auto">Choose from our collection of portfolio templates.</span>
+            <div className=" flex flex-col w-full items-center">
+
+            <h2 className="text-sm sm:text-lg font-medium text-center">Select a Template</h2>
+            <AnimatedShinyText className=" text-center  w-[80%] sm:w-full mx-auto">
+            <span className="text-xs sm:text-sm   sm:w-full   mx-auto">Choose from our collection of portfolio templates.</span>
             </AnimatedShinyText>
+            </div>
           </div>
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
             <Circle className="mb-4" ref={div3Ref}>
               <Icons.ready />
             </Circle>
-            <h2 className="text-lg font-medium">Your Portfolio is Ready</h2>
-            <AnimatedShinyText className="text-center">
-            <span className="text-sm text-center  mx-auto">Your professional portfolio is live and ready to share.</span>
+            <div className=" flex flex-col w-full items-center">
+
+            <h2 className="text-sm sm:text-lg font-medium text-center">Your Portfolio is Ready</h2>
+            <AnimatedShinyText className=" text-center  w-[80%] sm:w-full mx-auto">
+            <span className="text-xs sm:text-sm   sm:w-full    mx-auto">Your professional portfolio is live and ready to share.</span>
             </AnimatedShinyText>
+            </div>
           </div>
         </div>
       </div>
@@ -94,7 +103,7 @@ export function HowItWorks() {
 }
 
 const Icons = {
-  github: () => <Image src="/icons/github.png" className="size-10" height={70} width={70} alt="github" />,
-  theme: () => <Layout className="text-white size-10" />,
-  ready: () => <ThumbsUp className="text-white size-10" />,
+  github: () => <Image src="/icons/github.png" className=" size-5 sm:size-10" height={70} width={70} alt="github" />,
+  theme: () => <Layout className="text-white  size-5 sm:size-10" />,
+  ready: () => <ThumbsUp className="text-white  size-5 sm:size-10" />,
 };

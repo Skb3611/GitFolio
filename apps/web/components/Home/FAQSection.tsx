@@ -1,11 +1,10 @@
 import React from "react";
-import { AnimatedList } from "@workspace/ui/components/magicui/animated-list";
+
 import { Marquee } from "@workspace/ui/components/magicui/marquee";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { div } from "motion/react-client";
 import { MessageCircleQuestion } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
-import { backIn } from "motion";
 const faqs = [
   {
     question: "How does this platform work?",
@@ -34,10 +33,11 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  
   return (
-    <div className="relative p-8">
-      <h2 className="text-2xl mb-5">Frequently Asked Questions</h2>
-      <div className="flex h-64">
+    <div className="relative sm:p-8 p-4">
+      <h2 className="text-lg sm:text-2xl mb-5">Frequently Asked Questions</h2>
+      <div className="hidden sm:flex h-64">
         <Marquee pauseOnHover className="[--duration:10s] w-1/2" vertical>
           {faqs.slice(0, faqs.length / 2).map((faq, index) => {
             return <FaqItem key={index} faq={{ index, ...faq }} />;
@@ -51,6 +51,13 @@ const FAQSection = () => {
         >
           {faqs.slice(faqs.length / 2, faqs.length).map((faq, index) => {
             return <FaqItem key={index} faq={{ index, ...faq }} />;
+          })}
+        </Marquee>
+      </div>
+      <div className="h-64 sm:hidden">
+        <Marquee pauseOnHover className="[--duration:10s] w-full" vertical>
+          {faqs.map((faq, index) => {
+            return <FaqItem key={index} faq={{ index,...faq }} />;
           })}
         </Marquee>
       </div>

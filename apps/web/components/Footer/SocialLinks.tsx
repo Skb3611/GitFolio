@@ -8,7 +8,7 @@ import { Meteors } from '@workspace/ui/components/magicui/meteors'
 
 const SocialLinks = () => {
   return (
-    <div className='relative p-8 flex flex-col gap-4 justify-center items-start'>
+    <div className='relative p-4 sm:p-8 flex flex-col gap-4 justify-center items-start'>
         <Meteors/>
         <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center">

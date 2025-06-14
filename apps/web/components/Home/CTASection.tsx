@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Marquee } from "@workspace/ui/components/magicui/marquee";
@@ -5,7 +6,7 @@ import { ChevronRight, HeartHandshake, ShieldQuestion } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import { useIsMobile } from "@/hooks/use-mobile";
 interface ImageItemProps {
   img: string;
   gradient: string;
@@ -54,9 +55,9 @@ const CTASection = () => {
                 
               </div>
        
-        <h2 className="text-6xl text-center mb-2">What's stopping you now ?</h2>
+        <h2 className="text-2xl sm:text-4xl md:text-6xl text-center mb-2">What's stopping you now ?</h2>
         <AnimatedShinyText>
-          <p className="text-2xl text-center w-full">
+          <p className="text-base sm:text-xl  md:text-2xl text-center w-full">
             Let's Make Something Awesome
           </p>
         </AnimatedShinyText>
@@ -74,16 +75,18 @@ const CTASection = () => {
 export default CTASection;
 
 const ImageItem = ({ item, idx }: { item: ImageItemProps; idx: number }) => {
+  const isMobile = useIsMobile()
+
   return (
     <div
       key={idx}
-      className="relative size-20 cursor-pointer overflow-hidden rounded-2xl border p-4 bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:bg-transparent dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] hover:scale-105 transition-transform duration-200"
+      className="relative size-12 sm:size-20 cursor-pointer overflow-hidden rounded-2xl border p-4 bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:bg-transparent dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] hover:scale-105 transition-transform duration-200"
     >
       <Image
         src={item.img}
         alt={item.alt}
-        width={50}
-        height={50}
+        width={isMobile?30:50}
+        height={isMobile?30:50}
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       />
       <div

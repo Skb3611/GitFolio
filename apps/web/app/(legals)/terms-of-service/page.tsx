@@ -15,7 +15,7 @@ const Page = () => {
         <div className="my-10">
           <div className="mb-8">
             <h1 className="text-3xl font-bold  mb-2">Terms of Service</h1>
-            <AnimatedShinyText>
+            <AnimatedShinyText className="text-sm sm:text-base">
               <span>Last updated: {new Date().toLocaleDateString()}</span>
             </AnimatedShinyText>
           </div>
@@ -26,7 +26,7 @@ const Page = () => {
                 1. Acceptance of Terms
               </h2>
 
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                   By accessing and using Gitfolio ("Service," "we," "us," or
                   "our"), you accept and agree to be bound by the terms and
@@ -42,7 +42,7 @@ const Page = () => {
               <h2 className="text-xl font-semibold  mb-4">
                 2. Description of Service
               </h2>
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                   Gitfolio is a web-based platform that allows users to convert
                   their GitHub profiles and repositories into professional
@@ -63,21 +63,21 @@ const Page = () => {
                   <h3 className="text-lg font-medium  mb-2">
                     Account Creation
                   </h3>
-                  <AnimatedShinyText>
+                  <AnimatedShinyText className="text-sm sm:text-base">
                     <span className=" leading-relaxed">
                       To create an account on Gitfolio, you must obey the
                       following guidelines:
                     </span>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
-                      <li><AnimatedShinyText>You must sign up using your GitHub account</AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">You must sign up using your GitHub account</AnimatedShinyText></li>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You must be at least 13 years old to use our service
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You are responsible for maintaining the confidentiality
                         of your account
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You agree to provide accurate and complete information
                       </AnimatedShinyText></li>
                     </ul>
@@ -87,25 +87,25 @@ const Page = () => {
                   <h3 className="text-lg font-medium  mb-2">
                     GitHub Integration
                   </h3>
-                  <AnimatedShinyText>
+                  <AnimatedShinyText className="text-sm sm:text-base">
                     <span className="leading-relaxed">
                       We use your GitHub account to authenticate and authorize
                       you to use our service. By using our service:
                     </span>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You grant us permission to access your public GitHub
                         profile and repository data
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         For private repositories, access is only granted with
                         your explicit manual consent
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You can revoke our GitHub access at any time through
                         your GitHub account settings
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         We comply with GitHub's Terms of Service and API usage
                         guidelines
                       </AnimatedShinyText></li>
@@ -121,45 +121,45 @@ const Page = () => {
               <h2 className="text-xl font-semibold  mb-4">4. Acceptable Use</h2>
               <div className="space-y-4">
                   <h3 className="text-lg font-medium  mb-2">You May:</h3>
-                <AnimatedShinyText>
+                <AnimatedShinyText className="text-sm sm:text-base">
                   <ul className="list-disc list-inside  space-y-2 ml-4">
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Use the service for personal or professional portfolio
                       purposes
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Generate multiple portfolio websites from your GitHub data
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>Share your generated portfolio websites publicly</AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">Share your generated portfolio websites publicly</AnimatedShinyText></li>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Customize your portfolio within the available options
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Use the service responsibly and in accordance with
                       applicable laws and regulations
                     </AnimatedShinyText></li>
                   </ul>
                   </AnimatedShinyText>
                   <h3 className="text-lg font-medium  mb-2">You May Not:</h3>
-                  <AnimatedShinyText>
+                  <AnimatedShinyText className="text-sm sm:text-base">
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Use the service for illegal or unauthorized purposes
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Attempt to gain unauthorized access to our systems or
                       other users' accounts
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Upload malicious code or attempt to disrupt our service
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Violate GitHub's Terms of Service while using our platform
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">
                       Use automated tools to abuse our service or GitHub's API
                     </AnimatedShinyText></li>
-                    <li><AnimatedShinyText>Impersonate others or provide false information</AnimatedShinyText></li>
+                    <li><AnimatedShinyText className="text-sm sm:text-base">Impersonate others or provide false information</AnimatedShinyText></li>
                   </ul>
                 </AnimatedShinyText>
               </div>
@@ -174,21 +174,21 @@ const Page = () => {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-lg font-medium  mb-2">Your Content</h3>
-                  <AnimatedShinyText>
+                  <AnimatedShinyText className="text-sm sm:text-base">
                     <span>
                       You retain ownership of any content you generate using
                       Gitfolio.
                     </span>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You retain all rights to your GitHub repositories and
                         code
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You grant us a license to display your GitHub content in
                         your generated portfolio
                       </AnimatedShinyText></li>
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                         You are responsible for ensuring you have rights to all
                         content in your repositories
                       </AnimatedShinyText></li>
@@ -198,29 +198,29 @@ const Page = () => {
                 <div>
                   <h3 className="text-lg font-medium  mb-2">
                   Our Service</h3>
-                  <AnimatedShinyText>
+                  <AnimatedShinyText className="text-sm sm:text-base">
                     <span>
                       We retain ownership of the service and its original
                       content, features, and functionality.
                     </span>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
-                      <li><AnimatedShinyText>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">
                       Gitfolio and its original content, features, and functionality are owned by us.</AnimatedShinyText></li>
-                      <li><AnimatedShinyText>Our service is protected by copyright, trademark, and other intellectual property laws</AnimatedShinyText></li>
-                      <li><AnimatedShinyText>You may not copy, modify, or distribute our proprietary code or design elements</AnimatedShinyText></li>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">Our service is protected by copyright, trademark, and other intellectual property laws</AnimatedShinyText></li>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">You may not copy, modify, or distribute our proprietary code or design elements</AnimatedShinyText></li>
                     </ul>
                   </AnimatedShinyText>
                 </div>
                 <div>
                   <h3 className="text-lg font-medium  mb-2">Generated Portfolios</h3>
-                  <AnimatedShinyText>
+                  <AnimatedShinyText className="text-sm sm:text-base">
                     <span>
                       Your generated portfolio websites are your own creations and are not owned by us.
                     </span>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
-                      <li><AnimatedShinyText>Portfolio websites generated by our service belong to you</AnimatedShinyText></li>
-                      <li><AnimatedShinyText>You may use, modify, and distribute your generated portfolio as you see fit</AnimatedShinyText></li>
-                      <li><AnimatedShinyText>We retain no ownership rights over your generated portfolio websites</AnimatedShinyText></li>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">Portfolio websites generated by our service belong to you</AnimatedShinyText></li>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">You may use, modify, and distribute your generated portfolio as you see fit</AnimatedShinyText></li>
+                      <li><AnimatedShinyText className="text-sm sm:text-base">We retain no ownership rights over your generated portfolio websites</AnimatedShinyText></li>
                     </ul>
                   </AnimatedShinyText>
                 </div>
@@ -238,7 +238,7 @@ const Page = () => {
                         <h3 className="font-medium  mb-2 text-lg">
                         Current Service Level
                         </h3>
-                        <AnimatedShinyText>
+                        <AnimatedShinyText className="text-sm sm:text-base">
                             <span>
                             We strive to provide our service with the highest level of availability. However, due to the nature of the internet and the services we rely on, there may be temporary disruptions or outages. We will do our best to notify you of any issues or delays, but we cannot guarantee a perfect service.
                             </span>
@@ -246,7 +246,7 @@ const Page = () => {
                     </div>
                     <div>
                         <h3 className="font-medium  mb-2 text-lg">Service Modifications</h3>
-                        <AnimatedShinyText>
+                        <AnimatedShinyText className="text-sm sm:text-base">
                             <span>
                             We reserve the right to modify, suspend, or discontinue our service,We will provide reasonable notice of any material changes to the service.
 
@@ -260,7 +260,7 @@ const Page = () => {
 
             <section>
               <h2 className="text-xl font-semibold  mb-4">7. Termination</h2>
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                   We reserve the right to terminate or suspend your account and
                   access to the service at any time, for any reason, without
@@ -274,7 +274,7 @@ const Page = () => {
 
             <section>
               <h2 className="text-xl font-semibold  mb-4">8. Disclaimers</h2>
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                   The information on this service is provided on an "as is"
                   basis. To the fullest extent permitted by law, this Company
@@ -290,7 +290,7 @@ const Page = () => {
               <h2 className="text-xl font-semibold  mb-4">
                 9. Limitation of Liability
               </h2>
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                   In no event shall GitFolio, nor its directors,
                   employees, partners, agents, suppliers, or affiliates, be
@@ -304,7 +304,7 @@ const Page = () => {
 
             <section>
               <h2 className="text-xl font-semibold  mb-4">10. Governing Law</h2>
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                 These terms shall be governed by and construed in accordance with the laws of India. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts in Maharashtra, India.
                 </span>
@@ -317,7 +317,7 @@ const Page = () => {
               <h2 className="text-xl font-semibold  mb-4">
                 11. Changes to Terms
               </h2>
-              <AnimatedShinyText>
+              <AnimatedShinyText className="text-sm sm:text-base">
                 <span className=" leading-relaxed">
                   We reserve the right to modify or replace these Terms at any
                   time. If a revision is material, we will provide at least 30

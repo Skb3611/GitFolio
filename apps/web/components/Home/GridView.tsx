@@ -12,9 +12,6 @@ import TechStackSection from "./TechStackSection";
 import TechStackSection2 from "./TechStackSection2";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 
-
-
-
 const features = [
   {
     
@@ -64,9 +61,9 @@ const features = [
 
 const GridView =()=>{
   return (
-    <div id="about" className="min-h-screen max-w-7xl mx-auto my-20">
-      <h1 className="text-6xl font-semibold text-center mb-3 ">From GitHub to Greatness</h1>
-      <h2 className="text-xl text-center mb-14 w-full">
+    <div id="about" className="min-h-screen max-w-7xl mx-auto md:my-20 my-8 p-4">
+      <h1 className="md:text-6xl text-3xl font-semibold text-center mb-3 ">From GitHub to Greatness</h1>
+      <h2 className="md:text-xl text-sm text-center md:mb-14 mb-6 w-full">
       <AnimatedShinyText >
       Your GitHub is all it takes to launch a professional presence online.
       </AnimatedShinyText>
