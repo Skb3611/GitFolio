@@ -1,4 +1,4 @@
-import prisma from "@workspace/db";
+import prisma,{Prisma} from "@workspace/db";
 import { createClerkClient } from "@clerk/backend";
 import dotenv from "dotenv";
 import {
@@ -30,7 +30,7 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
         userDetails?.created_at
       );
 
-      const res = await prisma.$transaction(async (tx) => {
+      const res = await prisma.$transaction(async (tx:Prisma.TransactionClient) => {
         const user = await tx.user.create({
           data: {
             username: userDetails.username,

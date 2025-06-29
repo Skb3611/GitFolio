@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createOrUpdateEducationController, createOrUpdateExperienceController, createOrUpdateRepoController, deleteEducationController, deleteExperienceController, deleteRepoController, getUserDataController,updateUserDataController } from "../../Controllers/dashboaard.controller";
 // import { authMiddleware } from "../../middleware/authMiddleware";
-const router = Router()
+const router:Router = Router()
 
 router.get("/",getUserDataController)
 router.post("/user/update",updateUserDataController)

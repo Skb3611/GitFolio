@@ -1,9 +1,10 @@
 {
   "name": "@workspace/db",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +12,9 @@
     "db:migrate": "prisma migrate dev --skip-generate",
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
-    "db:seed": "ts-node src/seed.ts"
+    "db:seed": "ts-node src/seed.ts",
+    "build": "pnpm db:generate && tsc && pnpm copy:prisma",
+    "copy:prisma": "cpx \"./src/generated/**\" dist/generated"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +26,8 @@
     "@types/uuid": "^10.0.0",
     "prisma": "^6.9.0",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0"
   }
 }

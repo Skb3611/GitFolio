@@ -8,6 +8,10 @@
       "env": ["DATABASE_URL"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "start":{
+      "dependsOn": ["^build", "build"],
+      "cache": false
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
