@@ -15,44 +15,76 @@ datasource db {
 }
 
 model User {
-  id             String   @id
-  username       String   @unique @db.VarChar(30)
-  firstname      String   @db.VarChar(30)
-  lastname       String   @db.VarChar(30)
-  email          String   @unique @db.VarChar(50)
+  id             String       @id
+  username       String       @unique @db.VarChar(30)
+  firstname      String       @db.VarChar(30)
+  lastname       String       @db.VarChar(30)
+  email          String       @unique @db.VarChar(50)
   profileImg     String
   bio            String?
+  tagline        String?
   location       String?
   website        String?
   githubLink     String?
-  followers      Int      @default(0)
-  following      Int      @default(0)
+  followers      Int          @default(0)
+  following      Int          @default(0)
   contributions  Json[]
-  // socialAccounts Json?
+  socialAccounts Json?
   repos          Repo[]
-  updatedAt      DateTime @updatedAt
-  createdAt      DateTime @default(now())
-
+  experiences    Experience[]
+  educations     Education[]
+  skills         String[]
+  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime     @default(now())
 }
 
 model Repo {
-  id          String   @id @default(uuid())
-  name        String   @db.VarChar(30)
+  id          String    @id @default(uuid())
+  name        String    @db.VarChar(30)
   description String?
   topics      String[]
   languages   Json
-  stars       Int      @default(0)
-  forks       Int      @default(0)
-  deployments Int      @default(0)
+  stars       Int       @default(0)
+  forks       Int       @default(0)
+  deployments Int       @default(0)
   thumbnail   String?
   repoLink    String
   liveLink    String?
   // readmeLink  String? for future scope
-  isPinned    Boolean  @default(false)
-  ownerId     String
-  owner       User     @relation(fields: [ownerId], references: [id])
+  isPinned    Boolean   @default(false)
+  isIncluded  Boolean   @default(true)
+  userId      String
+  owner       User      @relation(fields: [userId], references: [id])
   // contributors String[] for future scope
-  updated_at   DateTime 
-  created_at   DateTime 
-  pushed_at    DateTime
+  updated_at  DateTime?
+  created_at  DateTime?
+  pushed_at   DateTime?
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  company     String   @db.VarChar(30)
+  role        String   @db.VarChar(30)
+  logo        String?
+  description String?
+  start_date  String
+  end_date    String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  updated_at  DateTime @updatedAt
+  created_at  DateTime @default(now())
+}
+
+model Education {
+  id          String   @id @default(uuid())
+  title       String   @db.VarChar(30)
+  logo        String?
+  institution String   @db.VarChar(30)
+  description String?
+  start_date  String
+  end_date    String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  updated_at  DateTime @updatedAt
+  created_at  DateTime @default(now())
 }

@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 interface ImageItemProps {
   img: string;
   gradient: string;
@@ -16,7 +17,7 @@ interface ImageItemProps {
 const CTASection = () => {
   return (
     <div className="relative flex w-full justify-center items-center overflow-hidden py-14">
-      <div className="">
+      <div className="opacity-60">
         <Marquee className="[--duration:15s]">
           {images.map((item, idx) => (
             <ImageItem key={idx} item={item} idx={idx} />
@@ -50,9 +51,9 @@ const CTASection = () => {
         <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent to-background to-70% dark:to-background"></div>
           </div>
       <div className="w-full absolute -translate-y-10 flex flex-col justify-center items-center">
-      <div className="mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32">
+      <div className="relative mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32">
                 <HeartHandshake className="mx-auto size-16 text-black dark:text-white lg:size-24" />
-                
+                <BorderBeam size={100} duration={4}/>
               </div>
        
         <h2 className="text-2xl sm:text-4xl md:text-6xl text-center mb-2">What's stopping you now ?</h2>

@@ -15,7 +15,7 @@ const features = [
     description: "",
     href: "#",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-1 min-h-64",
+    className: "col-span-3 lg:col-span-1 ",
     background: <SocialLinks />,
   },
   {
@@ -23,7 +23,7 @@ const features = [
     description: "",
     href: "#",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-2 min-h-64 h-full",
+    className: "col-span-3 lg:col-span-2 h-full",
     background: <QuickLinks />,
   },
   {
@@ -31,7 +31,7 @@ const features = [
     description: "",
     href: "#",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-3 max-h-84",
+    className: "col-span-3 lg:col-span-3",
     background: (
       <div className="relative flex flex-col gap-2 justify-center items-center h-full w-full">
         <Ripple />
@@ -44,7 +44,7 @@ const features = [
           </span>
         </div>
         <AnimatedShinyText className="text-lg md:text-xl">
-          Made with ❤️ by SKB
+          Made with by SKB
         </AnimatedShinyText>
       </div>
     ),
@@ -53,8 +53,8 @@ const features = [
 
 const Footer = () => {
   return (
-    <div className="relative w-[90%] lg:w-[95%] xl:max-w-7xl mx-auto max-h-screen my-10">
-      <BentoGrid className="h-full lg:grid-rows-2 ">
+    <div className="relative w-[90%] lg:w-[95%] xl:max-w-7xl mx-auto my-10">
+      <BentoGrid className="h-full lg:grid-cols-3 auto-rows-[17.5rem]">
         {features.map((feature, index) => (
           <BentoCard key={index} {...feature} />
         ))}

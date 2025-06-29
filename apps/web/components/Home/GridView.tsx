@@ -1,15 +1,8 @@
-import { CalendarIcon, FileTextIcon } from "lucide-react"
-import { BellIcon, Share2Icon } from "lucide-react";
 import  {HowItWorks}  from "./HowItWorks";
-
-import { cn } from "@workspace/ui/lib/utils";
-
 import { BentoCard, BentoGrid } from "@workspace/ui/components/magicui/bento-grid";
-import { div } from "motion/react-client";
 import GlobeSection from "./GlobeSection";
 import FAQSection from "./FAQSection";
 import TechStackSection from "./TechStackSection";
-import TechStackSection2 from "./TechStackSection2";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 
 const features = [
@@ -68,7 +61,7 @@ const GridView =()=>{
       Your GitHub is all it takes to launch a professional presence online.
       </AnimatedShinyText>
       </h2>
-    <BentoGrid>
+    <BentoGrid className="auto-rows-[20rem]">
       {features.map((feature, idx) => (
           <BentoCard key={idx} {...feature} />
         ))}

@@ -43,9 +43,9 @@ const QuickLinks = () => {
             <span className="text-sm md:text-xl font- text-white bg-clip-text ml-1">
               GitFolio
             </span>
-        <AnimatedShinyText className="flex items-center gap-4 text-xs md:text-base">
-          <span className="hidden sm:block">Made with ❤️ by SKB</span>
-        </AnimatedShinyText>
+        {/* <AnimatedShinyText className="flex items-center gap-4 text-xs md:text-base">
+          <span className="hidden sm:block">Made with by SKB</span>
+        </AnimatedShinyText> */}
           </div>
         <AnimatedShinyText className="text- text-right w-full">
          <Button variant={"link"} size={"sm"} className="p-0 px-1 text- text-xs md:text-base " onClick={()=>router.push("/privacy-policy")}>

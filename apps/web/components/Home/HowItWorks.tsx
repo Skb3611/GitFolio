@@ -39,44 +39,44 @@ export function HowItWorks() {
       ref={containerRef}
     >
       <div className="w-full">
-        <h1 className="sm:text-2xl text-xl text-center sm:text-left w-full mb-10">
+        <h1 className="sm:text-2xl text-xl text-left w-full sm:mb-10 mb-2">
           How GitFolio Works
         </h1>
       </div>
       <div className="flex size-full flex-col items-stretch justify-between gap-10">
         <div className="flex flex-col sm:flex-row justify-center items-baseline sm:gap-10 gap-2">
-          <div className="flex sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
+          <div className="flex flex-row-reverse sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
             <Circle className="mb-4" ref={div1Ref}>
               <Icons.github />
             </Circle>
-            <div className=" flex flex-col w-full items-center">
+            <div className=" flex flex-col w-full items-start sm:items-center">
 
             <h2 className="text-sm sm:text-lg font-medium text-center">Login with Github</h2>
-            <AnimatedShinyText className=" text-center  w-[80%] sm:w-full mx-auto">
+            <AnimatedShinyText className="max-w-full mx-0 sm:text-center ">
             <span className="text-xs sm:text-sm   sm:w-full   mx-auto">Connect your GitHub account to sync your repositories.</span>
             </AnimatedShinyText>
             </div>
           </div>
-          <div className="flex sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
+          <div className="flex flex-row-reverse sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
             <Circle className="mb-4" ref={div2Ref}>
               <Icons.theme />
             </Circle>
-            <div className=" flex flex-col w-full items-center">
+            <div className=" flex flex-col w-full items-start sm:items-center">
 
             <h2 className="text-sm sm:text-lg font-medium text-center">Select a Template</h2>
-            <AnimatedShinyText className=" text-center  w-[80%] sm:w-full mx-auto">
+            <AnimatedShinyText className="max-w-full mx-0 sm:text-center ">
             <span className="text-xs sm:text-sm   sm:w-full   mx-auto">Choose from our collection of portfolio templates.</span>
             </AnimatedShinyText>
             </div>
           </div>
-          <div className="flex sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
+          <div className="flex flex-row-reverse sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
             <Circle className="mb-4" ref={div3Ref}>
               <Icons.ready />
             </Circle>
-            <div className=" flex flex-col w-full items-center">
+            <div className=" flex flex-col w-full items-start sm:items-center">
 
             <h2 className="text-sm sm:text-lg font-medium text-center">Your Portfolio is Ready</h2>
-            <AnimatedShinyText className=" text-center  w-[80%] sm:w-full mx-auto">
+            <AnimatedShinyText className="max-w-full mx-0 sm:text-center ">
             <span className="text-xs sm:text-sm   sm:w-full    mx-auto">Your professional portfolio is live and ready to share.</span>
             </AnimatedShinyText>
             </div>

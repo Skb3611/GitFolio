@@ -40,6 +40,9 @@
     },
     "db:studio": {
       "cache": false
+    },
+    "db:seed":{
+      "cache": false
     }
   }
 }

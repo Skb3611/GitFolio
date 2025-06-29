@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronRight, Code, Github, Menu } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import UserButton from "./UserButton";
 
@@ -60,13 +60,29 @@ export const scrollToSection = (id: string) => {
     const y =
       element.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
+    // window.location.href = `#${id}`;
   }
 };
 const Navbar = () => {
+  const router = useRouter();
+  const pathname= usePathname()
+  const [hash, setHash] = useState("")
+
+  useEffect(() => {
+    console.log(window.location.hash)
+    setHash(window.location.hash)
+  },[pathname])
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace("#", "");
+      scrollToSection(id);
+    }
+  }, [hash]);
   return (
     <div>
       <header className=" bg-transparent fixed top-2 w-full z-50 ">
-        <div className="container backdrop-blur-lg  overflow-hidden supports-[backdrop-filter]:bg-background/20 bg-transparent rounded-xl bg-transparent mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-4xl border relative">
+        <div className="container backdrop-blur-lg  overflow-hidden supports-[backdrop-filter]:bg-background/20 bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-4xl border relative">
           <BorderBeam size={100} />
           <BorderBeam size={100} delay={3} />
           <div className="flex items-center space-x-2">

@@ -18,7 +18,7 @@ const SocialLinks = () => {
               GitFolio
             </span>
           </div>
-          <AnimatedShinyText className='text-lg'>
+          <AnimatedShinyText className='text-base'>
           Built for developers who’d rather code than design — we make your GitHub shine so you can focus on building.
           </AnimatedShinyText>
       <div className='flex w-full gap-3 items-start'>

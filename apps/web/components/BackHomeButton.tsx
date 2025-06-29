@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 const BackHomeButton = () => {
     const router = useRouter()
   return (
-    <Button variant={"outline"} className="absolute top-5 left-5" onClick={()=>router.push("/")} >
+    <Button variant={"outline"} className="absolute top-5 left-5 z-20" onClick={()=>router.push("/")} >
         <ArrowLeft/> Home
       </Button>
   )
