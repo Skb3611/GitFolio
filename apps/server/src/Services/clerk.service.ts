@@ -1,4 +1,4 @@
-import prisma,{Prisma} from "@workspace/db";
+import prisma, { Prisma } from "@workspace/db";
 import { createClerkClient } from "@clerk/backend";
 import dotenv from "dotenv";
 import {
@@ -30,54 +30,68 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
         userDetails?.created_at
       );
 
-      const res = await prisma.$transaction(async (tx:Prisma.TransactionClient) => {
-        const user = await tx.user.create({
-          data: {
-            username: userDetails.username,
-            bio: userDetails.bio,
-            location: userDetails.location,
-            website: userDetails.website,
-            githubLink: userDetails.githubLink,
-            followers: userDetails.followers,
-            following: userDetails.following,
-            id: data.id,
-            email: data.email_addresses[0].email_address,
-            firstname: data.first_name,
-            lastname: data.last_name,
-            profileImg: data.profile_image_url,
-            contributions: contibutions,
-          },
-        });
-        console.log("user created");
-        const repoPromises = userRepos.map(async (repo) => {
-          return tx.repo.create({
-            data: {
-              name: repo.name,
-              description: repo.description,
-              topics: repo.topics,
-              languages: repo.languages || {},
-              stars: repo.stars,
-              forks: repo.forks,
-              deployments: repo.deployments,
-              repoLink: repo.repoLink,
-              liveLink: repo.liveLink,
-              created_at: repo.created_at,
-              updated_at: repo.updated_at,
-              pushed_at: repo.pushed_at,
-              owner: {
-                connect: {
-                  id: user.id,
-                },
-              },
-            },
-          });
-        });
-        const createdRepos = await Promise.all(repoPromises);
-        console.log("repos created", createdRepos.length);
-        return { user, repos: createdRepos}
+      const user = await prisma.user.create({
+        data: {
+          username: userDetails.username,
+          bio: userDetails.bio,
+          location: userDetails.location,
+          website: userDetails.website,
+          githubLink: userDetails.githubLink,
+          followers: userDetails.followers,
+          following: userDetails.following,
+          id: data.id,
+          email: data.email_addresses[0].email_address,
+          firstname: data.first_name,
+          lastname: data.last_name,
+          profileImg: data.profile_image_url,
+          contributions: contibutions,
+        },
       });
+      console.log("user created");
+      // const repoPromises = userRepos.map((repo) => {
+      //   return prisma.repo.create({
+      //     data: {
+      //       name: repo.name,
+      //       description: repo.description,
+      //       topics: repo.topics,
+      //       languages: repo.languages || {},
+      //       stars: repo.stars,
+      //       forks: repo.forks,
+      //       deployments: repo.deployments,
+      //       repoLink: repo.repoLink,
+      //       liveLink: repo.liveLink,
+      //       created_at: repo.created_at,
+      //       updated_at: repo.updated_at,
+      //       pushed_at: repo.pushed_at,
+      //       owner: {
+      //         connect: {
+      //           id: user.id,
+      //         },
+      //       },
+      //     },
+      //   });
+      // });
+      const createdRepos =  await prisma.repo.createMany({
+        data: userRepos.map((repo) => ({
+          userId: user.id, // Add required userId field
+          name: repo.name,
+          description: repo.description,
+          topics: repo.topics,
+          languages: repo.languages || {},
+          stars: repo.stars,
+          forks: repo.forks,
+          deployments: repo.deployments,
+          repoLink: repo.repoLink,
+          liveLink: repo.liveLink,
+          created_at: repo.created_at,
+          updated_at: repo.updated_at,
+          pushed_at: repo.pushed_at,
+        })),
+        skipDuplicates: true,
+      });
+      console.log("repos created", createdRepos);
 
-      return (res) ? true : false;
+      return user && createdRepos ? true : false;
     case "user.updated":
       const updatedUser = await prisma.user.update({
         where: {
