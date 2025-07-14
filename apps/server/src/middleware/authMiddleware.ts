@@ -1,6 +1,7 @@
 // authMiddleware.ts
 import { createClerkClient, verifyToken } from "@clerk/backend";
 import type { Request, Response, NextFunction } from "express";
+import { config } from "../config";
 
 
 
@@ -13,10 +14,10 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
     }
 
     const token = authHeader.split("Bearer ")[1];
-    const clerkClient = createClerkClient({ secretKey: process.env.CLERK_SECRET_KEY });
+    const clerkClient = createClerkClient({ secretKey: config.CLERK_SECRET_KEY });
 
     const {sid,sub} = await verifyToken(token!,{
-        jwtKey: process.env.CLERK_JWT_KEY,
+        jwtKey: config.CLERK_JWT_KEY,
     });
     
     const user = await clerkClient.users.getUser(sub);

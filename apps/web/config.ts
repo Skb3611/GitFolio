@@ -11,5 +11,6 @@ export const config={
         DELETE_EDUCATION:`${SERVER_ENDPOOINT}/api/v1/dashboard/user/education/delete`,
         UPDATE_EXPERIENCE:`${SERVER_ENDPOOINT}/api/v1/dashboard/user/experience/update`,
         DELETE_EXPERIENCE:`${SERVER_ENDPOOINT}/api/v1/dashboard/user/experience/delete`,
+        GET_PRESIGNED_URL: `${SERVER_ENDPOOINT}/api/v1/s3/generatePreSignedURL`
     }
 }

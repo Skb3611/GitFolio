@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronRight, Code, Github, Menu } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { usePathname, useRouter } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import UserButton from "./UserButton";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 import Link from "next/link";
 import {
@@ -18,6 +19,7 @@ import {
   SheetFooter,
 } from "@workspace/ui/components/sheet";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import {motion, useMotionValueEvent, useScroll} from "motion/react"
 
 const navItems = [
   <Button
@@ -67,6 +69,9 @@ const Navbar = () => {
   const router = useRouter();
   const pathname= usePathname()
   const [hash, setHash] = useState("")
+  const ref =useRef<HTMLDivElement>(null)
+  const isMobile=useIsMobile()
+  const [visible, setVisible] = useState<boolean>(false)
 
   useEffect(() => {
     console.log(window.location.hash)
@@ -79,12 +84,32 @@ const Navbar = () => {
       scrollToSection(id);
     }
   }, [hash]);
+   const { scrollY } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 70) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
   return (
     <div>
       <header className=" bg-transparent fixed top-2 w-full z-50 ">
-        <div className="container backdrop-blur-lg  overflow-hidden supports-[backdrop-filter]:bg-background/20 bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-4xl border relative">
-          <BorderBeam size={100} />
-          <BorderBeam size={100} delay={3} />
+        <motion.div
+        initial={{
+          maxWidth:isMobile?"90vw":"64rem"
+        }}
+        animate={{
+          maxWidth:isMobile?"90%":visible?"56rem":"64rem"
+        }}
+        transition={{
+          duration:"0.5"
+        }}
+        ref={ref}        
+        className={`container overflow-hidden  bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-5xl  relative  ${visible && "backdrop-blur-lg border supports-[backdrop-filter]:bg-background/20" }`}>
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
               <Code className="w-5 h-5 text-black" />
@@ -134,7 +159,7 @@ const Navbar = () => {
               </SheetContent>
             </Sheet>
           </div>
-        </div>
+        </motion.div>
       </header>
     </div>
   );

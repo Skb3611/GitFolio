@@ -8,7 +8,22 @@
   },
 
   "include": [
-    "src"
+    "src",
+    
   ],
-  "exclude": ["node_modules", "dist", "coverage"]
+  "exclude": ["node_modules", "dist", "coverage"],
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/?(*.)+(spec|test).+(ts|tsx|js)"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
+  }
 }

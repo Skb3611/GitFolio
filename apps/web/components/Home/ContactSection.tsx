@@ -3,16 +3,20 @@ import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shi
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { OrbitingCircles } from "@workspace/ui/components/magicui/orbiting-circles";
 import { ShineBorder } from "@workspace/ui/components/magicui/shine-border";
-import { Linkedin, X } from "lucide-react";
+import { Linkedin, MessageCircle, Twitter, Users, X } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { MagicCard } from "@workspace/ui/components/magicui/magic-card";
+import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
+import SectionLabel from "../SectionLabel";
+import {LampContainer} from "@workspace/ui/components/ui/lamp"
 const ContactSection = () => {
   return (
     <div
       id="contact"
-      className="w-full lg:max-w-7xl mx-auto my-20 p-4 sm:p-8 overflow-hidden"
+      className="w-full lg:max-w-6xl mx-auto my-20 p-4 sm:p-8 overflow-hidden"
     >
+      <SectionLabel title="✨ Let's Connect"/>
+
       <h2 className="text-3xl md:text-6xl font-semibold w-full mb-2 text-center">
         We're Just a Message Away
       </h2>
@@ -22,41 +26,51 @@ const ContactSection = () => {
           on LinkedIn or X.
         </p>
       </AnimatedShinyText>
-      <div className="w-full lg:max-w-3xl mx-auto my-10 flex flex-col  sm:flex-row gap-10 justify-center items-center">
-        <div className="relative h-full lg:w-1/2 rounded-xl w-full">
-          <BorderBeam size={200} initialOffset={0} />
-          <BorderBeam size={200} initialOffset={50} />
-          <div className="relative flex flex-col space-y-3 items-center border p-4 sm:p-8 rounded-xl">
-            <div className="size-20 bg-blue-500 rounded-2xl flex justify-center items-center">
-              <Linkedin className="h-12 w-12 text-white" />
-            </div>
-            <h3 className="text-2xl font-medium">Linkedin</h3>
-            <AnimatedShinyText className="text-center">
-              Connect with us professionally.
-            </AnimatedShinyText>
-            <Button variant={"outline"} size={"lg"}>
-              Connect on LinkedIn
-            </Button>
-          </div>
+       <div className="grid md:grid-cols-2 gap-6 my-10">
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-8 text-center space-y-4">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto relative">
+                {/* <Twitter className="h-8 w-8 text-white" /> */}
+                <Image src={"/icons/x.png"} fill alt="X" className="rounded-full"/>
+              </div>
+              <h3 className="text-xl font-semibold">Follow us on X</h3>
+              <p className="text-muted-foreground">
+                Get the latest updates, insights, and join conversations with our community.
+              </p>
+              <Button className="w-full gap-2">
+                <Twitter className="h-4 w-4" />
+                @Skb3611
+              </Button>
+            </CardContent>
+          </Card>
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-8 text-center space-y-4">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto">
+                <Linkedin className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold">Connect on LinkedIn</h3>
+              <p className="text-muted-foreground">
+                Professional networking, industry insights, and business opportunities.
+              </p>
+              <Button variant="outline" className="w-full gap-2 bg-transparent">
+                <Linkedin className="h-4 w-4" />
+                Company Profile
+              </Button>
+            </CardContent>
+          </Card>
         </div>
-        <div className="relative h-full lg:w-1/2 rounded-xl w-full">
-          <BorderBeam size={200} initialOffset={0} />
-          <BorderBeam size={200} initialOffset={50} />
-          <div className="relative flex flex-col space-y-3 items-center  p-4 sm:p-8 border rounded-xl">
-            <div className="size-20 bg-white rounded-2xl flex justify-center items-center relative">
-              <Image src={"/icons/x.png"} alt={"x"} fill />
-            </div>
-            <h3 className="text-2xl font-medium">X (Twitter)</h3>
-            <AnimatedShinyText className="text-center">
-              Follow for real-time updates
-            </AnimatedShinyText>
-            <Button variant={"outline"} size={"lg"}>
-              Follow Us on X
-            </Button>
+
+        {/* <div className="grid md:grid-cols-2 gap-8 mt-12 pt-8 border-t">
+          <div className="flex items-center gap-3">
+            <MessageCircle className="h-5 w-5 text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">Quick responses on X for urgent matters</span>
           </div>
-        </div>
+          <div className="flex items-center gap-3">
+            <Users className="h-5 w-5 text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">Professional inquiries welcome on LinkedIn</span>
+          </div>
+        </div> */}
       </div>
-    </div>
   );
 };
 

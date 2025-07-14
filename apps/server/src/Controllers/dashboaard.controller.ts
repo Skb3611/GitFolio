@@ -13,6 +13,7 @@ import {
 export const getUserDataController = async (req: Request, res: Response) => {
   try {
     const userId = req.auth?.user.id;
+    console.log(req.auth?.user)
     if (!userId) {
       res.status(400).json({ message: "userId is required", status: "error" });
       return;

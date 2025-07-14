@@ -3,7 +3,8 @@
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { ClerkProvider } from "@clerk/nextjs"
-import {dark,experimental__simple,experimental_createTheme,neobrutalism,shadesOfPurple} from "@clerk/themes"
+import {dark} from "@clerk/themes"
+import {Toaster} from "@workspace/ui/components/sonner"
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
@@ -18,6 +19,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
       enableColorScheme
     >
+      <Toaster richColors
+      invert
+      duration={2500}
+      // offset={{right:50}}
+      />
       {children}
     </NextThemesProvider>
     </ClerkProvider>

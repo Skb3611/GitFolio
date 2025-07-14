@@ -7,6 +7,7 @@ import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { Button } from "@workspace/ui/components/button";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import Link from "next/link";
+import SectionLabel from "../SectionLabel";
 
 const HeroSection = () => {
 
@@ -27,22 +28,12 @@ const HeroSection = () => {
           "inset-x-0 h-[200%] skew-y-12"
         )}
       />
-      <main className="flex flex-col mx-auto min-w-full md:max-w-[85%] justify-center items-center mt-20">
-        <div
-          className={cn(
-            "relative group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800 mb-5"
-          )}
-        >
-          <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 text-xs lg:text-base">
-            <span>✨ Introducing Gitfolio</span>
-            <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-          </AnimatedShinyText>
-          <BorderBeam />
-        </div>
-        <h1 className="lg:text-7xl text-3xl font-semibold text-center mb-5 ">
+      <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center mt-20">
+       <SectionLabel title={"✨ Introducing Gitfolio"}/>
+        <h1 className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
           Turn Your GitHub Into a Personal Portfolio in Seconds
         </h1>
-        <h2 className="lg:text-xl text-sm text-center max-w-2xl">
+        <h2 className="md:text-xl text-sm text-center max-w-2xl">
           <AnimatedShinyText>
             Your GitHub already tells your story — now turn it into a personal
             site that speaks for itself.

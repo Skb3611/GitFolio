@@ -6,10 +6,11 @@ import {
   getUserDetails,
   getUserRepos,
 } from "./github.service";
+import { config } from "../config";
 
 dotenv.config();
 const clerkClient = createClerkClient({
-  secretKey: process.env.CLERK_SECRET_KEY,
+  secretKey: config.CLERK_SECRET_KEY,
 });
 
 export const processClerkWebhook = async (event: any): Promise<boolean> => {

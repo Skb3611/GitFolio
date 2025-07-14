@@ -9,7 +9,7 @@ import { Meteors } from '@workspace/ui/components/magicui/meteors'
 const SocialLinks = () => {
   return (
     <div className='relative p-4 sm:p-8 flex flex-col gap-4 justify-center items-start'>
-        <Meteors/>
+        {/* <Meteors/>   */}
         <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
               <Code className="w-8 h-8 text-black" />
@@ -18,8 +18,8 @@ const SocialLinks = () => {
               GitFolio
             </span>
           </div>
-          <AnimatedShinyText className='text-base'>
-          Built for developers who’d rather code than design — we make your GitHub shine so you can focus on building.
+          <AnimatedShinyText className='text-base w-full text-left mx-0'>
+          Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.
           </AnimatedShinyText>
       <div className='flex w-full gap-3 items-start'>
         <Button 

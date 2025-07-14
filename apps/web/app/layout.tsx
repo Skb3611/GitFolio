@@ -24,9 +24,7 @@ export default function RootLayout({
         className={`${dmSans.variable} font-sans antialiased `}
       >
         <Providers>
-          {/* <Navbar /> */}
           {children}
-          {/* <Footer/> */}
           </Providers>
       </body>
     </html>

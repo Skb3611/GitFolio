@@ -25,21 +25,16 @@ import {
   SidebarTrigger,
 } from "@workspace/ui/components/sidebar";
 import {
-  BicepsFlexed,
   BookOpen,
   BriefcaseBusiness,
   ChartNoAxesCombined,
   CodeXml,
   Command,
-  File,
   FolderGit2,
-  FolderOpen,
-  FolderOpenDotIcon,
   Globe,
   GraduationCap,
   Home,
   Link,
-  User,
   UserPen,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -56,8 +51,8 @@ import {
 import { useAuth } from "@clerk/nextjs";
 import EducationTab from "@/components/Dashboard/Education";
 import { config } from "@/config";
-import { body } from "motion/react-client";
 import OverviewTab from "@/components/Dashboard/Overview";
+import { toast } from "@workspace/ui/components/sonner";
 const sidebarItems = {
   HeaderNavItems: [
     {
@@ -122,10 +117,12 @@ export default function Page() {
     useState<SocialLinks>(initialSocailLinks);
   const [skills, setSkills] = useState<string[]>([]);
   const [education, setEducation] = useState<Education[]>([]);
+  const [profileImg, setprofileImg] = useState<File | null>(null);
+  const [projectImg, setProjectImg] = useState<File | null>(null);
   const { getToken } = useAuth();
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       try {
         const token = await getToken();
         console.log(token);
@@ -153,7 +150,7 @@ export default function Page() {
           return {
             id: repo.id,
             name: repo.name,
-            description: repo.description,
+            description: repo.description ?? "",
             thumbnail: repo.thumbnail,
             repoLink: repo.repoLink,
             liveLink: repo.liveLink,
@@ -199,151 +196,169 @@ export default function Page() {
       } catch (e) {
         console.log(e);
       }
-    })();
+    };
+    toast.promise(fetchData, {
+      loading: "Fetching Data...",
+      success: "Data Fetched",
+      error: "Data Fetch Failed",
+      invert: true,
+    });
   }, []);
 
   const onSave = async ({ type, data }: SavePayload) => {
-    console.log(type, data);
-    const data1 = {
-      personalInformation,
-      projects,
-      experience,
-      socialLinks,
-      skills,
-      education,
+    const token = await getToken();
+    const headers = {
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     };
-    switch (type) {
-      case "Personal Information":
-        const d = {
-          ...data,
-          firstname: data.full_name?.split(" ")[0],
-          lastname: data.full_name?.split(" ")[1],
-        };
 
-        delete (d as any).full_name;
-        let res = await fetch(config.server_endpoints.UPDATE_USER_DATA, {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${await getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(d),
-        });
-        res = await res.json();
-        console.log(res);
-        break;
-      case "Projects":
-        let projectRes = await fetch(config.server_endpoints.UPDATE_REPO, {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${await getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...data }),
-        });
-        projectRes = await projectRes.json();
-        console.log(projectRes);
-        break;
-      case "Experience":
-        let expRes = await fetch(config.server_endpoints.UPDATE_EXPERIENCE, {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${await getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-        expRes = await expRes.json();
-        console.log(expRes);
-        break;
-      case "Education":
-        let eduRes = await fetch(config.server_endpoints.UPDATE_EDUCATION, {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${await getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-        eduRes = await eduRes.json();
-        console.log(eduRes);
-        break;
-      case "Social Links":
-        let socialRes = await fetch(config.server_endpoints.UPDATE_USER_DATA, {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${await getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ socialAccounts: { ...data } }),
-        });
-        socialRes = await socialRes.json();
-        console.log(socialRes);
-        break;
-      case "Skills":
-        let skillRes = await fetch(config.server_endpoints.UPDATE_USER_DATA, {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${await getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ skills: data }),
-        });
-        skillRes = await skillRes.json();
-        console.log(skillRes);
-        break;
-    }
+    const showSavingToast = toast.loading(`Saving ${type.toLowerCase()}...`);
 
-    // localStorage.setItem("data", JSON.stringify(data1));
-  };
-  const onDelete = async (type: DeleteType, id: string) => {
     try {
+      let body: any;
+      let endpoint = "";
+
+      switch (type) {
+        case "Personal Information":
+          if (profileImg != null) {
+            const res = await fetch(config.server_endpoints.GET_PRESIGNED_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                type: "profile",
+                filename: "profile.jpg",
+              }),
+            });
+            const { url, link } = (await res.json()).data;
+            console.log(url, link);
+            const r = await fetch(url, {
+              method: "PUT",
+              body: profileImg,
+            });
+            data = { ...data, profileImg: link };
+          }
+          let d = {
+            ...data,
+            firstname: (data as PersonalInformation).full_name?.split(" ")[0],
+            lastname: (data as PersonalInformation).full_name?.split(" ")[1],
+          };
+          delete (d as any).full_name;
+          body = d;
+          endpoint = config.server_endpoints.UPDATE_USER_DATA;
+          break;
+
+        case "Projects":
+          if(projectImg){
+            let res = await fetch(config.server_endpoints.GET_PRESIGNED_URL,{
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+                authorization: `Bearer ${token}`,
+              },
+              body:JSON.stringify({
+                type:"project",
+                filename:(data as Projects).id+".jpg",
+              })
+            })
+            const {url,link} = (await res.json()).data;
+            const r = await fetch(url,{
+              method:"PUT",
+              body:projectImg,
+            })
+            data = {...data,thumbnail:link}
+          }
+          body = data;
+          endpoint = config.server_endpoints.UPDATE_REPO;
+          break;
+
+        case "Experience":
+          body = data;
+          endpoint = config.server_endpoints.UPDATE_EXPERIENCE;
+          break;
+
+        case "Education":
+          body = data;
+          endpoint = config.server_endpoints.UPDATE_EDUCATION;
+          break;
+
+        case "Social Links":
+          body = { socialAccounts: { ...data } };
+          endpoint = config.server_endpoints.UPDATE_USER_DATA;
+          break;
+
+        case "Skills":
+          body = { skills: data };
+          endpoint = config.server_endpoints.UPDATE_USER_DATA;
+          break;
+      }
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) throw new Error(`Failed with status ${res.status}`);
+
+      toast.success(`${type} saved successfully`, { id: showSavingToast });
+    } catch (err) {
+      toast.error(`Failed to save ${type.toLowerCase()}`, {
+        id: showSavingToast,
+      });
+      console.error(err);
+    }
+  };
+
+  const onDelete = async (type: DeleteType, id: string) => {
+    const token = await getToken();
+    const headers = {
+      authorization: `Bearer ${token}`,
+    };
+
+    const toastId = toast.loading(`Deleting ...`);
+
+    try {
+      let res;
       switch (type) {
         case DeleteType.PROJECT:
-          setProjects(projects.filter((p) => p.id !== id));
-          let projectRes = await fetch(
-            `${config.server_endpoints.DELETE_REPO}/${id}`,
-            {
-              method: "DELETE",
-              headers: {
-                authorization: `Bearer ${await getToken()}`,
-              },
-            }
-          );
-          projectRes = await projectRes.json();
-          console.log(projectRes);
+          setProjects((prev) => prev.filter((p) => p.id !== id));
+          res = await fetch(`${config.server_endpoints.DELETE_REPO}/${id}`, {
+            method: "DELETE",
+            headers,
+          });
           break;
+
         case DeleteType.EXPERIENCE:
-          setExperience(experience.filter((p) => p.id !== id));
-          let expRes = await fetch(
+          setExperience((prev) => prev.filter((p) => p.id !== id));
+          res = await fetch(
             `${config.server_endpoints.DELETE_EXPERIENCE}/${id}`,
             {
               method: "DELETE",
-              headers: {
-                authorization: `Bearer ${await getToken()}`,
-              },
+              headers,
             }
           );
-          expRes = await expRes.json();
-          console.log(expRes);
           break;
+
         case DeleteType.EDUCATION:
-          setEducation(education.filter((p) => p.id !== id));
-          let eduRes = await fetch(
+          setEducation((prev) => prev.filter((p) => p.id !== id));
+          res = await fetch(
             `${config.server_endpoints.DELETE_EDUCATION}/${id}`,
             {
               method: "DELETE",
-              headers: {
-                authorization: `Bearer ${await getToken()}`,
-              },
+              headers,
             }
           );
-          eduRes = await eduRes.json();
-          console.log(eduRes);
           break;
       }
+
+      if (!res?.ok) throw new Error(`Failed with status ${res?.status}`);
+      toast.success(`Deleted successfully`, { id: toastId });
     } catch (e) {
-      console.log(e);
+      console.error(e);
+      toast.error(`Failed to delete item`, { id: toastId });
     }
   };
 
@@ -367,6 +382,7 @@ export default function Page() {
             info={personalInformation}
             onChange={setPersonalInformation}
             onSave={onSave}
+            setProfileImg={setprofileImg}
           />
         );
       case "Projects":
@@ -375,6 +391,7 @@ export default function Page() {
             projects={projects}
             onChange={setProjects}
             onSave={onSave}
+            setprojectImg={setProjectImg}
           />
         );
       case "Experience":

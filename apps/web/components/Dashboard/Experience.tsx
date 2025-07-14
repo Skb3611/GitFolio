@@ -1,5 +1,13 @@
 import { Button } from "@workspace/ui/components/button";
-import { Briefcase, Calendar, Edit, Plus, Save, Trash2 } from "lucide-react";
+import {
+  Briefcase,
+  BriefcaseBusiness,
+  Calendar,
+  Edit,
+  Plus,
+  Save,
+  Trash2,
+} from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
 import { DeleteType, Experience, SavePayload } from "@/app/types/types";
 import { Card, CardContent } from "@workspace/ui/components/card";
@@ -25,17 +33,18 @@ import {
 import { MONTHS, YEARS } from "@/lib/dummy";
 import { v4 as uuid } from "uuid";
 import { Checkbox } from "@workspace/ui/components/checkbox";
+import { toast } from "@workspace/ui/components/sonner";
 
 const ExperienceTab = ({
   experience,
   onChange,
   onSave,
-  onDelete
+  onDelete,
 }: {
   experience: Experience[];
   onChange: Dispatch<SetStateAction<Experience[]>>;
   onSave: ({ type, data }: SavePayload) => void;
-  onDelete: (type:DeleteType,id: string) => void;
+  onDelete: (type: DeleteType, id: string) => void;
 }) => {
   const [editingExperience, setEditingExperience] =
     React.useState<Experience | null>(null);
@@ -65,6 +74,16 @@ const ExperienceTab = ({
 
   const handleSaveExperience = () => {
     if (editingExperience) {
+      if (
+        editingExperience.role == "" ||
+        editingExperience.company == "" ||
+        editingExperience.start_date == "" ||
+        editingExperience.end_date == "" ||
+        editingExperience.description == ""
+      ) {
+        toast.warning("Please fill in all the fields");
+        return;
+      }
       if (isAdding) {
         onChange([...experience, editingExperience]);
       } else {
@@ -73,39 +92,43 @@ const ExperienceTab = ({
             exp.id === editingExperience.id ? editingExperience : exp
           )
         );
-      } 
-      const {onGoing,...data}=editingExperience
-      onSave({ type: "Experience", data: {...data} });
-      setIsOpen(false); 
+      }
+      const { onGoing, ...data } = editingExperience;
+      onSave({ type: "Experience", data: { ...data } });
+      setIsOpen(false);
       setEditingExperience(null);
       setIsAdding(false);
     }
   };
-
-
 
   const handleCancel = () => {
     setEditingExperience(null);
     setIsAdding(false);
     setIsOpen(false);
   };
-  const handleDateChange = (type: 'start' | 'end', field: 'month' | 'year', value: string) => {
+  const handleDateChange = (
+    type: "start" | "end",
+    field: "month" | "year",
+    value: string
+  ) => {
     if (!editingExperience) return;
-  
-    const currentDate = type === 'start' ? editingExperience.start_date : editingExperience.end_date;
+
+    const currentDate =
+      type === "start"
+        ? editingExperience.start_date
+        : editingExperience.end_date;
     const { month, year } = getDateParts(currentDate);
-  
-    const newMonth = field === 'month' ? value : month;
-    const newYear = field === 'year' ? value : year;
-  
-    const newDate = [newMonth, newYear].filter(Boolean).join(' '); // allow partial like "June" or "2024"
-  
+
+    const newMonth = field === "month" ? value : month;
+    const newYear = field === "year" ? value : year;
+
+    const newDate = [newMonth, newYear].filter(Boolean).join(" "); // allow partial like "June" or "2024"
+
     setEditingExperience({
       ...editingExperience,
-      [type === 'start' ? 'start_date' : 'end_date']: newDate,
+      [type === "start" ? "start_date" : "end_date"]: newDate,
     });
   };
-  
 
   const handleOngoingChange = (checked: boolean) => {
     if (!editingExperience) return;
@@ -113,16 +136,16 @@ const ExperienceTab = ({
     setEditingExperience({
       ...editingExperience,
       onGoing: checked,
-      end_date: checked ? "Present" : ""
+      end_date: checked ? "Present" : "",
     });
   };
 
   const getDateParts = (dateString: string) => {
     if (!dateString || dateString === "Present") return { month: "", year: "" };
-    const [month, year] = dateString.split(' ');
+    const [month, year] = dateString.split(" ");
     return { month: month || "", year: year || "" };
   };
-  
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -143,44 +166,55 @@ const ExperienceTab = ({
         </Button>
       </div>
 
-      <div className="space-y-4">
-        {experience.map((exp) => (
-          <Card key={exp.id}>
-            <CardContent className="pt-6">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Briefcase className="h-4 w-4" />
-                    <h4 className="font-medium">{exp.role}</h4>
-                    <span className="text-muted-foreground">at</span>
-                    <span className="font-medium">{exp.company}</span>
+      <div className={`space-y-4 ${experience.length <= 0? "h-[70vh] flex justify-center items-center":""}`}>
+        {experience.length > 0 ? (
+          experience.map((exp) => (
+            <Card key={exp.id}>
+              <CardContent className="pt-6">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Briefcase className="h-4 w-4" />
+                      <h4 className="font-medium">{exp.role}</h4>
+                      <span className="text-muted-foreground">at</span>
+                      <span className="font-medium">{exp.company}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {exp.start_date} - {exp.end_date}
+                    </p>
+                    <p className="text-sm">{exp.description}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {exp.start_date} - {exp.end_date}
-                  </p>
-                  <p className="text-sm">{exp.description}</p>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleEditExperience(exp)}
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDelete(DeleteType.EXPERIENCE, exp.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleEditExperience(exp)}
-                  >
-                    <Edit className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onDelete(DeleteType.EXPERIENCE,exp.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <div className="text-center py-8 text-muted-foreground">
+            <BriefcaseBusiness className="h-24 w-24 mx-auto opacity-50" />
+            <AnimatedShinyText className="flex flex-col">
+              <span className="text-xl">
+                No Experience included in portfolio yet
+              </span>
+            </AnimatedShinyText>
+          </div>
+        )}
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -231,8 +265,10 @@ const ExperienceTab = ({
                   <Label>Start Date</Label>
                   <div className="grid grid-cols-2 gap-2">
                     <Select
-                    value={getDateParts(editingExperience.start_date).month}
-                    onValueChange={(value) => handleDateChange('start', 'month', value)}
+                      value={getDateParts(editingExperience.start_date).month}
+                      onValueChange={(value) =>
+                        handleDateChange("start", "month", value)
+                      }
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Month" />
@@ -248,8 +284,10 @@ const ExperienceTab = ({
                       </SelectContent>
                     </Select>
                     <Select
-                    value={getDateParts(editingExperience.start_date).year}
-                    onValueChange={(value) => handleDateChange('start', 'year', value)}
+                      value={getDateParts(editingExperience.start_date).year}
+                      onValueChange={(value) =>
+                        handleDateChange("start", "year", value)
+                      }
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Year" />
@@ -269,10 +307,12 @@ const ExperienceTab = ({
                 <div>
                   <Label>End Date</Label>
                   <div className="grid grid-cols-2 gap-2">
-                    <Select 
-                    disabled={editingExperience.onGoing}
-                    value={getDateParts(editingExperience.end_date).month}
-                    onValueChange={(value) => handleDateChange('end', 'month', value)}
+                    <Select
+                      disabled={editingExperience.onGoing}
+                      value={getDateParts(editingExperience.end_date).month}
+                      onValueChange={(value) =>
+                        handleDateChange("end", "month", value)
+                      }
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Month" />
@@ -288,9 +328,11 @@ const ExperienceTab = ({
                       </SelectContent>
                     </Select>
                     <Select
-                    value={getDateParts(editingExperience.end_date).year}
-                    onValueChange={(value) => handleDateChange('end', 'year', value)}
-                    disabled={editingExperience.onGoing}
+                      value={getDateParts(editingExperience.end_date).year}
+                      onValueChange={(value) =>
+                        handleDateChange("end", "year", value)
+                      }
+                      disabled={editingExperience.onGoing}
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Year" />
@@ -310,7 +352,7 @@ const ExperienceTab = ({
               </div>
               <div className="space-x-2 flex items-center">
                 <Checkbox
-                id="ongoing"
+                  id="ongoing"
                   checked={editingExperience.onGoing}
                   onCheckedChange={handleOngoingChange}
                 />

@@ -1,9 +1,8 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import v1Router from "./Routes/v1/index";
 import { User } from "@clerk/backend";
-
+import { config } from "./config";
 declare global {
   namespace Express {
     interface Request {
@@ -16,7 +15,6 @@ declare global {
   }
 }
 
-dotenv.config();
 
 const app = express();
 app.use(
@@ -29,7 +27,7 @@ app.use(
 );
 app.use(express.json());
 
-const port = process.env.PORT || 3000;
+const port = config.PORT || 3000;
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });

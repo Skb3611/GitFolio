@@ -1,4 +1,4 @@
-import { getUserContributionsGraph, getUserDetails, getUserRepos } from "../../src/Services/github.service";
+import { getUserContributionsGraph, getUserDetails, getUserRepos } from "../../Services/github.service";
 import dotenv from "dotenv";
 describe("Github Service Tests",()=>{
     let token:string ;

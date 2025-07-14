@@ -24,6 +24,7 @@ const SkillsTab = ({skills,onChange,onSave,availableSkills}:{
   
     const removeSkill = (skill: string) => {
       onChange(skills.filter((s) => s !== skill))
+      // onSave({type:"Skills",data:skills.filter((s) => s !== skill)})
     }
   
     const filteredSkills = availableSkills.filter(

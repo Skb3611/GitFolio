@@ -1,4 +1,4 @@
-import { JsonValue } from "../../../../packages/db/src/generated/prisma/runtime/library";
+import { JsonValue } from "../../../../../packages/db/src/generated/prisma/runtime/library";
 import {
     createOrUpdateEducation,
   createOrUpdateExperience,
@@ -8,7 +8,7 @@ import {
   deleteRepo,
   getUserData,
   updateUserData,
-} from "../../src/Services/dashboard.service";
+} from "../../Services/dashboard.service";
 import { Education, Experience, Repo } from "@workspace/db";
 describe("Dashboard Service", () => {
   const USERNAME = "bb321443-9c96-4038-8bea-1184d532bc36";
