@@ -62,7 +62,7 @@ const CTASection = () => {
             Let's Make Something Awesome
           </p>
         </AnimatedShinyText>
-        <Link href={"/sign-in"}>
+        <Link href={"/dashboard"}>
           <Button size={"lg"} className=" mx-auto mt-4 text-lg px-10 py-6 rounded-full cursor-pointer " variant={"outline"}>
             Get Started <ChevronRight />
           </Button>

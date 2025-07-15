@@ -2,8 +2,7 @@ import { AnimatedGridPattern } from "@workspace/ui/components/magicui/animated-g
 import { cn } from "@workspace/ui/lib/utils";
 import React from "react";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
-import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import Link from "next/link";
@@ -45,7 +44,7 @@ const HeroSection = () => {
               className="bg-white hover:bg-white/70 text-black  rounded-full py-7 p-4 px-8 text-base cursor-pointer"
               size={"lg"}
             >
-          <Link href={"/sign-in"}>
+          <Link href={"/dashboard"}>
               Get Started
           </Link>
               <ChevronRight className="h-10 w-10" />
