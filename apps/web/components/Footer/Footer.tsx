@@ -8,6 +8,8 @@ import QuickLinks from "./QuickLinks";
 import { Ripple } from "@workspace/ui/components/magicui/ripple";
 import { Code } from "lucide-react";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import Link from "next/link";
+import { config } from "@/config";
 
 const features = [
   {
@@ -44,7 +46,7 @@ const features = [
           </span>
         </div>
         <AnimatedShinyText className="text-lg md:text-xl">
-          Made with by SKB
+          Made by <Link href={config.links.X}>SKB</Link>
         </AnimatedShinyText>
       </div>
     ),
