@@ -12,5 +12,10 @@ export const config={
         UPDATE_EXPERIENCE:`${SERVER_ENDPOOINT}/api/v1/dashboard/user/experience/update`,
         DELETE_EXPERIENCE:`${SERVER_ENDPOOINT}/api/v1/dashboard/user/experience/delete`,
         GET_PRESIGNED_URL: `${SERVER_ENDPOOINT}/api/v1/s3/generatePreSignedURL`
+    },
+    links:{
+        LINKEDIN:"https://www.linkedin.com/in/shubham-bhilare-0a694a309/",
+        X:"https://x.com/SKB3611",
+        GITHUB:"https://github.com/Skb3611"
     }
 }

@@ -8,7 +8,8 @@ import Image from "next/image";
 import React from "react";
 import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
 import SectionLabel from "../SectionLabel";
-import {LampContainer} from "@workspace/ui/components/ui/lamp"
+import Link from "next/link";
+import { config } from "@/config";
 const ContactSection = () => {
   return (
     <div
@@ -37,10 +38,12 @@ const ContactSection = () => {
               <p className="text-muted-foreground">
                 Get the latest updates, insights, and join conversations with our community.
               </p>
+              <Link target="_blank" href={config.links.X}>
               <Button className="w-full gap-2">
                 <Twitter className="h-4 w-4" />
                 @Skb3611
               </Button>
+              </Link>
             </CardContent>
           </Card>
           <Card className="hover:shadow-lg transition-shadow">
@@ -52,24 +55,15 @@ const ContactSection = () => {
               <p className="text-muted-foreground">
                 Professional networking, industry insights, and business opportunities.
               </p>
+              <Link target="_blank" href={config.links.LINKEDIN}>
               <Button variant="outline" className="w-full gap-2 bg-transparent">
                 <Linkedin className="h-4 w-4" />
-                Company Profile
+                Linkedin Profile
               </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
-
-        {/* <div className="grid md:grid-cols-2 gap-8 mt-12 pt-8 border-t">
-          <div className="flex items-center gap-3">
-            <MessageCircle className="h-5 w-5 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Quick responses on X for urgent matters</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Users className="h-5 w-5 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Professional inquiries welcome on LinkedIn</span>
-          </div>
-        </div> */}
       </div>
   );
 };
