@@ -1,9 +1,9 @@
 import { TabTypes } from "@/app/types/types";
-import { Button } from "@workspace/ui/components/button";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@workspace/ui/components/sidebar";
 import React, { Dispatch, SetStateAction } from "react";
 
@@ -19,6 +19,7 @@ const MainNav = ({
   setActiveTab: Dispatch<SetStateAction<TabTypes>>;
   activeTab: string;
 }) => {
+  const {open}= useSidebar()
   return (
     <SidebarMenu>
       {navItems.map((nav) => {
@@ -27,10 +28,10 @@ const MainNav = ({
             <SidebarMenuButton
               isActive={activeTab === nav.label}
               tooltip={nav.label}
-              className="mx-auto w-full py-5"
+              className={`mx-auto w-full py-5 px-5  ${open?"rounded-full":""} `}
               onClick={() => setActiveTab(nav.label as TabTypes)}
             >
-              <nav.icon />
+              <nav.icon/>
               <span className="text-base">{nav.label}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>

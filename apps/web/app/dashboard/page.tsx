@@ -34,7 +34,9 @@ import {
   Globe,
   GraduationCap,
   Home,
+  Info,
   Link,
+  MessageCircle,
   UserPen,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -63,12 +65,12 @@ const sidebarItems = {
     {
       label: "About",
       href: "/#about",
-      icon: BookOpen,
+      icon: Info ,
     },
     {
       label: "Contact",
       href: "/#contact",
-      icon: Command,
+      icon: MessageCircle,
     },
   ],
   MainNavItems: [
@@ -441,7 +443,7 @@ export default function Page() {
         setActiveTab={setActiveTab}
         activeTab={activeTab}
       />
-      <SidebarInset>
+      <SidebarInset >
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 rounded-xl">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
