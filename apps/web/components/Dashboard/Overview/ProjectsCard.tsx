@@ -30,7 +30,7 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
       {projects.length > 0 ? (
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
           {projects.slice(0, 2).map((project) => (
-            <div key={project.id} className="border rounded-lg p-3 space-y-1 md:space-y-2">
+            <div key={project.id} className="border rounded-lg p-2 lg:p-3 space-y-1 md:space-y-2">
               {/* Project Thumbnail */}
               <div className="w-full h-24 rounded-md overflow-hidden bg-muted hidden md:block">
                 <Image
@@ -44,9 +44,9 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
                 />
               </div>
 
-              <div className="flex justify-center md:items-center items-start flex-col gap-">
+              <div className="flex justify-center xl:justify-start xl:gap-2 xl:items-center items-start flex-col xl:flex-row gap-">
                 <span className="font-medium text-sm">{project.name}</span>
-                <span className="space-x-2">
+                <span className="space-x-2 flex">
                 {Object.entries(project.languages).map(([key, value]) => {
                   return (
                     <Badge key={key} variant="secondary" className="text-[0.5rem]">
@@ -55,7 +55,7 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
                   );
                 })}
                 </span>
-                {project.liveLink && (
+                {/* {project.liveLink && (
                   <a
                     href={project.liveLink}
                     target="_blank"
@@ -64,7 +64,7 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
                   >
                     <ExternalLink className="h-3 w-3" />
                   </a>
-                )}
+                )} */}
               </div>
 
               <p className="text-xs text-muted-foreground line-clamp-2">

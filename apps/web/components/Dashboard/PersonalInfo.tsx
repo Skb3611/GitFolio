@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useRef } from "react";
 
-import { Edit, Github, Mail, MapPin, Save, UserIcon } from "lucide-react";
+import { Edit, Github, Mail, MapPin, Rocket, Save, UserIcon } from "lucide-react";
 import {
   Avatar,
   AvatarFallback,
@@ -69,7 +69,7 @@ const PersonalInfoTab = ({
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
           <div>
             <CardTitle>Personal Information</CardTitle>
             <CardDescription>
@@ -78,14 +78,15 @@ const PersonalInfoTab = ({
           </div>
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-              <Button>
+              <Button className="w-full md:w-auto">
                 <Edit className="mr-2 h-4 w-4" />
                 Edit Profile
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
-              <DialogHeader>
-                <DialogTitle>Edit Personal Information</DialogTitle>
+            <DialogContent className="sm:max-w-[600px] max-h-[95%] mx-auto overflow-auto">
+              <DialogHeader className="gap-0">
+                <DialogTitle className="text-base md:text-lg">Edit Personal Information</DialogTitle>
+
                 <DialogDescription>
                   Update your personal details and profile information
                 </DialogDescription>
@@ -118,8 +119,9 @@ const PersonalInfoTab = ({
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="full_name">Full Name</Label>
+                    <Label className="text-sm md:text-base" htmlFor="full_name">Full Name</Label>
                     <Input
+                    className="text-sm md:text-base"
                       id="full_name"
                       value={editInfo.full_name}
                       onChange={(e) =>
@@ -128,8 +130,9 @@ const PersonalInfoTab = ({
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="location">Location</Label>
+                    <Label className="text-sm md:text-base" htmlFor="location">Location</Label>
                     <Input
+                    className="text-sm md:text-base"
                       id="location"
                       value={editInfo.location}
                       onChange={(e) =>
@@ -141,8 +144,9 @@ const PersonalInfoTab = ({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="tagline">Tagline</Label>
+                  <Label className="text-sm md:text-base" htmlFor="tagline">Tagline</Label>
                   <Input
+                  className="text-sm md:text-base"
                     id="tagline"
                     value={editInfo.tagline}
                     onChange={(e) =>
@@ -153,8 +157,9 @@ const PersonalInfoTab = ({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="bio">Bio</Label>
+                  <Label className="text-sm md:text-base" htmlFor="bio">Bio</Label>
                   <Textarea
+                  className="text-sm md:text-base"
                     id="bio"
                     value={editInfo.bio}
                     onChange={(e) =>
@@ -178,9 +183,9 @@ const PersonalInfoTab = ({
           </Dialog>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="md:space-y-6 space-y-4 text-sm md:text-base">
         <div className="flex items-center gap-4">
-          <Avatar className="h-20 w-20">
+          <Avatar className="md:size-20 size-15">
             <AvatarImage
               src={info.profileImg || "/placeholder.svg"}
               alt={info.full_name}
@@ -192,9 +197,10 @@ const PersonalInfoTab = ({
                 .join("")}
             </AvatarFallback>
           </Avatar>
-          <div className="space-y-1">
-            <h3 className="text-xl font-semibold">{info.full_name}</h3>
-            <p className="text-muted-foreground">
+          <div className="md:space-y-1">
+            <h3 className="text-base md:text-xl font-semibold">@{info.full_name}</h3>
+            <p className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Rocket className="h-4 w-4"/>
               {info.tagline.length == 0 ? "No tagline" : info.tagline}
             </p>
             <p className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -211,14 +217,14 @@ const PersonalInfoTab = ({
               <UserIcon className="h-4 w-4" />
               Username
             </Label>
-            <Input value={`@${info.username}`} disabled className="bg-muted" />
+            <Input value={`@${info.username}`} disabled className="bg-muted text-sm md:text-base" />
           </div>
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
               Email
             </Label>
-            <Input value={info.email} disabled className="bg-muted" />
+            <Input value={info.email} disabled className="bg-muted text-sm md:text-base" />
           </div>
           <div className="space-y-2 md:col-span-2">
             <Label className="flex items-center gap-2">
@@ -228,13 +234,13 @@ const PersonalInfoTab = ({
             <Input
               value={`https://github.com/${info.username}`}
               disabled
-              className="bg-muted"
+              className="bg-muted text-sm md:text-base"
             />
           </div>
         </div>
 
         <div>
-          <h4 className="font-medium mb-2">Bio</h4>
+          <h4 className="font-medium md:mb-2">Bio</h4>
           <p className="text-muted-foreground">
             {info.bio.length == 0 ? "No bio added" : info.bio}
           </p>

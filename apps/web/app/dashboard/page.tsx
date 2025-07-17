@@ -464,7 +464,7 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-6">{renderTab()}</div>
+        <div className="flex flex-1 flex-col gap-4 md:p-6 py-2 px-4">{renderTab()}</div>
       </SidebarInset>
     </SidebarProvider>
   );
