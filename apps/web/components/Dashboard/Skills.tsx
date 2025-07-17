@@ -33,7 +33,7 @@ const SkillsTab = ({skills,onChange,onSave,availableSkills}:{
   return (
     <Card>
     <CardHeader>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center justify-between">
         <div>
           <CardTitle>Skills & Technologies</CardTitle>
           <CardDescription>Add your technical skills and expertise</CardDescription>
@@ -49,6 +49,7 @@ const SkillsTab = ({skills,onChange,onSave,availableSkills}:{
         <Label>Add New Skill</Label>
         <div className="flex gap-2">
           <Input
+          className='text-sm'
             value={newSkill}
             onChange={(e) => setNewSkill(e.target.value)}
             placeholder="Type a skill..."

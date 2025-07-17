@@ -21,17 +21,35 @@ const SocialLinksTab = ({
   onChange: Dispatch<SetStateAction<SocialLinks>>;
   onSave: ({ type, data }: SavePayload) => void;
 }) => {
+  const handleSave = () => {
+    // Get the current links data
+    const currentLinks = links;
+    
+    // Check if any link has changed by comparing with the initial data
+    const hasChanges = Object.entries(currentLinks).some(([key, value]) => {
+      // If any link value is not empty and different from initial state
+      return value && value.trim().length > 0;
+    });
+
+    // Only call save if there are changes
+    if (hasChanges) {
+      onSave({
+        type: 'Social Links',
+        data: currentLinks
+      });
+    }
+  }
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <CardTitle>Social Links</CardTitle>
             <CardDescription>
               Add links to your social profiles and portfolio
             </CardDescription>
           </div>
-          <Button onClick={() => onSave({ type: "Social Links", data: links })}>
+          <Button onClick={handleSave} className="w-full sm:w-auto">
             <Save className="mr-2 h-4 w-4" />
             Save Changes
           </Button>
@@ -45,6 +63,7 @@ const SocialLinksTab = ({
                 {key[0]?.toUpperCase() + key.slice(1)}
               </Label>
               <Input
+              className="text-sm"
                 id={key}
                 value={value}
                 onChange={(e) => onChange({ ...links, [key]: e.target.value })}
