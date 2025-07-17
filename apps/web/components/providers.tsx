@@ -25,7 +25,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       invert
       duration={2500}
       // offset={{right:50}}
-      position={isMobile?"top-center":"bottom-right"}
+      // position={isMobile?"top-center":"bottom-right"}
       />
       {children}
     </NextThemesProvider>

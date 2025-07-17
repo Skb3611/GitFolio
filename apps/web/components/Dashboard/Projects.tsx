@@ -4,6 +4,7 @@ import { Button } from "@workspace/ui/components/button";
 import {
   Edit,
   ExternalLink,
+  Frown,
   GitFork,
   Github,
   GripVertical,
@@ -13,7 +14,7 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import { Card, CardContent } from "@workspace/ui/components/card";
+import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
 import { Switch } from "@workspace/ui/components/switch";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@workspace/ui/components/input";
@@ -30,6 +31,11 @@ import {
 import Image from "next/image";
 import { toast } from "@workspace/ui/components/sonner";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@workspace/ui/components/tooltip";
 const ProjectsTab = ({
   projects,
   onChange,
@@ -127,121 +133,27 @@ const ProjectsTab = ({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Portfolio Projects</h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm  text-muted-foreground">
             Manage your projects and customize how they appear in your portfolio
           </p>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3  gap-4">
         {projects.map((project) => (
-          <Card key={project.id}>
-            <CardContent className="pt-6">
-              <div className="flex items-start gap-4">
-                <div className="flex items-center space-x-2">
-                  <GripVertical className="h-4 w-4 text-muted-foreground cursor-move" />
-                  <Switch
-                    checked={project.isIncluded}
-                    onCheckedChange={() => toggleProject(project)}
-                  />
-                </div>
-
-                {/* Project Thumbnail */}
-                <div className="w-20 h-16 rounded-md overflow-hidden bg-muted flex-shrink-0">
-                  <img
-                    src={
-                      project.thumbnail || "/placeholder.svg?height=64&width=80"
-                    }
-                    alt={project.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">{project.name}</span>
-                      {Object.entries(project.languages).map(
-                        ([keyframes, value]) => {
-                          return (
-                            <Badge key={keyframes} variant="secondary">
-                              {keyframes}
-                            </Badge>
-                          );
-                        }
-                      )}
-                      {project.liveLink && (
-                        <a
-                          href={project.liveLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800"
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      )}
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEditProject(project)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  <p className="text-sm text-muted-foreground mb-2">
-                    {project.description}
-                  </p>
-
-                  {/* Topics */}
-                  {project.topics && project.topics.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mb-2">
-                      {project.topics.slice(0, 4).map((topic: string) => (
-                        <Badge
-                          key={topic}
-                          variant="outline"
-                          className="text-xs"
-                        >
-                          {topic}
-                        </Badge>
-                      ))}
-                      {project.topics.length > 4 && (
-                        <Badge variant="outline" className="text-xs">
-                          +{project.topics.length - 4}
-                        </Badge>
-                      )}
-                    </div>
-                  )}
-
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Star className="h-3 w-3" />
-                      {project.stars}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <GitFork className="h-3 w-3" />
-                      {project.forks}
-                    </span>
-                    <a
-                      href={project.repoLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 hover:text-foreground"
-                    >
-                      <Github className="h-3 w-3" />
-                      GitHub
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <ProjectCard
+            key={project.id}
+            project={project}
+            toggleProject={toggleProject}
+            handleEditProject={handleEditProject}
+            setIsOpen={setIsOpen}
+            setEditingProject={setEditingProject}
+          />
         ))}
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[700px] max-h-[95vh] overflow-y-auto ">
           <DialogHeader>
             <DialogTitle>Edit Project</DialogTitle>
             <DialogDescription>
@@ -252,19 +164,27 @@ const ProjectsTab = ({
             <div className="space-y-6 py-4">
               {/* Project Thumbnail */}
               <div className="space-y-2">
-                <Label>Project Thumbnail</Label>
-                <div className="flex items-center gap-4">
+                <Label className="text-center sm:text-left">
+                  Project Thumbnail
+                </Label>
+                <div className="flex flex-col sm:flex-row items-center gap-4">
                   <div className="w-32 h-24 rounded-md overflow-hidden bg-muted border">
-                    <Image
-                      height={100}
-                      width={100}
-                      src={
-                        editingProject.thumbnail ||
-                        "/placeholder.svg?height=96&width=128"
-                      }
-                      alt="Project thumbnail"
-                      className="w-full h-full object-cover"
-                    />
+                    {editingProject.thumbnail ? (
+                      <Image
+                        height={100}
+                        width={100}
+                        src={editingProject.thumbnail}
+                        alt="Project thumbnail"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col justify-center item-center mx-auto">
+                        <Frown className="size-5 w-full " />
+                        <AnimatedShinyText className="text-sm ">
+                          No Image found
+                        </AnimatedShinyText>
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Button
@@ -283,10 +203,11 @@ const ProjectsTab = ({
                       onChange={handleFileChange}
                     />
                     {/* <Input
+                    className="text-sm "
                     placeholder="Or paste image URL"
                     value={editingProject.thumbnail || ""}
                     onChange={(e) => setEditingProject({ ...editingProject, thumbnail: e.target.value })}
-                    className="text-sm"
+                    className="text-sm "
                   /> */}
                   </div>
                 </div>
@@ -294,8 +215,9 @@ const ProjectsTab = ({
 
               {/* Project Name */}
               <div className="space-y-2">
-                <Label>Project Name</Label>
+                <Label className="text-sm md:text-base ">Project Name</Label>
                 <Input
+                  className="text-sm "
                   value={editingProject.name}
                   onChange={(e) =>
                     setEditingProject({
@@ -309,8 +231,11 @@ const ProjectsTab = ({
 
               {/* Project Description */}
               <div className="space-y-2">
-                <Label>Project Description</Label>
+                <Label className="text-sm md:text-base ">
+                  Project Description
+                </Label>
                 <Textarea
+                  className="text-sm "
                   value={editingProject.description}
                   onChange={(e) =>
                     setEditingProject({
@@ -318,16 +243,22 @@ const ProjectsTab = ({
                       description: e.target.value,
                     })
                   }
-                  placeholder={editingProject.description}
+                  placeholder="Enter Description . . ."
                   rows={3}
                 />
               </div>
 
               {/* Topics/Tags */}
               <div className="space-y-2">
-                <Label>Topics/Tags</Label>
+                <Label className="inline-flex items-center gap-2 text-sm md:text-base ">
+                  Topics/Tags
+                  <AnimatedShinyText className="text-xs">
+                    ( Optional )
+                  </AnimatedShinyText>
+                </Label>
                 <div className="flex gap-2 mb-2">
                   <Input
+                    className="text-sm "
                     placeholder="Add a topic..."
                     value={newTopic}
                     onChange={(e) => setNewTopic(e.target.value)}
@@ -362,8 +293,14 @@ const ProjectsTab = ({
               {/* Links */}
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="inline-flex items-center gap-2">Live Demo URL <AnimatedShinyText className="text-xs">( Optional )</AnimatedShinyText></Label>
+                  <Label className="inline-flex items-center gap-2 text-sm md:text-base ">
+                    Live Demo URL{" "}
+                    <AnimatedShinyText className="text-xs">
+                      ( Optional )
+                    </AnimatedShinyText>
+                  </Label>
                   <Input
+                    className="text-sm "
                     value={editingProject.liveLink || ""}
                     onChange={(e) =>
                       setEditingProject({
@@ -375,8 +312,11 @@ const ProjectsTab = ({
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>GitHub Repository</Label>
+                  <Label className="text-sm md:text-base ">
+                    GitHub Repository
+                  </Label>
                   <Input
+                    className="text-sm "
                     disabled
                     value={editingProject.repoLink || ""}
                     onChange={(e) =>
@@ -391,9 +331,9 @@ const ProjectsTab = ({
               </div>
 
               {/* Original GitHub Stats */}
-              <div className="flex items-center gap-2 p-3 bg-muted rounded-md">
+              {/* <div className="flex items-center gap-2 p-3 bg-muted rounded-md">
                 <Github className="h-4 w-4" />
-                <span className="font-medium text-sm">
+                <span className="font-medium text-sm ">
                   {editingProject.name}
                 </span>
                 {Object.entries(editingProject.languages).map(
@@ -405,7 +345,7 @@ const ProjectsTab = ({
                     );
                   }
                 )}
-                <div className="flex items-center gap-3 text-sm text-muted-foreground ml-auto">
+                <div className="flex items-center gap-3 text-sm  text-muted-foreground ml-auto">
                   <span className="flex items-center gap-1">
                     <Star className="h-3 w-3" />
                     {editingProject.stars}
@@ -415,7 +355,7 @@ const ProjectsTab = ({
                     {editingProject.forks}
                   </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
           <DialogFooter>
@@ -434,3 +374,156 @@ const ProjectsTab = ({
 };
 
 export default ProjectsTab;
+
+const ProjectCard = ({
+  project,
+  toggleProject,
+  handleEditProject,
+  setIsOpen,
+  setEditingProject,
+}: {
+  project: Projects;
+  toggleProject: (project: Projects) => void;
+  handleEditProject: (project: Projects) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setEditingProject: Dispatch<SetStateAction<Projects | null>>;
+}) => {
+  return (
+    <Card
+      key={project.id}
+      onClick={() => {
+        setIsOpen(true);
+        setEditingProject(project);
+      }}
+    >
+      <CardHeader>
+        <div className="w-full relative aspect-video rounded-md overflow-hidden bg-muted flex-shrink-0">
+          <Tooltip>
+            {/* <GripVertical className="h-3 w-3 text-gray-500 cursor-move" /> */}
+            <TooltipTrigger
+              onClick={(event) => event.stopPropagation()}
+              className="absolute top-2 left-2 flex items-center space-x-2 bg-black/90 rounded-xl px-2 py-1 z-20"
+            >
+              <Switch
+                className="z-50"
+                checked={project.isIncluded}
+                onCheckedChange={() => {
+                  event?.stopPropagation();
+                  toggleProject(project);
+                }}
+              />
+            </TooltipTrigger>
+            <TooltipContent side="top">
+              Change project visibility.
+            </TooltipContent>
+          </Tooltip>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleEditProject(project)}
+            className="z-20 absolute right-2 top-2"
+          >
+            <Tooltip>
+              <TooltipTrigger>
+                <Edit className="h-4 w-4" />
+              </TooltipTrigger>
+              <TooltipContent sideOffset={5}>Edit Project</TooltipContent>
+            </Tooltip>
+          </Button>
+          {project.thumbnail ? (
+            <Image
+              src={project.thumbnail || "/placeholder.svg?height=64&width=80"}
+              alt={project.name}
+              fill
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col justify-center items-center">
+              <Frown className="size-10 md:size-15 " />
+              <AnimatedShinyText className="text-sm  md:text-base">
+                No Image found
+              </AnimatedShinyText>
+              <AnimatedShinyText className="text-xs md:text-sm">
+                Add an Image to improve visibility.
+              </AnimatedShinyText>
+            </div>
+          )}
+        </div>
+      </CardHeader>
+      <CardContent className="pt-6">
+        <div>
+          <div className="flex flex-col gap-5">
+            <div className="flex-1">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
+                  <span className="font-medium">{project.name}</span>
+                  <span className="flex gap-2">
+                    {Object.entries(project.languages)
+                      .slice(0, 3)
+                      .map(([keyframes, value]) => {
+                        return (
+                          <Badge key={keyframes} variant="secondary">
+                            {keyframes}
+                          </Badge>
+                        );
+                      })}
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <p className="md:text-sm  text-xs text-muted-foreground mb-2">
+                {project.description}
+              </p>
+
+              {/* Topics */}
+              {project.topics && project.topics.length > 0 && (
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {project.topics.slice(0, 4).map((topic: string) => (
+                    <Badge key={topic} variant="outline" className="text-xs">
+                      {topic}
+                    </Badge>
+                  ))}
+                  {project.topics.length > 4 && (
+                    <Badge variant="outline" className="text-xs">
+                      +{project.topics.length - 4}
+                    </Badge>
+                  )}
+                </div>
+              )}
+
+              <div className="flex items-center gap-4 text-sm  text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <Star className="h-3 w-3" />
+                  {project.stars}
+                </span>
+                <span className="flex items-center gap-1">
+                  <GitFork className="h-3 w-3" />
+                  {project.forks}
+                </span>
+                <a
+                  href={project.repoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 hover:text-foreground"
+                >
+                  <Github className="h-3 w-3" />
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
