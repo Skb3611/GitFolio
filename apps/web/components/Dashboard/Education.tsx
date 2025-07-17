@@ -25,6 +25,7 @@ import { Checkbox } from "@workspace/ui/components/checkbox";
 import { v4 as uuid } from "uuid";
 import { toast } from "@workspace/ui/components/sonner";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import { CardWrapper as EducationCard } from "./CommonCard";
 export default function EducationTab({
   education,
   onChange,
@@ -64,17 +65,20 @@ export default function EducationTab({
   };
 
   const handleSaveEducation = () => {
-    if (
-      editingEducation?.title == "" ||
-      editingEducation?.institution == "" ||
-      editingEducation?.start_date == "" ||
-      editingEducation?.end_date == "" ||
-      editingEducation?.description == ""
-    ) {
-      toast.warning("Please fill in all the fields");
-      return;
-    }
     if (editingEducation) {
+      if (
+        editingEducation?.title == "" ||
+        editingEducation?.institution == "" ||
+        editingEducation?.start_date == "" ||
+        editingEducation?.end_date == "" ||
+        editingEducation?.description == ""
+      ) {
+        toast.warning("Please fill in all the fields");
+        return;
+      } else if (editingEducation.description.length < 10) {
+        toast.warning("Description must be at least 10 characters");
+        return;
+      }
       if (isAdding) {
         onChange([...education, editingEducation]);
       } else {
@@ -115,64 +119,38 @@ export default function EducationTab({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Education</h3>
           <p className="text-sm text-muted-foreground">
             Your educational background and qualifications
           </p>
         </div>
-        <Button onClick={handleAddEducation}>
+        <Button onClick={handleAddEducation} className="w-full md:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Education
         </Button>
       </div>
 
-      <div className={`space-y-4 ${education.length <= 0? "h-[70vh] flex justify-center items-center":""}`}>
+      <div
+        className={`space-y-4 ${education.length <= 0 ? "h-[70vh] flex justify-center items-center" : "grid grid-cols-1 xl:grid-cols-2 gap-5"}`}
+      >
         {education.length > 0 ? (
           education.map((edu) => (
-            <Card key={edu.id}>
-              <CardContent className="pt-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <GraduationCap className="h-4 w-4" />
-                      <h4 className="font-medium">{edu.title}</h4>
-                    </div>
-                    <p className="text-sm font-medium text-muted-foreground mb-1">
-                      {edu.institution}
-                    </p>
-                    <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {edu.start_date} - {edu.end_date}
-                    </p>
-                    <p className="text-sm">{edu.description}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEditEducation(edu)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleDeleteEducation(edu.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <EducationCard
+              key={edu.id}
+              data={edu}
+              setIsOpen={setIsOpen}
+              setEditing={(val) => setEditingEducation(val as Education)}
+              handleEdit={handleEditEducation}
+              handleDelete={onDelete}
+            />
           ))
         ) : (
           <div className="text-center py-8 text-muted-foreground">
-            <GraduationCap className="h-24 w-24 mx-auto opacity-50" />
+            <GraduationCap className="size-20 mx-auto opacity-50" />
             <AnimatedShinyText className="flex flex-col">
-              <span className="text-lg">
+              <span className="md:text-lg">
                 No Education included in portfolio yet
               </span>
             </AnimatedShinyText>
@@ -197,6 +175,7 @@ export default function EducationTab({
               <div className="space-y-2">
                 <Label>Degree/Title</Label>
                 <Input
+                  className="text-sm"
                   value={editingEducation.title}
                   onChange={(e) =>
                     setEditingEducation({
@@ -211,6 +190,7 @@ export default function EducationTab({
               <div className="space-y-2">
                 <Label>Institute/University</Label>
                 <Input
+                  className="text-sm"
                   value={editingEducation.institution}
                   onChange={(e) =>
                     setEditingEducation({
@@ -226,6 +206,7 @@ export default function EducationTab({
                 <div className="space-y-2">
                   <Label>Start Year</Label>
                   <Input
+                    className="text-sm"
                     value={editingEducation.start_date}
                     onChange={(e) =>
                       setEditingEducation({
@@ -239,6 +220,7 @@ export default function EducationTab({
                 <div className="space-y-2">
                   <Label>End Year</Label>
                   <Input
+                    className="text-sm"
                     disabled={editingEducation.onGoing}
                     value={editingEducation.end_date}
                     onChange={(e) =>
@@ -263,6 +245,7 @@ export default function EducationTab({
               <div className="space-y-2">
                 <Label>Description</Label>
                 <Textarea
+                  className="text-sm"
                   value={editingEducation.description}
                   onChange={(e) =>
                     setEditingEducation({

@@ -34,6 +34,7 @@ import { MONTHS, YEARS } from "@/lib/dummy";
 import { v4 as uuid } from "uuid";
 import { Checkbox } from "@workspace/ui/components/checkbox";
 import { toast } from "@workspace/ui/components/sonner";
+import { CardWrapper as ExperienceCard } from "@/components/Dashboard/CommonCard";
 
 const ExperienceTab = ({
   experience,
@@ -82,6 +83,12 @@ const ExperienceTab = ({
         editingExperience.description == ""
       ) {
         toast.warning("Please fill in all the fields");
+        return;
+      } else if (editingExperience.start_date > editingExperience.end_date) {
+        toast.warning("Start date must be before end date");
+        return;
+      } else if (editingExperience.description.length < 10) {
+        toast.warning("Description must be at least 10 characters");
         return;
       }
       if (isAdding) {
@@ -173,11 +180,11 @@ const ExperienceTab = ({
           experience.map((exp) => (
             <ExperienceCard
               key={exp.id}
-              exp={exp}
-              handleEditExperience={handleEditExperience}
-              handleDeleteExperience={onDelete}
+              data={exp}
+              handleEdit={handleEditExperience}
+              handleDelete={onDelete}
               setIsOpen={setIsOpen}
-              setEditingExperience={setEditingExperience}
+              setEditing={(value) => setEditingExperience(value as Experience)}
             />
           ))
         ) : (
@@ -210,7 +217,7 @@ const ExperienceTab = ({
                 <div className="space-y-2">
                   <Label className="text-sm md:text-base">Job Role</Label>
                   <Input
-                  className="text-sm"
+                    className="text-sm"
                     value={editingExperience.role}
                     onChange={(e) =>
                       setEditingExperience({
@@ -224,7 +231,7 @@ const ExperienceTab = ({
                 <div className="space-y-2">
                   <Label className="text-sm md:text-base">Company</Label>
                   <Input
-                  className="text-sm"
+                    className="text-sm"
                     value={editingExperience.company}
                     onChange={(e) =>
                       setEditingExperience({
@@ -238,7 +245,7 @@ const ExperienceTab = ({
               </div>
 
               <div className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="w-full space-y-2" >
+                <div className="w-full space-y-2">
                   <Label className="text-sm md:text-base">Start Date</Label>
                   <div className="grid grid-cols-2 gap-2">
                     <Select
@@ -246,10 +253,9 @@ const ExperienceTab = ({
                       onValueChange={(value) =>
                         handleDateChange("start", "month", value)
                       }
-                      
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue  placeholder="Month" />
+                        <SelectValue placeholder="Month" />
                       </SelectTrigger>
                       <SelectContent>
                         {MONTHS.map((month) => {
@@ -333,16 +339,14 @@ const ExperienceTab = ({
                   id="ongoing"
                   checked={editingExperience.onGoing}
                   onCheckedChange={handleOngoingChange}
-                   
                 />
-                <Label htmlFor="ongoing" >Currently working here</Label>
-
+                <Label htmlFor="ongoing">Currently working here</Label>
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm md:text-base">Summary</Label>
                 <Textarea
-                className="text-sm"
+                  className="text-sm"
                   value={editingExperience.description}
                   onChange={(e) =>
                     setEditingExperience({
@@ -372,83 +376,3 @@ const ExperienceTab = ({
 };
 
 export default ExperienceTab;
-
-const ExperienceCard = ({
-  exp,
-  handleEditExperience,
-  handleDeleteExperience,
-  setIsOpen,
-  setEditingExperience,
-}: {
-  exp: Experience;
-  handleEditExperience: (exp: Experience) => void;
-  handleDeleteExperience: (type: DeleteType, id: string) => void;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-  setEditingExperience: Dispatch<SetStateAction<Experience | null>>;
-}) => {
-  return (
-    <Card
-      onClick={() => {
-        setIsOpen(true);
-        setEditingExperience(exp);
-      }}
-    >
-      <CardContent className="md:p-6">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-lg">
-                <Briefcase className="h-5 w-5 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold group-hover:text-blue-600 transition-colors">
-                  {exp.role}
-                </h3>
-                <p className="text-sm text-muted-foreground font-medium">
-                  {exp.company}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 mb-3">
-              <Calendar className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">
-                {exp.start_date} - {exp.end_date}
-              </span>
-            </div>
-          </div>
-
-          <div >
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={(event) =>{
-                event.stopPropagation()
-                handleEditExperience(exp)}
-              } 
-            >
-              <Edit className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={(event) =>{
-                event?.stopPropagation()
-                handleDeleteExperience(DeleteType.EXPERIENCE, exp.id)
-              }
-              }
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-
-        <div className="bg-muted/30 rounded-lg p-4 border-l-2 dark:border-primary">
-          <p className="md:text-sm text-xs leading-relaxed">
-            {exp.description}
-          </p>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
