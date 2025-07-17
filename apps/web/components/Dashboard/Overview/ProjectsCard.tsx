@@ -11,51 +11,56 @@ import { Projects, TabTypes } from "@/app/types/types";
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import Image from "next/image";
 
 const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:Dispatch<SetStateAction<TabTypes>>}) => {
   return (
-    <div className="p-8">
+    <div className="md:p-8 p-4">
       <header className="flex items-center justify-between w-full gap-3 mb-4">
         <div className="flex items-center gap-3">
           <FolderGit2 />
-          <span className="text-2xl">Projects</span>
+          <span className="md:text-2xl text-lg">Projects</span>
         </div>
-        <Button variant={"outline"} size={"sm"} onClick={()=>setActiveTab("Projects")
+        <Button variant={"outline"} size={"sm"} className="text-xs md:text-sm" onClick={()=>setActiveTab("Projects")
         }>
           View All <MoveRight />
         </Button>
       </header>
 
       {projects.length > 0 ? (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
           {projects.slice(0, 2).map((project) => (
-            <div key={project.id} className="border rounded-lg p-3 space-y-2">
+            <div key={project.id} className="border rounded-lg p-3 space-y-1 md:space-y-2">
               {/* Project Thumbnail */}
-              <div className="w-full h-24 rounded-md overflow-hidden bg-muted">
-                <img
+              <div className="w-full h-24 rounded-md overflow-hidden bg-muted hidden md:block">
+                <Image
                   src={
                     project.thumbnail || "/placeholder.svg?height=96&width=200"
                   }
                   alt={project.name}
-                  className="w-full h-full object-cover"
+                  height={100}
+                  width={100}
+                  className="w-full h-full object-cover "
                 />
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex justify-center md:items-center items-start flex-col gap-">
                 <span className="font-medium text-sm">{project.name}</span>
+                <span className="space-x-2">
                 {Object.entries(project.languages).map(([key, value]) => {
                   return (
-                    <Badge key={key} variant="secondary" className="text-xs">
+                    <Badge key={key} variant="secondary" className="text-[0.5rem]">
                       {key}
                     </Badge>
                   );
                 })}
+                </span>
                 {project.liveLink && (
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800"
+                    className="text-blue-600 hover:text-blue-800 hidden md:block"
                   >
                     <ExternalLink className="h-3 w-3" />
                   </a>

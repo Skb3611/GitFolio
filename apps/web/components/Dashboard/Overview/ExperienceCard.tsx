@@ -9,19 +9,19 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { ArrowRight, BriefcaseBusiness } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, MoveRight } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
 
 const ExperienceCard = ({ experience,setActiveTab }: { experience?: Experience[],setActiveTab:Dispatch<SetStateAction<TabTypes>> }) => {
   return (
-    <div className="p-8">
+    <div className="md:p-8 p-4">
       <header className="flex items-center justify-between">
-        <h2 className="flex items-center gap-3 text-2xl">
+        <h2 className="flex items-center gap-3 md:text-2xl text-lg">
           <BriefcaseBusiness />
           Experience
         </h2>
-        <Button variant={"outline"} size={"sm"} onClick={()=>setActiveTab("Experience")}>
-          View All <ArrowRight />
+        <Button variant={"outline"} size={"sm"} className="text-xs md:text-sm" onClick={()=>setActiveTab("Experience")}>
+          View All <MoveRight/>
         </Button>
       </header>
       <div className="my-3 space-y-2">
@@ -37,11 +37,11 @@ const ExperienceCard = ({ experience,setActiveTab }: { experience?: Experience[]
                       {exp.start_date} - {exp.end_date}{" "}
                     </span>
                   </div>
-                  <AnimatedShinyText className="text-sm">
+                  <AnimatedShinyText className="md:text-sm text-xs">
                     {exp.role}{" "}
                   </AnimatedShinyText>
                 </header>
-                <div className="text-sm">{exp.description}</div>
+                <div className="md:text-sm text-xs">{exp.description}</div>
               </div>
             );
           })

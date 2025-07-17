@@ -115,8 +115,8 @@ const OverviewTab = ({
     
   return (
     <div>
-        <h1 className='text-4xl font-semibold'>Welcome Back, {personalInfo.username} ! </h1>
-        <AnimatedShinyText className='text-lg'>
+        <h1 className='text-xl md:text-4xl font-semibold'>Welcome Back, {personalInfo.username} ! </h1>
+        <AnimatedShinyText className='md:text-lg'>
         Here's Your Profile Overview ...
         </AnimatedShinyText>
 

@@ -12,22 +12,22 @@ const SkillsCard = ({
   skills?: string[];
   setActiveTab:Dispatch<SetStateAction<TabTypes>>
 }) => {
-  return <div className="p-8">
+  return <div className="md:p-8 p-4">
     <header className="flex justify-between items-center text-2xl">
-        <h2 className="flex items-center text-2xl gap-2">
+        <h2 className="flex items-center md:text-2xl text-lg gap-2">
         <Code2/>
         <span>
         Skills 
         </span>
       
         </h2>
-        <Button variant={"outline"} size={"sm"} onClick={()=>setActiveTab("Skills")}>
+        <Button className="text-xs md:text-sm" variant={"outline"} size={"sm"} onClick={()=>setActiveTab("Skills")}>
             Add more <Plus/>
         </Button>
     </header>
     <div className={`flex ${(skills && skills?.length > 0) && "justify-start items-start"} justify-center items-center flex-wrap space-x-3 space-y-3 my-5 w-full`}>
     {skills && skills.length>0 ?skills?.map((skill,idx)=>{
-        return <Badge key={idx} variant={"default"} className="text-base rounded-xl px-4">
+        return <Badge key={idx} variant={"default"} className="text-sm md:text-base rounded-xl px-4">
             {skill}
         </Badge>
     }):(

@@ -15,31 +15,31 @@ const personalInfo = {
 
 const PersonalInfoCard = ({info}:{info:PersonalInformation}) => {
   return (
-  <div className='p-8 h-full w-full'>
+  <div className='p-4 md:p-8 h-full w-full'>
   <header className='mb-5'>
-    <h2 className="text-2xl font-medium inline-flex items-center gap-2"><User className='size-8'/> Personal Information</h2>
+    <h2 className="text-lg md:text-2xl font-medium inline-flex items-center gap-2"><User className='size-8'/> Personal Information</h2>
   </header >
   <div className='flex flex-col justify-between gap-10 '>
     <div className='flex items-center gap-5'>
 
     <div>
-    <Avatar className='size-30' >
+    <Avatar className='md:size-30 size-20' >
         <AvatarImage src={info.profileImg} alt='profile'/>
         <AvatarFallback>
-          <User2Icon className='size-20'/>
+          <User2Icon className='md:size-20 size-10'/>
         </AvatarFallback>
     </Avatar>
     </div>
     <div className='space-y-1'>
-        <span className='flex item-start gap-1.5'><User/><AnimatedShinyText className='text-left w-full mx-0'>{info.full_name.length==0 ? "Name...":info.full_name}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><AtSign /><AnimatedShinyText className='text-left w-full mx-0'>{info.username.length==0 ?"Username...":info.username}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><Mail /><AnimatedShinyText className='text-left w-full mx-0'>{info.email.length==0 ?"email...":info.email}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><MapPin /><AnimatedShinyText className='text-left w-full mx-0'>{info.location.length==0 ?"No location added . . .":info.location}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><User/><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.full_name.length==0 ? "Name...":info.full_name}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><AtSign /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.username.length==0 ?"Username...":info.username}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><Mail /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.email.length==0 ?"email...":info.email}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><MapPin /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.location.length==0 ?"No location . . .":info.location}</AnimatedShinyText></span>
     </div>
     </div>
     <footer className='space-y-1'>
-        <span className='flex item-start gap-1.5'><Rocket /><AnimatedShinyText className='text-left w-full mx-0'>{info.tagline.length==0 ? "No Tagline added . . .":info.tagline}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><Info /><AnimatedShinyText className='text-left w-full mx-0'>{info.bio.length==0 ? "No bio added . . .":info.bio}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><Rocket /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.tagline.length==0 ? "No Tagline added . . .":info.tagline}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><Info /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.bio.length==0 ? "No bio added . . .":info.bio}</AnimatedShinyText></span>
 
     </footer>
   </div>

@@ -10,27 +10,27 @@ const StatsCard = ({stats}:{
   }
 }) => {
   return (
-    <div className="md:col-span-1 lg:col-span-2 p-8">
-        <header className='flex items-center gap-2 text-2xl'>
+    <div className="md:col-span-1 lg:col-span-2 md:p-8 p-4">
+        <header className='flex items-center gap-2 text-lg   mg:text-2xl'>
         <Layout className="size-8" />
           Portfolio Statistics
         </header>
-        <div className="grid grid-cols-2 gap-10 text-center my-10">
+        <div className="grid grid-cols-2 md:gap-10 gap-y-10 gap-x-5  text-center my-10">
                <div>
-                 <div className="text-xl font-bold">{stats.repos}</div>
-                 <p className=" text-muted-foreground">Total Repos</p>
+                 <div className="md:text-xl text-base font-bold">{stats.repos}</div>
+                 <p className=" text-muted-foreground text-sm md:text-base">Total Repos</p>
                </div>
                <div>
-                 <div className="text-xl font-bold">{stats.education}</div>
-                 <p className=" text-muted-foreground">Total Education</p>
+                 <div className="md:text-xl text-base font-bold">{stats.education}</div>
+                 <p className=" text-muted-foreground text-sm md:text-base">Total Education</p>
                </div>
                <div>
-                 <div className="text-xl font-bold">{stats.experience}</div>
-                 <p className=" text-muted-foreground">Total Experience</p>
+                 <div className="md:text-xl text-base font-bold">{stats.experience}</div>
+                 <p className=" text-muted-foreground text-sm md:text-base">Total Experience</p>
                </div>
                <div>
-                 <div className="text-xl font-bold">{stats.skills}</div>
-                 <p className=" text-muted-foreground">Total Skills</p>
+                 <div className="md:text-xl text-base font-bold">{stats.skills}</div>
+                 <p className=" text-muted-foreground text-sm md:text-base">Total Skills</p>
                </div>
              </div>
              {/* <footer className='w-full flex justify-center'>
