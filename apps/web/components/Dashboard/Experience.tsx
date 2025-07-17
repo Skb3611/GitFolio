@@ -19,10 +19,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@workspace/ui/components/dialog";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@workspace/ui/components/input";
 import { Textarea } from "@workspace/ui/components/textarea";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import { Label } from "@workspace/ui/components/label";
 import {
   Select,
   SelectContent,
@@ -148,7 +148,7 @@ const ExperienceTab = ({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-center gap-2 justify-between">
         <div>
           <h3 className="text-lg font-medium">
             {experience.length == 0 ? "No Experiences" : "Work Experiences"}
@@ -160,54 +160,29 @@ const ExperienceTab = ({
             .
           </AnimatedShinyText>
         </div>
-        <Button onClick={handleAddExperience}>
+        <Button onClick={handleAddExperience} className="w-full md:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Experience
         </Button>
       </div>
 
-      <div className={`space-y-4 ${experience.length <= 0? "h-[70vh] flex justify-center items-center":""}`}>
+      <div
+        className={` ${experience.length <= 0 ? "h-[70vh] flex justify-center items-center" : "grid grid-cols-1 xl:grid-cols-2 gap-5  "} `}
+      >
         {experience.length > 0 ? (
           experience.map((exp) => (
-            <Card key={exp.id}>
-              <CardContent className="pt-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Briefcase className="h-4 w-4" />
-                      <h4 className="font-medium">{exp.role}</h4>
-                      <span className="text-muted-foreground">at</span>
-                      <span className="font-medium">{exp.company}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {exp.start_date} - {exp.end_date}
-                    </p>
-                    <p className="text-sm">{exp.description}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEditExperience(exp)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => onDelete(DeleteType.EXPERIENCE, exp.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <ExperienceCard
+              key={exp.id}
+              exp={exp}
+              handleEditExperience={handleEditExperience}
+              handleDeleteExperience={onDelete}
+              setIsOpen={setIsOpen}
+              setEditingExperience={setEditingExperience}
+            />
           ))
         ) : (
           <div className="text-center py-8 text-muted-foreground">
-            <BriefcaseBusiness className="h-24 w-24 mx-auto opacity-50" />
+            <BriefcaseBusiness className="size-16 md:size-24 mx-auto opacity-50" />
             <AnimatedShinyText className="flex flex-col">
               <span className="text-xl">
                 No Experience included in portfolio yet
@@ -218,7 +193,7 @@ const ExperienceTab = ({
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[95%] ">
           <DialogHeader>
             <DialogTitle>
               {isAdding ? "Add Experience" : "Edit Experience"}
@@ -233,8 +208,9 @@ const ExperienceTab = ({
             <div className="space-y-4 py-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label>Job Role</Label>
+                  <Label className="text-sm md:text-base">Job Role</Label>
                   <Input
+                  className="text-sm"
                     value={editingExperience.role}
                     onChange={(e) =>
                       setEditingExperience({
@@ -246,8 +222,9 @@ const ExperienceTab = ({
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>Company</Label>
+                  <Label className="text-sm md:text-base">Company</Label>
                   <Input
+                  className="text-sm"
                     value={editingExperience.company}
                     onChange={(e) =>
                       setEditingExperience({
@@ -261,17 +238,18 @@ const ExperienceTab = ({
               </div>
 
               <div className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="w-full">
-                  <Label>Start Date</Label>
+                <div className="w-full space-y-2" >
+                  <Label className="text-sm md:text-base">Start Date</Label>
                   <div className="grid grid-cols-2 gap-2">
                     <Select
                       value={getDateParts(editingExperience.start_date).month}
                       onValueChange={(value) =>
                         handleDateChange("start", "month", value)
                       }
+                      
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Month" />
+                        <SelectValue  placeholder="Month" />
                       </SelectTrigger>
                       <SelectContent>
                         {MONTHS.map((month) => {
@@ -304,8 +282,8 @@ const ExperienceTab = ({
                     </Select>
                   </div>
                 </div>
-                <div>
-                  <Label>End Date</Label>
+                <div className="space-y-2">
+                  <Label className="text-sm md:text-base">End Date</Label>
                   <div className="grid grid-cols-2 gap-2">
                     <Select
                       disabled={editingExperience.onGoing}
@@ -355,13 +333,16 @@ const ExperienceTab = ({
                   id="ongoing"
                   checked={editingExperience.onGoing}
                   onCheckedChange={handleOngoingChange}
+                   
                 />
-                <label htmlFor="ongoing">Currently working here</label>
+                <Label htmlFor="ongoing" >Currently working here</Label>
+
               </div>
 
               <div className="space-y-2">
-                <Label>Summary</Label>
+                <Label className="text-sm md:text-base">Summary</Label>
                 <Textarea
+                className="text-sm"
                   value={editingExperience.description}
                   onChange={(e) =>
                     setEditingExperience({
@@ -391,3 +372,83 @@ const ExperienceTab = ({
 };
 
 export default ExperienceTab;
+
+const ExperienceCard = ({
+  exp,
+  handleEditExperience,
+  handleDeleteExperience,
+  setIsOpen,
+  setEditingExperience,
+}: {
+  exp: Experience;
+  handleEditExperience: (exp: Experience) => void;
+  handleDeleteExperience: (type: DeleteType, id: string) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setEditingExperience: Dispatch<SetStateAction<Experience | null>>;
+}) => {
+  return (
+    <Card
+      onClick={() => {
+        setIsOpen(true);
+        setEditingExperience(exp);
+      }}
+    >
+      <CardContent className="md:p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-lg">
+                <Briefcase className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold group-hover:text-blue-600 transition-colors">
+                  {exp.role}
+                </h3>
+                <p className="text-sm text-muted-foreground font-medium">
+                  {exp.company}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 mb-3">
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                {exp.start_date} - {exp.end_date}
+              </span>
+            </div>
+          </div>
+
+          <div >
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={(event) =>{
+                event.stopPropagation()
+                handleEditExperience(exp)}
+              } 
+            >
+              <Edit className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={(event) =>{
+                event?.stopPropagation()
+                handleDeleteExperience(DeleteType.EXPERIENCE, exp.id)
+              }
+              }
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        <div className="bg-muted/30 rounded-lg p-4 border-l-2 dark:border-primary">
+          <p className="md:text-sm text-xs leading-relaxed">
+            {exp.description}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};

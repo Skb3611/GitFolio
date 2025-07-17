@@ -329,33 +329,6 @@ const ProjectsTab = ({
                   />
                 </div>
               </div>
-
-              {/* Original GitHub Stats */}
-              {/* <div className="flex items-center gap-2 p-3 bg-muted rounded-md">
-                <Github className="h-4 w-4" />
-                <span className="font-medium text-sm ">
-                  {editingProject.name}
-                </span>
-                {Object.entries(editingProject.languages).map(
-                  ([key, value]) => {
-                    return (
-                      <Badge key={key} variant="secondary">
-                        {key}
-                      </Badge>
-                    );
-                  }
-                )}
-                <div className="flex items-center gap-3 text-sm  text-muted-foreground ml-auto">
-                  <span className="flex items-center gap-1">
-                    <Star className="h-3 w-3" />
-                    {editingProject.stars}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <GitFork className="h-3 w-3" />
-                    {editingProject.forks}
-                  </span>
-                </div>
-              </div> */}
             </div>
           )}
           <DialogFooter>
@@ -401,9 +374,11 @@ const ProjectCard = ({
           <Tooltip>
             {/* <GripVertical className="h-3 w-3 text-gray-500 cursor-move" /> */}
             <TooltipTrigger
+            asChild
               onClick={(event) => event.stopPropagation()}
               className="absolute top-2 left-2 flex items-center space-x-2 bg-black/90 rounded-xl px-2 py-1 z-20"
             >
+              <div>
               <Switch
                 className="z-50"
                 checked={project.isIncluded}
@@ -411,7 +386,8 @@ const ProjectCard = ({
                   event?.stopPropagation();
                   toggleProject(project);
                 }}
-              />
+                />
+                </div>
             </TooltipTrigger>
             <TooltipContent side="top">
               Change project visibility.
@@ -424,8 +400,10 @@ const ProjectCard = ({
             className="z-20 absolute right-2 top-2"
           >
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
+                <div>
                 <Edit className="h-4 w-4" />
+                  </div>
               </TooltipTrigger>
               <TooltipContent sideOffset={5}>Edit Project</TooltipContent>
             </Tooltip>
