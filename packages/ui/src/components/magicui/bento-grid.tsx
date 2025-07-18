@@ -17,9 +17,9 @@ interface BentoCardProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   description: string;
   href: string;
   cta: string;
- initial:any;
- animate:any;
- transition:any;
+ initial?:any;
+ animate?:any;
+ transition?:any;
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {

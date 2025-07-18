@@ -10,6 +10,7 @@ import Link from "next/link";
 import SectionLabel from "../SectionLabel";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
+import AnimatedScrollSection from "./AnimatedScrollSection";
 
 const HeroSection = () => {
   return (
@@ -31,23 +32,6 @@ const HeroSection = () => {
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center mt-20">
         <SectionLabel title={"✨ Introducing Gitfolio"} />
-        {/* <motion.h1
-          initial={{
-            opacity: 0,
-            filter: "blur(10px)",
-            scale: 0.8,
-          }}
-          animate={{
-            opacity: 1,
-            filter: "blur(0px)",
-            scale: 1,
-          }}
-          transition={{
-            duration: 0.4,
-          }}
-          className="md:text-7xl text-3xl font-semibold text-center mb-5 "
-        >
-        </motion.h1> */}
         <SplitTextAnimation className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
           Turn Your GitHub Into a Personal Portfolio in Seconds
         </SplitTextAnimation>
@@ -105,32 +89,7 @@ const HeroSection = () => {
             </Button>
           </motion.div>
         </div>
-        <motion.div
-          initial={{
-            y: 20,
-            opacity: 0,
-            filter: "blur(10px)",
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-          }}
-          transition={{
-            duration: 0.4,
-            delay: 0.5,
-          }}
-          className="mt-20 mb-10 relative md:rounded-xl"
-        >
-          {/* <ShineBorder borderWidth={1.5} shineColor={["#ffaa40","#9c40ff"]} /> */}
-          <Safari
-            url="https://gitfolio.example"
-            mode="simple"
-            videoSrc="https://magicui.design/portfolio-demo.mp4"
-            className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"
-            height={650}
-          />
-        </motion.div>
+       <AnimatedScrollSection/>
       </main>
     </div>
   );
