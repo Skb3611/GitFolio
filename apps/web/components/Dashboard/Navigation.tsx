@@ -17,6 +17,7 @@ import { ChevronsUpDown, Code } from "lucide-react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Link from "next/link";
 
 const Navigation = ({
   navItems,
@@ -27,7 +28,7 @@ const Navigation = ({
     icon: React.ElementType;
   }[];
 }) => {
-  const router = useRouter();
+  const router = useRouter()
   const isMobile = useIsMobile();
   return (
     <SidebarMenu>
@@ -59,7 +60,7 @@ const Navigation = ({
               Navigation
             </DropdownMenuLabel>
             {navItems.map((nav, index) => (
-              <DropdownMenuItem key={nav.label} className="gap-2 p-2">
+              <DropdownMenuItem key={nav.label} className="gap-2 p-2" onClick={()=>router.push(nav.href,{scroll:false})}>
                 <div className="flex size-6.5 items-center justify-center rounded-md border">
                   <nav.icon className="size-4 shrink-0" />
                 </div>

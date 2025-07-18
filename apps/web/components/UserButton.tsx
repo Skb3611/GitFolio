@@ -1,74 +1,68 @@
-"use client"
-import React from 'react'
-import { useUser,useClerk } from '@clerk/nextjs'
+"use client";
+import React from "react";
+import { useUser, useClerk } from "@clerk/nextjs";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "@workspace/ui/components/dropdown-menu"
-  import {
-    Avatar,
-    AvatarImage,
-    AvatarFallback,
-  } from "@workspace/ui/components/avatar"
-import { Button } from '@workspace/ui/components/button'
-import { LogOut } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@workspace/ui/components/avatar";
+import { Button } from "@workspace/ui/components/button";
+import { LogOut, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const UserButton = () => {
-  const { user } = useUser()
-  const {signOut} = useClerk()
-//   console.log(user)
-const router= useRouter()
+  const { user } = useUser();
+  const { signOut } = useClerk();
+  //   console.log(user)
+  const router = useRouter();
   return (
     <DropdownMenu>
-        <DropdownMenuTrigger className='outline-0'>
+      <DropdownMenuTrigger className="outline-0">
+        <Avatar>
+          <AvatarImage src={user?.imageUrl} />
+          <AvatarFallback>
+            {user?.firstName?.charAt(0) || user?.lastName?.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="min-w-[200px] rounded-sm" side="bottom" align="end" forceMount>
+        <DropdownMenuLabel>
+          <div className="flex gap-2 justify-start items-center">
             <Avatar>
-            <AvatarImage src={user?.imageUrl} />
-            <AvatarFallback>
+              <AvatarImage src={user?.imageUrl} />
+              <AvatarFallback>
                 {user?.firstName?.charAt(0) || user?.lastName?.charAt(0)}
-            </AvatarFallback>
-            </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className='px-4'  side='bottom' align='end'>
-            <DropdownMenuLabel>
-              <div className='flex gap-5 justify-center items-center'>
-              <Avatar>
-            <AvatarImage src={user?.imageUrl} />
-            <AvatarFallback>
-                {user?.firstName?.charAt(0) || user?.lastName?.charAt(0)}
-            </AvatarFallback>
+              </AvatarFallback>
             </Avatar>
             <div>
-                <p>{user?.fullName}</p>
-                <p>{user?.username}</p>
+              <p>{user?.fullName}</p>
+              <p>{user?.username}</p>
             </div>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator  />
-            <div className='space-y-2'>
-
-            <DropdownMenuItem className='p-0'>
-              <Button variant={"default"} onClick={()=>router.push("/dashboard")} className='w-full h-full text-white'>
-              Dashboard
-              </Button>
-            </DropdownMenuItem>
-            <DropdownMenuItem className='p-0'>
-            <Button 
-            className='w-full h-full text-white '
-            variant={"outline"}
-            onClick={()=> signOut()}
-            >
-               <LogOut className='text-white' /> Sign Out
-            </Button>
-            </DropdownMenuItem>
-            </div>
-        </DropdownMenuContent>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => router.push("/dashboard")}>
+          <User />
+          Dashboard
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => signOut()}
+          className="flex items-center"
+        >
+          <LogOut className="text-white" /> Sign Out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-export default UserButton
+export default UserButton;
