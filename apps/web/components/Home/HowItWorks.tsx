@@ -1,12 +1,13 @@
 "use client";
 
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import { cn } from "@workspace/ui/lib/utils";
 import { AnimatedBeam } from "@workspace/ui/components/magicui/animated-beam";
 import { ArrowRight, CircleCheckBig, Github, Layout, Palette, ThumbsUp } from "lucide-react";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import Image from "next/image";
+import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -16,11 +17,12 @@ const Circle = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex size-12 sm:size-20 items-center justify-center rounded-full border-2 bg-black p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
+        "relative z-10 flex size-12 sm:size-20 items-center justify-center rounded-full border-2 bg-black p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
         className
       )}
     >
       {children}
+      <BorderBeam/>
     </div>
   );
 });
@@ -32,6 +34,26 @@ export function HowItWorks() {
   const div1Ref = useRef<HTMLDivElement>(null);
   const div2Ref = useRef<HTMLDivElement>(null);
   const div3Ref = useRef<HTMLDivElement>(null);
+const [visible, setVisible] = useState(false);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry?.isIntersecting) setVisible(true);
+    },
+    { threshold: 0.3 }
+  );
+
+  if (containerRef.current) {
+    observer.observe(containerRef.current);
+  }
+
+  return () => {
+    if (containerRef.current) observer.unobserve(containerRef.current);
+  };
+}, []);
+
+
 
   return (
     <div
@@ -84,7 +106,7 @@ export function HowItWorks() {
         </div>
       </div>
 
-      <AnimatedBeam
+      {/* <AnimatedBeam
         duration={3}
         containerRef={containerRef}
         fromRef={div1Ref}
@@ -97,7 +119,7 @@ export function HowItWorks() {
         fromRef={div2Ref}
         toRef={div3Ref}
         curvature={-50}
-      />
+      /> */}
     </div>
   );
 }

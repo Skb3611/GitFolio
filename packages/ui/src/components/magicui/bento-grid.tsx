@@ -1,12 +1,15 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+"use client"
+// BentoCard.tsx
+import { ComponentPropsWithoutRef, ReactNode, forwardRef } from "react";
 import { cn } from "@workspace/ui/lib/utils";
+import { motion, HTMLMotionProps } from "motion/react";
 
 interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
   className?: string;
 }
 
-interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
+interface BentoCardProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   name: string;
   className: string;
   background: ReactNode;
@@ -14,6 +17,9 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   description: string;
   href: string;
   cta: string;
+ initial:any;
+ animate:any;
+ transition:any;
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
@@ -30,7 +36,7 @@ const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
   );
 };
 
-const BentoCard = ({
+const BentoCard = forwardRef<HTMLDivElement, BentoCardProps>(({
   name,
   className,
   background,
@@ -38,10 +44,17 @@ const BentoCard = ({
   description,
   href,
   cta,
+  initial,
+  animate,
+  transition,
   ...props
-}: BentoCardProps) => (
-  <div
-    key={name}
+}, ref) => (
+  <motion.div 
+  initial={initial}
+  whileInView={animate}
+  transition={transition}
+  viewport={{once:true}}
+    ref={ref}
     className={cn(
       "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
       // light styles
@@ -72,11 +85,13 @@ const BentoCard = ({
         <a href={href}>
           {cta}
           <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
-        </a>
-      </Button> */}
+          </a>
+          </Button> */}
     </div>
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
-  </div>
-);
+  </motion.div>
+));
+
+BentoCard.displayName = "BentoCard";
 
 export { BentoCard, BentoGrid };

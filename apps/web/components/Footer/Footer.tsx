@@ -19,6 +19,7 @@ const features = [
     cta: "Learn more",
     className: "col-span-3 lg:col-span-1 ",
     background: <SocialLinks />,
+    direction:"fromLeft",
   },
   {
     name: "",
@@ -27,6 +28,7 @@ const features = [
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2 h-full",
     background: <QuickLinks />,
+    direction:"fromRight",
   },
   {
     name: "",
@@ -50,6 +52,7 @@ const features = [
         </AnimatedShinyText>
       </div>
     ),
+    direction:"fromBottom"
   },
 ];
 
@@ -58,7 +61,12 @@ const Footer = () => {
     <div className="relative w-[90%] lg:w-[95%] xl:max-w-7xl mx-auto my-10">
       <BentoGrid className="h-full lg:grid-cols-3 auto-rows-[17.5rem]">
         {features.map((feature, index) => (
-          <BentoCard key={index} {...feature} />
+          <BentoCard
+          initial={cardVariants[feature.direction as keyof typeof cardVariants].initial}
+          animate={cardVariants[feature.direction as keyof typeof cardVariants].animate}
+          transition={cardVariants[feature.direction as keyof typeof cardVariants].transition}
+
+          key={index} {...feature} />
         ))}
       </BentoGrid>
     </div>
@@ -66,3 +74,57 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const cardVariants = {
+  fromLeft:{
+    initial:{
+      x:-20,
+      opacity:0,
+      scale:0.9,
+    },
+    animate:{
+      x:0,
+      opacity:1,
+      scale:1,
+    },
+    transition:{
+      duration:0.4,
+      delay:0.3,
+      ease:"easeOut"
+    }
+  },
+  fromRight:{
+    initial:{
+      x:20,
+      opacity:0,
+      scale:0.9,
+    },
+    animate:{
+      x:0,
+      opacity:1,
+      scale:1,
+    },
+    transition:{
+      duration:0.4,
+      delay:0.3,
+      ease:"easeOut"
+    }
+  },
+  fromBottom:{
+    initial:{
+      y:20,
+      opacity:0,
+      scale:0.9,
+    },
+    animate:{
+      y:0,
+      opacity:1,
+      scale:1,
+    },
+    transition:{
+      duration:0.4,
+      delay:0.3,
+      ease:"easeOut"
+    }
+  }
+}

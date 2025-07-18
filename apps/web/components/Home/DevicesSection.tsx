@@ -15,6 +15,9 @@ import {
   Autoplay,
 } from "@workspace/ui/components/carousel";
 import SectionLabel from "../SectionLabel";
+import { TypewriterEffectSmooth } from "@workspace/ui/components/magicui/typewriter-effect";
+import {motion} from "motion/react"
+import { SplitTextAnimation } from "../SplitTextAnimation";
 
 const DevicesSection = () => {
   return (
@@ -28,23 +31,72 @@ const DevicesSection = () => {
       />
 
       <div className="relative h-full my-10 mx-auto max-w-7xl flex gap-4 justify-center items-center flex-col overflow-hidden">
-        {/* <Meteors number={50}/> */}
         <SectionLabel title={"✨ Fully Responsive UI"} />
-        <h1 className="w-[90%] mx-auto sm:w-full text-3xl md:text-7xl text-center font-semibold">
-          Seamless on Every Device{" "}
-        </h1>
-        <AnimatedShinyText className="text-sm md:text-xl text-center w-[80%] mx-auto md:w-full">
-          From compact mobiles to widescreen monitors, your portfolio always
+          <SplitTextAnimation
+          whileInView
+          delay={0.2}
+          staggerDelay={0.08}
+          className="w-[90%] mx-auto sm:w-full text-3xl mb-0 text-center font-semibold md:text-6xl"
+          >
+          Seamless on Every Device
+          </SplitTextAnimation>
+        
+        <AnimatedShinyText className="">
+          <SplitTextAnimation
+          className="w-[80%] mx-auto md:w-full text-center text-sm md:text-xl   "
+          whileInView
+          delay={0.2}
+          >
+          From compact mobiles to widescreen monitors, your portfolio always 
           looks its best.
+          </SplitTextAnimation>
         </AnimatedShinyText>
+
         <div className=" justify-center items-center relative gap-24 w-[90%] mt-10 mx-auto hidden lg:flex">
-          <div>
+          <motion.div
+          initial={{
+            x:-20,
+            opacity:0,
+            scale:0.9,
+            filter:"blur(10px)"
+          }}
+          whileInView={{
+            x:0,
+            opacity:1,
+            scale:1,
+            filter:"blur(0px)"
+          }}
+          viewport={{once:true}}
+          transition={{
+            duration:0.4,
+            delay:0.4,
+          }}
+
+          >
             <Iphone15Pro
               src="/assets/mobileview.png"
               className="w-[90%] h-full"
             />
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+           initial={{
+            x:20,
+            opacity:0,
+            scale:0.9,
+            filter:"blur(10px)"
+          }}
+          whileInView={{
+            x:0,
+            opacity:1,
+            scale:1,
+            filter:"blur(0px)"
+          }}
+          viewport={{once:true}}
+          transition={{
+            duration:0.4,
+            delay:0.4,
+          }}
+          >
             <Safari
               height={700}
               imageSrc="/assets/webview.png"
@@ -52,7 +104,7 @@ const DevicesSection = () => {
               mode="simple"
               url="gitfolio.example"
             />
-          </div>
+          </motion.div>
         </div>
         <Carousel
           className="w-full -my-50 z-10 lg:hidden"

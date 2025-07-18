@@ -17,7 +17,6 @@ import { ChevronsUpDown, Code } from "lucide-react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Link from "next/link";
 
 const Navigation = ({
   navItems,

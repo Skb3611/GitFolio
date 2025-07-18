@@ -8,6 +8,8 @@ import Link from "next/link";
 import React from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
+import {motion}from "motion/react"
+import { SplitTextAnimation } from "../SplitTextAnimation";
 interface ImageItemProps {
   img: string;
   gradient: string;
@@ -51,22 +53,67 @@ const CTASection = () => {
         <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent to-background to-70% dark:to-background"></div>
           </div>
       <div className="w-full absolute -translate-y-10 flex flex-col justify-center items-center">
-      <div className="relative mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32">
+      <motion.div
+      initial={{
+        opacity:0,
+        scale:0.5,
+        filter:"blur(8px)"
+      }}
+      whileInView={{
+        opacity:1,
+        scale:1,
+        filter:"blur(0px)"
+      }}
+      transition={{
+        duration:0.5,
+        delay:0.2
+      }}
+      viewport={{once:true}}
+      className="relative mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32">
                 <HeartHandshake className="mx-auto size-16 text-black dark:text-white lg:size-24" />
                 <BorderBeam size={100} duration={4}/>
-              </div>
+              </motion.div>
        
-        <h2 className="text-2xl sm:text-4xl md:text-6xl text-center mb-2">What's stopping you now ?</h2>
+          <SplitTextAnimation
+          whileInView
+          className="text-2xl sm:text-4xl md:text-6xl text-center mb-2"
+          delay={0.2}
+          >
+          What's stopping you now ?
+          </SplitTextAnimation>
         <AnimatedShinyText>
-          <p className="text-base sm:text-xl  md:text-2xl text-center w-full">
+          <SplitTextAnimation
+          className="text-base sm:text-xl  md:text-2xl text-center w-full"
+          whileInView
+          delay={0.2}
+          >
             Let's Make Something Awesome
-          </p>
+          </SplitTextAnimation>
         </AnimatedShinyText>
+        <motion.div
+        initial={{
+          opacity:0,
+          scale:0.5,
+          filter:"blur(4px)",
+          y:20
+        }}
+        whileInView={{
+          opacity:1,
+          scale:1,
+          filter:"blur(0px)",
+          y:0
+        }}
+        transition={{
+          duration:0.4,
+        }}
+        viewport={{once:true}}
+        >
         <Link href={"/dashboard"}>
           <Button size={"lg"} className=" mx-auto mt-4 text-lg px-10 py-6 rounded-full cursor-pointer " variant={"outline"}>
             Get Started <ChevronRight />
           </Button>
         </Link>
+        </motion.div>
         
       </div>
     </div>
