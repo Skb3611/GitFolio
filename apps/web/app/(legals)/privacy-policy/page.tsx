@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Separator } from "@workspace/ui/components/separator";
 import { Particles } from "@workspace/ui/components/magicui/particles";
 import BackHomeButton from "@/components/BackHomeButton";
@@ -10,11 +10,6 @@ import { Linkedin } from "lucide-react";
 import { SplitTextAnimation } from "@/components/SplitTextAnimation";
 import { motion } from "motion/react";
 const page = () => {
-  const [date, setDate] = useState<string|null>(null)
-  useEffect(() => {
-    setDate(new Date().toLocaleDateString())
-
-  }, [])
   return (
     <div className="relative min-h-screen w-full">
       <Particles className="absolute h-full w-full" />
@@ -28,7 +23,7 @@ const page = () => {
             <AnimatedShinyText className="text-sm sm:text-base">
               <SplitTextAnimation duration={0.3}
                 whileInView
-              >{`Last updated: ${date}`}</SplitTextAnimation>
+              >{`Last updated: ${new Date().toLocaleDateString()}`}</SplitTextAnimation>
             </AnimatedShinyText>
           </div>
 
