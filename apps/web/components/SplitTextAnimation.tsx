@@ -1,3 +1,4 @@
+"use client"
 import { animate, stagger } from "motion";
 import { splitText } from "motion-plus";
 import { useEffect, useRef, useState } from "react";
@@ -5,7 +6,7 @@ import { cn } from "@workspace/ui/lib/utils";
 export interface SplitTextAnimationProps {
   children: string;
   className?: string;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div";
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div"|"li";
   duration?: number;
   bounce?: number;
   delay?: number;
