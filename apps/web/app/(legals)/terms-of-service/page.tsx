@@ -16,7 +16,8 @@ const Page = () => {
           <div className="mb-8">
             <SplitTextAnimation
               whileInView
-              duration={0.3}
+              duration={0.8}
+              staggerDelay={0.01}
               className="text-3xl font-bold  mb-2"
             >
               Terms of Service
@@ -24,7 +25,8 @@ const Page = () => {
             <AnimatedShinyText className="text-sm sm:text-base">
               <SplitTextAnimation
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
               >{`Last updated: ${new Date().toLocaleDateString()}`}</SplitTextAnimation>
             </AnimatedShinyText>
           </div>
@@ -34,7 +36,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 1. Acceptance of Terms
@@ -43,7 +46,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   By accessing and using Gitfolio ("Service," "we," "us," or
@@ -60,7 +64,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 2. Description of Service
@@ -68,7 +73,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   Gitfolio is a web-based platform that allows users to convert
@@ -85,7 +91,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 3. User Accounts and Registration
@@ -94,7 +101,8 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="text-lg font-medium  mb-2"
                   >
@@ -103,7 +111,8 @@ const Page = () => {
                   <AnimatedShinyText className="text-sm sm:text-base">
                     <SplitTextAnimation
                       whileInView
-                      duration={0.3}
+                      duration={0.8}
+                      staggerDelay={0.01}
                       className=" leading-relaxed"
                     >
                       To create an account on Gitfolio, you must obey the
@@ -111,17 +120,21 @@ const Page = () => {
                     </SplitTextAnimation>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
                       <AnimatedShinyText className="text-sm sm:text-base">
-                       <SplitTextAnimation as="li" duration={0.3} whileInView>You must sign up using your GitHub account</SplitTextAnimation>
+                       <SplitTextAnimation as="li" duration={0.8}
+                       staggerDelay={0.01} whileInView>You must sign up using your GitHub account</SplitTextAnimation>
                       </AnimatedShinyText>
                       <AnimatedShinyText className="text-sm sm:text-base">
-                        <SplitTextAnimation as="li" duration={0.3} whileInView>You must be at least 13 years old to use our service</SplitTextAnimation>
+                        <SplitTextAnimation as="li" duration={0.8}
+                        staggerDelay={0.01} whileInView>You must be at least 13 years old to use our service</SplitTextAnimation>
                       </AnimatedShinyText>
                       <AnimatedShinyText className="text-sm sm:text-base">
-                        <SplitTextAnimation as="li" duration={0.3} whileInView>You are responsible for maintaining the confidentiality
+                        <SplitTextAnimation as="li" duration={0.8}
+                        staggerDelay={0.01} whileInView>You are responsible for maintaining the confidentiality
                         of your account</SplitTextAnimation>
                       </AnimatedShinyText>
                       <AnimatedShinyText className="text-sm sm:text-base">
-                        <SplitTextAnimation as="li" duration={0.3} whileInView>You agree to provide accurate and complete information</SplitTextAnimation>
+                        <SplitTextAnimation as="li" duration={0.8}
+                        staggerDelay={0.01} whileInView>You agree to provide accurate and complete information</SplitTextAnimation>
                       </AnimatedShinyText>
                     </ul>
                   </AnimatedShinyText>
@@ -129,7 +142,8 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="text-lg font-medium  mb-2"
                   >
@@ -138,7 +152,8 @@ const Page = () => {
                   <AnimatedShinyText className="text-sm sm:text-base">
                     <SplitTextAnimation
                       whileInView
-                      duration={0.3}
+                      duration={0.8}
+                      staggerDelay={0.01}
                       className="leading-relaxed"
                     >
                       We use your GitHub account to authenticate and authorize
@@ -146,25 +161,29 @@ const Page = () => {
                     </SplitTextAnimation>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.3}>
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.8}
+                        staggerDelay={0.01}>
                           You grant us permission to access your public GitHub
                           profile and repository data
                         </SplitTextAnimation></AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.3}>
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.8}
+                        staggerDelay={0.01}>
                           For private repositories, access is only granted with
                           your explicit manual consent
                         </SplitTextAnimation></AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.3}>
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.8}
+                        staggerDelay={0.01}>
                           You can revoke our GitHub access at any time through
                           your GitHub account settings
                         </SplitTextAnimation></AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.3}>
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView as="li" duration={0.8}
+                        staggerDelay={0.01}>
                           We comply with GitHub's Terms of Service and API usage
                           guidelines
                         </SplitTextAnimation></AnimatedShinyText>
@@ -181,7 +200,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 4. Acceptable Use
@@ -189,7 +209,8 @@ const Page = () => {
               <div className="space-y-4">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   as="h3"
                   className="text-lg font-medium  mb-2"
                 >
@@ -198,27 +219,31 @@ const Page = () => {
                 <AnimatedShinyText className="text-sm sm:text-base">
                   <ul className="list-disc list-inside  space-y-2 ml-4">
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Use the service for personal or professional portfolio
                       </SplitTextAnimation>
                         purposes
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Generate multiple portfolio websites from your GitHub
                       </SplitTextAnimation>
                         data
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Share your generated portfolio websites publicly
                       </SplitTextAnimation>
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Customize your portfolio within the available options
                       </SplitTextAnimation>
                       </AnimatedShinyText>
@@ -233,7 +258,8 @@ const Page = () => {
                 </AnimatedShinyText>
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   as="h3"
                   className="text-lg font-medium  mb-2"
                 >
@@ -242,39 +268,45 @@ const Page = () => {
                 <AnimatedShinyText className="text-sm sm:text-base">
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Use the service for illegal or unauthorized purposes
                       </SplitTextAnimation>
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Attempt to gain unauthorized access to our systems or
                       </SplitTextAnimation>
                         other users' accounts
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Upload malicious code or attempt to disrupt our service
                       </SplitTextAnimation>
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Violate GitHub's Terms of Service while using our
                       </SplitTextAnimation>
                         platform
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Use automated tools to abuse our service or GitHub's API
                       </SplitTextAnimation>
                       </AnimatedShinyText>
                     
                     
-                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.3} as="li">
+                      <AnimatedShinyText className="text-sm sm:text-base"> <SplitTextAnimation whileInView duration={0.8}
+                      staggerDelay={0.01} as="li">
                         Impersonate others or provide false information
                       </SplitTextAnimation>
                       </AnimatedShinyText>
@@ -290,7 +322,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 5. Intellectual Property
@@ -299,34 +332,39 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="text-lg font-medium  mb-2"
                   >
                     Your Content
                   </SplitTextAnimation>
                   <AnimatedShinyText className="text-sm sm:text-base">
-                    <SplitTextAnimation whileInView duration={0.3}>
+                    <SplitTextAnimation whileInView duration={0.8}
+                    staggerDelay={0.01}>
                       You retain ownership of any content you generate using
                       Gitfolio.
                     </SplitTextAnimation>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.3} whileInView as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.8}
+                        staggerDelay={0.01} whileInView as="li">
                           You retain all rights to your GitHub repositories and
                           code
                         </SplitTextAnimation>
                         </AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.3} whileInView as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.8}
+                        staggerDelay={0.01} whileInView as="li">
                           You grant us a license to display your GitHub content
                           in your generated portfolio
                         </SplitTextAnimation>
                         </AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.3} whileInView as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.8}
+                        staggerDelay={0.01} whileInView as="li">
                           You are responsible for ensuring you have rights to
                           all content in your repositories
                         </SplitTextAnimation>
@@ -338,34 +376,39 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="text-lg font-medium  mb-2"
                   >
                     Our Service
                   </SplitTextAnimation>
                   <AnimatedShinyText className="text-sm sm:text-base">
-                    <SplitTextAnimation whileInView duration={0.3}>
+                    <SplitTextAnimation whileInView duration={0.8}
+                    staggerDelay={0.01}>
                       We retain ownership of the service and its original
                       content, features, and functionality.
                     </SplitTextAnimation>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.3} whileInView as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.8}
+                        staggerDelay={0.01} whileInView as="li">
                           Gitfolio and its original content, features, and
                           functionality are owned by us.
                         </SplitTextAnimation>
                         </AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.3} whileInView as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.8}
+                        staggerDelay={0.01} whileInView as="li">
                           Our service is protected by copyright, trademark, and
                           other intellectual property laws
                         </SplitTextAnimation>
                         </AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.3} whileInView as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation duration={0.8}
+                        staggerDelay={0.01} whileInView as="li">
                           You may not copy, modify, or distribute our
                           proprietary code or design elements
                         </SplitTextAnimation>
@@ -377,34 +420,39 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="text-lg font-medium  mb-2"
                   >
                     Generated Portfolios
                   </SplitTextAnimation>
                   <AnimatedShinyText className="text-sm sm:text-base">
-                    <SplitTextAnimation whileInView duration={0.3}>
+                    <SplitTextAnimation whileInView duration={0.8}
+                    staggerDelay={0.01}>
                       Your generated portfolio websites are your own creations
                       and are not owned by us.
                     </SplitTextAnimation>
                     <ul className="list-disc list-inside  space-y-2 ml-4">
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                        staggerDelay={0.01} as="li">
                           Portfolio websites generated by our service belong to
                           you
                         </SplitTextAnimation>
                         </AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                        staggerDelay={0.01} as="li">
                           You may use, modify, and distribute your generated
                           portfolio as you see fit
                         </SplitTextAnimation>
                         </AnimatedShinyText>
                       
                       
-                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.3} as="li">
+                        <AnimatedShinyText className="text-sm sm:text-base"><SplitTextAnimation whileInView duration={0.8}
+                        staggerDelay={0.01} as="li">
                           We retain no ownership rights over your generated
                           portfolio websites
                         </SplitTextAnimation>
@@ -422,7 +470,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 6. Service Availability
@@ -431,14 +480,16 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="font-medium  mb-2 text-lg"
                   >
                     Current Service Level
                   </SplitTextAnimation>
                   <AnimatedShinyText className="text-sm sm:text-base">
-                    <SplitTextAnimation whileInView duration={0.3}>
+                    <SplitTextAnimation whileInView duration={0.8}
+                    staggerDelay={0.01}>
                       We strive to provide our service with the highest level of
                       availability. However, due to the nature of the internet
                       and the services we rely on, there may be temporary
@@ -451,14 +502,16 @@ const Page = () => {
                 <div>
                   <SplitTextAnimation
                     whileInView
-                    duration={0.3}
+                    duration={0.8}
+                    staggerDelay={0.01}
                     as="h3"
                     className="font-medium  mb-2 text-lg"
                   >
                     Service Modifications
                   </SplitTextAnimation>
                   <AnimatedShinyText className="text-sm sm:text-base">
-                    <SplitTextAnimation whileInView duration={0.3}>
+                    <SplitTextAnimation whileInView duration={0.8}
+                    staggerDelay={0.01}>
                       We reserve the right to modify, suspend, or discontinue
                       our service,We will provide reasonable notice of any
                       material changes to the service.
@@ -474,7 +527,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 7. Termination
@@ -482,7 +536,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   We reserve the right to terminate or suspend your account and
@@ -499,7 +554,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 8. Disclaimers
@@ -507,7 +563,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   The information on this service is provided on an "as is"
@@ -524,7 +581,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 9. Limitation of Liability
@@ -532,7 +590,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   In no event shall GitFolio, nor its directors, employees,
@@ -549,7 +608,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 10. Governing Law
@@ -557,7 +617,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   These terms shall be governed by and construed in accordance
@@ -574,7 +635,8 @@ const Page = () => {
               <SplitTextAnimation
                 as="h2"
                 whileInView
-                duration={0.3}
+                duration={0.8}
+                staggerDelay={0.01}
                 className="text-xl font-semibold  mb-4"
               >
                 11. Changes to Terms
@@ -582,7 +644,8 @@ const Page = () => {
               <AnimatedShinyText className="text-sm sm:text-base">
                 <SplitTextAnimation
                   whileInView
-                  duration={0.3}
+                  duration={0.8}
+                  staggerDelay={0.01}
                   className=" leading-relaxed"
                 >
                   We reserve the right to modify or replace these Terms at any
