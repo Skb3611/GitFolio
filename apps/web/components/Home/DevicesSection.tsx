@@ -69,7 +69,7 @@ const DevicesSection = () => {
           viewport={{once:true}}
           transition={{
             duration:0.4,
-            delay:0.4,
+            delay:0.2,
           }}
 
           >
@@ -94,7 +94,7 @@ const DevicesSection = () => {
           viewport={{once:true}}
           transition={{
             duration:0.4,
-            delay:0.4,
+            delay:0.2,
           }}
           >
             <Safari

@@ -95,8 +95,8 @@ const cardVariants = {
     initial: { y: -20, opacity: 0, scale: 0.9,  },
     animate: { y: 0, opacity: 1, scale: 1, },
     transition:{
-      duration:0.4,
-      delay:0.3,
+      duration:0.3,
+      delay:0.2,
       ease:"easeOut"
 
     }
@@ -106,8 +106,8 @@ const cardVariants = {
     initial: { x: 20, opacity: 0, scale: 0.9,  },
     animate: { x: 0, opacity: 1, scale: 1, },
     transition:{
-      duration:0.4,
-      delay:0.4,
+      duration:0.3,
+      delay:0.3,
       ease:"easeOut"
     }
   },
@@ -116,8 +116,8 @@ const cardVariants = {
     initial: { x: -20, opacity: 0, scale: 0.9,  },
     animate: { x: 0, opacity: 1, scale: 1, },
     transition:{
-      duration:0.5,
-      delay:0.6,
+      duration:0.3,
+      delay:0.4,
       ease:"easeOut"
     }
   },
@@ -126,8 +126,8 @@ const cardVariants = {
     initial: { y: 20, opacity: 0, scale: 0.9,  },
     animate: { y: 0, opacity: 1, scale: 1, },
     transition:{
-      duration:0.5,
-      delay:0.6,
+      duration:0.3,
+      delay:0.4,
       ease:"easeOut"
     }
   }

@@ -105,21 +105,6 @@ useEffect(() => {
           </div>
         </div>
       </div>
-
-      {/* <AnimatedBeam
-        duration={3}
-        containerRef={containerRef}
-        fromRef={div1Ref}
-        toRef={div2Ref}
-        curvature={50}
-      />
-      <AnimatedBeam
-        duration={3}
-        containerRef={containerRef}
-        fromRef={div2Ref}
-        toRef={div3Ref}
-        curvature={-50}
-      /> */}
     </div>
   );
 }

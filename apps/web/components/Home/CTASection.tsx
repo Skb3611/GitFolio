@@ -65,7 +65,7 @@ const CTASection = () => {
         filter:"blur(0px)"
       }}
       transition={{
-        duration:0.5,
+        duration:0.3,
         delay:0.2
       }}
       viewport={{once:true}}
@@ -104,7 +104,7 @@ const CTASection = () => {
           y:0
         }}
         transition={{
-          duration:0.4,
+          duration:0.3,
         }}
         viewport={{once:true}}
         >

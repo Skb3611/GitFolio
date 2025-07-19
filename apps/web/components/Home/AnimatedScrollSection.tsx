@@ -26,10 +26,25 @@ const rotateX = useTransform(scrollYProgress,[0,0.5],setRotateX())
 const scale = useTransform(scrollYProgress,[0,0.2],setScale())
 const translateY = useTransform(scrollYProgress,[0,0.7],setTranslateY())
   return (
-    <div
+    <motion.div
+    initial={{
+      opacity:0,
+      y:20,
+      filter:"blur(5px)"
+    }}
+    animate={{
+      opacity:1,
+      y:0,
+      filter:"blur(0px)"
+    }}
+    transition={{
+      duration:0.3,
+      delay:0.1
+    }}
     ref={ref} 
-    className='[perspective:300px] [transform-style:preserve-3d] -mt-10 mb-20 '>
+    className='[perspective:300px] [transform-style:preserve-3d] md:-mt-10 mb-20 '>
      <motion.div
+     
       style={{
           rotateX:rotateX,
           scale,
@@ -47,7 +62,7 @@ const translateY = useTransform(scrollYProgress,[0,0.7],setTranslateY())
           height={650}
           />
         </motion.div>
-          </div>
+          </motion.div>
   )
 }
 

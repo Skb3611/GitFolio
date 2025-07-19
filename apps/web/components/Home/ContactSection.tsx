@@ -41,8 +41,8 @@ const ContactSection = () => {
         initial="initial"
         viewport={{once:true}}
         transition={{
-          duration:0.5,
-          delay:0.5
+          duration:0.3,
+          delay:0.3
         }}
         >
           <Card className="hover:shadow-lg transition-shadow">
@@ -70,8 +70,8 @@ const ContactSection = () => {
         initial="initial"
         viewport={{once:true}}
         transition={{
-          duration:0.5,
-          delay:0.5
+          duration:0.3,
+          delay:0.3
         }}
         >
           <Card className="hover:shadow-lg transition-shadow">
@@ -110,10 +110,6 @@ const cardVariants = {
       x:0,
       opacity:1
     },
-    transition:{
-      duration:0.5,
-      delay:0.5
-    }
   },
   fromRight:{
     initial:{
@@ -124,9 +120,5 @@ const cardVariants = {
       x:0,
       opacity:1
     },
-    transition:{
-      duration:0.5,
-      delay:0.5
-    }
   }
 }

@@ -22,7 +22,7 @@ const SectionLabel = ({ title }: { title: string }) => {
         filter: "blur(0px)",
       }}
       transition={{
-        duration: 0.5,
+        duration: 0.3,
       }}
       viewport={{once:true}}
       className={cn(
