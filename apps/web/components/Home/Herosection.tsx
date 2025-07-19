@@ -11,6 +11,7 @@ import SectionLabel from "../SectionLabel";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import AnimatedScrollSection from "./AnimatedScrollSection";
+import {PointerHighlight } from "@workspace/ui/components/ui/pointer-highlight"
 
 const HeroSection = () => {
   return (
@@ -32,7 +33,7 @@ const HeroSection = () => {
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
         <SectionLabel title={"✨ Introducing Gitfolio"} />
-        <SplitTextAnimation className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
+        <SplitTextAnimation highlightWord="Seconds"  className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
           Turn Your GitHub Into a Personal Portfolio in Seconds
         </SplitTextAnimation>
         <motion.h2

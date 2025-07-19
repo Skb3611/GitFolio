@@ -1,12 +1,14 @@
-"use client"
+"use client";
 import { animate, stagger } from "motion";
 import { splitText } from "motion-plus";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@workspace/ui/lib/utils";
+import { PointerHighlight } from "@workspace/ui/components/ui/pointer-highlight"; // adjust path as needed
+
 export interface SplitTextAnimationProps {
-  children: string;
+  children: string | React.ReactNode;
   className?: string;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div"|"li";
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "li";
   duration?: number;
   bounce?: number;
   delay?: number;
@@ -15,6 +17,7 @@ export interface SplitTextAnimationProps {
   initialOpacity?: number;
   initialY?: number;
   whileInView?: boolean;
+  highlightWord?: string;
   onAnimationComplete?: () => void;
 }
 
@@ -30,13 +33,13 @@ export function SplitTextAnimation({
   initialOpacity = 0,
   initialY = 10,
   whileInView = false,
+  highlightWord,
   onAnimationComplete,
   ...props
 }: SplitTextAnimationProps) {
   const containerRef = useRef<any>(null);
   const [isInView, setIsInView] = useState(false);
 
-  // Intersection Observer for whileInView functionality
   useEffect(() => {
     if (!whileInView) return;
 
@@ -49,14 +52,10 @@ export function SplitTextAnimation({
       { threshold: 0.1 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    if (containerRef.current) observer.observe(containerRef.current);
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
+      if (containerRef.current) observer.unobserve(containerRef.current);
     };
   }, [whileInView, isInView]);
 
@@ -64,17 +63,15 @@ export function SplitTextAnimation({
     const startAnimation = () => {
       if (!containerRef.current) return;
 
-      // Show the container
       containerRef.current.style.visibility = "visible";
 
       const { words } = splitText(containerRef.current);
 
-      // Animate the words with stagger
       animate(
         words,
-        { 
-          opacity: [initialOpacity, 1], 
-          y: [initialY, 0] 
+        {
+          opacity: [initialOpacity, 1],
+          y: [initialY, 0],
         },
         {
           type: animationType,
@@ -83,6 +80,23 @@ export function SplitTextAnimation({
           delay: stagger(staggerDelay),
         }
       ).finished.then(() => {
+        // Post-animation: highlight specific word
+        if (highlightWord) {
+          words.forEach((wordEl) => {
+            if (
+              wordEl.textContent?.trim().toLowerCase() ===
+              highlightWord.trim().toLowerCase()
+            ) {;
+
+              // Dynamically render React component into DOM
+              import("react-dom/client").then(({ createRoot }) => {
+                const root = createRoot(wordEl);
+                root.render(<PointerHighlight pointerClassName="text-primary">{wordEl.textContent}</PointerHighlight>);
+              });
+            }
+          });
+        }
+
         onAnimationComplete?.();
       });
     };
@@ -90,25 +104,18 @@ export function SplitTextAnimation({
     const shouldAnimate = whileInView ? isInView : true;
 
     if (shouldAnimate) {
-      // Handle delay
-      if (delay > 0) {
-        setTimeout(() => {
-          // Wait for fonts to load before starting animation
-          if (document.fonts) {
-            document.fonts.ready.then(startAnimation);
-          } else {
-            // Fallback for browsers without document.fonts
-            setTimeout(startAnimation, 100);
-          }
-        }, delay * 1000);
-      } else {
-        // Wait for fonts to load before starting animation
+      const animateWithFontCheck = () => {
         if (document.fonts) {
           document.fonts.ready.then(startAnimation);
         } else {
-          // Fallback for browsers without document.fonts
           setTimeout(startAnimation, 100);
         }
+      };
+
+      if (delay > 0) {
+        setTimeout(animateWithFontCheck, delay * 1000);
+      } else {
+        animateWithFontCheck();
       }
     }
   }, [
@@ -123,6 +130,7 @@ export function SplitTextAnimation({
     onAnimationComplete,
     whileInView,
     isInView,
+    highlightWord,
   ]);
 
   return (
