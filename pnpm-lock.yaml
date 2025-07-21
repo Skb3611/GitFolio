@@ -112,6 +112,9 @@ importers:
       '@types/uuid':
         specifier: ^10.0.0
         version: 10.0.0
+      '@workspace/templates':
+        specifier: workspace:*
+        version: link:../../packages/templates
       '@workspace/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -231,6 +234,30 @@ importers:
       typescript-eslint:
         specifier: ^8.24.1
         version: 8.34.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
+
+  packages/templates:
+    dependencies:
+      '@types/react':
+        specifier: ^19
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.1.6(@types/react@19.1.8)
+      '@workspace/types':
+        specifier: workspace:*
+        version: link:../types
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@workspace/ui':
+        specifier: workspace:*
+        version: link:../ui
+      react:
+        specifier: ^19.0.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.1.0(react@19.1.0)
 
   packages/types: {}
 

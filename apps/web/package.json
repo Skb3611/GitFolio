@@ -25,6 +25,7 @@
     "@types/uuid": "^10.0.0",
     "@workspace/ui": "workspace:*",
     "@workspace/types": "workspace:*",
+    "@workspace/templates": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.475.0",
     "motion": "^12.15.0",
