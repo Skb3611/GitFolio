@@ -1,4 +1,4 @@
-import { Education, TabTypes } from '@/app/types/types'
+import { Education, TabTypes } from '@workspace/types'
 import { Button } from '@workspace/ui/components/button'
 import { AnimatedShinyText } from '@workspace/ui/components/magicui/animated-shiny-text'
 import { ArrowRight, GraduationCap, MoveRight } from 'lucide-react'

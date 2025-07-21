@@ -9,7 +9,7 @@ import {
   Trash2,
 } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
-import { DeleteType, Experience, SavePayload } from "@/app/types/types";
+import { DeleteType, Experience, SavePayload } from "@workspace/types";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import {
   Dialog,

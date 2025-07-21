@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useRef } from "react";
-import { Projects, SavePayload } from "@/app/types/types";
+import { Projects, SavePayload } from "@workspace/types";
 import { Button } from "@workspace/ui/components/button";
 import {
   Edit,

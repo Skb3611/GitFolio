@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { BentoCard, BentoGrid } from "@workspace/ui/components/magicui/bento-grid";
 import { AnimatedShinyText } from '@workspace/ui/components/magicui/animated-shiny-text';
 import PersonalInfoCard from './Overview/PersonalInfoCard';
-import { Education, Experience, PersonalInformation, Projects, SocialLinks, TabTypes } from '@/app/types/types';
+import { Education, Experience, PersonalInformation, Projects, SocialLinks, TabTypes } from '@workspace/types';
 import StatsCard from './Overview/StatsCard';
 import SocialLinksCard from './Overview/SocialLinksCard';
 import ProjectsCard from './Overview/ProjectsCard';

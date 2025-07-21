@@ -1,4 +1,4 @@
-import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@/app/types/types"
+import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@workspace/types"
 // export const dummypersonalInformation: PersonalInformation = {
 //     image: 'https://avatars.githubusercontent.com/u/12345678?v=4',
 //     full_name: 'Shubham Bhilare',

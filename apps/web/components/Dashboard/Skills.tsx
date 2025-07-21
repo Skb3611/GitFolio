@@ -5,7 +5,7 @@ import { Input } from '@workspace/ui/components/input'
 import { Save, X } from 'lucide-react'
 import React, { Dispatch, SetStateAction } from 'react'
 import { Badge } from '@workspace/ui/components/badge'
-import { SavePayload } from '@/app/types/types'
+import { SavePayload } from '@workspace/types'
 
 const SkillsTab = ({skills,onChange,onSave,availableSkills}:{
     skills: string[]

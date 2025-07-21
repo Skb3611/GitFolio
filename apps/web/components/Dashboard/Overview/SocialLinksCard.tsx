@@ -14,7 +14,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@workspace/ui/components/tooltip";
-import { SocialLinks } from "@/app/types/types";
+import { SocialLinks } from "@workspace/types";
 
 const SocialLinksCard = ({ links }: { links: SocialLinks }) => {
   return (

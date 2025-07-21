@@ -9,7 +9,7 @@ import {
 import Navigation from "./Navigation";
 import NavUser from "./NavUser";
 import MainNav from "./MainNav";
-import { TabTypes } from "@/app/types/types";
+import { TabTypes } from "@workspace/types";
 
 // This is sample data.
 

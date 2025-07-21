@@ -1,4 +1,4 @@
-import { TabTypes } from "@/app/types/types";
+import { TabTypes } from "@workspace/types";
 import {
   SidebarMenu,
   SidebarMenuButton,

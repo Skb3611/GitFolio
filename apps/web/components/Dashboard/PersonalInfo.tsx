@@ -17,7 +17,7 @@ import {
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import { Textarea } from "@workspace/ui/components/textarea";
-import { PersonalInformation, SavePayload } from "@/app/types/types";
+import { PersonalInformation, SavePayload } from "@workspace/types";
 import {
   Dialog,
   DialogContent,

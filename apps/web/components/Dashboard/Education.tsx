@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { DeleteType, Education, SavePayload } from "@/app/types/types";
+import { DeleteType, Education, SavePayload } from "@workspace/types";
 import { Button } from "@workspace/ui/components/button";
 import {
   Calendar,

@@ -1,4 +1,4 @@
-import { PersonalInformation } from '@/app/types/types'
+import { PersonalInformation } from '@workspace/types'
 import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar'
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/card'
 import { AnimatedShinyText } from '@workspace/ui/components/magicui/animated-shiny-text'

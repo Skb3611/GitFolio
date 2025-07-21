@@ -10,7 +10,7 @@ import {
 import { Input } from "@workspace/ui/components/input";
 import { Save } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
-import { SavePayload, SocialLinks } from "@/app/types/types";
+import { SavePayload, SocialLinks } from "@workspace/types";
 
 const SocialLinksTab = ({
   links,

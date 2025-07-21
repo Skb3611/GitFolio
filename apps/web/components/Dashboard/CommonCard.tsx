@@ -1,4 +1,4 @@
-import { DeleteType, Education, Experience } from "@/app/types/types";
+import { DeleteType, Education, Experience } from "@workspace/types";
 import { Button } from "@workspace/ui/components/button";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import { Briefcase, Calendar, Edit, Trash2 } from "lucide-react";

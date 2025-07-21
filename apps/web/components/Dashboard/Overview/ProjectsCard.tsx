@@ -7,7 +7,7 @@ import {
   Star,
 } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
-import { Projects, TabTypes } from "@/app/types/types";
+import { Projects, TabTypes } from "@workspace/types";
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";

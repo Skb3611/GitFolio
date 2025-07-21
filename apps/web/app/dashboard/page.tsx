@@ -49,7 +49,7 @@ import {
   SavePayload,
   SocialLinks,
   TabTypes,
-} from "../types/types";
+} from "@workspace/types";
 import { useAuth } from "@clerk/nextjs";
 import EducationTab from "@/components/Dashboard/Education";
 import { config } from "@/config";
