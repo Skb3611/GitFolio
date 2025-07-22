@@ -75,4 +75,14 @@ export type TabTypes =
   | "Experience"
   | "Social Links"
   | "Skills"
-  | "Education";
+  | "Education"
+  | "Preview";
+
+export interface DATA  {
+  personalInfo:PersonalInformation;
+  projects:Projects[],
+  experience:Experience[],
+  education:Education[];
+  socialLinks:SocialLinks;
+  skills:string[]
+}

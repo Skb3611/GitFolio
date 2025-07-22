@@ -55,6 +55,9 @@ import EducationTab from "@/components/Dashboard/Education";
 import { config } from "@/config";
 import OverviewTab from "@/components/Dashboard/Overview";
 import { toast } from "@workspace/ui/components/sonner";
+import { Template1 } from "@workspace/templates";
+import TemplateRender from "@/components/Dashboard/Overview/TemplateRender";
+
 const sidebarItems = {
   HeaderNavItems: [
     {
@@ -65,7 +68,7 @@ const sidebarItems = {
     {
       label: "About",
       href: "/#about",
-      icon: Info ,
+      icon: Info,
     },
     {
       label: "Contact",
@@ -253,24 +256,24 @@ export default function Page() {
           break;
 
         case "Projects":
-          if(projectImg){
-            let res = await fetch(config.server_endpoints.GET_PRESIGNED_URL,{
-              method:"POST",
-              headers:{
-                "Content-Type":"application/json",
+          if (projectImg) {
+            let res = await fetch(config.server_endpoints.GET_PRESIGNED_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
                 authorization: `Bearer ${token}`,
               },
-              body:JSON.stringify({
-                type:"project",
-                filename:(data as Projects).id+".jpg",
-              })
-            })
-            const {url,link} = (await res.json()).data;
-            const r = await fetch(url,{
-              method:"PUT",
-              body:projectImg,
-            })
-            data = {...data,thumbnail:link}
+              body: JSON.stringify({
+                type: "project",
+                filename: (data as Projects).id + ".jpg",
+              }),
+            });
+            const { url, link } = (await res.json()).data;
+            const r = await fetch(url, {
+              method: "PUT",
+              body: projectImg,
+            });
+            data = { ...data, thumbnail: link };
           }
           body = data;
           endpoint = config.server_endpoints.UPDATE_REPO;
@@ -431,8 +434,17 @@ export default function Page() {
             onDelete={onDelete}
           />
         );
-      default:
-        return <div>Overview</div>;
+      case "Preview":
+        return (
+         <TemplateRender data={{
+          personalInfo:personalInformation,
+          education,
+          projects,
+          experience,
+          skills,
+          socialLinks
+         }}/>
+        );
     }
   };
 
@@ -443,7 +455,7 @@ export default function Page() {
         setActiveTab={setActiveTab}
         activeTab={activeTab}
       />
-      <SidebarInset >
+      <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 rounded-xl">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
@@ -464,7 +476,9 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 md:p-6 py-2 px-4">{renderTab()}</div>
+        <div className="flex flex-1 flex-col gap-4 md:p-6 py-2 px-4">
+          {renderTab()}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );

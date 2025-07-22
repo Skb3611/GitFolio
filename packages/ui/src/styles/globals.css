@@ -218,3 +218,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground rounded-2xl
+}
+::-webkit-scrollbar-track {
+  background-color: var(--accent);
+}
