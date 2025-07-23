@@ -376,18 +376,14 @@ const ProjectCard = ({
             <TooltipTrigger
             asChild
               onClick={(event) => event.stopPropagation()}
-              className="absolute top-2 left-2 flex items-center space-x-2 bg-black/90 rounded-xl px-2 py-1 z-20"
+              className="absolute top-2 left-2 flex items-center space-x-2 z-20"
             >
-              <div>
-              <Switch
-                className="z-50"
-                checked={project.isIncluded}
-                onCheckedChange={() => {
-                  event?.stopPropagation();
-                  toggleProject(project);
-                }}
-                />
-                </div>
+              <div className="absolute top-3 left-3">
+                    <div className="flex items-center space-x-2 bg-card backdrop-blur-sm rounded-full px-3 py-1">
+                      <GripVertical className="h-3 w-3 text-gray-500" />
+                      <Switch checked={project.isIncluded} onCheckedChange={() => toggleProject(project)} />
+                    </div>
+                  </div>
             </TooltipTrigger>
             <TooltipContent side="top">
               Change project visibility.
