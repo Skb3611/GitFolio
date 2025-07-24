@@ -4,7 +4,6 @@ import { processClerkWebhook } from "../Services/clerk.service";
 export const webhookController = async (req: Request, res: Response) => {
   try {
     const event = req.body;
-    console.log(event);
     const result = await processClerkWebhook(event);
     result
       ? res.json({success: true, message: "Webhook processed successfully", }) .status(200)

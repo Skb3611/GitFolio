@@ -48,30 +48,6 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
           contributions: contibutions,
         },
       });
-      console.log("user created");
-      // const repoPromises = userRepos.map((repo) => {
-      //   return prisma.repo.create({
-      //     data: {
-      //       name: repo.name,
-      //       description: repo.description,
-      //       topics: repo.topics,
-      //       languages: repo.languages || {},
-      //       stars: repo.stars,
-      //       forks: repo.forks,
-      //       deployments: repo.deployments,
-      //       repoLink: repo.repoLink,
-      //       liveLink: repo.liveLink,
-      //       created_at: repo.created_at,
-      //       updated_at: repo.updated_at,
-      //       pushed_at: repo.pushed_at,
-      //       owner: {
-      //         connect: {
-      //           id: user.id,
-      //         },
-      //       },
-      //     },
-      //   });
-      // });
       const createdRepos =  await prisma.repo.createMany({
         data: userRepos.map((repo) => ({
           userId: user.id, // Add required userId field
@@ -90,7 +66,6 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
         })),
         skipDuplicates: true,
       });
-      console.log("repos created", createdRepos);
 
       return user && createdRepos ? true : false;
     case "user.updated":

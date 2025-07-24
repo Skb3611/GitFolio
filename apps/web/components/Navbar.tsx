@@ -74,7 +74,6 @@ const Navbar = () => {
   const [visible, setVisible] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(window.location.hash)
     setHash(window.location.hash)
   },[pathname])
 

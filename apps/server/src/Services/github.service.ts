@@ -23,7 +23,7 @@ Promise<{
             }
         });
         const data = await res.json();
-        // console.log("User Data",data)
+
         
         return {
             username:data.login,
@@ -49,7 +49,6 @@ export const getUserRepos = async (token:string,username?:string):Promise<Repo[]
             }
         });
         const data = await res.json();
-        // console.log("User Repos",data)
         let repos:Promise<Repo[]> = Promise.all(data.map(async(repo:any)=>{
             return{
                 name:repo.name,
@@ -67,10 +66,9 @@ export const getUserRepos = async (token:string,username?:string):Promise<Repo[]
                 pushed_at:repo.pushed_at,
             }
         }))
-        // console.log("Repos",repos)
         return repos
     }catch(e){
-        // console.log(e)
+
         return false
     }
 }

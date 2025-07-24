@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import {
-  getUserData,
   updateUserData,
   createOrUpdateRepo,
   deleteRepo,
@@ -8,17 +7,17 @@ import {
   deleteEducation,
   createOrUpdateExperience,
   deleteExperience,
+  getUserDataById,
 } from "../Services/dashboard.service";
 
 export const getUserDataController = async (req: Request, res: Response) => {
   try {
     const userId = req.auth?.user.id;
-    console.log(req.auth?.user)
     if (!userId) {
       res.status(400).json({ message: "userId is required", status: "error" });
       return;
     }
-    const data = await getUserData(userId);
+    const data = await getUserDataById(userId);
     data
       ? res.status(200).json({
           message: "Data fetched successfully",

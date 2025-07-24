@@ -22,7 +22,6 @@ import Link from "next/link";
 const UserButton = () => {
   const { user } = useUser();
   const { signOut } = useClerk();
-  //   console.log(user)
   const router = useRouter();
   return (
     <DropdownMenu>

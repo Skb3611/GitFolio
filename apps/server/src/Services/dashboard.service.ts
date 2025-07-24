@@ -1,10 +1,22 @@
 import prisma, { Education, Experience, Prisma, Repo } from "@workspace/db";
 import { deleteObject } from "./S3.service";
 
-export const getUserData = async (userId: string): Promise<any> => {
+export const getUserDataById = async (userId: string): Promise<any> => {
   return await prisma.user.findUnique({
     where: {
       id: userId,
+    },
+    include: {
+      repos: true,
+      experiences: true,
+      educations: true,
+    },
+  });
+};
+export const getUserDataByUsername = async (username: string) => {
+  return await prisma.user.findUnique({
+    where: {
+      username,
     },
     include: {
       repos: true,
@@ -69,7 +81,7 @@ export const deleteRepo = async (
         id: repoId,
       },
     });
-    await deleteObject(userId,"Projects",repoId)
+    await deleteObject(userId, "Projects", repoId);
     return res ? true : false;
   } catch (e) {
     console.log(e);
@@ -111,7 +123,7 @@ export const deleteExperience = async (
         id: experienceId,
       },
     });
-    await deleteObject(userId,"Experience",experienceId)
+    await deleteObject(userId, "Experience", experienceId);
     return res ? true : false;
   } catch (e) {
     console.log(e);
@@ -129,7 +141,7 @@ export const createOrUpdateEducation = async (
         // userId: userId,
         id: data.id,
       },
-      update: {...data},
+      update: { ...data },
       create: {
         ...data,
         userId: userId,
@@ -152,7 +164,7 @@ export const deleteEducation = async (
         id: educationId,
       },
     });
-    await deleteObject(userId,"Education",educationId)
+    await deleteObject(userId, "Education", educationId);
     return res ? true : false;
   } catch (e) {
     console.log(e);

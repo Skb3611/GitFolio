@@ -130,14 +130,12 @@ export default function Page() {
     const fetchData = async () => {
       try {
         const token = await getToken();
-        console.log(token);
         const res = await fetch(config.server_endpoints.GET_USER_DATA, {
           headers: {
             authorization: `Bearer ${token}`,
           },
         });
         const result = await res.json();
-        console.log(result);
         const p: PersonalInformation = {
           username: result.data.username,
           email: result.data.email,
@@ -253,7 +251,6 @@ export default function Page() {
         }),
       });
       const { url, link } = (await res.json()).data;
-      console.log(url, link);
       const r = await fetch(url, {
         method: "PUT",
         body: returnImage(),

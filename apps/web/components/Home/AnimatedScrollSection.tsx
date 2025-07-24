@@ -10,7 +10,6 @@ const AnimatedScrollSection = () => {
         offset: ["start end", "end start"]
     })
 useMotionValueEvent(scrollYProgress,"change", (latest:number)=>{
-  console.log(latest)
 })
 const setScale=() => {
   return isMobile ? [0.8,1]:[0.8,1.05]

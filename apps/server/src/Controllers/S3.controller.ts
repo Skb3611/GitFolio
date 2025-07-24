@@ -7,7 +7,6 @@ export const generatePreSignedURLController = async (
 ) => {
   try {
     const { type, filename } = req.body;
-    console.log(req.body)
     const userid = req.auth?.userId;
     if (!userid) throw new Error("Unauthorized");
     const presignedURL = await generatePreSignedURL(userid, type, filename);

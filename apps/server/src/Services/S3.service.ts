@@ -43,13 +43,11 @@ export const deleteObject = async (
 ) => {
   try {
     const key = `user-uploads/${userid}/${type}/${filename}.jpg`;
-    console.log(key);
     const command = new DeleteObjectCommand({
       Bucket: "gitfolio",
       Key: key,
     });
     const res = await S3.send(command);
-    console.log(res);
   } catch (e) {
     console.log(e);
   }
