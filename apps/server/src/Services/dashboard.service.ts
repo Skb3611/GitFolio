@@ -1,4 +1,5 @@
 import prisma, { Education, Experience, Prisma, Repo } from "@workspace/db";
+import { deleteObject } from "./S3.service";
 
 export const getUserData = async (userId: string): Promise<any> => {
   return await prisma.user.findUnique({
@@ -68,6 +69,7 @@ export const deleteRepo = async (
         id: repoId,
       },
     });
+    await deleteObject(userId,"Projects",repoId)
     return res ? true : false;
   } catch (e) {
     console.log(e);
@@ -109,6 +111,7 @@ export const deleteExperience = async (
         id: experienceId,
       },
     });
+    await deleteObject(userId,"Experience",experienceId)
     return res ? true : false;
   } catch (e) {
     console.log(e);
@@ -149,6 +152,7 @@ export const deleteEducation = async (
         id: educationId,
       },
     });
+    await deleteObject(userId,"Education",educationId)
     return res ? true : false;
   } catch (e) {
     console.log(e);

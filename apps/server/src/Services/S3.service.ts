@@ -1,4 +1,8 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import {
+  DeleteObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { config } from "../config";
 
@@ -7,14 +11,14 @@ const S3 = new S3Client({
     accessKeyId: config.S3_ACCESS_KEY_ID!,
     secretAccessKey: config.S3_ACCESS_KEY_SECRET!,
   },
-  endpoint:config.S3_ENDPOINT,
+  endpoint: config.S3_ENDPOINT,
   region: "auto",
-  forcePathStyle:true
+  forcePathStyle: true,
 });
 
 export const generatePreSignedURL = async (
   userid: string,
-  type: "Personal Information" | "Projects" |"Experience"|"Education" ,
+  type: "Personal Information" | "Projects" | "Experience" | "Education",
   filename: string
 ): Promise<{ url: string; link: string } | null> => {
   try {
@@ -25,9 +29,28 @@ export const generatePreSignedURL = async (
       ContentType: "image/jpeg",
     });
     const url = await getSignedUrl(S3, command, { expiresIn: 300 });
-    return { url, link: `${config.S3_PUBLIC_ENDPOINT}/${key}`};
+    return { url, link: `${config.S3_PUBLIC_ENDPOINT}/${key}` };
   } catch (e) {
     console.log(e);
     return null;
+  }
+};
+
+export const deleteObject = async (
+  userid: string,
+  type: "Personal Information" | "Projects" | "Experience" | "Education",
+  filename: string
+) => {
+  try {
+    const key = `user-uploads/${userid}/${type}/${filename}.jpg`;
+    console.log(key);
+    const command = new DeleteObjectCommand({
+      Bucket: "gitfolio",
+      Key: key,
+    });
+    const res = await S3.send(command);
+    console.log(res);
+  } catch (e) {
+    console.log(e);
   }
 };

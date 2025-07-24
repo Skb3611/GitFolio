@@ -172,7 +172,7 @@ export default function EducationTab({
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[600px] max-h-[95%]  my-auto overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {isAdding ? "Add Education" : "Edit Education"}
