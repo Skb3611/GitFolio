@@ -28,6 +28,14 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@workspace/ui/components/avatar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
+import { YEARS } from "@/lib/dummy";
 export default function EducationTab({
   education,
   onChange,
@@ -80,6 +88,13 @@ export default function EducationTab({
       ) {
         toast.warning("Please fill in all the fields");
         return;
+      } else if (
+        editingEducation.end_date != "Present" &&
+        new Date(editingEducation.start_date) >
+          new Date(editingEducation.end_date)
+      ) {
+        toast.warning("Start date must be before end date");
+        return;
       } else if (editingEducation.description.length < 10) {
         toast.warning("Description must be at least 10 characters");
         return;
@@ -111,7 +126,7 @@ export default function EducationTab({
       setEditingEducation({
         ...editingEducation,
         onGoing: checked,
-        end_date: "Present",
+        end_date: checked ? "Present" : "",
       });
     }
   };
@@ -265,32 +280,54 @@ export default function EducationTab({
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label>Start Year</Label>
-                  <Input
-                    className="text-sm"
+                  <Select
                     value={editingEducation.start_date}
-                    onChange={(e) =>
+                    onValueChange={(value) =>
                       setEditingEducation({
                         ...editingEducation,
-                        start_date: e.target.value,
+                        start_date: value,
                       })
                     }
-                    placeholder="2020"
-                  />
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Start Year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {YEARS.map((year) => {
+                        return (
+                          <SelectItem key={year} value={year.toString()}>
+                            {year}
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label>End Year</Label>
-                  <Input
-                    className="text-sm"
+                  <Select
                     disabled={editingEducation.onGoing}
-                    value={editingEducation.end_date}
-                    onChange={(e) =>
+                    value={editingEducation.onGoing ? "" : editingEducation.end_date}
+                    onValueChange={(value) =>
                       setEditingEducation({
                         ...editingEducation,
-                        end_date: e.target.value,
+                        end_date: value,
                       })
                     }
-                    placeholder="2024"
-                  />
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="End Year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {YEARS.map((year) => {
+                        return (
+                          <SelectItem key={year} value={year.toString()}>
+                            {year}
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
               <div className="space-x-2 flex items-center">
