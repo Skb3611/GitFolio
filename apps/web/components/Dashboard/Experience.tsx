@@ -8,8 +8,8 @@ import {
   Save,
   Trash2,
 } from "lucide-react";
-import React, { Dispatch, SetStateAction } from "react";
-import { DeleteType, Experience, SavePayload } from "@workspace/types";
+import React, { Dispatch, SetStateAction, useRef } from "react";
+import { DeleteType, Experience, ImagesTypes, SavePayload } from "@workspace/types";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import {
   Dialog,
@@ -35,17 +35,21 @@ import { v4 as uuid } from "uuid";
 import { Checkbox } from "@workspace/ui/components/checkbox";
 import { toast } from "@workspace/ui/components/sonner";
 import { CardWrapper as ExperienceCard } from "@/components/Dashboard/CommonCard";
+import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
 
 const ExperienceTab = ({
   experience,
   onChange,
   onSave,
   onDelete,
+  setExpImg
 }: {
   experience: Experience[];
   onChange: Dispatch<SetStateAction<Experience[]>>;
   onSave: ({ type, data }: SavePayload) => void;
   onDelete: (type: DeleteType, id: string) => void;
+  setExpImg:Dispatch<SetStateAction<ImagesTypes>>
+
 }) => {
   const [editingExperience, setEditingExperience] =
     React.useState<Experience | null>(null);
@@ -61,6 +65,7 @@ const ExperienceTab = ({
       end_date: "",
       description: "",
       onGoing: false,
+      logo:""
     };
     setEditingExperience(newExp);
     setIsAdding(true);
@@ -152,7 +157,20 @@ const ExperienceTab = ({
     const [month, year] = dateString.split(" ");
     return { month: month || "", year: year || "" };
   };
+  const ref = useRef<HTMLInputElement>(null);
 
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const img = event.target.files?.[0];
+    if (editingExperience && img) {
+      setExpImg({ experience: img });
+      setEditingExperience({
+        ...editingExperience,
+        logo: URL.createObjectURL(img),
+      });
+    }
+  };
   return (
     <div className="space-y-4">
       <div className="flex flex-col md:flex-row items-center gap-2 justify-between">
@@ -213,9 +231,60 @@ const ExperienceTab = ({
           </DialogHeader>
           {editingExperience && (
             <div className="space-y-4 py-4">
-              <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="text-sm md:text-base">Job Role</Label>
+                  <div className="flex items-center gap-4">
+                <Avatar className="h-20 w-20">
+                  <AvatarImage
+                    src={editingExperience.logo || " "}
+                    alt={editingExperience.company}
+                  />
+                  <AvatarFallback>
+                    {editingExperience.company.length < 0
+                      ? editingExperience.company
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")
+                      : "N/A"}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col justify-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => ref.current?.click()}
+                  >
+                    <Input
+                      ref={ref}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                    Change Image{" "}
+                  </Button>
+                  <div className="flex items-center justify-between gap-2 ">
+                    <div className="h-0.5 bg-muted w-1/2"></div>
+                    <span className="text-sm text-muted-foreground">or</span>
+                    <div className="h-0.5 bg-muted w-1/2"></div>
+                  </div>
+                  <Input
+                    className="text-sm"
+                    value={editingExperience.logo ?? ""}
+                    onChange={(e) =>
+                      setEditingExperience({
+                        ...editingExperience,
+                        logo: e.target.value,
+                      })
+                    }
+                    placeholder="Enter logo url"
+                  />
+                </div>
+              </div>
+                 
+                </div>
+              <div className="grid gap-4 md:grid-cols-2">
+
+                <div className="space-y-2">
+                   <Label className="text-sm md:text-base">Job Role</Label>
                   <Input
                     className="text-sm"
                     value={editingExperience.role}

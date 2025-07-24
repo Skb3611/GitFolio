@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useRef } from "react";
-import { Projects, SavePayload } from "@workspace/types";
+import { ImagesTypes, Projects, SavePayload } from "@workspace/types";
 import { Button } from "@workspace/ui/components/button";
 import {
   Edit,
@@ -45,7 +45,7 @@ const ProjectsTab = ({
   projects: Projects[];
   onChange: Dispatch<SetStateAction<Projects[]>>;
   onSave: ({ type, data }: SavePayload) => void;
-  setprojectImg: Dispatch<SetStateAction<File | null>>;
+  setprojectImg: Dispatch<SetStateAction<ImagesTypes>>;
 }) => {
   const [editingProject, setEditingProject] = React.useState<Projects | null>(
     null
@@ -120,7 +120,7 @@ const ProjectsTab = ({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const img = e.target.files?.[0];
     if (img) {
-      setprojectImg(img);
+      setprojectImg({project:img});
       setEditingProject({
         ...(editingProject as Projects),
         thumbnail: URL.createObjectURL(img),

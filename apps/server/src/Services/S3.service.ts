@@ -14,7 +14,7 @@ const S3 = new S3Client({
 
 export const generatePreSignedURL = async (
   userid: string,
-  type: "profile" | "project",
+  type: "Personal Information" | "Projects" |"Experience"|"Education" ,
   filename: string
 ): Promise<{ url: string; link: string } | null> => {
   try {

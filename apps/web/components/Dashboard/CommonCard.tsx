@@ -1,4 +1,9 @@
 import { DeleteType, Education, Experience } from "@workspace/types";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
 import { Button } from "@workspace/ui/components/button";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import { Briefcase, Calendar, Edit, Trash2 } from "lucide-react";
@@ -28,8 +33,19 @@ export const CardWrapper = ({
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-lg">
-                <Briefcase className="h-5 w-5 text-blue-600" />
+              <div>
+                <Avatar className="size-10">
+                  <AvatarImage  src={data.logo ?? ""} />
+                  <AvatarFallback>
+                    {"role" in data
+                      ? data.company.split(" ").map((word) => {
+                          return word[0];
+                        })
+                      : data.institution.split(" ").map((word) => {
+                          return word[0];
+                        })}
+                  </AvatarFallback>
+                </Avatar>
               </div>
               <div>
                 <h3 className="text-lg font-semibold group-hover:text-blue-600 transition-colors">

@@ -1,15 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { DeleteType, Education, SavePayload } from "@workspace/types";
-import { Button } from "@workspace/ui/components/button";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import {
-  Calendar,
-  Edit,
-  GraduationCap,
-  Plus,
-  Save,
-  Trash2,
-} from "lucide-react";
-import { Card, CardContent } from "@workspace/ui/components/card";
+  DeleteType,
+  Education,
+  ImagesTypes,
+  SavePayload,
+} from "@workspace/types";
+import { Button } from "@workspace/ui/components/button";
+import { GraduationCap, Plus, Save } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -26,16 +23,23 @@ import { v4 as uuid } from "uuid";
 import { toast } from "@workspace/ui/components/sonner";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { CardWrapper as EducationCard } from "./CommonCard";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
 export default function EducationTab({
   education,
   onChange,
   onSave,
   onDelete,
+  setEduImg,
 }: {
   education: Education[];
   onChange: Dispatch<SetStateAction<Education[]>>;
   onSave: ({ type, data }: SavePayload) => void;
   onDelete: (type: DeleteType, id: string) => void;
+  setEduImg: Dispatch<SetStateAction<ImagesTypes>>;
 }) {
   const [editingEducation, setEditingEducation] = useState<Education | null>(
     null
@@ -46,6 +50,7 @@ export default function EducationTab({
   const handleAddEducation = () => {
     const newEdu: Education = {
       id: uuid(),
+      logo: "",
       title: "",
       institution: "",
       start_date: "",
@@ -96,12 +101,6 @@ export default function EducationTab({
     }
   };
 
-  const handleDeleteEducation = (id: string) => {
-    onChange(education.filter((edu) => edu.id !== id));
-    // onSave({message:"Education",data:{..}})
-    onDelete(DeleteType.EDUCATION, id);
-  };
-
   const handleCancel = () => {
     setEditingEducation(null);
     setIsAdding(false);
@@ -113,6 +112,20 @@ export default function EducationTab({
         ...editingEducation,
         onGoing: checked,
         end_date: "Present",
+      });
+    }
+  };
+  const ref = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const img = event.target.files?.[0];
+    if (editingEducation && img) {
+      setEduImg({ education: img });
+      setEditingEducation({
+        ...editingEducation,
+        logo: URL.createObjectURL(img),
       });
     }
   };
@@ -172,6 +185,53 @@ export default function EducationTab({
           </DialogHeader>
           {editingEducation && (
             <div className="space-y-4 py-4">
+              <div className="flex items-center gap-4">
+                <Avatar className="h-20 w-20">
+                  <AvatarImage
+                    src={editingEducation.logo || " "}
+                    alt={editingEducation.institution}
+                  />
+                  <AvatarFallback>
+                    {editingEducation.institution.length < 0
+                      ? editingEducation.institution
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")
+                      : "N/A"}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col justify-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => ref.current?.click()}
+                  >
+                    <Input
+                      ref={ref}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                    Change Image{" "}
+                  </Button>
+                  <div className="flex items-center justify-between gap-2 ">
+                    <div className="h-0.5 bg-muted w-1/2"></div>
+                    <span className="text-sm text-muted-foreground">or</span>
+                    <div className="h-0.5 bg-muted w-1/2"></div>
+                  </div>
+                  <Input
+                    className="text-sm"
+                    value={editingEducation.logo ?? ""}
+                    onChange={(e) =>
+                      setEditingEducation({
+                        ...editingEducation,
+                        logo: e.target.value,
+                      })
+                    }
+                    placeholder="Enter logo url"
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
                 <Label>Degree/Title</Label>
                 <Input

@@ -44,6 +44,7 @@ import {
   DeleteType,
   Education,
   Experience,
+  ImagesTypes,
   PersonalInformation,
   Projects,
   SavePayload,
@@ -122,8 +123,7 @@ export default function Page() {
     useState<SocialLinks>(initialSocailLinks);
   const [skills, setSkills] = useState<string[]>([]);
   const [education, setEducation] = useState<Education[]>([]);
-  const [profileImg, setprofileImg] = useState<File | null>(null);
-  const [projectImg, setProjectImg] = useState<File | null>(null);
+  const [Images, setImages] = useState<ImagesTypes>(null);
   const { getToken } = useAuth();
 
   useEffect(() => {
@@ -175,6 +175,7 @@ export default function Page() {
             start_date: exp.start_date,
             end_date: exp.end_date,
             onGoing: exp.end_date === "Present" ? true : false,
+            logo:exp.logo
           };
         });
 
@@ -187,6 +188,7 @@ export default function Page() {
             end_date: edu.end_date,
             description: edu.description,
             onGoing: edu.end_date === "Present" ? true : false,
+            logo:edu.logo
           };
         });
         const s: SocialLinks = result.data.socialAccounts ?? initialSocailLinks;
@@ -210,6 +212,59 @@ export default function Page() {
     });
   }, []);
 
+  const uploadImage = async (
+    params: SavePayload & { token: string }
+  ): Promise<string | null> => {
+    try {
+      const returnImage = () => {
+        switch (params.type) {
+          case "Personal Information":
+            return Images?.profile;
+          case "Projects":
+            return Images?.project;
+          case "Education":
+            return Images?.education;
+          case "Experience":
+            return Images?.experience;
+        }
+      };
+      const returnFileName = () => {
+        switch (params.type) {
+          case "Personal Information":
+            return "profile";
+          case "Projects":
+            return params.data.id;
+          case "Education":
+            return params.data.id;
+          case "Experience":
+            return params.data.id;
+        }
+      };
+
+      const res = await fetch(config.server_endpoints.GET_PRESIGNED_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${params.token}`,
+        },
+        body: JSON.stringify({
+          type: params.type,
+          filename: returnFileName()+".jpg",
+        }),
+      });
+      const { url, link } = (await res.json()).data;
+      console.log(url, link);
+      const r = await fetch(url, {
+        method: "PUT",
+        body: returnImage(),
+      });
+      return link;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  };
+
   const onSave = async ({ type, data }: SavePayload) => {
     const token = await getToken();
     const headers = {
@@ -218,32 +273,19 @@ export default function Page() {
     };
 
     const showSavingToast = toast.loading(`Saving ${type.toLowerCase()}...`);
-
     try {
       let body: any;
       let endpoint = "";
 
       switch (type) {
         case "Personal Information":
-          if (profileImg != null) {
-            const res = await fetch(config.server_endpoints.GET_PRESIGNED_URL, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({
-                type: "profile",
-                filename: "profile.jpg",
-              }),
+          if (Images?.profile != null && token != null) {
+            const link = await uploadImage({
+              token,
+              data: data as PersonalInformation,
+              type,
             });
-            const { url, link } = (await res.json()).data;
-            console.log(url, link);
-            const r = await fetch(url, {
-              method: "PUT",
-              body: profileImg,
-            });
-            data = { ...data, profileImg: link };
+            link && (data = { ...data, profileImg: link });
           }
           let d = {
             ...data,
@@ -256,35 +298,42 @@ export default function Page() {
           break;
 
         case "Projects":
-          if (projectImg) {
-            let res = await fetch(config.server_endpoints.GET_PRESIGNED_URL, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({
-                type: "project",
-                filename: (data as Projects).id + ".jpg",
-              }),
+          if (Images?.project && token) {
+            const link = await uploadImage({
+              token,
+              type,
+              data: data as Projects,
             });
-            const { url, link } = (await res.json()).data;
-            const r = await fetch(url, {
-              method: "PUT",
-              body: projectImg,
-            });
-            data = { ...data, thumbnail: link };
+            link && (data = { ...data, thumbnail: link });
           }
           body = data;
           endpoint = config.server_endpoints.UPDATE_REPO;
           break;
 
         case "Experience":
+          if (Images?.experience && token) {
+            const link = await uploadImage({
+              token,
+              type,
+              data: data as Experience,
+            });
+            link && (data = { ...data, logo: link });
+            setExperience((prev)=>prev.map((exp)=>exp.id === (data as Experience).id ? {...exp,logo:(data as Experience).logo}:exp))
+          }
           body = data;
           endpoint = config.server_endpoints.UPDATE_EXPERIENCE;
           break;
 
         case "Education":
+          if (Images?.education && token) {
+            const link = await uploadImage({
+              token,
+              type,
+              data: data as Education,
+            });
+            link && (data = { ...data, logo: link });
+            setEducation((prev) => prev.map((edu) => edu.id === (data as Education).id ? {...edu, logo: (data as Education).logo} : edu))
+          }
           body = data;
           endpoint = config.server_endpoints.UPDATE_EDUCATION;
           break;
@@ -387,7 +436,7 @@ export default function Page() {
             info={personalInformation}
             onChange={setPersonalInformation}
             onSave={onSave}
-            setProfileImg={setprofileImg}
+            setProfileImg={setImages}
           />
         );
       case "Projects":
@@ -396,7 +445,7 @@ export default function Page() {
             projects={projects}
             onChange={setProjects}
             onSave={onSave}
-            setprojectImg={setProjectImg}
+            setprojectImg={setImages}
           />
         );
       case "Experience":
@@ -406,6 +455,7 @@ export default function Page() {
             onChange={setExperience}
             onSave={onSave}
             onDelete={onDelete}
+            setExpImg={setImages}
           />
         );
       case "Social Links":
@@ -432,18 +482,21 @@ export default function Page() {
             onChange={setEducation}
             onSave={onSave}
             onDelete={onDelete}
+            setEduImg={setImages}
           />
         );
       case "Preview":
         return (
-         <TemplateRender data={{
-          personalInfo:personalInformation,
-          education,
-          projects,
-          experience,
-          skills,
-          socialLinks
-         }}/>
+          <TemplateRender
+            data={{
+              personalInfo: personalInformation,
+              education,
+              projects,
+              experience,
+              skills,
+              socialLinks,
+            }}
+          />
         );
     }
   };

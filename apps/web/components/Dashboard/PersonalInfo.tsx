@@ -1,6 +1,14 @@
 import React, { Dispatch, SetStateAction, useRef } from "react";
 
-import { Edit, Github, Mail, MapPin, Rocket, Save, UserIcon } from "lucide-react";
+import {
+  Edit,
+  Github,
+  Mail,
+  MapPin,
+  Rocket,
+  Save,
+  UserIcon,
+} from "lucide-react";
 import {
   Avatar,
   AvatarFallback,
@@ -17,7 +25,7 @@ import {
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import { Textarea } from "@workspace/ui/components/textarea";
-import { PersonalInformation, SavePayload } from "@workspace/types";
+import { ImagesTypes, PersonalInformation, SavePayload } from "@workspace/types";
 import {
   Dialog,
   DialogContent,
@@ -27,7 +35,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@workspace/ui/components/dialog";
-import { blob } from "stream/consumers";
 
 const PersonalInfoTab = ({
   info,
@@ -38,7 +45,7 @@ const PersonalInfoTab = ({
   info: PersonalInformation;
   onChange: Dispatch<SetStateAction<PersonalInformation>>;
   onSave: ({ type, data }: SavePayload) => void;
-  setProfileImg: Dispatch<SetStateAction<File | null>>;
+  setProfileImg: Dispatch<SetStateAction<ImagesTypes>>;
 }) => {
   const [editInfo, setEditInfo] = React.useState(info);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -55,17 +62,19 @@ const PersonalInfoTab = ({
   };
   const ref = useRef<HTMLInputElement>(null);
 
-  const handleFileChange =async(event: React.ChangeEvent<HTMLInputElement>) => {
-    const img = event.target.files?.[0]
-    if(img){
-      setProfileImg(img);
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const img = event.target.files?.[0];
+    if (img) {
+      setProfileImg({profile:img});
       setEditInfo({
         ...editInfo,
         profileImg: URL.createObjectURL(img),
       });
-}
-  }
-  
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -85,7 +94,9 @@ const PersonalInfoTab = ({
             </DialogTrigger>
             <DialogContent className="sm:max-w-[600px] max-h-[95%] mx-auto overflow-auto">
               <DialogHeader className="gap-0">
-                <DialogTitle className="text-base md:text-lg">Edit Personal Information</DialogTitle>
+                <DialogTitle className="text-base md:text-lg">
+                  Edit Personal Information
+                </DialogTitle>
 
                 <DialogDescription>
                   Update your personal details and profile information
@@ -105,7 +116,10 @@ const PersonalInfoTab = ({
                         .join("")}
                     </AvatarFallback>
                   </Avatar>
-                  <Button variant="outline" onClick={()=>ref.current?.click()}>
+                  <Button
+                    variant="outline"
+                    onClick={() => ref.current?.click()}
+                  >
                     <Input
                       ref={ref}
                       type="file"
@@ -119,9 +133,11 @@ const PersonalInfoTab = ({
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
-                    <Label className="text-sm md:text-base" htmlFor="full_name">Full Name</Label>
+                    <Label className="text-sm md:text-base" htmlFor="full_name">
+                      Full Name
+                    </Label>
                     <Input
-                    className="text-sm md:text-base"
+                      className="text-sm md:text-base"
                       id="full_name"
                       value={editInfo.full_name}
                       onChange={(e) =>
@@ -130,9 +146,11 @@ const PersonalInfoTab = ({
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-sm md:text-base" htmlFor="location">Location</Label>
+                    <Label className="text-sm md:text-base" htmlFor="location">
+                      Location
+                    </Label>
                     <Input
-                    className="text-sm md:text-base"
+                      className="text-sm md:text-base"
                       id="location"
                       value={editInfo.location}
                       onChange={(e) =>
@@ -144,9 +162,11 @@ const PersonalInfoTab = ({
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-sm md:text-base" htmlFor="tagline">Tagline</Label>
+                  <Label className="text-sm md:text-base" htmlFor="tagline">
+                    Tagline
+                  </Label>
                   <Input
-                  className="text-sm md:text-base"
+                    className="text-sm md:text-base"
                     id="tagline"
                     value={editInfo.tagline}
                     onChange={(e) =>
@@ -157,9 +177,11 @@ const PersonalInfoTab = ({
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-sm md:text-base" htmlFor="bio">Bio</Label>
+                  <Label className="text-sm md:text-base" htmlFor="bio">
+                    Bio
+                  </Label>
                   <Textarea
-                  className="text-sm md:text-base"
+                    className="text-sm md:text-base"
                     id="bio"
                     value={editInfo.bio}
                     onChange={(e) =>
@@ -198,9 +220,11 @@ const PersonalInfoTab = ({
             </AvatarFallback>
           </Avatar>
           <div className="md:space-y-1">
-            <h3 className="text-base md:text-xl font-semibold">@{info.full_name}</h3>
+            <h3 className="text-base md:text-xl font-semibold">
+              @{info.full_name}
+            </h3>
             <p className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Rocket className="h-4 w-4"/>
+              <Rocket className="h-4 w-4" />
               {info.tagline.length == 0 ? "No tagline" : info.tagline}
             </p>
             <p className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -217,14 +241,22 @@ const PersonalInfoTab = ({
               <UserIcon className="h-4 w-4" />
               Username
             </Label>
-            <Input value={`@${info.username}`} disabled className="bg-muted text-sm md:text-base" />
+            <Input
+              value={`@${info.username}`}
+              disabled
+              className="bg-muted text-sm md:text-base"
+            />
           </div>
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
               Email
             </Label>
-            <Input value={info.email} disabled className="bg-muted text-sm md:text-base" />
+            <Input
+              value={info.email}
+              disabled
+              className="bg-muted text-sm md:text-base"
+            />
           </div>
           <div className="space-y-2 md:col-span-2">
             <Label className="flex items-center gap-2">

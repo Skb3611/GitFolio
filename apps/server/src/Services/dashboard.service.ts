@@ -1,4 +1,4 @@
-import prisma, { Experience, Prisma, Repo } from "@workspace/db";
+import prisma, { Education, Experience, Prisma, Repo } from "@workspace/db";
 
 export const getUserData = async (userId: string): Promise<any> => {
   return await prisma.user.findUnique({
@@ -118,7 +118,7 @@ export const deleteExperience = async (
 
 export const createOrUpdateEducation = async (
   userId: string,
-  data: any
+  data: Education
 ): Promise<boolean> => {
   try {
     let res = await prisma.education.upsert({

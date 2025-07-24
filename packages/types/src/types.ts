@@ -27,6 +27,7 @@ export interface Projects {
 
 export interface Experience {
   id: string;
+  logo: string;
   company: string;
   role: string;
   description: string;
@@ -46,6 +47,7 @@ export interface SocialLinks {
 }
 export interface Education {
   id: string;
+  logo: string;
   title: string;
   institution: string;
   description: string;
@@ -78,11 +80,17 @@ export type TabTypes =
   | "Education"
   | "Preview";
 
-export interface DATA  {
-  personalInfo:PersonalInformation;
-  projects:Projects[],
-  experience:Experience[],
-  education:Education[];
-  socialLinks:SocialLinks;
-  skills:string[]
+export interface DATA {
+  personalInfo: PersonalInformation;
+  projects: Projects[];
+  experience: Experience[];
+  education: Education[];
+  socialLinks: SocialLinks;
+  skills: string[];
 }
+export type ImagesTypes = Partial<{
+  profile: File | null;
+  project: File | null;
+  education: File | null;
+  experience: File | null;
+}> | null;
