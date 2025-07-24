@@ -89,7 +89,7 @@ const ExperienceTab = ({
       ) {
         toast.warning("Please fill in all the fields");
         return;
-      } else if (editingExperience.start_date > editingExperience.end_date) {
+      } else if (editingExperience.end_date!= "Present" && new Date(editingExperience.start_date) > new Date(editingExperience.end_date)) {
         toast.warning("Start date must be before end date");
         return;
       } else if (editingExperience.description.length < 10) {
