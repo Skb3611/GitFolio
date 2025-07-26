@@ -1,5 +1,4 @@
 import { Experience, TabTypes } from "@workspace/types";
-import { dummyexperience } from "@/lib/dummy";
 import { Button } from "@workspace/ui/components/button";
 import {
   Card,

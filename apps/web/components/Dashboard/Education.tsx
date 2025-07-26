@@ -83,8 +83,7 @@ export default function EducationTab({
         editingEducation?.title == "" ||
         editingEducation?.institution == "" ||
         editingEducation?.start_date == "" ||
-        editingEducation?.end_date == "" ||
-        editingEducation?.description == ""
+        editingEducation?.end_date == "" 
       ) {
         toast.warning("Please fill in all the fields");
         return;
@@ -95,7 +94,7 @@ export default function EducationTab({
       ) {
         toast.warning("Start date must be before end date");
         return;
-      } else if (editingEducation.description.length < 10) {
+      } else if (editingEducation.description.length!=0 && editingEducation.description.length < 10) {
         toast.warning("Description must be at least 10 characters");
         return;
       }
@@ -180,6 +179,9 @@ export default function EducationTab({
             <AnimatedShinyText className="flex flex-col">
               <span className="md:text-lg">
                 No Education included in portfolio yet
+              </span>
+              <span>
+                Add atleast one Education to showcase it on your portfolio
               </span>
             </AnimatedShinyText>
           </div>
@@ -340,7 +342,7 @@ export default function EducationTab({
               </div>
 
               <div className="space-y-2">
-                <Label>Description</Label>
+                <Label>Description <AnimatedShinyText className="text-xs  m-0">( Optional )</AnimatedShinyText></Label>
                 <Textarea
                   className="text-sm"
                   value={editingEducation.description}

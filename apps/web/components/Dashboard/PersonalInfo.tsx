@@ -152,7 +152,7 @@ const PersonalInfoTab = ({
                     <Input
                       className="text-sm md:text-base"
                       id="location"
-                      value={editInfo.location}
+                      value={editInfo.location??""}
                       onChange={(e) =>
                         setEditInfo({ ...editInfo, location: e.target.value })
                       }
@@ -168,7 +168,7 @@ const PersonalInfoTab = ({
                   <Input
                     className="text-sm md:text-base"
                     id="tagline"
-                    value={editInfo.tagline}
+                    value={editInfo.tagline??""}
                     onChange={(e) =>
                       setEditInfo({ ...editInfo, tagline: e.target.value })
                     }
@@ -183,7 +183,7 @@ const PersonalInfoTab = ({
                   <Textarea
                     className="text-sm md:text-base"
                     id="bio"
-                    value={editInfo.bio}
+                    value={editInfo.bio??""}
                     onChange={(e) =>
                       setEditInfo({ ...editInfo, bio: e.target.value })
                     }
@@ -225,11 +225,11 @@ const PersonalInfoTab = ({
             </h3>
             <p className="flex items-center gap-1 text-sm text-muted-foreground">
               <Rocket className="h-4 w-4" />
-              {info.tagline.length == 0 ? "No tagline" : info.tagline}
+              {info?.tagline ?? "No tagline"}
             </p>
             <p className="flex items-center gap-1 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4" />
-              {info.location.length == 0 ? "No location" : info.location}
+              {info?.location ?? "No location" }
             </p>
           </div>
         </div>
@@ -274,7 +274,7 @@ const PersonalInfoTab = ({
         <div>
           <h4 className="font-medium md:mb-2">Bio</h4>
           <p className="text-muted-foreground">
-            {info.bio.length == 0 ? "No bio added" : info.bio}
+            {info?.bio ?? "No bio added"}
           </p>
         </div>
       </CardContent>

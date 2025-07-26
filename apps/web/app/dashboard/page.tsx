@@ -140,14 +140,14 @@ export default function Page() {
           username: result.data.username,
           email: result.data.email,
           profileImg: result.data.profileImg ?? null,
-          bio: result.data.bio ?? "",
-          location: result.data.location ?? "",
-          website: result.data.website ?? "",
+          bio: result.data.bio ,
+          location: result.data.location ,
+          website: result.data.website,
           full_name: result.data.firstname + " " + result.data.lastname,
           followers: result.data.followers ?? 0,
           following: result.data.following ?? 0,
           githubLink: result.data.githubLink,
-          tagline: result.data.tagline ?? "",
+          tagline: result.data.tagline,
         };
         const r: Projects[] = result.data.repos.map((repo: any) => {
           return {

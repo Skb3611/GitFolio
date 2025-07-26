@@ -42,26 +42,26 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
     },
   ];
   
-  export const dummyexperience: Experience[] = [
-    {
-      id: '1',
-      role: 'Frontend Developer',
-      company: 'TechNova',
-      description: 'Built and maintained features for an enterprise dashboard using React and Redux.',
-      start_date: '2022-01-01',
-      end_date: '2023-06-30',
-      onGoing:false
-    },
-    {
-      id: '2',
-      company: 'DevVerse',
-      role: 'Full Stack Intern',
-      description: 'Worked on internal tools and helped integrate APIs using Node.js and Prisma.',
-      start_date: '2021-06-01',
-      end_date: '2021-12-01',
-      onGoing:false
-    },
-  ];
+  // export const dummyexperience: Experience[] = [
+  //   {
+  //     id: '1',
+  //     role: 'Frontend Developer',
+  //     company: 'TechNova',
+  //     description: 'Built and maintained features for an enterprise dashboard using React and Redux.',
+  //     start_date: '2022-01-01',
+  //     end_date: '2023-06-30',
+  //     onGoing:false
+  //   },
+  //   {
+  //     id: '2',
+  //     company: 'DevVerse',
+  //     role: 'Full Stack Intern',
+  //     description: 'Worked on internal tools and helped integrate APIs using Node.js and Prisma.',
+  //     start_date: '2021-06-01',
+  //     end_date: '2021-12-01',
+  //     onGoing:false
+  //   },
+  // ];
   
 //   export const dummysocialLinks: SocialLinks = {
 //     github: 'https://github.com/skb3611',
@@ -93,23 +93,18 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
     "Node.js",
     "Python",
     "Java",
-    "Go",
     "Rust",
     "AWS",
     "Azure",
     "GCP",
     "Docker",
     "Kubernetes",
-    "GraphQL",
-    "REST",
     "MongoDB",
     "PostgreSQL",
     "MySQL",
     "Git",
     "CI/CD",
     "Jest",
-    "Cypress",
-    "Webpack",
     "Vite",
     "Next.js",
     "Nuxt.js",
@@ -158,33 +153,33 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
   ]
 
 export const YEARS = Array.from({ length: new Date().getFullYear() - 1980 + 1 }, (_, i) => 1980 + i).reverse()
-export const dummyEducation: Education[] = [
-  {
-    id: '1',
-    title: 'Bachelor of Engineering in Computer Science',
-    institution: 'MIT University',
-    start_date: '2018',
-    end_date: '2022',
-    description: 'Focused on software engineering fundamentals, data structures, algorithms and web development.',
-    onGoing:false
-  },
-  {
-    id: '2',
-    title: 'Full Stack Web Development Bootcamp',
-    institution: 'Tech Academy',
-    start_date: '2022',
-    end_date: '2023',
-    description: 'Intensive program covering modern web technologies including React, Node.js, and cloud platforms.',
-    onGoing:false
-  },
-  {
-    id: '3',
-    title: 'High School Diploma',
-    institution: 'International School',
-    start_date: '2016',
-    end_date: '2018',
-    description: 'Completed with distinction in Computer Science and Mathematics.',
-    onGoing:false
-  }
-];
+// export const dummyEducation: Education[] = [
+//   {
+//     id: '1',
+//     title: 'Bachelor of Engineering in Computer Science',
+//     institution: 'MIT University',
+//     start_date: '2018',
+//     end_date: '2022',
+//     description: 'Focused on software engineering fundamentals, data structures, algorithms and web development.',
+//     onGoing:false
+//   },
+//   {
+//     id: '2',
+//     title: 'Full Stack Web Development Bootcamp',
+//     institution: 'Tech Academy',
+//     start_date: '2022',
+//     end_date: '2023',
+//     description: 'Intensive program covering modern web technologies including React, Node.js, and cloud platforms.',
+//     onGoing:false
+//   },
+//   {
+//     id: '3',
+//     title: 'High School Diploma',
+//     institution: 'International School',
+//     start_date: '2016',
+//     end_date: '2018',
+//     description: 'Completed with distinction in Computer Science and Mathematics.',
+//     onGoing:false
+//   }
+// ];
 

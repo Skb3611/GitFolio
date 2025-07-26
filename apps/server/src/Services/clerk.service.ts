@@ -46,9 +46,19 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
           lastname: data.last_name,
           profileImg: data.profile_image_url,
           contributions: contibutions,
+          socialAccounts: {
+            github: userDetails.githubLink ?? "",
+            linkedin: "",
+            twitter: "",
+            website: userDetails.website ?? "",
+            instagram: "",
+            facebook: "",
+            behance: "",
+            youtube: "",
+          },
         },
       });
-      const createdRepos =  await prisma.repo.createMany({
+      const createdRepos = await prisma.repo.createMany({
         data: userRepos.map((repo) => ({
           userId: user.id, // Add required userId field
           name: repo.name,

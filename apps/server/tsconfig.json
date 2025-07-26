@@ -11,7 +11,7 @@
     "src",
     
   ],
-  "exclude": ["node_modules", "dist", "coverage"],
+  "exclude": ["node_modules", "dist", "coverage",],
   "jest": {
     "testEnvironment": "node",
     "testMatch": ["**/?(*.)+(spec|test).+(ts|tsx|js)"],

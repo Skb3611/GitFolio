@@ -13,8 +13,6 @@ interface ResumeCardProps {
   altText: string;
   title: string;
   subtitle?: string;
-  href?: string;
-  badges?: readonly string[];
   period: string;
   description?: string;
 }
@@ -23,14 +21,12 @@ export const ResumeCard = ({
   altText,
   title,
   subtitle,
-  href,
-  badges,
   period,
   description,
 }: ResumeCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (description) {
       e.preventDefault();
       setIsExpanded(!isExpanded);
@@ -38,12 +34,8 @@ export const ResumeCard = ({
   };
 
   return (
-    <a
-      href={href || "#"}
-      className="block cursor-pointer"
-      onClick={handleClick}
-    >
-      <div className="flex">
+
+      <div className={`flex ${description?"cursor-pointer":""}`} onClick={handleClick}>
         <div className="flex-none">
           <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
             <AvatarImage
@@ -59,19 +51,6 @@ export const ResumeCard = ({
             <div className="flex items-center justify-between gap-x-2 text-base">
               <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
                 {title}
-                {badges && (
-                  <span className="inline-flex gap-x-1">
-                    {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="align-middle text-xs"
-                        key={index}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
-                )}
                 <ChevronRightIcon
                   className={cn(
                     "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
@@ -104,6 +83,5 @@ export const ResumeCard = ({
           )}
         </div>
       </div>
-    </a>
   );
 };

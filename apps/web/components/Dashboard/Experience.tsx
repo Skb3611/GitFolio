@@ -212,6 +212,9 @@ const ExperienceTab = ({
               <span className="text-xl">
                 No Experience included in portfolio yet
               </span>
+              <span>
+                Add atleast one Experience to showcase it on your portfolio
+              </span>
             </AnimatedShinyText>
           </div>
         )}

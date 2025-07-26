@@ -3,10 +3,10 @@ export interface PersonalInformation {
   full_name: string;
   username: string;
   email: string;
-  location: string;
-  tagline: string;
-  bio: string;
-  website: string;
+  location: string|null;
+  tagline: string|null;
+  bio: string|null;
+  website: string|null;
   githubLink: string;
   followers: number;
   following: number;
@@ -36,14 +36,14 @@ export interface Experience {
   onGoing: boolean;
 }
 export interface SocialLinks {
-  github: string;
-  linkedin: string;
-  twitter: string;
-  website: string;
-  instagram: string;
-  facebook: string;
-  behance: string;
-  youtube: string;
+  github: string|null;
+  linkedin: string|null;
+  twitter: string|null;
+  website: string|null;
+  instagram: string|null;
+  facebook: string|null;
+  behance: string|null;
+  youtube: string|null;
 }
 export interface Education {
   id: string;

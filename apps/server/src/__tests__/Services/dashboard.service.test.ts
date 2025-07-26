@@ -6,14 +6,14 @@ import {
   deleteEducation,
   deleteExperience,
   deleteRepo,
-  getUserData,
+  getUserDataById,
   updateUserData,
 } from "../../Services/dashboard.service";
 import { Education, Experience, Repo } from "@workspace/db";
 describe("Dashboard Service", () => {
   const USERNAME = "bb321443-9c96-4038-8bea-1184d532bc36";
   it("Should return user data", async () => {
-    const data = await getUserData(USERNAME);
+    const data = await getUserDataById(USERNAME);
     expect(data).toBeDefined();
     // console.log(data)
   });

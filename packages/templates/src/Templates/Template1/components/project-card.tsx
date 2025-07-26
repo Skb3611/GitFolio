@@ -6,35 +6,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
-import { cn } from "@workspace/ui/lib/utils";
-
+import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import { Globe, GlobeIcon, Image } from "@workspace/ui/icons";
+import { Icons } from "../../../icons/index";
+import { Button } from "@workspace/ui/components/button";
 interface Props {
   title: string;
-  href?: string;
   description: string;
   dates: string;
   tags: readonly string[];
   link?: string;
   image?: string;
   video?: string;
-  links?: readonly {
-    icon: React.ReactNode;
-    type: string;
-    href: string;
-  }[];
+  liveLink?:string;
+  repoLink:string;
   className?: string;
 }
 
 export function ProjectCard({
   title,
-  href,
   description,
   dates,
   tags,
   link,
   image,
   video,
-  links,
+  liveLink,
+  repoLink,
   className,
 }: Props) {
   return (
@@ -43,18 +41,22 @@ export function ProjectCard({
         "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full pt-0 rounded-sm"
       }
     >
-      <a
-        href={href || "#"}
-        className={cn("block cursor-pointer", className)}
-      >
+     
+        <div className="w-full h-40 bg-muted flex justify-center items-center flex-col">
+          {
+            (!video && !image) && <>
+            <Image/>
+            <AnimatedShinyText>No image</AnimatedShinyText>
+            </>
+          }
         {video && (
           <video
-            src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="pointer-events-none mx-auto h-40 w-full object-cover object-top" // needed because random black line at bottom of video
+          src={video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="pointer-events-none mx-auto h-40 w-full object-cover object-top" // needed because random black line at bottom of video
           />
         )}
         {image && (
@@ -64,9 +66,9 @@ export function ProjectCard({
             width={500}
             height={300}
             className="h-40 w-full overflow-hidden object-cover object-top"
-          />
-        )}
-      </a>
+            />
+          )}
+          </div>
       <CardHeader className="px-2">
         <div className="space-y-1">
           <CardTitle className="mt-1 text-base">{title}</CardTitle>
@@ -94,19 +96,15 @@ export function ProjectCard({
           </div>
         )}
       </CardContent>
-      <CardFooter className="px-2 pb-2">
-        {links && links.length > 0 && (
-          <div className="flex flex-row flex-wrap items-start gap-1">
-            {links?.map((link, idx) => (
-              <a href={link?.href} key={idx} target="_blank">
-                <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px] bg-white text-black">
-                  {link.icon}
-                  {link.type}
-                </Badge>
-              </a>
-            ))}
-          </div>
-        )}
+      <CardFooter className="px-2 pb-2 gap-1">
+        <Button size={"sm"} className="rounded-full text-xs " variant={"outline"}>
+          {<Icons.github/>}
+          Source
+        </Button>
+        {liveLink && <Button size={"sm"} className="rounded-full text-xs " variant={"outline"}>
+          {<Globe/>}
+          Website
+          </Button>}
       </CardFooter>
     </Card>
   );
