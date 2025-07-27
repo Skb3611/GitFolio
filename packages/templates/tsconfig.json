@@ -1,6 +1,7 @@
 {
   "extends": "@workspace/typescript-config/react-library.json",
   "compilerOptions": {
+    "types":["node"],
     "baseUrl": ".",
     "paths": {
       "@workspace/templates/*": ["./src/*"],

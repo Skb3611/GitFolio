@@ -1,19 +1,13 @@
-import React from "react";
-import { Template1 } from "./Templates";
+import { TemplateData } from "@workspace/types";
+import { Black_White } from "./Templates";
 
-type TemplateData = {
-  slug:string
-  title: string;
-  description: string;
-  thumbnail: string;
-  component: React.FC;
-};
 export const Data: TemplateData[] = [
   {
-    slug:"Template001",
-    title: "Clean Professional Template",
-    description: "Clean Professional template from magic ui",
-    thumbnail: "",
-    component: Template1,
-  },
+    id: "Black & White",
+    title: "Black & White",
+    description: "Template Description",
+    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/img.png",
+    video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/vid.mp4",
+    component: Black_White,
+  }
 ];

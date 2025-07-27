@@ -1,6 +1,6 @@
-import { Template1 } from "@workspace/templates";
+import { Black_White } from "@workspace/templates";
 export default function Home() {
   return (
-    <Template1/>
+    <Black_White/>
   );
 }

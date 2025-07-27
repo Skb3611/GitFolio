@@ -56,7 +56,6 @@ import EducationTab from "@/components/Dashboard/Education";
 import { config } from "@/config";
 import OverviewTab from "@/components/Dashboard/Overview";
 import { toast } from "@workspace/ui/components/sonner";
-import { Template1 } from "@workspace/templates";
 import TemplateRender from "@/components/Dashboard/Overview/TemplateRender";
 
 const sidebarItems = {

@@ -8,10 +8,9 @@ import { Button } from "@workspace/ui/components/button";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import Link from "next/link";
 import SectionLabel from "../SectionLabel";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { motion } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import AnimatedScrollSection from "./AnimatedScrollSection";
-import {PointerHighlight } from "@workspace/ui/components/ui/pointer-highlight"
 
 const HeroSection = () => {
   return (
@@ -36,26 +35,6 @@ const HeroSection = () => {
         <SplitTextAnimation highlightWord="Seconds"  className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
           Turn Your GitHub Into a Personal Portfolio in Seconds
         </SplitTextAnimation>
-        <motion.h2
-          initial={{
-            y: 20,
-            opacity: 0,
-            scale: 0.8,
-            filter: "blur(10px)",
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px)",
-          }}
-          transition={{
-            duration: 0.4,
-            delay: 0.2,
-          }}
-          className="md:text-xl text-sm text-center max-w-2xl"
-        >
-        </motion.h2>
           <AnimatedShinyText>
         <SplitTextAnimation
         delay={0.5}

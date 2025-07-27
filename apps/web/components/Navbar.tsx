@@ -2,12 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronRight, Code, Github, Menu } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
-import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { usePathname, useRouter } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import UserButton from "./UserButton";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 import Link from "next/link";
 import {
   Sheet,
@@ -16,16 +14,35 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter,
 } from "@workspace/ui/components/sheet";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import {motion, useMotionValueEvent, useScroll} from "motion/react"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-const navItems = [
+export const scrollToSection = (id: string,router?:AppRouterInstance) => {
+  const element = document.getElementById(id);
+  if (element) {
+    const yOffset = -120;
+    const y =
+      element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    window.location.href = `/#${id}`
+  }else{
+    router?.push(`/#${id}`,{scroll:false})
+  }
+};
+const Navbar = () => {
+  const router = useRouter();
+  const pathname= usePathname()
+  const [hash, setHash] = useState("")
+  const ref =useRef<HTMLDivElement>(null)
+  const isMobile=useIsMobile()
+  const [visible, setVisible] = useState<boolean>(false)
+  const navItems = [
   <Button
     key={"home"}
     variant={"link"}
-    onClick={() => scrollToSection("home")}
+    onClick={() => scrollToSection("home",router)}
     className="p-0 text-white text-xl md:text-sm text-center"
   >
     Home
@@ -33,15 +50,23 @@ const navItems = [
   <Button
     key={"about"}
     variant={"link"}
-    onClick={() => scrollToSection("about")}
+    onClick={() => scrollToSection("about",router)}
     className="p-0 text-white text-xl md:text-sm text-center"
   >
     About
   </Button>,
   <Button
+    key={"templates"}
+    variant={"link"}
+    onClick={() => router.push("/templates")}
+    className="p-0 text-white text-xl md:text-sm text-center"
+  >
+    Templates
+  </Button>,
+  <Button
     key={"contact"}
     variant={"link"}
-    onClick={() => scrollToSection("contact")}
+    onClick={() => scrollToSection("contact",router)}
     className="p-0 text-white text-xl md:text-sm text-center"
   >
     Contact
@@ -54,24 +79,6 @@ const navItems = [
       </Button>
   </SignedOut>,
 ];
-
-export const scrollToSection = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    const yOffset = -120;
-    const y =
-      element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-    // window.location.href = `#${id}`;
-  }
-};
-const Navbar = () => {
-  const router = useRouter();
-  const pathname= usePathname()
-  const [hash, setHash] = useState("")
-  const ref =useRef<HTMLDivElement>(null)
-  const isMobile=useIsMobile()
-  const [visible, setVisible] = useState<boolean>(false)
 
   useEffect(() => {
     setHash(window.location.hash)
@@ -109,7 +116,7 @@ const Navbar = () => {
         }}
         ref={ref}        
         className={`container overflow-hidden  bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-5xl  relative  ${visible && "backdrop-blur-lg border supports-[backdrop-filter]:bg-background/20" }`}>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={()=>router.push("/")}>
             <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
               <Code className="w-5 h-5 text-black" />
             </div>

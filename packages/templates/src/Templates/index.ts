@@ -1,2 +1,2 @@
-export {default as Template1} from './Template1/template'
+export {default as Black_White} from './Black & White/template'
 

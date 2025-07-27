@@ -6,7 +6,8 @@ import {
   MailIcon,
   Infinity,
 } from "@workspace/ui/icons";
-import { IconProps } from "../Templates/Template1/components/icons";
+import React from "react";
+ type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
   behance:(props:IconProps)=>(

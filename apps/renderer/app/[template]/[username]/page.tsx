@@ -1,6 +1,6 @@
 "use client";
 import { USERDATA_ENDPOINT } from "@/app/config";
-import { Template1 } from "@workspace/templates";
+import { Black_White } from "@workspace/templates";
 import {LoaderOne } from "@workspace/ui/components/ui/loader"
 import {
   DATA,
@@ -109,7 +109,7 @@ if(loading) return (
 )
   return (
     <div>
-      <Template1 data={data} />
+      <Black_White data={data} />
     </div>
   );
 }

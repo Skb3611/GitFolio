@@ -94,3 +94,12 @@ export type ImagesTypes = Partial<{
   education: File | null;
   experience: File | null;
 }> | null;
+
+export interface TemplateData{
+  id:string;
+  title:string;
+  thumbnail?:string;
+  video?:string;
+  description:string
+  component:React.FC
+}
