@@ -104,14 +104,14 @@ personalInfo: {
   ] ,
 
   socialLinks: {
-    github: "https://github.com/alexjohnson",
-    linkedin: "https://linkedin.com/in/alexjohnson-dev",
-    twitter: "https://twitter.com/alexjohnson_dev",
-    website: "https://alexjohnson.dev",
-    instagram: "https://instagram.com/alexjohnson.codes",
-    facebook: null,
-    behance: "https://behance.net/alexjohnson",
-    youtube: "https://youtube.com/@alexjohnson-dev"
+    github: "#",
+    linkedin: "#",
+    twitter: "#",
+    website: "#",
+    instagram: "#",
+    facebook: "",
+    behance: "#",
+    youtube: ""
   },
 
   education: [
