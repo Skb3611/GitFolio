@@ -19,7 +19,7 @@ declare global {
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://gitfolio-dev.vercel.app","http://localhost:4000"],
+    origin: ["http://localhost:3000","http://localhost:4000", "https://gitfolio-dev.vercel.app","https://gitfolio-template.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
