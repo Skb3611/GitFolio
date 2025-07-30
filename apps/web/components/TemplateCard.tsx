@@ -9,6 +9,7 @@ import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shi
 import { Eye } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
+import { config } from "@/config";
 
 
 const TemplateCard = ({ template, idx }: { template: TemplateData; idx: number }) => {
@@ -83,7 +84,7 @@ const TemplateCard = ({ template, idx }: { template: TemplateData; idx: number }
       </AnimatedShinyText>
     </motion.span>
     <div className="space-x-2 mt-3">
-      <Link href={`http://localhost:4000/${template.id}`} target="_blank">
+      <Link href={`${config.renderer_endpoint}/${template.id}`} target="_blank">
       <Button variant={"outline"} className="cursor-pointer">
         Preview <Eye/>
       </Button>
