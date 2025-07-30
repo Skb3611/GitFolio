@@ -8,6 +8,8 @@ import { TemplateData } from "@workspace/types";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Eye } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Link from "next/link";
+
 
 const TemplateCard = ({ template, idx }: { template: TemplateData; idx: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -18,7 +20,7 @@ const TemplateCard = ({ template, idx }: { template: TemplateData; idx: number }
     if ((e.target as HTMLElement).closest('button')) {
       return;
     }
-    isMobile?setIsActive(!isActive):null
+   isMobile?setIsActive(!isActive):null
   };
     useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -81,9 +83,11 @@ const TemplateCard = ({ template, idx }: { template: TemplateData; idx: number }
       </AnimatedShinyText>
     </motion.span>
     <div className="space-x-2 mt-3">
+      <Link href={`http://localhost:4000/${template.id}`} target="_blank">
       <Button variant={"outline"} className="cursor-pointer">
         Preview <Eye/>
       </Button>
+      </Link>
       <Button variant={"outline"} className="cursor-pointer">
         Use Template
       </Button>
