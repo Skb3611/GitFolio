@@ -10,7 +10,7 @@ import {Data as Templates } from "@workspace/templates/metadata";
 const page = () => {
   return (
     <div className="min-h-screen relative">
-      <Particles className="absolute -z-10 h-full w-full"/>
+      <Particles quantity={50} className="absolute -z-10 h-full w-full"/>
       <div className="max-w-6xl mx-auto mt-30 flex flex-col items-center justify-center">
         <SplitTextAnimation className="md:text-7xl text-3xl font-semibold text-center mb-4">
           Discover Templates
@@ -24,7 +24,7 @@ const page = () => {
             time
           </SplitTextAnimation>
         </AnimatedShinyText>
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {Templates.map((template,idx)=>{
          return <TemplateCard key={template.id} template={template} idx={idx}/>

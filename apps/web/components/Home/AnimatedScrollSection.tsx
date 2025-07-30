@@ -56,9 +56,9 @@ const translateY = useTransform(scrollYProgress,[0,0.7],setTranslateY())
           
           url="https://gitfolio.example"
           mode="simple"
-          videoSrc="https://magicui.design/portfolio-demo.mp4"
+          videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black%20%26%20White/preview/vid.mp4"
           className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"
-          height={650}
+          // height={650}
           />
         </motion.div>
           </motion.div>

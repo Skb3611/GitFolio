@@ -139,7 +139,7 @@ export function Safari({
         ) : null}
         {imageSrc && (
           <image
-          className=" object-cover z-10"
+          className=" object-contain h-[93%] w-full z-10"
             href={imageSrc}
             width="1200"
             height="700"
@@ -159,7 +159,7 @@ export function Safari({
             clipPath="url(#roundedBottom)"
           >
             <video
-              className="size-full overflow-hidden object-cover"
+              className="h-[100%] overflow-hidden object-cover"
               src={videoSrc}
               autoPlay
               loop

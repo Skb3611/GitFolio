@@ -1,96 +1,145 @@
-"use client"
-import React from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
-import { Safari } from '@workspace/ui/components/magicui/safari'
-import { Badge } from 'lucide-react'
-import Image from 'next/image'
-import {motion} from "motion/react"
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { Safari } from "@workspace/ui/components/magicui/safari";
 
-const TemplateCard = ({template,idx}:{template:any,idx:number}) => {
-  return (
-    <motion.div
-    variants={CardVariants}
-    initial={idx%2==0?CardVariants.fromLeft.hidden:CardVariants.fromRight.hidden}
-    whileInView={idx/2==0?CardVariants.fromLeft.visible:CardVariants.fromRight.visible}
-    transition={{duration:0.5,delay:idx*0.1}}
-    viewport={{once:true}}
-    >
-      
-  <Card key={template.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm pt-0">
-              <div className="p-4">
-                <BrowserMockup url={`${template.title.toLowerCase().replace(/\s+/g, "")}.com`}>
-                  <Image
-                    src={ "/assets/webview.png"}
-                    alt={template.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-64 object-cover"
-                    />
-                </BrowserMockup>
-              </div>
+import { motion } from "motion/react";
+import { Button } from "@workspace/ui/components/button";
+import { TemplateData } from "@workspace/types";
+import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import { Eye } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-              <CardHeader>
-                <CardTitle className="text-xl">{template.title}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed">{template.description}</CardDescription>
-              </CardHeader>
-            </Card>
-                    </motion.div>
-  )
-}
-function BrowserMockup({ children, url = "example.com" }: { children: React.ReactNode; url?: string }) {
+const TemplateCard = ({ template, idx }: { template: TemplateData; idx: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isMobile=useIsMobile()
+    const [isActive, setIsActive] = useState(false);
+    const handleClick = (e: React.MouseEvent) => {
+    // Don't toggle if clicking on buttons or their children
+    if ((e.target as HTMLElement).closest('button')) {
+      return;
+    }
+    isMobile?setIsActive(!isActive):null
+  };
+    useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setIsActive(false);
+      }
+    };
+
+    if (isActive) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isActive]);
+    
   return (
    <motion.div
-    whileHover={{scale:1.02,y:-5}}
-    transition={{duration:0.2}}
-   className="relative aspect-[16/10] overflow-hidden">
-        {/* Browser Mockup Frame */}
-        <div className="absolute inset-0 bg-transparent p-2">
-          {/* Browser Top Bar */}
-          <div className="flex items-center gap-2 bg-gray-100 rounded-t-lg px-3 py-2 mb-1">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-            </div>
-            <div className="flex-1 bg-white rounded px-2 py-1 text-xs text-gray-500 ml-2">
-             {url}
-            </div>
-          </div>
-          
-          <div
-          className="relative overflow-hidden rounded-b-lg" style={{ height: 'calc(100% - 40px)' }}>
-           {children}
-          </div>
-        </div>
-        </motion.div>
-  )
-}
-
-export default TemplateCard
-
-const CardVariants={
-  fromLeft:{
-    hidden:{
-      opacity:0,
-      x:-20,
-      filter:"blur(8px)"
-    },
-    visible:{
-      opacity:1,
-      x:0,
-      filter:"blur(0px)"
-    }
-  },
-  fromRight:{
-    hidden:{
-      opacity:0,
-      x:20,
-      filter:"blur(8px)"
-    },
-    visible:{
-      opacity:1,
-      x:0,
-      filter:"blur(0px)"
-    }
+   ref={cardRef}
+  className="w-full h-full relative group overflow-hidden flex flex-col-reverse"
+  variants={CardVariants}
+  initial={
+    idx % 2 === 0
+      ? CardVariants.fromLeft.hidden
+      : CardVariants.fromRight.hidden
   }
-}
+  whileInView={
+    idx % 2 === 0
+      ? CardVariants.fromLeft.visible
+      : CardVariants.fromRight.visible
+  }
+  transition={{ duration: 0.5, delay: idx * 0.1 }}
+  viewport={{ once: true }}
+  // whileHover="hover"
+>
+  {/* Hover Overlay */}
+  <motion.div
+    variants={overlayVariants}
+    initial="initial"
+    whileHover="hover"
+    animate={isActive?"hover":"initial"}
+    // whileTap={isMobile?"hover":""}
+    onClick={handleClick}
+    
+    className="absolute top-0 left-0 w-full h-full bg-black/5  backdrop-blur-xs rounded-lg  z-20 flex flex-col items-center justify-center "
+  >
+    <motion.span
+      variants={textVariants}
+      className="text-white text-xl md:text-3xl mb-2"
+    >
+      {template.title}
+    </motion.span>
+    <motion.span
+      variants={textVariants}
+      className="text-white  text-center max-w-[80%] tracking-tight  md:max-w-sm"
+    >
+      <AnimatedShinyText className="text-xs  md:text-base">
+      {template.description}
+      </AnimatedShinyText>
+    </motion.span>
+    <div className="space-x-2 mt-3">
+      <Button variant={"outline"} className="cursor-pointer">
+        Preview <Eye/>
+      </Button>
+      <Button variant={"outline"} className="cursor-pointer">
+        Use Template
+      </Button>
+    </div>
+  </motion.div>
+  {/* <div className="px-6 py-8   bg-card   -mt-1 -z-10 rounded-b-sm">
+    <p className="text-2xl">{template.title}</p>
+    <AnimatedShinyText className="">{template.description}</AnimatedShinyText>
+  </div> */}
+  {/* Thumbnail */}
+  <Safari
+    // imageSrc={template.thumbnail}
+  mode="simple"
+    videoSrc={template.video}
+    className="w-full h-full"
+  />
+
+</motion.div>
+  );
+};
+
+
+export default TemplateCard;
+
+const CardVariants = {
+  fromLeft: {
+    hidden: {
+      opacity: 0,
+      x: -20,
+      filter: "blur(8px)",
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
+    },
+  },
+  fromRight: {
+    hidden: {
+      opacity: 0,
+      x: 20,
+      filter: "blur(8px)",
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
+    },
+  },
+};
+const overlayVariants = {
+  initial: { opacity: 0,y:100 },
+  hover: { opacity: 1,y:0,transition:{duration:0.2} },
+};
+
+const textVariants = {
+  initial: { opacity: 0, y: 10 },
+  hover: { opacity: 1, y: 0 },
+};

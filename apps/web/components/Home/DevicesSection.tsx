@@ -1,21 +1,18 @@
 "use client";
 import React from "react";
-import Android from "@workspace/ui/components/magicui/android";
 import Iphone15Pro from "@workspace/ui/components/magicui/iphone-15-pro";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { Particles } from "@workspace/ui/components/magicui/particles";
+import Android from "@workspace/ui/components/magicui/android"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   Autoplay,
 } from "@workspace/ui/components/carousel";
 import SectionLabel from "../SectionLabel";
-import { TypewriterEffectSmooth } from "@workspace/ui/components/magicui/typewriter-effect";
+
 import {motion} from "motion/react"
 import { SplitTextAnimation } from "../SplitTextAnimation";
 
@@ -52,8 +49,9 @@ const DevicesSection = () => {
           </SplitTextAnimation>
         </AnimatedShinyText>
 
-        <div className=" justify-center items-center relative gap-24 w-[90%] mt-10 mx-auto hidden lg:flex">
+        <div className="relative max-w-4xl xl:max-w-6xl mt-10 mx-auto hidden lg:grid grid-cols-3 gap-5 place-items-center">
           <motion.div
+          className="col-span-1 flex justify-center"
           initial={{
             x:-20,
             opacity:0,
@@ -74,11 +72,12 @@ const DevicesSection = () => {
 
           >
             <Iphone15Pro
-              src="/assets/mobileview.png"
-              className="w-[90%] h-full"
+              src="/assets/phone-white.jpg"
+              className=" w-2/3 h-full "
             />
           </motion.div>
           <motion.div
+          className="col-span-2 relative place-content-center"
            initial={{
             x:20,
             opacity:0,
@@ -98,16 +97,16 @@ const DevicesSection = () => {
           }}
           >
             <Safari
-              height={700}
-              imageSrc="/assets/webview.png"
-              className="w-[90%] h-[90%]"
+            height={650}
+              imageSrc="/assets/desktop-white.png"
+              className="w-full h-full rounded-b-lg"
               mode="simple"
               url="gitfolio.example"
             />
           </motion.div>
         </div>
         <Carousel
-          className="w-full -my-50 z-10 lg:hidden"
+          className="w-full mx-auto -my-40 min-[375px]:-my-20  min-[480px]:my-0 sm:my-10  z-10 lg:hidden"
           plugins={[
             Autoplay({
               delay: 2000,
@@ -118,13 +117,13 @@ const DevicesSection = () => {
           ]}
         >
           <CarouselContent className="w-full">
-            <CarouselItem className=" flex justify-center items-center">
-              <Iphone15Pro src="/assets/mobileview.png" className="w-[200px]" />
+            <CarouselItem className="flex justify-center items-center ">
+              <Android src="/assets/phone-white.jpg" className="w-[80%] ml-15  " />
             </CarouselItem>
             <CarouselItem className=" flex justify-center items-center ml-2">
               <Safari
                 // height={700}
-                imageSrc="/assets/webview.png"
+                imageSrc="/assets/desktop-white.png"
                 className="w-[90%] h-[90%]"
                 mode="simple"
                 url="gitfolio.example"

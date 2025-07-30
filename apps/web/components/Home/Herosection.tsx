@@ -33,7 +33,7 @@ const HeroSection = () => {
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
         <SectionLabel title={"✨ Introducing Gitfolio"} />
         <SplitTextAnimation highlightWord="Seconds"  className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
-          Turn Your GitHub Into a Personal Portfolio in Seconds
+          Turn Your GitHub Into a Personal Portfolio in  Seconds
         </SplitTextAnimation>
           <AnimatedShinyText>
         <SplitTextAnimation

@@ -8,8 +8,8 @@ export interface AndroidProps extends SVGProps<SVGSVGElement> {
 }
 
 export default function Android({
-  width = 433,
-  height = 882,
+  width = 450,
+  height = 900,
   src,
   videoSrc,
   ...props
@@ -61,9 +61,9 @@ export default function Android({
       {src && (
          <image
          href={src}
-         width="360"
-         height="800"
-         className="size-full object-cover"
+         width="400"
+         height="830"
+        //  className=" object-cover"
          preserveAspectRatio="xMidYMid slice"
          clipPath="url(#clip0_514_20855)"
        />
