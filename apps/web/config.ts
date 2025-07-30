@@ -1,7 +1,6 @@
 const SERVER_ENDPOOINT = process.env.NEXT_PUBLIC_SERVER_ENDPOINT?? "http://localhost:8080";
-
 export const config={
-    renderer_endpoint:process.env.RENDERER_ENDPOINT,
+    renderer_endpoint:process.env.NEXT_PUBLIC_RENDERER_ENDPOINT,
     server_endpoints:{
         BASE_URL:SERVER_ENDPOOINT,
         GET_USER_DATA:`${SERVER_ENDPOOINT}/api/v1/dashboard`,
