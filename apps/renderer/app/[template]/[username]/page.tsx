@@ -2,6 +2,7 @@
 import { USERDATA_ENDPOINT } from "@/app/config";
 import { Black_White } from "@workspace/templates";
 import {LoaderOne } from "@workspace/ui/components/ui/loader"
+import { Data } from "@workspace/templates/metadata";
 import {
   DATA,
   Education,
@@ -11,6 +12,7 @@ import {
   SocialLinks,
 } from "@workspace/types";
 import { use, useEffect, useState } from "react";
+import { NotFound } from "@workspace/ui/components/ui/not-found";
 
 export default function Page({
   params,
@@ -18,11 +20,16 @@ export default function Page({
   params: Promise<{ template: string; username: string }>;
 }) {
   const { template, username } = use(params);
+  const Template = Data.filter(temp=>temp.id==decodeURIComponent(template))
+  const Component = Template[0]?.component
   const [loading, setLoading] = useState(true)
   const [data, setdata] = useState<DATA>();
   useEffect(() => {
     (async () => {
-      const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
+      const res = await fetch(`${USERDATA_ENDPOINT}/${username}`,{
+          cache:"force-cache",
+          next:{revalidate:60*2}
+      });
       const result = await res.json();
       console.log(result);
       const p: PersonalInformation = {
@@ -108,8 +115,6 @@ if(loading) return (
     </div>
 )
   return (
-    <div>
-      <Black_White data={data} />
-    </div>
+      Component ? <Component /> : <NotFound />
   );
 }

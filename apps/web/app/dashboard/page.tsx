@@ -138,7 +138,7 @@ export default function Page() {
         const res = await fetch(config.server_endpoints.GET_USER_DATA, {
           headers: {
             authorization: `Bearer ${token}`,
-          },
+          }
         });
         const result = await res.json();
         console.log(result)
