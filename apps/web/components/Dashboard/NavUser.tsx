@@ -14,7 +14,8 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
   DropdownMenuGroup,
-  DropdownMenuItem, DropdownMenuLabel
+  DropdownMenuItem,
+  DropdownMenuLabel,
 } from "@workspace/ui/components/dropdown-menu";
 import {
   SidebarMenu,
@@ -22,16 +23,37 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar";
-import { BadgeCheck, Bell, Copy, CreditCard, Ellipsis, LogOut, MoveRight, MoveUpRight, Sparkles } from "lucide-react";
+import {
+  BadgeCheck,
+  Bell,
+  Copy,
+  CreditCard,
+  Ellipsis,
+  LogOut,
+  MoveRight,
+  MoveUpRight,
+  Sparkles,
+} from "lucide-react";
 import React from "react";
 import { useAuth } from "@clerk/nextjs";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import { toast } from "@workspace/ui/components/sonner";
+import { config } from "@/config";
 
-const NavUser = () => {
+const NavUser = ({ template,username }: { template?: string ,username:string}) => {
   const isMobile = useIsMobile();
   const { user } = useUser();
   const { signOut } = useAuth();
   const { open } = useSidebar();
+  const handleCopy = () => {
+    console.log("aaaaaaaaaaaaaa");
+    if (!template) toast.warning("No template Selected");
+    else {
+      navigator.clipboard.writeText(`${config.renderer_endpoint}/${template}/${username}`);
+      toast.success("Link Coppied");
+    }
+  };
+
   return (
     <SidebarMenu className="items-center">
       <SidebarMenuItem className="w-full  mb-1">
@@ -39,6 +61,7 @@ const NavUser = () => {
           className={`p-5  font-semibold ${open ? "rounded-4xl" : ""}`}
           variant={"outline"}
           tooltip={"Copy Link"}
+          onClick={handleCopy}
         >
           <Copy />
           <span>Copy PortFolio Link</span>
@@ -49,6 +72,11 @@ const NavUser = () => {
           className={`p-5 font-semibold ${open ? "rounded-4xl" : ""} bg-primary hover:bg-primary/80`}
           variant={"outline"}
           tooltip={"Visit Portfolio"}
+          onClick={() => {
+            template
+              ? window.open(`${config.renderer_endpoint}/${template}/${username}`, "_blank")
+              : toast.warning("No Template Selected");
+          }}
         >
           <MoveUpRight />
           <span>Visit Your Portfolio</span>
@@ -73,27 +101,34 @@ const NavUser = () => {
               <Ellipsis />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-        <DropdownMenuContent
+          <DropdownMenuContent
             className="w-(--radix-dropdown-menu-trigger-width)] rounded-lg mb-1"
             side={isMobile ? "bottom" : "right"}
             align="start"
-            sideOffset={!isMobile?10:0}
+            sideOffset={!isMobile ? 10 : 0}
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user?.imageUrl} alt={user?.firstName??"logo"} />
+                  <AvatarImage
+                    src={user?.imageUrl}
+                    alt={user?.firstName ?? "logo"}
+                  />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user?.fullName}</span>
-                  <AnimatedShinyText className="mx-0 truncate font-medium text-xs">{user?.username}</AnimatedShinyText>
-                  <AnimatedShinyText className="mx-0 truncate text-xs ">{user?.emailAddresses?.[0]?.emailAddress}</AnimatedShinyText>
+                  <AnimatedShinyText className="mx-0 truncate font-medium text-xs">
+                    {user?.username}
+                  </AnimatedShinyText>
+                  <AnimatedShinyText className="mx-0 truncate text-xs ">
+                    {user?.emailAddresses?.[0]?.emailAddress}
+                  </AnimatedShinyText>
                 </div>
               </div>
             </DropdownMenuLabel>
-           <DropdownMenuSeparator/>
-            <DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => signOut}>
               <LogOut />
               Log out
             </DropdownMenuItem>

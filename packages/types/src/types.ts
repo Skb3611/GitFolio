@@ -10,6 +10,7 @@ export interface PersonalInformation {
   githubLink: string;
   followers: number;
   following: number;
+  template?:string
 }
 export interface Projects {
   id: string;
@@ -62,7 +63,8 @@ export type SavePayload =
   | { type: "Experience"; data: Partial<Experience> }
   | { type: "Social Links"; data: SocialLinks }
   | { type: "Skills"; data: string[] }
-  | { type: "Education"; data: Partial<Education> };
+  | { type: "Education"; data: Partial<Education> }
+  | { type: "Template"; data: {template:string} };
 
 export enum DeleteType {
   PROJECT,
@@ -78,6 +80,7 @@ export type TabTypes =
   | "Social Links"
   | "Skills"
   | "Education"
+  |"Templates"
   | "Preview";
 
 export interface DATA {

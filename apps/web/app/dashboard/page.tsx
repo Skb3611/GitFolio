@@ -35,6 +35,7 @@ import {
   GraduationCap,
   Home,
   Info,
+  Layout,
   Link,
   MessageCircle,
   UserPen,
@@ -57,6 +58,7 @@ import { config } from "@/config";
 import OverviewTab from "@/components/Dashboard/Overview";
 import { toast } from "@workspace/ui/components/sonner";
 import TemplateRender from "@/components/Dashboard/Overview/TemplateRender";
+import Templates from "@/components/Dashboard/Templates";
 
 const sidebarItems = {
   HeaderNavItems: [
@@ -106,6 +108,10 @@ const sidebarItems = {
       icon: CodeXml,
     },
     {
+      label: "Templates",
+      icon: Layout,
+    },
+    {
       label: "Preview",
       icon: Globe,
     },
@@ -147,6 +153,7 @@ export default function Page() {
           following: result.data.following ?? 0,
           githubLink: result.data.githubLink,
           tagline: result.data.tagline,
+          template:result.data.template ?? null
         };
         const r: Projects[] = result.data.repos.map((repo: any) => {
           return {
@@ -343,6 +350,10 @@ export default function Page() {
           body = { skills: data };
           endpoint = config.server_endpoints.UPDATE_USER_DATA;
           break;
+        case "Template":
+          body = {...data}
+          endpoint = config.server_endpoints.UPDATE_USER_DATA
+          break;
       }
 
       const res = await fetch(endpoint, {
@@ -481,6 +492,10 @@ export default function Page() {
             setEduImg={setImages}
           />
         );
+        case "Templates":
+          return(
+            <Templates onSelect={onSave}/>
+          )
       case "Preview":
         return (
           <TemplateRender
@@ -492,6 +507,7 @@ export default function Page() {
               skills,
               socialLinks,
             }}
+            template={personalInformation?.template}
           />
         );
     }
@@ -503,6 +519,8 @@ export default function Page() {
         sidebarItems={sidebarItems}
         setActiveTab={setActiveTab}
         activeTab={activeTab}
+        selectedTemplate={personalInformation?.template}
+        username={personalInformation.username}
       />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 rounded-xl">

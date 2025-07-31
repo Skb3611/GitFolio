@@ -44,29 +44,33 @@ const HeroSection = () => {
             site that speaks for itself.
         </SplitTextAnimation>
           </AnimatedShinyText>
-        <div className="md:space-x-5 mt-10 flex flex-col md:flex-row gap-1.5 justify-center items-center">
+        <div className="md:space-x-5 mt-10 flex flex-col md:flex-row gap-1.5 justify-center items-center z-20">
           <motion.div
             variants={buttonVariants.fromLeft}
             initial="initial"
             animate="animate"
           >
+            <Link href={"/dashboard"}>
             <Button
-              className="bg-white hover:bg-white/70 text-black  rounded-full py-7 p-4 px-8 text-base cursor-pointer"
+              className="bg-white hover:bg-white/70 cursor-pointer text-black  rounded-full py-7 p-4 px-8 text-base "
               size={"lg"}
             >
-              <Link href={"/dashboard"}>Get Started</Link>
+              Get Started
               <ChevronRight className="h-10 w-10" />
             </Button>
+              </Link>
           </motion.div>
           <motion.div
             variants={buttonVariants.fromRight}
             initial="initial"
             animate="animate"
           >
+            <Link href={"/templates"}>
             <Button className="text-white cursor-pointer" variant={"link"}>
               Browse Templates
               <ChevronRight className="h-10 w-10" />
             </Button>
+            </Link>
           </motion.div>
         </div>
        <AnimatedScrollSection/>

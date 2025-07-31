@@ -20,6 +20,7 @@ model User {
   firstname      String       @db.VarChar(30)
   lastname       String       @db.VarChar(30)
   email          String       @unique @db.VarChar(50)
+  template       String?
   profileImg     String
   bio            String?
   tagline        String?
