@@ -46,7 +46,6 @@ const NavUser = ({ template,username }: { template?: string ,username:string}) =
   const { signOut } = useAuth();
   const { open } = useSidebar();
   const handleCopy = () => {
-    console.log("aaaaaaaaaaaaaa");
     if (!template) toast.warning("No template Selected");
     else {
       navigator.clipboard.writeText(`${config.renderer_endpoint}/${template}/${username}`);

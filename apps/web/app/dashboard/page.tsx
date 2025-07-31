@@ -141,6 +141,7 @@ export default function Page() {
           },
         });
         const result = await res.json();
+        console.log(result)
         const p: PersonalInformation = {
           username: result.data.username,
           email: result.data.email,
@@ -153,7 +154,7 @@ export default function Page() {
           following: result.data.following ?? 0,
           githubLink: result.data.githubLink,
           tagline: result.data.tagline,
-          template:result.data.template ?? null
+          template:result.data.template
         };
         const r: Projects[] = result.data.repos.map((repo: any) => {
           return {
