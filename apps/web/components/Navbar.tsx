@@ -38,36 +38,45 @@ const Navbar = () => {
   const ref =useRef<HTMLDivElement>(null)
   const isMobile=useIsMobile()
   const [visible, setVisible] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
   const navItems = [
   <Button
     key={"home"}
     variant={"link"}
-    onClick={() => scrollToSection("home",router)}
-    className="p-0 text-white text-xl md:text-sm text-center"
+    onClick={() => {scrollToSection("home",router)
+      isMobile?setOpen(false):null
+    }}
+    className="p-0 text-white text-lg md:text-sm text-center"
   >
     Home
   </Button>,
   <Button
     key={"about"}
     variant={"link"}
-    onClick={() => scrollToSection("about",router)}
-    className="p-0 text-white text-xl md:text-sm text-center"
+    onClick={() => {scrollToSection("about",router)
+      isMobile?setOpen(false):null
+    }}
+    className="p-0 text-white text-lg md:text-sm text-center"
   >
     About
   </Button>,
   <Button
     key={"templates"}
     variant={"link"}
-    onClick={() => router.push("/templates")}
-    className="p-0 text-white text-xl md:text-sm text-center"
+    onClick={() => {router.push("/templates")
+      isMobile?setOpen(false):null
+    }}
+    className="p-0 text-white text-lg md:text-sm text-center"
   >
     Templates
   </Button>,
   <Button
     key={"contact"}
     variant={"link"}
-    onClick={() => scrollToSection("contact",router)}
-    className="p-0 text-white text-xl md:text-sm text-center"
+    onClick={() => {scrollToSection("contact",router)
+      isMobile?setOpen(false):null
+    }}
+    className="p-0 text-white text-lg md:text-sm text-center"
   >
     Contact
   </Button>,
@@ -134,11 +143,9 @@ const Navbar = () => {
             <SignedIn>
               <UserButton />
             </SignedIn>
-            <Sheet>
-              <SheetTrigger>
-                
+            <Sheet open={open} onOpenChange={setOpen} >
+              <SheetTrigger asChild>
                   <Menu />
-     
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
@@ -158,7 +165,7 @@ const Navbar = () => {
                     </AnimatedShinyText>
                   </SheetDescription>
                 </SheetHeader>
-                <div className="flex flex-col gap-2 justify-center items-center">
+                <div className="flex flex-col gap-1 justify-center items-center">
                   {navItems}
                 </div>
 

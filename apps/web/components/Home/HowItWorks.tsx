@@ -11,8 +11,8 @@ import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 
 const Circle = forwardRef<
   HTMLDivElement,
-  { className?: string; children?: React.ReactNode }
->(({ className, children }, ref) => {
+  { className?: string; children?: React.ReactNode,initialOff?:number }
+>(({ className, children,initialOff }, ref) => {
   return (
     <div
       ref={ref}
@@ -22,7 +22,7 @@ const Circle = forwardRef<
       )}
     >
       {children}
-      <BorderBeam/>
+      <BorderBeam initialOffset={initialOff} />
     </div>
   );
 });
@@ -68,7 +68,7 @@ useEffect(() => {
       <div className="flex size-full flex-col items-stretch justify-between gap-10">
         <div className="flex flex-col sm:flex-row justify-center items-baseline sm:gap-10 gap-2">
           <div className="flex flex-row-reverse sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
-            <Circle className="mb-4" ref={div1Ref}>
+            <Circle className="mb-4" ref={div1Ref} >
               <Icons.github />
             </Circle>
             <div className=" flex flex-col w-full items-start sm:items-center">
@@ -80,7 +80,7 @@ useEffect(() => {
             </div>
           </div>
           <div className="flex flex-row-reverse sm:flex-col justify-between sm:justify-center items-center gap-4 w-full">
-            <Circle className="mb-4" ref={div2Ref}>
+            <Circle className="mb-4" ref={div2Ref} initialOff={50} >
               <Icons.theme />
             </Circle>
             <div className=" flex flex-col w-full items-start sm:items-center">

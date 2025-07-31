@@ -25,7 +25,7 @@ const CTASection = () => {
 
   return (
     <div className="relative min-h-[70dvh] flex w-full max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl">
-      <div className="absolute inset-0 z-10 h-full w-full bg-black/40">
+      <div className="absolute inset-0 z-10 h-full w-full bg-black/45 ">
         </div>
 <ThreeDMarquee
 className="pointer-events-none absolute inset-0 h-full w-full -z-10 opacity-50"
@@ -50,15 +50,18 @@ images={images}
             delay: 0.2
           }}
           viewport={{ once: true }}
-          className="relative mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32"
+          className="relative mx-auto size-24 rounded-[2rem] border  p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32"
         >
+           <div
+        className={`pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-neutral-800 via-zinc-700 to-gray-600 opacity-70 blur-[20px] filter`}
+      />
           <HeartHandshake className="mx-auto size-16 text-black dark:text-white lg:size-24" />
           <BorderBeam size={100} duration={4} />
         </motion.div>
        
         <SplitTextAnimation
           whileInView
-          className="text-2xl sm:text-4xl md:text-6xl text-center mb-2"
+          className="text-2xl sm:text-4xl md:text-6xl text-center mb-2 font-medium"
           delay={0.2}
         >
           What's stopping you now ?
@@ -66,7 +69,7 @@ images={images}
         
         <AnimatedShinyText>
           <SplitTextAnimation
-            className="text-base sm:text-xl md:text-2xl text-center w-full"
+            className="text-base sm:text-xl md:text-2xl text-center w-full font-medium"
             whileInView
             delay={0.2}
           >
