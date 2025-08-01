@@ -9,6 +9,7 @@ import ProjectsCard from './Overview/ProjectsCard';
 import SkillsCard from './Overview/SkillsCard';
 import EducationCard from './Overview/EducationCard';
 import ExperienceCard from './Overview/ExperienceCard';
+import { Skeleton } from '@workspace/ui/components/skeleton';
 
 const OverviewTab = ({
     personalInfo,
@@ -115,7 +116,7 @@ const OverviewTab = ({
     
   return (
     <div>
-        <h1 className='text-xl md:text-4xl font-semibold'>Welcome Back, {personalInfo.username} ! </h1>
+        <h1 className='text-xl md:text-4xl font-semibold'>Welcome Back {personalInfo.username || ". . ."} ! </h1>
         <AnimatedShinyText className='md:text-lg'>
         Here's Your Profile Overview ...
         </AnimatedShinyText>

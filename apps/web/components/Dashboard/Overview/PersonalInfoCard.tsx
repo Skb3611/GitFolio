@@ -32,12 +32,12 @@ const PersonalInfoCard = ({info}:{info:PersonalInformation}) => {
         <span className='flex item-start gap-1.5'><User/><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.full_name.length==0 ? "Name...":info.full_name}</AnimatedShinyText></span>
         <span className='flex item-start gap-1.5'><AtSign /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.username.length==0 ?"Username...":info.username}</AnimatedShinyText></span>
         <span className='flex item-start gap-1.5'><Mail /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.email.length==0 ?"email...":info.email}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><MapPin /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.location ?? "No location . . ."}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><MapPin /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.location || "No location . . ."}</AnimatedShinyText></span>
     </div>
     </div>
     <footer className='space-y-1'>
-        <span className='flex item-start gap-1.5'><Rocket /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.tagline ??"No Tagline added . . ."}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><Info /><AnimatedShinyText className='text-left w-full max-w-full mx-0 text-sm  my-auto'>{info.bio ??"No bio added . . ."}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><Rocket /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.tagline || "No Tagline added . . ."}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><Info /><AnimatedShinyText className='text-left w-full max-w-full mx-0 text-sm  my-auto'>{info.bio || "No bio added . . ."}</AnimatedShinyText></span>
 
     </footer>
   </div>
