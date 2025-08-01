@@ -104,5 +104,5 @@ export interface TemplateData{
   thumbnail?:string;
   video?:string;
   description:string
-  component:React.FC
+  component: React.FC
 }

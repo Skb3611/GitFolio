@@ -1,6 +1,5 @@
 "use client";
 import { USERDATA_ENDPOINT } from "@/app/config";
-import { Black_White } from "@workspace/templates";
 import {LoaderOne } from "@workspace/ui/components/ui/loader"
 import { Data } from "@workspace/templates/metadata";
 import {
@@ -21,7 +20,7 @@ export default function Page({
 }) {
   const { template, username } = use(params);
   const Template = Data.filter(temp=>temp.id==decodeURIComponent(template))
-  const Component = Template[0]?.component
+  const Component = Template[0]?.component as React.ComponentType<{ data: DATA }>
   const [loading, setLoading] = useState(true)
   const [data, setdata] = useState<DATA>();
   useEffect(() => {
@@ -115,6 +114,6 @@ if(loading) return (
     </div>
 )
   return (
-      Component ? <Component /> : <NotFound />
+      Component && data ? <Component data={data} /> : <NotFound />
   );
 }
