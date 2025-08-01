@@ -170,7 +170,7 @@ const ProjectsTab = ({
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <div className="w-32 h-24 rounded-md overflow-hidden bg-muted border">
                     {editingProject.thumbnail ? (
-                      <Image
+                      <img
                         height={100}
                         width={100}
                         src={editingProject.thumbnail}
@@ -202,13 +202,12 @@ const ProjectsTab = ({
                       ref={ref}
                       onChange={handleFileChange}
                     />
-                    {/* <Input
+                    <Input
                     className="text-sm "
                     placeholder="Or paste image URL"
                     value={editingProject.thumbnail || ""}
                     onChange={(e) => setEditingProject({ ...editingProject, thumbnail: e.target.value })}
-                    className="text-sm "
-                  /> */}
+                  />
                   </div>
                 </div>
               </div>
@@ -405,10 +404,9 @@ const ProjectCard = ({
             </Tooltip>
           </Button>
           {project.thumbnail ? (
-            <Image
+            <img
               src={project.thumbnail || "/placeholder.svg?height=64&width=80"}
               alt={project.name}
-              fill
               className="w-full h-full object-cover"
             />
           ) : (

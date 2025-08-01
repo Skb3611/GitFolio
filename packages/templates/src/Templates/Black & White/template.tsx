@@ -144,7 +144,7 @@ export default function Page({data=DummyData}:{data?:DATA}) {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {data?.projects.map((project, id) => (
+            {data?.projects.filter(project=>project.isIncluded).map((project, id) => (
                 <BlurFade
                 key={project.id}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
@@ -178,6 +178,7 @@ export default function Page({data=DummyData}:{data?:DATA}) {
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Want to chat? Just shoot me a dm{" "}
                 <a
+                  target="_blank"
                   href={data?.socialLinks.twitter??"#"}
                   className="text-blue-500 hover:underline"
                   >

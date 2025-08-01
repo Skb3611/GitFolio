@@ -15,12 +15,11 @@ const personalInfo = {
 const PersonalInfoCard = ({info}:{info:PersonalInformation}) => {
   return (
   <div className='p-4 md:p-8 h-full w-full'>
-  <header className='mb-5'>
+  <header className='mb-3'>
     <h2 className="text-lg md:text-2xl font-medium inline-flex items-center gap-2"><User className='size-8'/> Personal Information</h2>
   </header >
-  <div className='flex flex-col justify-between gap-10 '>
+  <div className='flex flex-col justify-between gap-5 '>
     <div className='flex items-center gap-5'>
-
     <div>
     <Avatar className='md:size-30 size-20' >
         <AvatarImage src={info.profileImg} alt='profile'/>
@@ -38,7 +37,7 @@ const PersonalInfoCard = ({info}:{info:PersonalInformation}) => {
     </div>
     <footer className='space-y-1'>
         <span className='flex item-start gap-1.5'><Rocket /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.tagline ??"No Tagline added . . ."}</AnimatedShinyText></span>
-        <span className='flex item-start gap-1.5'><Info /><AnimatedShinyText className='text-left w-full mx-0 text-sm md:text-base my-auto'>{info.bio ??"No bio added . . ."}</AnimatedShinyText></span>
+        <span className='flex item-start gap-1.5'><Info /><AnimatedShinyText className='text-left w-full max-w-full mx-0 text-sm  my-auto'>{info.bio ??"No bio added . . ."}</AnimatedShinyText></span>
 
     </footer>
   </div>

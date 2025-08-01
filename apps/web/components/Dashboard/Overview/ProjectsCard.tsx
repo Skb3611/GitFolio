@@ -33,7 +33,7 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
             <div key={project.id} className="border rounded-lg p-2 lg:p-3 space-y-1 md:space-y-2">
               {/* Project Thumbnail */}
               <div className="w-full h-24 rounded-md overflow-hidden bg-muted hidden md:block">
-                <Image
+                <img
                   src={
                     project.thumbnail || "/placeholder.svg?height=96&width=200"
                   }

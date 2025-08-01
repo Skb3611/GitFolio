@@ -309,6 +309,8 @@ export default function Page() {
               data: data as Projects,
             });
             link && (data = { ...data, thumbnail: link });
+            console.log(link,data)
+            setProjects((prev)=>prev.map((project)=>project.id === (data as Projects).id? {...project, thumbnail:(data as Projects).thumbnail}:project))
           }
           body = data;
           endpoint = config.server_endpoints.UPDATE_REPO;

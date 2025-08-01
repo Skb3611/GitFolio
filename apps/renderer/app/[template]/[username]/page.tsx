@@ -25,10 +25,7 @@ export default function Page({
   const [data, setdata] = useState<DATA>();
   useEffect(() => {
     (async () => {
-      const res = await fetch(`${USERDATA_ENDPOINT}/${username}`,{
-          cache:"force-cache",
-          next:{revalidate:60*2}
-      });
+      const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
       const result = await res.json();
       console.log(result);
       const p: PersonalInformation = {
