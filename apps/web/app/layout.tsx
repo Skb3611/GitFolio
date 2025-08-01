@@ -41,6 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+      <script defer data-domain="gitfolio-dev.vercel.app" src="https://plausible.io/js/script.js"></script>
+      </head>
       <body className={`${dmSans.variable} font-sans antialiased `}>
         <Providers>{children}</Providers>
       </body>
