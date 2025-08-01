@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "GitFolio",
     images: [
       {
-        url: "/assets/home_page.png",
+        url: "/assets/banner-card.png",
         width: 1200,
         height: 630,
         alt: "GitFolio Banner",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GitFolio - From GitHub to Greatness.",
     description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
-    images: ["/assets/home_page.png"],
+    images: ["/assets/banner-card.png"],
   },
   metadataBase: new URL("https://gitfolio-dev.vercel.app")
 };
