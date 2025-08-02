@@ -5,8 +5,6 @@ import GlobeSection from "./GlobeSection";
 import FAQSection from "./FAQSection";
 import TechStackSection from "./TechStackSection";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { TypewriterEffectSmooth } from "@workspace/ui/components/magicui/typewriter-effect";
-import {motion} from "motion/react"
 import { SplitTextAnimation } from "../SplitTextAnimation";
 const features = [
   {

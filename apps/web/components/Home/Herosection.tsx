@@ -7,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import Link from "next/link";
-import SectionLabel from "../SectionLabel";
+import SectionLabel from "@workspace/ui/components/SectionLabel";
 import { motion } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import AnimatedScrollSection from "./AnimatedScrollSection";

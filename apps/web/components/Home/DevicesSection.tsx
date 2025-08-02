@@ -11,7 +11,7 @@ import {
   CarouselItem,
   Autoplay,
 } from "@workspace/ui/components/carousel";
-import SectionLabel from "../SectionLabel";
+import SectionLabel from "@workspace/ui/components/SectionLabel";
 
 import {motion} from "motion/react"
 import { SplitTextAnimation } from "../SplitTextAnimation";

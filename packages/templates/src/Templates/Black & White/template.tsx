@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import { DATA } from "@workspace/types";
 import Skill from "../components/Skill";
 import { DummyData } from "./dummyData";
+import SectionLabel from "@workspace/ui/components/SectionLabel";
+import { config } from "../../config";
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page({data=DummyData}:{data?:DATA}) {
@@ -19,6 +21,9 @@ export default function Page({data=DummyData}:{data?:DATA}) {
     <div className="relative min-h-screen bg-background font-sans antialiased max-w-3xl mx-auto py-12 sm:py-24 px-6">
       <Navbar data={data?.socialLinks}/>
     <main className="flex flex-col min-h-[100dvh] space-y-10">
+      <a href={config.siteUrl} target="_blank">
+        <SectionLabel title="✨ Powered by GitFolio"/>
+      </a>
       <section id="hero">
         <div className="mx-auto w-full max-w-3xl space-y-8">
           <div className="gap-2 flex justify-between items-start">
