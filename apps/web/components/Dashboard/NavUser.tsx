@@ -48,7 +48,8 @@ const NavUser = ({ template,username }: { template?: string ,username:string}) =
   const handleCopy = () => {
     if (!template) toast.warning("No template Selected");
     else {
-      navigator.clipboard.writeText(`${config.renderer_endpoint}/${template}/${username}`);
+      const url = new URL(`${config.renderer_endpoint}/${template}/${username}`);
+      navigator.clipboard.writeText(url.href);
       toast.success("Link Coppied");
     }
   };
