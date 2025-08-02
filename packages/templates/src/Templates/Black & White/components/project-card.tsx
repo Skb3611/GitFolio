@@ -97,14 +97,19 @@ export function ProjectCard({
         )}
       </CardContent>
       <CardFooter className="px-2 pb-2 gap-1">
-        <Button size={"sm"} className="rounded-full text-xs " variant={"outline"}>
+        <a href={repoLink} target="_blank" >
+        <Button size={"sm"} className="rounded-full text-xs cursor-pointer " variant={"outline"}>
           {<Icons.github/>}
           Source
         </Button>
-        {liveLink && <Button size={"sm"} className="rounded-full text-xs " variant={"outline"}>
+        </a>
+        {liveLink &&
+        < a href={liveLink} target="_blank" >
+         <Button size={"sm"} className="rounded-full text-xs cursor-pointer " variant={"outline"}>
           {<Globe/>}
           Website
-          </Button>}
+          </Button>
+        </a>}
       </CardFooter>
     </Card>
   );
