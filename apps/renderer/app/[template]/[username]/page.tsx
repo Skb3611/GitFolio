@@ -30,6 +30,21 @@ export async function generateMetadata({
     icons: {
       icon: result.data.profileImg || `${SITE_URL}/favicon.ico`,
     },
+        openGraph: {
+      title: `${result.data.firstname}'s GitFolio`,
+      description:
+        result.data.bio ||
+        result.data.tagline ||
+        `See ${result.data.firstname}'s work on GitFolio`,
+      images: [result.data.profileImg || `${SITE_URL}/assets/banner-card.png`], // ✅ og:image
+      // url: `${SITE_URL}/${params.template}/${params.username}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${result.data.firstname}'s GitFolio`,
+      images: [result.data.profileImg], // ✅ twitter:image
+    },
     robots: {
       index: true,
       follow: true,

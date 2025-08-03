@@ -17,7 +17,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ template: string }>;
-}):Promise<Metadata> {
+}): Promise<Metadata> {
   const id = decodeURIComponent((await params).template);
   const template = Templates.filter((temp: TemplateData) => temp.id == id);
   return {
@@ -25,6 +25,32 @@ export async function generateMetadata({
     description: template[0]?.description,
     icons: {
       icon: `${SITE_URL}/favicon.ico`,
+    },
+    openGraph: {
+      title: `${template[0]?.title} - GitFolio`,
+      description: template[0]?.description,
+      images: [
+        {
+          url: template[0]?.thumbnail || `${SITE_URL}/assets/banner-card.png`,
+          width: 1200,
+          height: 630,
+          alt: "Template Thumbnail",
+        },
+      ],
+      url: `${SITE_URL}/${template}/`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${template[0]?.title} - GitFolio`,
+      images: [
+        {
+          url: template[0]?.thumbnail || `${SITE_URL}/assets/banner-card.png`,
+          width: 1200,
+          height: 630,
+          alt: "Template Thumbnail",
+        },
+      ], // ✅ twitter:image
     },
     robots: {
       index: true,
