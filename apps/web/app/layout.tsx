@@ -10,6 +10,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Gitfolio - From GitHub to Greatness.",
   description: "Turn Your GitHub Into a Personal Portfolio in Seconds.",
+  keywords:["GitHub", "Portfolio", "Resume"],
   openGraph: {
     title: "GitFolio - From GitHub to Greatness.",
     description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
@@ -31,7 +32,18 @@ export const metadata: Metadata = {
     description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
     images: ["/assets/banner-card.png"],
   },
-  metadataBase: new URL("https://gitfolio-dev.vercel.app")
+  metadataBase: new URL("https://gitfolio-dev.vercel.app"),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
