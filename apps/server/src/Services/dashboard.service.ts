@@ -1,4 +1,4 @@
-import prisma, { Education, Experience, Prisma, Repo } from "@workspace/db";
+import prisma, { Education, Experience, Prisma, Repo, User } from "@workspace/db";
 import { deleteObject } from "./S3.service";
 
 export const getUserDataById = async (userId: string): Promise<any> => {
@@ -25,6 +25,14 @@ export const getUserDataByUsername = async (username: string) => {
     },
   });
 };
+export const getImageData = async (username:string)=>{
+  const user= await prisma.user.findUnique({
+    where:{
+      username,
+    },
+  })
+return{profileImg:user?.profileImg,name:user?.firstname}
+}
 
 export const updateUserData = async (
   userId: string,
