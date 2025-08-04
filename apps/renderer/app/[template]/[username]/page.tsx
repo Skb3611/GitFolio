@@ -36,7 +36,7 @@ export async function generateMetadata({
         result.data.bio ||
         result.data.tagline ||
         `See ${result.data.firstname}'s work on GitFolio`,
-      images: [`${SITE_URL}/assets/banner-card.png`], // ✅ og:image
+      images: [`${SITE_URL}/assets/banner-card.png`, result.data.profileImg], // ✅ og:image
       // url: `${SITE_URL}/${params.template}/${params.username}`,
       type: "website",
     },
@@ -47,7 +47,7 @@ export async function generateMetadata({
         result.data.bio ||
         result.data.tagline ||
         `See ${result.data.firstname}'s work on GitFolio`,
-      images: `${SITE_URL}/assets/banner-card.png`, // ✅ twitter:image
+      images: [`${SITE_URL}/assets/banner-card.png`, result.data.profileImg], // ✅ twitter:image
     },
     robots: {
       index: true,
