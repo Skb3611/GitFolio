@@ -46,8 +46,6 @@ export async function generateMetadata({
       images: [
         {
           url: template[0]?.thumbnail || `${SITE_URL}/assets/banner-card.png`,
-          width: 1200,
-          height: 630,
           alt: "Template Thumbnail",
         },
       ], // ✅ twitter:image
