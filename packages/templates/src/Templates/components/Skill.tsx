@@ -5,7 +5,23 @@ import { motion } from "motion/react"
 
 const Skill = ({ label }: { label: string }) => {
   const Icon = Icons[label.toLowerCase() as keyof typeof Icons]
+  const hasIcon = Icon !== undefined
   
+  // If no icon exists, render simple text badge
+  if (!hasIcon) {
+    return (
+      <div className="flex gap-2 items-center">
+        <Badge 
+          variant={"outline"} 
+          className="rounded-sm flex items-center justify-center py-1.5"
+        >
+          <span className="text-sm px-2">{label}</span>
+        </Badge>
+      </div>
+    )
+  }
+  
+  // If icon exists, render with hover animation
   return (
     <div className="flex gap-2 items-center cursor-pointer">
       <motion.div
@@ -30,8 +46,8 @@ const Skill = ({ label }: { label: string }) => {
             <motion.span
               className="whitespace-nowrap text-sm pr-2"
               variants={{
-                rest: { opacity: 0, width:0 },
-                hover: { opacity: 1, width:100 }
+                rest: { opacity: 0, width: 0 },
+                hover: { opacity: 1, width: 100 }
               }}
               transition={{ duration: 0.2, delay: 0.05 }}
             >
