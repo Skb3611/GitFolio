@@ -2,6 +2,8 @@ import { DM_Sans } from "next/font/google";
 import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next"
+
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -57,7 +59,10 @@ export default function RootLayout({
       <script defer data-domain="gitfolio-dev.vercel.app" src="https://plausible.io/js/script.js"></script>
       </head>
       <body className={`${dmSans.variable} font-sans antialiased `}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Analytics/>
+        </Providers>
       </body>
     </html>
   );
