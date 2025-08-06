@@ -19,7 +19,10 @@ export default async function Image({
   if (
     result.status === true &&
     result.data.profileImg !== null &&
-    result.data.name !== null
+    result.data.profileImg.length > 0 &&
+    result.data.name !== null &&
+    result.data.name.length > 0 
+
   ) {
     return new ImageResponse(
       (
@@ -40,7 +43,8 @@ export default async function Image({
             alt={alt}
             style={{ width: "100%", height: "100%" }}
           />
-          <div
+          
+            <div
             style={{
               position: "absolute",
               top: "8%",
@@ -51,19 +55,19 @@ export default async function Image({
               justifyContent: "center",
               gap: "10px",
             }}
-          >
+            >
             <img
               src={result.data.profileImg}
               alt=""
               style={{ width: "80px", height: "80px", borderRadius: "1000px" }}
-            />
+              />
             <span
               style={{
                 color: "white",
                 fontSize: "35px",
                 fontWeight: "bold",
               }}
-            >
+              >
               {result.data.name}'s Portfolio
             </span>
           </div>
@@ -76,11 +80,21 @@ export default async function Image({
   } else {
     return new ImageResponse(
       (
+        <div
+        style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
         <img
           src={`${SITE_URL}/assets/banner-card.png`}
           alt=""
           style={{ width: "100%", height: "100%" }}
-        />
+          />
+          </div>
       )
     );
   }
