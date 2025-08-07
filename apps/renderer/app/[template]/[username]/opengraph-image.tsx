@@ -16,86 +16,69 @@ export default async function Image({
   const { username } = await params;
   const res = await fetch(`${USER_IMAGE_ENDPOINT}/${username}`);
   const result = await res.json();
-  if (
-    result.status === true &&
-    result.data.profileImg !== null &&
-    result.data.profileImg.length > 0 &&
-    result.data.name !== null &&
-    result.data.name.length > 0 
-
-  ) {
-    return new ImageResponse(
-      (
-        <div
-          style={{
-            fontSize: 48,
-            background: "white",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-          }}
-        >
-          <img
-            src={`${SITE_URL}/assets/banner-card.png`}
-            alt={alt}
-            style={{ width: "100%", height: "100%" }}
-          />
-          
-            <div
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          fontSize: 48,
+          background: "white",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+        }}
+      >
+        <img
+          src={`${SITE_URL}/assets/banner-card.png`}
+          alt={alt}
+          style={{ width: "100%", height: "100%" }}
+        />
+        {result.status === true && (
+          <div
             style={{
               position: "absolute",
-              top: "8%",
-              right: "50%",
-              transform: "translateX(50%)",
+              top: (result.data.profileImg && result.data.profileImg.length>0)? "8%":"85%",
+              right:(result.data.profileImg && result.data.profileImg.length>0)? "50%" : "5%",
+
+              transform:(result.data.profileImg && result.data.profileImg.length>0)? "translateX(50%)" : "translateX(0%)",
+
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: "10px",
             }}
-            >
-            <img
-              src={result.data.profileImg}
-              alt=""
-              style={{ width: "80px", height: "80px", borderRadius: "1000px" }}
-              />
-            <span
-              style={{
-                color: "white",
-                fontSize: "35px",
-                fontWeight: "bold",
-              }}
+          >
+            {result.data.profileImg !== null &&
+              result.data.profileImg.length > 0 && (
+                <img
+                  src={result.data.profileImg}
+                  alt=""
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    borderRadius: "1000px",
+                  }}
+                />
+              )}
+            {result.data.name !== null && result.data.name.length > 0 && (
+              <span
+                style={{
+                  color: "white",
+                  fontSize: "35px",
+                  fontWeight: "bold",
+                }}
               >
-              {result.data.name}'s Portfolio
-            </span>
+                {result.data.name}'s Portfolio
+              </span>
+            )}
           </div>
-        </div>
-      ),
-      {
-        ...size,
-      }
-    );
-  } else {
-    return new ImageResponse(
-      (
-        <div
-        style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-        <img
-          src={`${SITE_URL}/assets/banner-card.png`}
-          alt=""
-          style={{ width: "100%", height: "100%" }}
-          />
-          </div>
-      )
-    );
-  }
+        )}
+      </div>
+    ),
+    {
+      ...size,
+    }
+  );
 }
