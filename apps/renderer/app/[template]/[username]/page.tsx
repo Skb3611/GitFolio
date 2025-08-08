@@ -1,5 +1,5 @@
 import Renderer from "@/app/components/Renderer";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { SITE_URL, USERDATA_ENDPOINT } from "@/app/config";
 export default async function Page({
   params,
@@ -15,7 +15,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ username: string; template: string }>;
 }): Promise<Metadata> {
-  const { username } =await params;
+  const { username } = await params;
 
   const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
   const result = await res.json();
@@ -30,13 +30,15 @@ export async function generateMetadata({
     icons: {
       icon: result.data.profileImg || `${SITE_URL}/favicon.ico`,
     },
-        openGraph: {
+    openGraph: {
       title: `${result.data.firstname}'s GitFolio`,
       description:
         result.data.bio ||
         result.data.tagline ||
         `See ${result.data.firstname}'s work on GitFolio`,
-      // images: [`${SITE_URL}/assets/banner-card.png`, result.data.profileImg], // ✅ og:image
+      images: [
+        `/api/og?name=${result.data.firstname || result.data.username}&img=${result.data.profileImg}`,
+      ], // ✅ og:image
       // url: `${SITE_URL}/${params.template}/${params.username}`,
       type: "website",
     },
@@ -47,7 +49,9 @@ export async function generateMetadata({
         result.data.bio ||
         result.data.tagline ||
         `See ${result.data.firstname}'s work on GitFolio`,
-      // images: [`${SITE_URL}/assets/banner-card.png`, result.data.profileImg], // ✅ twitter:image
+      images: [
+        `/api/og?name=${result.data.firstname || result.data.username}&img=${result.data.profileImg}`,
+      ], // ✅ og:image
     },
     robots: {
       index: true,
