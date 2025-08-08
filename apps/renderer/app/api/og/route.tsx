@@ -1,5 +1,7 @@
 import { SITE_URL } from "@/app/config";
 import { ImageResponse } from "next/og";
+export const dynamic = "force-dynamic"; // Changed from "edge"
+export const runtime = "edge";
 export async function GET(req: Request) {
   const size = {
     width: 1200,
@@ -9,6 +11,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const name = searchParams.get("name");
     const img = searchParams.get("img");
+    const decodedimg = img ? decodeURIComponent(img) : null;
 
     return new ImageResponse(
       (
@@ -31,26 +34,27 @@ export async function GET(req: Request) {
           <div
             style={{
               position: "absolute",
-              top: img && img.length > 0 ? "8%" : "85%",
-              right: img && img.length > 0 ? "50%" : "5%",
+              top: decodedimg && decodedimg.length > 0 ? "8%" : "85%",
+              right: decodedimg && decodedimg.length > 0 ? "50%" : "5%",
 
               transform:
-                img && img.length > 0 ? "translateX(50%)" : "translateX(0%)",
-
+                decodedimg && decodedimg.length > 0
+                  ? "translateX(50%)"
+                  : "translateX(0%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: "10px",
             }}
           >
-            {img !== null && img.length > 0 && (
+            {decodedimg !== null && decodedimg.length > 0 && (
               <img
-                src={img}
+                src={decodedimg}
                 alt=""
                 style={{
                   width: "80px",
                   height: "80px",
-                  borderRadius: "1000px",
+                  borderRadius: "100%",
                 }}
               />
             )}
@@ -70,6 +74,10 @@ export async function GET(req: Request) {
       ),
       {
         ...size,
+        headers: {
+          "Content-Type": "image/png",
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
       }
     );
   } catch (e) {
@@ -96,6 +104,10 @@ export async function GET(req: Request) {
       ),
       {
         ...size,
+        headers: {
+          "Content-Type": "image/png",
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
       }
     );
   }
