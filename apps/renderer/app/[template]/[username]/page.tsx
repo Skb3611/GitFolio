@@ -1,6 +1,6 @@
 import Renderer from "@/app/components/Renderer";
 import { Metadata } from "next";
-import { SITE_URL, USERDATA_ENDPOINT } from "@/app/config";
+import { BASE_URL, SITE_URL, USERDATA_ENDPOINT } from "@/app/config";
 export default async function Page({
   params,
 }: {
@@ -37,9 +37,8 @@ export async function generateMetadata({
         result.data.tagline ||
         `See ${result.data.firstname}'s work on GitFolio`,
       images: [
-        `/api/og?name=${result.data.firstname || result.data.username}&img=${result.data.profileImg}`,
+        `${BASE_URL}/api/og?name=${result.data.firstname || result.data.username}&img=${result.data.profileImg}`,
       ], // ✅ og:image
-      // url: `${SITE_URL}/${params.template}/${params.username}`,
       type: "website",
     },
     twitter: {
@@ -50,7 +49,8 @@ export async function generateMetadata({
         result.data.tagline ||
         `See ${result.data.firstname}'s work on GitFolio`,
       images: [
-        `/api/og?name=${result.data.firstname || result.data.username}&img=${result.data.profileImg}`,
+        `${BASE_URL}/api/og?name=${result.data.firstname || result.data.username}&img=${result.data.profileImg}`,
+
       ], // ✅ og:image
     },
     robots: {
