@@ -53,8 +53,7 @@ const translateY = useTransform(scrollYProgress,[0,0.7],setTranslateY())
         className="mt-20 mb-10 relative md:rounded-xl   z-20"
         >
           <Safari
-          
-          url="https://gitfolio.example"
+          url="Black & White"
           mode="simple"
           videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black%20%26%20White/preview/vid.mp4"
           className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"

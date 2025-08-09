@@ -45,7 +45,7 @@ export default function Navbar({ data }: { data: SocialLinks | undefined }) {
             X: {
               name: "X",
               url: data.twitter ?? "#",
-              icon: Icons.x,
+              icon: Icons.twitter,
               visible: true,
             },
             website: {

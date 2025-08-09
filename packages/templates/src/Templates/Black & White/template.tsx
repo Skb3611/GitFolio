@@ -11,7 +11,7 @@ import {
 import Navbar from "./components/Navbar";
 import { DATA } from "@workspace/types";
 import Skill from "../components/Skill";
-import { DummyData } from "./dummyData";
+import { DummyData } from "../dummyData";
 import SectionLabel from "@workspace/ui/components/SectionLabel";
 import { config } from "../../config";
 const BLUR_FADE_DELAY = 0.04;

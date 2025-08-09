@@ -356,6 +356,8 @@ export default function Page() {
         case "Template":
           body = {...data}
           endpoint = config.server_endpoints.UPDATE_USER_DATA
+          setPersonalInformation({...personalInformation,template:body.template})
+
           break;
       }
 

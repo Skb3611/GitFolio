@@ -9,6 +9,104 @@ import {
 import React from "react";
  type IconProps = React.HTMLAttributes<SVGElement>;
 
+ const SKILL_PATTERNS = {
+  // Remove these suffixes automatically
+  suffixesToRemove: [
+    'js', 'lang', 'language', 'framework', 'library', 'programming',
+    '.js', '.ts', '.py', '.java', '.rs', '.go', '.php', '.rb'
+  ],
+  
+  // Common variations that should be treated as equivalent
+  equivalents: {
+    'x': 'twitter',
+    'gh': 'github', 
+    'ig': 'instagram',
+    'fb': 'facebook',
+    'yt': 'youtube',
+    'js': 'javascript',
+    'ts': 'typescript',
+    'py': 'python',
+    'node': 'node.js',
+    'aws': 'aws',
+  },
+  
+  // Handle domain extensions
+  domainMappings: {
+    'github.com': 'github',
+    'twitter.com': 'twitter',
+    'linkedin.com': 'linkedin',
+    'instagram.com': 'instagram',
+    'facebook.com': 'facebook',
+    'youtube.com': 'youtube',
+    'behance.net': 'behance',
+  }
+};
+export function findIcon(skillName: string): keyof typeof Icons | null {
+  if (!skillName?.trim()) return null;
+  
+  const availableIcons = Object.keys(Icons) as (keyof typeof Icons)[];
+  const input = skillName.toLowerCase().trim();
+  
+  // 1. Direct exact match
+  if (availableIcons.includes(input as keyof typeof Icons)) {
+    return input as keyof typeof Icons;
+  }
+  
+  // 2. Check domain mappings
+  if ( SKILL_PATTERNS.domainMappings[input as keyof typeof SKILL_PATTERNS.domainMappings]) {
+    const mapped = SKILL_PATTERNS.domainMappings[input as keyof typeof SKILL_PATTERNS.domainMappings];
+    if (availableIcons.includes(mapped as keyof typeof Icons)) {
+      return mapped as keyof typeof Icons;
+    }
+  }
+  
+  // 3. Check equivalents
+  if (SKILL_PATTERNS.equivalents[input as keyof typeof SKILL_PATTERNS.equivalents]) {
+    const equivalent = SKILL_PATTERNS.equivalents[input as keyof typeof SKILL_PATTERNS.equivalents];
+    if (availableIcons.includes(equivalent as keyof typeof Icons)) {
+      return equivalent as keyof typeof Icons;
+    }
+  }
+  
+  // 4. Try removing common suffixes
+  for (const suffix of SKILL_PATTERNS.suffixesToRemove) {
+    const withoutSuffix = input.replace(new RegExp(`${suffix}$`, 'i'), '');
+    if (withoutSuffix && availableIcons.includes(withoutSuffix as keyof typeof Icons)) {
+      return withoutSuffix as keyof typeof Icons;
+    }
+  }
+  
+  // 5. Try partial matching - check if input contains any icon name
+  const partialMatch = availableIcons.find(iconKey => {
+    const iconName = iconKey.toString();
+    return input.includes(iconName) || iconName.includes(input);
+  });
+  
+  return partialMatch || null;
+}
+
+/**
+ * Get icon component safely
+ */
+export function getIconComponent(skillName: string) {
+  const iconKey = findIcon(skillName);
+  return iconKey ? Icons[iconKey] : null;
+}
+
+/**
+ * Check if skill has an icon
+ */
+export function hasIcon(skillName: string): boolean {
+  return findIcon(skillName) !== null;
+}
+
+/**
+ * Get all available icons for reference
+ */
+export function getAvailableIcons(): string[] {
+  return Object.keys(Icons);
+}
+
 export const Icons = {
   behance:(props:IconProps)=>(
   <svg
@@ -36,7 +134,7 @@ export const Icons = {
       />
     </svg>
   ),
-  x: (props: IconProps) => (
+  twitter: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <title>X</title>
       <path
@@ -157,7 +255,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  "node.js": (props: IconProps) => (
+  node: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 128 128"
@@ -696,7 +794,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  "next.js": (props: IconProps) => (
+  next: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 128 128"
@@ -741,7 +839,7 @@ export const Icons = {
       </defs>
     </svg>
   ),
-  "nuxt.js": (props: IconProps) => (
+  nuxt: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"

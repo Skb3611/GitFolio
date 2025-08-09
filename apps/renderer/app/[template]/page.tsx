@@ -37,7 +37,7 @@ export async function generateMetadata({
           alt: "Template Thumbnail",
         },
       ],
-      url: `${SITE_URL}/${template}/`,
+      url: `${SITE_URL}/${template[0]?.id}/`,
       type: "website",
     },
     twitter: {

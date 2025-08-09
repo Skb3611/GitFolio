@@ -31,7 +31,6 @@ const uploadToS3 = async (filePath, key) => {
         ContentType: contentType,
       })
     );
-    console.log(res);
   } catch (e) {
     console.log(e);
   }
@@ -39,7 +38,6 @@ const uploadToS3 = async (filePath, key) => {
 
 // Example usage
 const run = async () => {
-  console.log(uploadedJSON);
   const folders = fs.readdirSync(__dirname);
 
   folders.forEach((folder) => {
@@ -60,11 +58,9 @@ const run = async () => {
       return;
     }
     const assetsFiles = fs.readdirSync(assetsPath);
-    console.log(assetsFiles);
     assetsFiles.forEach((file) => {
       const filepath = path.join(assetsPath, file);
       const key = `templates/${folder}/preview/${file}`;
-      console.log(filepath, key);
       uploadToS3(filepath, key);
     });
     uploadedJSON[folder] = true;

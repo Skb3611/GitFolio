@@ -1,12 +1,17 @@
 "use client"
-import { Icons } from "../../icons/index"
+import { getIconComponent, Icons } from "../../icons/index"
 import { Badge } from "@workspace/ui/components/badge"
 import { motion } from "motion/react"
 
-const Skill = ({ label }: { label: string }) => {
-  const Icon = Icons[label.toLowerCase() as keyof typeof Icons]
+interface SkillProps {
+  label: string
+  animate?: boolean
+}
+
+const Skill = ({ label, animate = true }: SkillProps) => {
+  const Icon = getIconComponent(label)
   const hasIcon = Icon !== undefined
-  
+
   // If no icon exists, render simple text badge
   if (!hasIcon) {
     return (
@@ -21,7 +26,22 @@ const Skill = ({ label }: { label: string }) => {
     )
   }
   
-  // If icon exists, render with hover animation
+  // Static version without animation
+  if (!animate) {
+    return (
+      <div className="flex gap-2 items-center cursor-pointer">
+        <Badge 
+          variant={"outline"} 
+          className="rounded-sm flex items-center justify-center py-1.5 [&>svg]:size-6 gap-2"
+        >
+          {Icon && <Icon />}
+          <span className="text-xs sm:text-sm">{label}</span>
+        </Badge>
+      </div>
+    )
+  }
+  
+  // Animated version with hover effects
   return (
     <div className="flex gap-2 items-center cursor-pointer">
       <motion.div
@@ -34,7 +54,7 @@ const Skill = ({ label }: { label: string }) => {
           variant={"outline"} 
           className="rounded-sm flex items-center justify-center overflow-hidden py-1.5 [&>svg]:size-6 "
         >
-          <Icon />
+          {Icon && <Icon />}
           <motion.div
             className="overflow-hidden"
             variants={{
