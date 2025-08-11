@@ -1,68 +1,89 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import dotenv from "dotenv"
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.resolve(path.dirname(__filename), "../Templates");
-const metaFilePath = path.resolve(__dirname, "../metaData.ts");
+const templatesDir = path.resolve(path.dirname(__filename), "../Templates");
+const metaFilePath = path.resolve(templatesDir, "../metaData.ts");
 
-export const generateTemplateMeta =  () => {
-  const templates = fs.readdirSync(__dirname).filter((name) => !name.includes("components"));
+export const generateTemplateMeta = () => {
+  const templates = fs
+    .readdirSync(templatesDir)
+    .filter((name) => !name.includes("components"));
 
-  const metaEntries = [];
+  // Read existing file if it exists
+  let existingContent = "";
+  let existingImports = "";
+  let existingDataArray = "";
+
+  if (fs.existsSync(metaFilePath)) {
+    existingContent = fs.readFileSync(metaFilePath, "utf8");
+
+    // Extract imports
+    const importMatches = existingContent.match(
+      /import {[^}]+} from ".\/Templates";/g
+    );
+    if (importMatches) {
+      existingImports = importMatches.join("\n");
+    }
+
+    // Extract Data array content
+    const dataMatch = existingContent.match(
+      /export const Data: TemplateData\[\] = \[([\s\S]*?)\];/
+    );
+    if (dataMatch) {
+      existingDataArray = dataMatch[1].trim();
+    }
+  }
+
+  let updatedImports = existingImports;
+  let updatedDataArray = existingDataArray;
 
   for (const templateFolder of templates) {
-   if( !fs.statSync(path.join(__dirname,templateFolder)).isDirectory()) {
+    if (!fs.statSync(path.join(templatesDir, templateFolder)).isDirectory()) {
+      continue;
+    }
 
-    continue
-   }
-    const templateImportName = templateFolder.replace(/[^a-zA-Z0-9 ]/g, "")     // Remove special characters but keep spaces
-    .trim()
-    .replace(/\s+/g, "_");  ;
+    const templateImportName = templateFolder
+      .replace(/[^a-zA-Z0-9 ]/g, "")
+      .trim()
+      .replace(/\s+/g, "_");
 
     let thumbnailUrl = `${process.env.S3_PUBLIC_ENDPOINT}/templates/${templateFolder}/preview/desktop-dark.png`;
     let videoUrl = `${process.env.S3_PUBLIC_ENDPOINT}/templates/${templateFolder}/preview/vid.mp4`;
 
-    metaEntries.push({
-      id: templateFolder,
-      title: templateFolder, // You can extract this from a config file per template
-      description: "Template Description",
-      componentName: templateImportName,
-      thumbnail: thumbnailUrl,
-      video: videoUrl,
-    });
+    // Add import if missing
+    if (!updatedImports.includes(templateImportName)) {
+      updatedImports += `\nimport { ${templateImportName} } from "./Templates";`;
+    }
+
+    // Add object if missing
+    if (!updatedDataArray.includes(`id: "${templateFolder}"`)) {
+      const newEntry = `  {
+    id: "${templateFolder}",
+    title: "${templateFolder}",
+    description: "Template Description",
+    thumbnail: "${thumbnailUrl}",
+    video: "${videoUrl}",
+    component: ${templateImportName},
+  }`;
+
+      updatedDataArray = updatedDataArray
+        ? `${updatedDataArray},\n${newEntry}`
+        : newEntry;
+    }
   }
 
-  // Generate TypeScript file
-  const imports = metaEntries
-    .map(
-      (entry) =>
-        `import { ${entry.componentName} } from "./Templates";`
-    )
-    .join("\n");
-
-  const dataArray = metaEntries
-    .map(
-      (entry) => `  {
-    id: "${entry.id}",
-    title: "${entry.title}",
-    description: "${entry.description}",
-    thumbnail: "${entry.thumbnail}",
-    video: "${entry.video}",
-    component: ${entry.componentName},
-  }`
-    )
-    .join(",\n");
-
   const finalTS = `import { TemplateData } from "@workspace/types";
-${imports}
+${updatedImports.trim()}
 
 export const Data: TemplateData[] = [
-${dataArray}
+${updatedDataArray}
 ];
 `;
 
-  fs.writeFileSync(metaFilePath, finalTS);
-  console.log(`✅ Metadata written to ${metaFilePath}`);
+  fs.writeFileSync(metaFilePath, finalTS, "utf8");
+  console.log(`✅ Metadata updated in ${metaFilePath}`);
 };
