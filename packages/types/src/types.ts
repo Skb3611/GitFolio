@@ -3,14 +3,14 @@ export interface PersonalInformation {
   full_name: string;
   username: string;
   email: string;
-  location: string|null;
-  tagline: string|null;
-  bio: string|null;
-  website: string|null;
+  location: string | null;
+  tagline: string | null;
+  bio: string | null;
+  website: string | null;
   githubLink: string;
   followers: number;
   following: number;
-  template?:string
+  template?: string;
 }
 export interface Projects {
   id: string;
@@ -37,14 +37,14 @@ export interface Experience {
   onGoing: boolean;
 }
 export interface SocialLinks {
-  github: string|null;
-  linkedin: string|null;
-  twitter: string|null;
-  website: string|null;
-  instagram: string|null;
-  facebook: string|null;
-  behance: string|null;
-  youtube: string|null;
+  github: string | null;
+  linkedin: string | null;
+  twitter: string | null;
+  website: string | null;
+  instagram: string | null;
+  facebook: string | null;
+  behance: string | null;
+  youtube: string | null;
 }
 export interface Education {
   id: string;
@@ -64,7 +64,7 @@ export type SavePayload =
   | { type: "Social Links"; data: SocialLinks }
   | { type: "Skills"; data: string[] }
   | { type: "Education"; data: Partial<Education> }
-  | { type: "Template"; data: {template:string} };
+  | { type: "Template"; data: { template: string } };
 
 export enum DeleteType {
   PROJECT,
@@ -80,7 +80,7 @@ export type TabTypes =
   | "Social Links"
   | "Skills"
   | "Education"
-  |"Templates"
+  | "Templates"
   | "Preview";
 
 export interface DATA {
@@ -98,11 +98,14 @@ export type ImagesTypes = Partial<{
   experience: File | null;
 }> | null;
 
-export interface TemplateData{
-  id:string;
-  title:string;
-  thumbnail?:string;
-  video?:string;
-  description:string
-  component: React.FC
+export interface TemplateData {
+  id: string;
+  title: string;
+  thumbnail?: string;
+  video?: string;
+  description: string;
+  component: React.FC;
+  desktopPreview?: string[];
+  mobilePreview?: string[];
+  mobileDevice?: "Iphone15Pro" | "Android";
 }

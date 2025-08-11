@@ -7,7 +7,7 @@ import { SplitTextAnimation } from "@/components/SplitTextAnimation";
 const Page = () => {
   return (
     <div className="relative w-full min-h-screen p-0">
-      <BackHomeButton />
+      <BackHomeButton  />
       {/* <Meteors /> */}
       <Particles className="absolute h-full w-full" />
 

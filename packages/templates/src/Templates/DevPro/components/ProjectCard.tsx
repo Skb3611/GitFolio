@@ -4,8 +4,8 @@ import {
   CardHeader,
 } from "@workspace/ui/components/card";
 import { Projects } from "@workspace/types";
-import { getIconComponent, hasIcon } from "../../../icons/index";
-import { Icons } from "../../../icons/index";
+import { getIconComponent, hasIcon, Icons } from "@workspace/ui/icons";
+
 import { Globe } from "@workspace/ui/icons";
 
 const ProjectsCard = ({ project }: { project: Projects }) => {

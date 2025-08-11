@@ -6,17 +6,25 @@ export const Data: TemplateData[] = [
   {
     id: "Black & White",
     title: "Black & White",
-    description: "Template Description",
-    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/desktop-dark.png",
-    video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/vid.mp4",
+    description:
+      "A minimal, responsive template with dark/light modes and a sleek bottom  dock for Socail Networking.",
+    thumbnail:
+      "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/desktop-dark.png",
+    video:
+      "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/vid.mp4",
     component: Black_White,
+    mobileDevice: "Iphone15Pro",
   },
   {
     id: "DevPro",
     title: "DevPro",
-    description: "DevPro is a portfolio template for developers. Clean. Modern. Responsive. Neat",
-    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-dark.png",
-    video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/vid.mp4",
+    description:
+      "A fully responsive, center-aligned portfolio template with dark and light modes for a clean, professional look.",
+    thumbnail:
+      "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-dark.png",
+    video:
+      "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/vid.mp4",
     component: DevPro,
-  }
+    mobileDevice: "Android",
+  },
 ];

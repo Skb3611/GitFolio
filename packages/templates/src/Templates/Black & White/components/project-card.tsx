@@ -8,7 +8,8 @@ import {
 } from "@workspace/ui/components/card";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Globe, GlobeIcon, Image } from "@workspace/ui/icons";
-import { Icons } from "../../../icons/index";
+import { Icons } from "@workspace/ui/icons";
+
 import { Button } from "@workspace/ui/components/button";
 interface Props {
   title: string;

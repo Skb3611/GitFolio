@@ -61,9 +61,10 @@ export default function Android({
       {src && (
          <image
          href={src}
+          y="15.25"
          width="400"
          height="830"
-        //  className=" object-cover"
+         className=" object-contain"
          preserveAspectRatio="xMidYMid slice"
          clipPath="url(#clip0_514_20855)"
        />

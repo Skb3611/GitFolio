@@ -1,5 +1,6 @@
 "use client"
-import { getIconComponent, Icons } from "../../icons/index"
+import { getIconComponent, Icons } from "@workspace/ui/icons"
+
 import { Badge } from "@workspace/ui/components/badge"
 import { motion } from "motion/react"
 

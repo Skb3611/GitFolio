@@ -15,10 +15,13 @@ import { usePathname, useRouter } from "next/navigation";
 interface TemplateCardProps {
   template: TemplateData;
   idx: number;
-  onSelect?: ({ type, data }: SavePayload) => void;
+  // onClick?: ({ type, data }: SavePayload) => void;
+  setTemplate?: React.Dispatch<React.SetStateAction<string|undefined>>;
+
+
 }
 
-const TemplateCard = ({ template, idx, onSelect }: TemplateCardProps) => {
+const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -91,33 +94,26 @@ const TemplateCard = ({ template, idx, onSelect }: TemplateCardProps) => {
           </AnimatedShinyText>
         </motion.span>
         <div className="space-x-2 mt-3">
-          <Link
-            href={`${config.renderer_endpoint}/${template.id}`}
-            target="_blank"
-          >
-            <Button variant={"outline"} className="cursor-pointer">
-              Preview <Eye />
-            </Button>
-          </Link>
-          <Button
-            variant={"outline"}
-            className="cursor-pointer"
+          
+            <Button variant={"outline"} className="cursor-pointer"
             onClick={() => {
-              pathname.includes("dashboard")
-                ? onSelect?.({type:"Template",data:{template:template.id}})
-                : router.push("/dashboard");
+              !pathname.includes("dashboard")
+              ? router.push(`/templates/${template.id}`)
+              : setTemplate?.(template.id)
             }}
-          >
-            Use Template
-          </Button>
+            >
+            Explore Template
+            </Button>
+    
+
         </div>
       </motion.div>
       {/* Thumbnail */}
       <Safari
-        // imageSrc={template.thumbnail}
+        imageSrc={template.thumbnail}
         url={`${config.renderer_endpoint}/${template.id}`}
         mode="simple"
-        videoSrc={template.video}
+        // videoSrc={template.video}
         className="w-full h-full"
       />
     </motion.div>

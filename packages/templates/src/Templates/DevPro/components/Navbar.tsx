@@ -9,7 +9,7 @@ import  { useRef, useState } from "react";
 import { useMotionValueEvent, useScroll, motion } from "motion/react";
 import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
-import { Icons } from "../../../icons/index";
+import { Icons } from "@workspace/ui/icons";
 import { SocialLinks } from "@workspace/types";
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 

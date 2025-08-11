@@ -14,7 +14,7 @@ import {
 } from "@workspace/ui/components/tooltip";
 import { cn } from "@workspace/ui/lib/utils";
 import { Dock, DockIcon } from "@workspace/ui/components/magicui/dock";
-import { Icons } from "../../../icons/index";
+import { Icons } from "@workspace/ui/icons";
 import { SocialLinks } from "@workspace/types";
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
