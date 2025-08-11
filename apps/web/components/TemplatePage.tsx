@@ -22,7 +22,7 @@ import { ThreeDMarquee } from "@workspace/ui/components/ui/3d-marquee";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { getIconComponent, hasIcon } from "@workspace/ui/icons";
 import { useIsMobile } from "@/hooks/use-mobile";
-import BackHomeButton from "./BackHomeButton";
+import { motion } from "motion/react";
 const stack: string[] = ["react", "typescript", "tailwind", "motion", "next"];
 
 const BASE_URL =
@@ -83,7 +83,20 @@ export default function TemplatePage({
           className={`container mx-auto  md:px-6 ${!pathname.includes("dashboard") ? "px-4" : "px-0"}`}
         >
           <div className="flex flex-col gap-8 lg:grid-rows-2 ">
-            <div className="min-h-full sm:min-h-[70dvh] relative  flex w-full max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 50,
+                filter: "blur(10px)",
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+              }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="min-h-full sm:min-h-[70dvh] relative  flex w-full max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl"
+            >
               <div className="absolute inset-0 z-10 h-full w-full bg-black/50 "></div>
 
               <ThreeDMarquee
@@ -150,11 +163,21 @@ export default function TemplatePage({
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
             <div className="mx-auto max-w-7xl mt-10 sm:mt-20 xl:mt-50">
               <div className="flex flex-col h-full w-full gap-20">
                 <div className="flex flex-col md:flex-row w-full h-full gap-8">
-                  <div className=" w-full md:w-1/2 flex justify-center items-start flex-col">
+                  <motion.div
+                    variants={girdVariants.fromLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3,
+                    }}
+                    className=" w-full md:w-1/2 flex justify-center items-start flex-col"
+                  >
                     <div className="lg:max-w-full xl:max-w-2/3 mx-auto lg:mx-0">
                       <h2 className="text-2xl text-center lg:text-left sm:text-3xl lg:text-4xl font-semibold w-full">
                         See It in Action 🚀
@@ -163,16 +186,36 @@ export default function TemplatePage({
                         A quick tour of the template, live and fully deployed.
                       </AnimatedShinyText>
                     </div>
-                  </div>
-                  <div className="h-full md:w-1/2">
+                  </motion.div>
+                  <motion.div
+                    variants={girdVariants.fromRight}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3,
+                    }}
+                    className="h-full md:w-1/2"
+                  >
                     <Safari
                       className="h-full w-full"
                       videoSrc={template.video}
                     />
-                  </div>
+                  </motion.div>
                 </div>
                 <div className="flex flex-col  md:flex-row-reverse w-full h-full gap-8">
-                  <div className="w-full md:w-1/2 flex justify-center items-end flex-col">
+                  <motion.div
+                    variants={girdVariants.fromRight}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3,
+                    }}
+                    className="w-full md:w-1/2 flex justify-center items-end flex-col"
+                  >
                     <div className="lg:max-w-full xl:max-w-2/3 mx-auto lg:mx-0">
                       <h2 className="text-2xl text-center lg:text-right sm:text-3xl lg:text-4xl font-semibold w-full">
                         Stunning on Desktop
@@ -181,8 +224,18 @@ export default function TemplatePage({
                         Dark or light mode - it's pixel-perfect either way.
                       </AnimatedShinyText>
                     </div>
-                  </div>
-                  <div className="h-full md:w-1/2 space-y-5">
+                  </motion.div>
+                  <motion.div
+                    variants={girdVariants.fromLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3,
+                    }}
+                    className="h-full md:w-1/2 space-y-5"
+                  >
                     <Carousel
                       plugins={[
                         Autoplay({
@@ -207,10 +260,20 @@ export default function TemplatePage({
                         </CarouselItem>
                       </CarouselContent>
                     </Carousel>
-                  </div>
+                  </motion.div>
                 </div>
                 <div className="flex flex-col md:flex-row w-full h-full gap-8">
-                  <div className="w-full md:w-1/2 flex justify-center items-start flex-col">
+                  <motion.div
+                    variants={girdVariants.fromLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3,
+                    }}
+                    className="w-full md:w-1/2 flex justify-center items-start flex-col"
+                  >
                     <div className="lg:max-w-full xl:max-w-2/3 mx-auto lg:mx-0 ">
                       <h2 className="text-2xl text-center lg:text-left sm:text-3xl lg:text-4xl font-semibold w-full">
                         {" "}
@@ -221,8 +284,18 @@ export default function TemplatePage({
                         night.
                       </AnimatedShinyText>
                     </div>
-                  </div>
-                  <div className="h-full md:w-1/2 flex gap-2">
+                  </motion.div>
+                  <motion.div
+                    variants={girdVariants.fromRight}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3,
+                    }}
+                    className="h-full md:w-1/2 flex gap-2"
+                  >
                     {template.mobileDevice === "Iphone15Pro" &&
                       template.mobilePreview?.map((img, idx) => {
                         return (
@@ -239,7 +312,7 @@ export default function TemplatePage({
                           </div>
                         );
                       })}
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -257,40 +330,29 @@ function TemplateLoading() {
     </div>
   );
 }
-const imagesDashboard = [
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-];
+const girdVariants = {
+  fromLeft: {
+    hidden: {
+      x: -100,
+      opacity: 0,
+      filter: "blur(10px)",
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+    },
+  },
+  fromRight: {
+    hidden: {
+      x: 100,
+      opacity: 0,
+      filter: "blur(10px)",
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+    },
+  },
+};
