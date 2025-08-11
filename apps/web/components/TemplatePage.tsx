@@ -75,7 +75,7 @@ export default function TemplatePage({
   if (!template) return <NotFound />;
   console.log(images);
   return (
-    <div className="mt-10 sm:mt-0">
+    <div className="mt-10 sm:mt-0 overflow-hidden">
       <main
         className={`flex-1 ${!pathname.includes("dashboard") ? "py-12 md:py-24 lg:py-32" : "py-10"} z-20`}
       >
