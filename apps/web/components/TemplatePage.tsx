@@ -178,12 +178,12 @@ export default function TemplatePage({
                     }}
                     className=" w-full md:w-1/2 flex justify-center items-start flex-col"
                   >
-                    <div className="lg:max-w-full xl:max-w-2/3 mx-auto lg:mx-0">
+                    <div className="lg:max-w-full xl:max-w-[80%] mx-auto lg:mx-0">
                       <h2 className="text-2xl text-center lg:text-left sm:text-3xl lg:text-4xl font-semibold w-full">
-                        See It in Action 🚀
+                        ✨ Experience It in Motion
                       </h2>
                       <AnimatedShinyText className="text-xs lg:text-xl sm:text-sm max-w-full mx-0 text-center lg:text-left font-medium w-full block">
-                        A quick tour of the template, live and fully deployed.
+                        See the template in action — smooth transitions, engaging animations, and the complete user journey brought to life
                       </AnimatedShinyText>
                     </div>
                   </motion.div>
@@ -216,12 +216,12 @@ export default function TemplatePage({
                     }}
                     className="w-full md:w-1/2 flex justify-center items-end flex-col"
                   >
-                    <div className="lg:max-w-full xl:max-w-2/3 mx-auto lg:mx-0">
+                    <div className="lg:max-w-full xl:max-w-[75%]  mx-auto lg:mx-0">
                       <h2 className="text-2xl text-center lg:text-right sm:text-3xl lg:text-4xl font-semibold w-full">
-                        Stunning on Desktop
+                        🥱 Stunning on Desktop
                       </h2>
-                      <AnimatedShinyText className="text-xs lg:text-xl sm:text-sm max-w-full mx-0 text-center lg:text-right font-medium w-full block">
-                        Dark or light mode - it's pixel-perfect either way.
+                      <AnimatedShinyText className="text-xs lg:text-xl sm:text-sm max-w-full mx-0 text-center lg:text-justify tracking-tight font-medium block ">
+                       Explore the template in its full-sized glory, optimized for clarity, detail, and a professional desktop browsing experience.
                       </AnimatedShinyText>
                     </div>
                   </motion.div>
@@ -274,14 +274,13 @@ export default function TemplatePage({
                     }}
                     className="w-full md:w-1/2 flex justify-center items-start flex-col"
                   >
-                    <div className="lg:max-w-full xl:max-w-2/3 mx-auto lg:mx-0 ">
+                    <div className="lg:max-w-full xl:max-w-[80%] mx-auto lg:mx-0 ">
                       <h2 className="text-2xl text-center lg:text-left sm:text-3xl lg:text-4xl font-semibold w-full">
                         {" "}
-                        Made for Your Pocket
+                       🫣 Pocket-Perfect Design
                       </h2>
                       <AnimatedShinyText className="text-xs sm:text-sm lg:text-xl max-w-full mx-0 text-center lg:text-left font-medium w-full block">
-                        Flawless, responsive design that looks great day or
-                        night.
+                        Preview how the template adapts seamlessly to mobile, ensuring effortless navigation and stunning visuals on the go.
                       </AnimatedShinyText>
                     </div>
                   </motion.div>
