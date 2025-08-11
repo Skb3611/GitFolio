@@ -5,7 +5,7 @@ import {
   AvatarImage,
 } from "@workspace/ui/components/avatar";
 import { ModeToggle } from "../../components/mode-toggle";
-import  { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useMotionValueEvent, useScroll, motion } from "motion/react";
 import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
@@ -16,16 +16,18 @@ import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 const NavbarComponent = ({
   links,
   profileImg,
+  name,
 }: {
   links: SocialLinks;
   profileImg: string;
+  name: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   const [visible, setVisible] = useState<boolean>(false);
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 50 && !isMobile) {
@@ -36,14 +38,14 @@ const NavbarComponent = ({
   });
   return (
     <motion.nav
-    initial={{
-      y:-10,
-      opacity:0,
-      filter:"blur(8px)"
-    }}
+      initial={{
+        y: -10,
+        opacity: 0,
+        filter: "blur(8px)",
+      }}
       animate={{
-      opacity:1,
-      filter:"blur(0px)",
+        opacity: 1,
+        filter: "blur(0px)",
         backdropFilter: visible ? "blur(10px)" : "none",
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
@@ -64,24 +66,26 @@ const NavbarComponent = ({
       <div>
         <Avatar className="size-10">
           <AvatarImage src={profileImg} />
-          <AvatarFallback>G</AvatarFallback>
+          <AvatarFallback>{name.split(" ")[0]?.[0]}</AvatarFallback>
         </Avatar>
       </div>
       <div className="flex flex-wrap items-center justify-center md:gap-2">
-          {Object.entries(links).map(([key, link]) => {
-            if (link === "" || link.length <= 0) return null;
-            let Icon = Icons[key as keyof typeof Icons] || Icons.link;
-            return !Icon ? null : (
-              <a key={key} href={link} target={link==="#"?"_self":"_blank"}>
-              <Button  size={"icon"} variant={"ghost"} className="cursor-pointer">
+        {Object.entries(links).map(([key, link]) => {
+          if (link === "" || link.length <= 0) return null;
+          let Icon = Icons[key as keyof typeof Icons] || Icons.link;
+          return !Icon ? null : (
+            <a key={key} href={link} target={link === "#" ? "_self" : "_blank"}>
+              <Button
+                size={"icon"}
+                variant={"ghost"}
+                className="cursor-pointer"
+              >
                 <Icon />
               </Button>
-              </a>
-
-            );
-          })}
-<ModeToggle />
-
+            </a>
+          );
+        })}
+        <ModeToggle />
       </div>
     </motion.nav>
   );
