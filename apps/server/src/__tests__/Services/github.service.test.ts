@@ -9,7 +9,7 @@ describe("Github Service Tests",()=>{
     test("Should return user details",async()=>{
         expect(token).toBeDefined()
         if(token){
-           let userdetails = await getUserDetails(token)
+           let userdetails = await getUserDetails({token})
            expect(userdetails).toBeDefined()
            expect(userdetails).not.toBeFalsy()
         //    console.log(userdetails)
@@ -19,7 +19,7 @@ describe("Github Service Tests",()=>{
     test("Should return user repos",async()=>{
         expect(token).toBeDefined()
         if(token){
-           let userdetails = await getUserRepos(token)
+           let userdetails = await getUserRepos({token})
            expect(userdetails).toBeDefined()
            expect(userdetails).not.toBeFalsy()
         //    console.log(userdetails)

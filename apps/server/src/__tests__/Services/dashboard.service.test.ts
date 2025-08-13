@@ -1,6 +1,6 @@
 import { JsonValue } from "../../../../../packages/db/src/generated/prisma/runtime/library";
 import {
-    createOrUpdateEducation,
+  createOrUpdateEducation,
   createOrUpdateExperience,
   createOrUpdateRepo,
   deleteEducation,
@@ -140,20 +140,23 @@ describe("Dashboard Service", () => {
       userId: USERNAME,
       created_at: new Date(),
       updated_at: new Date(),
-    }
+    };
     const res = await createOrUpdateEducation(USERNAME, data);
     expect(res).toBeDefined();
     expect(res).toBeTruthy();
     console.log(res);
-  })
+  });
   it("Should delete a Education entry", async () => {
-    const res = await deleteEducation(USERNAME, "292afb23-9de2-48b9-8998-4af57a631001");
+    const res = await deleteEducation(
+      USERNAME,
+      "292afb23-9de2-48b9-8998-4af57a631001"
+    );
     expect(res).toBeDefined();
     expect(res).toBeTruthy();
     console.log(res);
-  })
+  });
   it("Should add a Experience entry", async () => {
-    const data:Experience = {
+    const data: Experience = {
       id: "1",
       company: "Test company",
       role: "Test role",
@@ -164,14 +167,14 @@ describe("Dashboard Service", () => {
       userId: USERNAME,
       created_at: new Date(),
       updated_at: new Date(),
-    }
+    };
     const res = await createOrUpdateExperience(USERNAME, data);
     expect(res).toBeDefined();
     expect(res).toBeTruthy();
     console.log(res);
-  })
+  });
   it("Should update a Experience entry", async () => {
-    const data:Experience = {
+    const data: Experience = {
       id: "1",
       company: "Test company updated",
       role: "Test role updated",
@@ -182,17 +185,19 @@ describe("Dashboard Service", () => {
       userId: USERNAME,
       created_at: new Date(),
       updated_at: new Date(),
-    }
+    };
     const res = await createOrUpdateExperience(USERNAME, data);
     expect(res).toBeDefined();
     expect(res).toBeTruthy();
     console.log(res);
-  })
+  });
   it("Should delete a Experience entry", async () => {
-    const res = await deleteExperience(USERNAME, "067097f0-18f1-4494-9bc6-34c2e4d7f1e9");
+    const res = await deleteExperience(
+      USERNAME,
+      "067097f0-18f1-4494-9bc6-34c2e4d7f1e9"
+    );
     expect(res).toBeDefined();
     expect(res).toBeTruthy();
     console.log(res);
-  })
-
+  });
 });
