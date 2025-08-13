@@ -44,7 +44,7 @@ const Home = ({ data }: { data: DATA }) => {
             {data.projects
               .filter((project) => project.isIncluded)
               .map((project, index) => (
-                <BlurFade inView key={project.name} delay={index * 0.2}>
+                <BlurFade inView key={project.name} delay={index * 0.02}>
                   <ProjectCard project={project} />
                 </BlurFade>
               ))}

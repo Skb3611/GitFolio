@@ -165,7 +165,7 @@ export default function Page({ data = DummyData }: { data?: DATA }) {
                 .map((project, id) => (
                   <BlurFade
                     key={project.id}
-                    delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                    delay={BLUR_FADE_DELAY * 12 + id * 0.01}
                   >
                     <ProjectCard
                       key={project.id}
