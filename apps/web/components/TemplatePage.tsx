@@ -73,7 +73,6 @@ export default function TemplatePage({
   console.log(templateId);
   if (isLoading) return <TemplateLoading />;
   if (!template) return <NotFound />;
-  console.log(images);
   return (
     <div className="mt-10 sm:mt-0 overflow-hidden">
       <main

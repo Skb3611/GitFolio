@@ -16,7 +16,7 @@ export default clerkMiddleware(async (auth, req) => {
     });
 
     // Protect the route first
-    const { userId, sessionClaims } = await auth.protect();
+    const { userId } = await auth.protect();
     const user = await clerkClient.users?.getUser(userId);
 
     // Get user's public metadata
@@ -33,8 +33,8 @@ export default clerkMiddleware(async (auth, req) => {
     // If user has completed onboarding but is trying to access onboarding page
     // ONLY redirect from onboarding page to dashboard, NOT from dashboard to dashboard
     if (isOnboardingRoute(req) && hasCompletedOnboarding) {
-      // const dashboardUrl = new URL("/dashboard", req.url);
-      // return NextResponse.redirect(dashboardUrl);
+      const dashboardUrl = new URL("/dashboard", req.url);
+      return NextResponse.redirect(dashboardUrl);
     }
 
     // If user is on dashboard and has completed onboarding, allow access (no redirect needed)

@@ -80,32 +80,33 @@ export default function OnboardingPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-background flex items-center justify-center p-4">
-      <BackHomeButton />
-      <div className="relative min-h-[80dvh] flex w-full max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl">
-        <div className="absolute inset-0 z-10  h-full w-full bg-black/45 "></div>
+    <div className="relative min-h-screen bg-background flex items-center justify-center ">
+      {/* <BackHomeButton /> */}
+      <div className="relative min-h-screen  flex w-full max-w-screen mx-auto justify-center items-center overflow-hidden  ">
+        <div className="absolute inset-0 z-10 h-full w-full bg-black/45 "></div>
         <ThreeDMarquee
-          className="pointer-events-none absolute inset-0 h-full -z-0 w-full opacity-50"
-          images={images}
+          className="pointer-events-none absolute inset-0 min-h-full -z-0 w-full opacity-30 rounded-none"
+          images={Array(10).fill(images).flat()}
         />
-
-        <div className="absolute top-5 left-5 sm:top-8 sm:left-8 z-50 flex items-center space-x-3 cursor-pointer">
-          <div className="w-8 sm:w-12 h-8 sm:h-12 rounded-md sm:rounded-xl bg-white flex items-center justify-center">
-            <Code className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
+        <Link href={"/"}>
+          <div className="absolute top-5 left-5 sm:top-8 sm:left-8 z-50 flex items-center space-x-3 cursor-pointer">
+            <div className="w-8 sm:w-12 h-8 sm:h-12 rounded-md sm:rounded-xl bg-white flex items-center justify-center">
+              <Code className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
+            </div>
+            <span className="text-2xl sm:text-3xl flex items-center justify-center gap-3 text-white bg-clip-text">
+              GitFolio <span className="text-base">( onBoarding )</span>
+            </span>
           </div>
-          <span className="text-2xl sm:text-3xl text-white bg-clip-text">
-            GitFolio
-          </span>
-        </div>
+        </Link>
       </div>
 
-      <div className=" absolute z-50 w-full max-w-md ">
+      <div className=" absolute z-50 w-full max-w-md px-2">
         <div className="mb-8">
-          <div className="relative">
-            {/* Progress Line Container */}
+          {/* <div className="relative">
+      
             <div className="absolute top-13 left-6 right-6 flex items-center">
               <div className="flex-1 h-1 bg-muted rounded-full relative">
-                {/* First Progress Segment */}
+             
                 <div
                   className={`
                     absolute top-0 left-0 h-1 rounded-full transition-all duration-700 ease-in-out
@@ -114,7 +115,7 @@ export default function OnboardingPage() {
                   style={{ width: "50%" }}
                 ></div>
 
-                {/* Second Progress Segment */}
+       
                 <div
                   className={`
                     absolute top-0 right-0 h-1 rounded-full transition-all duration-700 ease-in-out
@@ -126,7 +127,7 @@ export default function OnboardingPage() {
                   }}
                 ></div>
 
-                {/* Animated Moving Dot */}
+           
                 {currentStep === 2 && (
                   <div
                     className="absolute top-0 w-3 h-1 bg-primary rounded-full animate-pulse"
@@ -148,11 +149,11 @@ export default function OnboardingPage() {
               </div>
             </div>
 
-            {/* Steps Container */}
+ 
             <div className="flex items-start justify-between relative z-50">
               {steps.map((step, index) => (
                 <div key={step.number} className="flex flex-col items-center">
-                  {/* Step Number Above Circle */}
+      
                   <div className="mb-2">
                     <span
                       className={`
@@ -170,7 +171,7 @@ export default function OnboardingPage() {
                     </span>
                   </div>
 
-                  {/* Step Circle */}
+               
                   <div
                     className={`
                     flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all duration-500 transform bg-foreground
@@ -191,7 +192,7 @@ export default function OnboardingPage() {
                     )}
                   </div>
 
-                  {/* Step Title Below Circle */}
+                 
                   <div className="mt-2 text-center max-w-20">
                     <div
                       className={`text-xs font-medium transition-colors duration-500 ${
@@ -208,7 +209,7 @@ export default function OnboardingPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Step 1: GitHub URL Input */}
@@ -218,10 +219,10 @@ export default function OnboardingPage() {
               <div className="mx-auto w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center mb-4">
                 <Image src={"/assets/logo.png"} height={50} width={50} alt="" />
               </div>
-              <CardTitle className="text-2xl font-bold">
+              <CardTitle className="text-lg sm:text-2xl font-bold">
                 Connect to Your Github{" "}
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-xs sm:text-sm">
                 Enter your GitHub URL to get started
               </CardDescription>
             </CardHeader>
@@ -233,7 +234,7 @@ export default function OnboardingPage() {
                     placeholder="www.github.com/username"
                     value={githubURL}
                     onChange={(e) => setGithubURL(e.target.value)}
-                    className="w-full"
+                    className="w-full text-sm sm:text-base"
                     required
                   />
                 </div>
@@ -335,34 +336,8 @@ const images = [
   "/assets/not-found.png",
   "/assets/banner.png",
   "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
-
-  "/assets/desktop-white.png",
-  "/assets/desktop-black.png",
-  "/assets/not-found.png",
-  "/assets/banner.png",
-  "/assets/home_page.png",
+  "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/desktop-dark.png",
+  "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/desktop-light.png",
+  "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-dark.png",
+  "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-light.png",
 ];
