@@ -10,4 +10,5 @@ export const config={
   S3_ACCESS_KEY_ID:process.env.S3_ACCESS_KEY_ID,
   S3_ACCESS_KEY_SECRET:process.env.S3_ACCESS_KEY_SECRET,
   S3_REGION:process.env.S3_REGION,
+  GITHUB_ACCESS_TOKEN:process.env.GITHUB_ACCESS_TOKEN
 }

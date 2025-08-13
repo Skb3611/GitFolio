@@ -47,13 +47,14 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
               <div className="flex justify-center xl:justify-start xl:gap-2 xl:items-center items-start flex-col xl:flex-row gap-">
                 <span className="font-medium text-sm">{project.name}</span>
                 <span className="space-x-2 flex">
-                {Object.entries(project.languages).map(([key, value]) => {
+                {Object.entries(project.languages).slice(0,5).map(([key, value]) => {
                   return (
                     <Badge key={key} variant="secondary" className="text-[0.5rem]">
                       {key}
                     </Badge>
                   );
                 })}
+                {Object.entries(project.languages).length>5 && <Badge variant="secondary" className="text-[0.5rem]">+ {Object.entries(project.languages).length-5}</Badge>}
                 </span>
                 {/* {project.liveLink && (
                   <a

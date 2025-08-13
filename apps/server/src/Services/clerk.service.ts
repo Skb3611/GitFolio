@@ -1,83 +1,37 @@
-import prisma, { Prisma } from "@workspace/db";
-import { createClerkClient } from "@clerk/backend";
-import dotenv from "dotenv";
-import {
-  getUserContributionsGraph,
-  getUserDetails,
-  getUserRepos,
-} from "./github.service";
-import { config } from "../config";
-
-dotenv.config();
-const clerkClient = createClerkClient({
-  secretKey: config.CLERK_SECRET_KEY,
-});
+import prisma, { Prisma, SigninType } from "@workspace/db";
+import { clerkClient } from "./onboarding.service";
 
 export const processClerkWebhook = async (event: any): Promise<boolean> => {
   const { data, type } = event;
   switch (type) {
     case "user.created":
-      const token = await getUserAccessToken(data.id);
-      if (!token) return false;
-
-      const userDetails = await getUserDetails(token);
-      const userRepos = await getUserRepos(token);
-
-      if (!userDetails || !userRepos) return false;
-
-      const contibutions = await getUserContributionsGraph(
-        token,
-        userDetails.username,
-        userDetails?.created_at
-      );
-
       const user = await prisma.user.create({
         data: {
-          username: userDetails.username,
-          bio: userDetails.bio,
-          location: userDetails.location,
-          website: userDetails.website,
-          githubLink: userDetails.githubLink,
-          followers: userDetails.followers,
-          following: userDetails.following,
           id: data.id,
+          firstname: data.first_name ?? data.username ?? "",
+          lastname: data.last_name ?? "",
           email: data.email_addresses[0].email_address,
-          firstname: data.first_name,
-          lastname: data.last_name,
           profileImg: data.profile_image_url,
-          contributions: contibutions,
-          socialAccounts: {
-            github: userDetails.githubLink ?? "",
-            linkedin: "",
-            twitter: "",
-            website: userDetails.website ?? "",
-            instagram: "",
-            facebook: "",
-            behance: "",
-            youtube: "",
-          },
+          accountType: getProvider(
+            data.external_accounts.length !== 0
+              ? data.external_accounts[0]?.provider
+              : "email"
+          ),
+          username:
+            data.external_accounts.length !== 0
+              ? data.external_accounts[0].provider === "oauth_github"
+                ? data.username
+                : ""
+              : "",
         },
       });
-      const createdRepos = await prisma.repo.createMany({
-        data: userRepos.map((repo) => ({
-          userId: user.id, // Add required userId field
-          name: repo.name,
-          description: repo.description,
-          topics: repo.topics,
-          languages: repo.languages || {},
-          stars: repo.stars,
-          forks: repo.forks,
-          deployments: repo.deployments,
-          repoLink: repo.repoLink,
-          liveLink: repo.liveLink,
-          created_at: repo.created_at,
-          updated_at: repo.updated_at,
-          pushed_at: repo.pushed_at,
-        })),
-        skipDuplicates: true,
-      });
 
-      return user && createdRepos ? true : false;
+      await clerkClient.users.updateUserMetadata(user.id, {
+        publicMetadata: {
+          onBoarding: false,
+        },
+      });
+      return user ? true : false;
     case "user.updated":
       const updatedUser = await prisma.user.update({
         where: {
@@ -95,15 +49,14 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
   }
   return false;
 };
-
-export const getUserAccessToken = async (
-  userId: string
-): Promise<false | string | undefined> => {
-  try {
-    const token = clerkClient.users.getUserOauthAccessToken(userId, "github");
-    return (await token).data[0]?.token;
-  } catch (e) {
-    console.log(e);
-    return false;
+type AuthType = "oauth_github" | "oauth_google" | "email";
+const getProvider = (authType: AuthType): SigninType => {
+  switch (authType) {
+    case "oauth_github":
+      return "GITHUB";
+    case "oauth_google":
+      return "GOOGLE";
+    case "email":
+      return "EMAIL";
   }
 };

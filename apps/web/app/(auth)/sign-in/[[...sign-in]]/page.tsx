@@ -8,30 +8,6 @@ import BackHomeButton from "@/components/BackHomeButton";
 
 
 export default function SigninPage() {
-const { signIn } = useSignIn();
-const { signUp } = useSignUp();
-
-
-  const handleSignIn = async() => {
-    try {
-      await signIn?.authenticateWithRedirect({
-        strategy: "oauth_github",
-        redirectUrl: "/",
-        redirectUrlComplete: "/",
-      });
-    } catch (error: any) {
-      if (error.errors?.[0]?.code === "not_found") {
-        await signUp?.authenticateWithRedirect({
-          strategy: "oauth_github",
-          redirectUrl: "/",
-          redirectUrlComplete: "/",
-        });
-      } else {
-        console.error("Auth error:", error);
-      }
-    }
-  };
-
   return (
     <div className=" relative flex min-h-screen">
       <BackHomeButton/>
@@ -54,7 +30,7 @@ const { signUp } = useSignUp();
       
       <div className="flex-1 flex items-center justify-center lg:p-8 bg-gradient-to-r from-background to-background/5">
       <div className="relative rounded-xl">
-        <SignIn/>
+        <SignIn />
         <BorderBeam size={100}/>
       </div>
     </div>

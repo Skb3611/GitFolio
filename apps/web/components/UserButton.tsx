@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useUser, useClerk } from "@clerk/nextjs";
+import { useUser, useClerk, useAuth } from "@clerk/nextjs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,10 +14,8 @@ import {
   AvatarImage,
   AvatarFallback,
 } from "@workspace/ui/components/avatar";
-import { Button } from "@workspace/ui/components/button";
 import { LogOut, User } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const UserButton = () => {
   const { user } = useUser();
@@ -33,7 +31,12 @@ const UserButton = () => {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[200px] rounded-sm" side="bottom" align="end" forceMount>
+      <DropdownMenuContent
+        className="min-w-[200px] rounded-sm"
+        side="bottom"
+        align="end"
+        forceMount
+      >
         <DropdownMenuLabel>
           <div className="flex gap-2 justify-start items-center">
             <Avatar>

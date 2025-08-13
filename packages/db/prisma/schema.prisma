@@ -15,33 +15,35 @@ datasource db {
 }
 
 model User {
-  id             String       @id
-  username       String       @unique @db.VarChar(30)
-  firstname      String       @db.VarChar(30)
-  lastname       String       @db.VarChar(30)
-  email          String       @unique @db.VarChar(50)
-  template       String?
-  profileImg     String
-  bio            String?
-  tagline        String?
-  location       String?
-  website        String?
-  githubLink     String?
-  followers      Int          @default(0)
-  following      Int          @default(0)
-  contributions  Json[]
-  socialAccounts Json?
-  repos          Repo[]
-  experiences    Experience[]
-  educations     Education[]
-  skills         String[]
-  updatedAt      DateTime     @updatedAt
-  createdAt      DateTime     @default(now())
+  id               String       @id
+  accountType      SigninType   @default(GITHUB)
+  onBoardingStatus Boolean      @default(false)
+  username         String?      @unique @db.VarChar(30)
+  firstname        String       @db.VarChar(30)
+  lastname         String       @db.VarChar(30)
+  email            String       @unique @db.VarChar(50)
+  template         String?
+  profileImg       String
+  bio              String?
+  tagline          String?
+  location         String?
+  website          String?
+  githubLink       String?
+  followers        Int          @default(0)
+  following        Int          @default(0)
+  contributions    Json[]
+  socialAccounts   Json?
+  repos            Repo[]
+  experiences      Experience[]
+  educations       Education[]
+  skills           String[]
+  updatedAt        DateTime     @updatedAt
+  createdAt        DateTime     @default(now())
 }
 
 model Repo {
   id          String    @id @default(uuid())
-  name        String    @db.VarChar(30)
+  name        String
   description String?
   topics      String[]
   languages   Json
@@ -88,4 +90,10 @@ model Education {
   user        User     @relation(fields: [userId], references: [id])
   updated_at  DateTime @updatedAt
   created_at  DateTime @default(now())
+}
+
+enum SigninType {
+  GITHUB
+  GOOGLE
+  EMAIL
 }
