@@ -16,10 +16,11 @@ import Image from "next/image";
 import { ThreeDMarquee } from "@workspace/ui/components/ui/3d-marquee";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { config } from "@/config";
-import BackHomeButton from "@/components/BackHomeButton";
 import Link from "next/link";
+import { toast } from "@workspace/ui/components/sonner";
 
 export default function OnboardingPage() {
+  const regex = /^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9-]{1,39}\/?$/;
   const { user } = useUser();
   console.log(user);
   const { getToken } = useAuth();
@@ -38,6 +39,10 @@ export default function OnboardingPage() {
       e.preventDefault();
       setError(false);
       if (!githubURL.trim()) return;
+      if (!regex.test(githubURL)) {
+        toast.warning("Enter a valid Github URL");
+        return;
+      }
       setIsLoading(true);
       setCurrentStep(2);
       const token = await getToken();
@@ -66,6 +71,9 @@ export default function OnboardingPage() {
         setCurrentStep(3);
         setIsLoading(false);
       } else {
+        toast.error(
+          "Something went wrong. Check your URL or time some time later"
+        );
         setError(true);
       }
     } catch (e) {
@@ -73,11 +81,6 @@ export default function OnboardingPage() {
       setError(true);
     }
   };
-  const steps = [
-    { number: 1, title: "Connect Repository", completed: currentStep > 1 },
-    { number: 2, title: "Fetch Data", completed: currentStep > 2 },
-    { number: 3, title: "Setup Complete", completed: currentStep > 3 },
-  ];
 
   return (
     <div className="relative min-h-screen bg-background flex items-center justify-center ">
