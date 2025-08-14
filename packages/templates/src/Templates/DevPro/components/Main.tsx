@@ -51,24 +51,26 @@ const Home = ({ data }: { data: DATA }) => {
           </div>
         </div>
       </section>
-      <section id="skills">
-        <div className="px-2.5 sm:px-5 py-2">
-          <BlurFadeText
-            text="My Skills"
-            className="text-lg sm:text-xl font-semibold text-portfolio-text "
-            delay={1}
-          />
-          <div className="my-5 flex flex-wrap gap-x-4 gap-y-2">
-            {data.skills.map((skill, idx) => {
-              return (
-                <BlurFade inView delay={idx * 0.1} key={idx}>
-                  <Skill label={skill} animate={false} />
-                </BlurFade>
-              );
-            })}
+      {data.skills && (
+        <section id="skills">
+          <div className="px-2.5 sm:px-5 py-2">
+            <BlurFadeText
+              text="My Skills"
+              className="text-lg sm:text-xl font-semibold text-portfolio-text "
+              delay={1}
+            />
+            <div className="my-5 flex flex-wrap gap-x-4 gap-y-2">
+              {data.skills.map((skill, idx) => {
+                return (
+                  <BlurFade inView delay={idx * 0.1} key={idx}>
+                    <Skill label={skill} animate={false} />
+                  </BlurFade>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       {data.experience && data.experience.length > 0 && (
         <section id="exp">
           <div className="mx-auto border-y py-10  px-2.5 sm:px-5 dark:shadow-[inset_0px_1px_4px_0px_rgba(10,10,10,1),inset_0px_-1px_4px_0px_rgba(10,10,10,1)] shadow-[inset_0px_1px_4px_0px_rgba(245,245,245),inset_0px_-1px_4px_0px_rgba(245,245,245)] ">
