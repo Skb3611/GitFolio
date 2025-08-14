@@ -16,12 +16,12 @@ datasource db {
 
 model User {
   id               String       @id
-  accountType      SigninType   @default(GITHUB)
+  accountType      SigninType
   onBoardingStatus Boolean      @default(false)
-  username         String?      @unique @db.VarChar(50)
-  firstname        String       @db.VarChar(50)
-  lastname         String       @db.VarChar(50)
-  email            String       @unique @db.VarChar(100)
+  username         String?      @unique 
+  firstname        String      
+  lastname         String       
+  email            String       @unique
   template         String?
   profileImg       String
   bio              String?
