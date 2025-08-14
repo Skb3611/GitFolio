@@ -18,10 +18,10 @@ model User {
   id               String       @id
   accountType      SigninType   @default(GITHUB)
   onBoardingStatus Boolean      @default(false)
-  username         String?      @unique @db.VarChar(30)
-  firstname        String       @db.VarChar(30)
-  lastname         String       @db.VarChar(30)
-  email            String       @unique @db.VarChar(50)
+  username         String?      @unique @db.VarChar(50)
+  firstname        String       @db.VarChar(50)
+  lastname         String       @db.VarChar(50)
+  email            String       @unique @db.VarChar(100)
   template         String?
   profileImg       String
   bio              String?
@@ -66,8 +66,8 @@ model Repo {
 
 model Experience {
   id          String   @id @default(uuid())
-  company     String   @db.VarChar(30)
-  role        String   @db.VarChar(30)
+  company     String   
+  role        String   
   logo        String?
   description String?
   start_date  String
@@ -80,9 +80,9 @@ model Experience {
 
 model Education {
   id          String   @id @default(uuid())
-  title       String   @db.VarChar(30)
+  title       String   
   logo        String?
-  institution String   @db.VarChar(30)
+  institution String   
   description String?
   start_date  String
   end_date    String?
