@@ -8,8 +8,8 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
       const user = await prisma.user.create({
         data: {
           id: data.id,
-          firstname: data.first_name ?? data.username ?? "",
-          lastname: data.last_name ?? "",
+          firstname: data.first_name || data.username || "",
+          lastname: data.last_name || "",
           email: data.email_addresses[0].email_address,
           profileImg: data.profile_image_url,
           accountType: getProvider(

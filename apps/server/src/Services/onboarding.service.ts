@@ -82,7 +82,10 @@ export const onBoardingProcess = async (
           where: { id: userId },
           data: {
             profileImg: userDetails.avatar_url,
-            username: userDetails.username,
+            username:
+              userDetails.username ||
+              userDetails?.githubLink?.match(regex)?.[1] ||
+              githubUsername,
             bio: userDetails.bio,
             location: userDetails.location,
             website: userDetails.website,
