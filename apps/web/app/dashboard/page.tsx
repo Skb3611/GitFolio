@@ -458,6 +458,7 @@ export default function Page() {
             onChange={setProjects}
             onSave={onSave}
             setprojectImg={setImages}
+            onDelete={onDelete}
           />
         );
       case "Experience":

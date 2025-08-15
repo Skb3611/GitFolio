@@ -1,5 +1,10 @@
 import React, { Dispatch, SetStateAction, useRef } from "react";
-import { ImagesTypes, Projects, SavePayload } from "@workspace/types";
+import {
+  DeleteType,
+  ImagesTypes,
+  Projects,
+  SavePayload,
+} from "@workspace/types";
 import { Button } from "@workspace/ui/components/button";
 import {
   Edit,
@@ -11,6 +16,8 @@ import {
   Plus,
   Save,
   Star,
+  Trash,
+  Trash2,
   Upload,
   X,
 } from "lucide-react";
@@ -36,25 +43,48 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@workspace/ui/components/tooltip";
+import { v4 as uuid } from "uuid";
 const ProjectsTab = ({
   projects,
   onChange,
   onSave,
   setprojectImg,
+  onDelete,
 }: {
   projects: Projects[];
   onChange: Dispatch<SetStateAction<Projects[]>>;
   onSave: ({ type, data }: SavePayload) => void;
   setprojectImg: Dispatch<SetStateAction<ImagesTypes>>;
+  onDelete: (type: DeleteType, id: string) => void;
 }) => {
   const [editingProject, setEditingProject] = React.useState<Projects | null>(
     null
   );
+  const [isAdding, setIsAdding] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [newTopic, setNewTopic] = React.useState("");
   const ref = useRef<HTMLInputElement>(null);
   const handleEditProject = (project: Projects) => {
     setEditingProject({ ...project });
+    setIsOpen(true);
+  };
+
+  const handleAddProject = () => {
+    const newProject: Projects = {
+      id: uuid(),
+      name: "",
+      description: "",
+      thumbnail: "",
+      repoLink: "",
+      topics: [],
+      liveLink: "",
+      languages: {},
+      stars: 0,
+      forks: 0,
+      isIncluded: true,
+    };
+    setEditingProject(newProject);
+    setIsAdding(true);
     setIsOpen(true);
   };
 
@@ -74,19 +104,30 @@ const ProjectsTab = ({
     if (editingProject) {
       if (!editingProject.thumbnail) {
         toast.warning("Please upload a thumbnail.");
+        return;
       } else if (!editingProject.description) {
         toast.warning("Please add a description.");
+        return;
+      } else if (!editingProject.name) {
+        toast.warning("Please add a Name.");
+        return;
+      } else if (!editingProject.repoLink) {
+        toast.warning("Please add Repo Link.");
+        return;
+      }
+      if (isAdding) {
+        onChange([...projects, editingProject]);
       } else {
         onChange(
           projects.map((p) => (p.id === editingProject.id ? editingProject : p))
         );
-        onSave({ type: "Projects", data: editingProject });
-        setIsOpen(false);
-        setEditingProject(null);
       }
+      onSave({ type: "Projects", data: editingProject });
+      setIsOpen(false);
+      setEditingProject(null);
+      setIsAdding(false);
     }
   };
-
   const handleCancel = () => {
     setEditingProject(null);
     setIsOpen(false);
@@ -120,7 +161,7 @@ const ProjectsTab = ({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const img = e.target.files?.[0];
     if (img) {
-      setprojectImg({project:img});
+      setprojectImg({ project: img });
       setEditingProject({
         ...(editingProject as Projects),
         thumbnail: URL.createObjectURL(img),
@@ -137,10 +178,14 @@ const ProjectsTab = ({
             Manage your projects and customize how they appear in your portfolio
           </p>
         </div>
+        <Button onClick={handleAddProject} className="w-full md:w-auto">
+          <Plus className="mr-2 h-4 w-4" />
+          Add Education
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3  gap-4">
-        {projects.map((project) => (
+        {projects.sort((a, b) => (b.isIncluded ? 1 : 0) - (a.isIncluded ? 1 : 0)).map((project) => (
           <ProjectCard
             key={project.id}
             project={project}
@@ -148,6 +193,7 @@ const ProjectsTab = ({
             handleEditProject={handleEditProject}
             setIsOpen={setIsOpen}
             setEditingProject={setEditingProject}
+            onDelete={onDelete}
           />
         ))}
       </div>
@@ -203,11 +249,16 @@ const ProjectsTab = ({
                       onChange={handleFileChange}
                     />
                     <Input
-                    className="text-sm "
-                    placeholder="Or paste image URL"
-                    value={editingProject.thumbnail || ""}
-                    onChange={(e) => setEditingProject({ ...editingProject, thumbnail: e.target.value })}
-                  />
+                      className="text-sm "
+                      placeholder="Or paste image URL"
+                      value={editingProject.thumbnail || ""}
+                      onChange={(e) =>
+                        setEditingProject({
+                          ...editingProject,
+                          thumbnail: e.target.value,
+                        })
+                      }
+                    />
                   </div>
                 </div>
               </div>
@@ -224,7 +275,7 @@ const ProjectsTab = ({
                       name: e.target.value,
                     })
                   }
-                  placeholder={editingProject.name}
+                  placeholder={"Enter Name"}
                 />
               </div>
 
@@ -280,10 +331,14 @@ const ProjectsTab = ({
                       className="flex items-center gap-1"
                     >
                       {topic}
-                      <X
-                        className="h-3 w-3 cursor-pointer hover:text-destructive"
+                      <Button
                         onClick={() => removeTopic(topic)}
-                      />
+                        variant={"link"}
+                        size={"icon"}
+                        className="p-0 cursor-pointer h-max w-max "
+                      >
+                        <X className="h-3 w-3 cursor-pointer z-50 text-white" />
+                      </Button>
                     </Badge>
                   ))}
                 </div>
@@ -316,7 +371,6 @@ const ProjectsTab = ({
                   </Label>
                   <Input
                     className="text-sm "
-                    disabled
                     value={editingProject.repoLink || ""}
                     onChange={(e) =>
                       setEditingProject({
@@ -353,12 +407,14 @@ const ProjectCard = ({
   handleEditProject,
   setIsOpen,
   setEditingProject,
+  onDelete,
 }: {
   project: Projects;
   toggleProject: (project: Projects) => void;
   handleEditProject: (project: Projects) => void;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setEditingProject: Dispatch<SetStateAction<Projects | null>>;
+  onDelete: (type: DeleteType, id: string) => void;
 }) => {
   return (
     <Card
@@ -373,36 +429,59 @@ const ProjectCard = ({
           <Tooltip>
             {/* <GripVertical className="h-3 w-3 text-gray-500 cursor-move" /> */}
             <TooltipTrigger
-            asChild
+              asChild
               onClick={(event) => event.stopPropagation()}
               className="absolute top-2 left-2 flex items-center space-x-2 z-20"
             >
               <div className="absolute top-3 left-3">
-                    <div className="flex items-center space-x-2 bg-card backdrop-blur-sm rounded-full px-3 py-1">
-                      <GripVertical className="h-3 w-3 text-gray-500" />
-                      <Switch checked={project.isIncluded} onCheckedChange={() => toggleProject(project)} />
-                    </div>
-                  </div>
+                <div className="flex items-center space-x-2 bg-card backdrop-blur-sm rounded-full px-3 py-1">
+                  <GripVertical className="h-3 w-3 text-gray-500" />
+                  <Switch
+                    checked={project.isIncluded}
+                    onCheckedChange={() => toggleProject(project)}
+                  />
+                </div>
+              </div>
             </TooltipTrigger>
             <TooltipContent side="top">
               Change project visibility.
             </TooltipContent>
           </Tooltip>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleEditProject(project)}
-            className="z-20 absolute right-2 top-2"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div>
-                <Edit className="h-4 w-4" />
+          <div className="z-20 absolute right-2 top-2 space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleEditProject(project)}
+              className=""
+            >
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <Edit className="h-4 w-4" />
                   </div>
-              </TooltipTrigger>
-              <TooltipContent sideOffset={5}>Edit Project</TooltipContent>
-            </Tooltip>
-          </Button>
+                </TooltipTrigger>
+                <TooltipContent sideOffset={5}>Edit Project</TooltipContent>
+              </Tooltip>
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={(event) => {
+                event?.stopPropagation();
+                onDelete(DeleteType.PROJECT, project.id);
+              }}
+              className=""
+            >
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <Trash2 className="h-4 w-4" />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent sideOffset={5}>Delete Project</TooltipContent>
+              </Tooltip>
+            </Button>
+          </div>
           {project.thumbnail ? (
             <img
               src={project.thumbnail || "/placeholder.svg?height=64&width=80"}
