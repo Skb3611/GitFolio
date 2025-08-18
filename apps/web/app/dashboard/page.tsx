@@ -130,6 +130,12 @@ export default function Page() {
   const [education, setEducation] = useState<Education[]>([]);
   const [Images, setImages] = useState<ImagesTypes>(null);
   const { getToken } = useAuth();
+  const { userId, signOut, isLoaded } = useAuth();
+  useEffect(() => {
+    (async () => {
+      if (isLoaded && !userId) await signOut();
+    })();
+  }, [userId, isLoaded]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,23 +144,23 @@ export default function Page() {
         const res = await fetch(config.server_endpoints.GET_USER_DATA, {
           headers: {
             authorization: `Bearer ${token}`,
-          }
+          },
         });
         const result = await res.json();
-        console.log(result)
+        console.log(result);
         const p: PersonalInformation = {
           username: result.data.username,
           email: result.data.email,
           profileImg: result.data.profileImg ?? null,
-          bio: result.data.bio ,
-          location: result.data.location ,
+          bio: result.data.bio,
+          location: result.data.location,
           website: result.data.website,
           full_name: result.data.firstname + " " + result.data.lastname,
           followers: result.data.followers ?? 0,
           following: result.data.following ?? 0,
           githubLink: result.data.githubLink,
           tagline: result.data.tagline,
-          template:result.data.template
+          template: result.data.template,
         };
         const r: Projects[] = result.data.repos.map((repo: any) => {
           return {
@@ -180,7 +186,7 @@ export default function Page() {
             start_date: exp.start_date,
             end_date: exp.end_date,
             onGoing: exp.end_date === "Present" ? true : false,
-            logo:exp.logo
+            logo: exp.logo,
           };
         });
 
@@ -193,7 +199,7 @@ export default function Page() {
             end_date: edu.end_date,
             description: edu.description,
             onGoing: edu.end_date === "Present" ? true : false,
-            logo:edu.logo
+            logo: edu.logo,
           };
         });
         const s: SocialLinks = result.data.socialAccounts ?? initialSocailLinks;
@@ -254,9 +260,17 @@ export default function Page() {
         },
         body: JSON.stringify({
           type: params.type,
-          filename: returnFileName()+".jpg",
+          filename: returnFileName() + ".jpg",
         }),
       });
+      if (res.status == 401) {
+        toast.error("Token Expired. Login Again");
+        await signOut();
+        return null;
+      } else if (res.status == 500) {
+        toast.error("SomeThing went wrong. Please try again later");
+        return null;
+      }
       const { url, link } = (await res.json()).data;
       const r = await fetch(url, {
         method: "PUT",
@@ -309,8 +323,14 @@ export default function Page() {
               data: data as Projects,
             });
             link && (data = { ...data, thumbnail: link });
-            console.log(link,data)
-            setProjects((prev)=>prev.map((project)=>project.id === (data as Projects).id? {...project, thumbnail:(data as Projects).thumbnail}:project))
+            console.log(link, data);
+            setProjects((prev) =>
+              prev.map((project) =>
+                project.id === (data as Projects).id
+                  ? { ...project, thumbnail: (data as Projects).thumbnail }
+                  : project
+              )
+            );
           }
           body = data;
           endpoint = config.server_endpoints.UPDATE_REPO;
@@ -324,7 +344,13 @@ export default function Page() {
               data: data as Experience,
             });
             link && (data = { ...data, logo: link });
-            setExperience((prev)=>prev.map((exp)=>exp.id === (data as Experience).id ? {...exp,logo:(data as Experience).logo}:exp))
+            setExperience((prev) =>
+              prev.map((exp) =>
+                exp.id === (data as Experience).id
+                  ? { ...exp, logo: (data as Experience).logo }
+                  : exp
+              )
+            );
           }
           body = data;
           endpoint = config.server_endpoints.UPDATE_EXPERIENCE;
@@ -338,7 +364,13 @@ export default function Page() {
               data: data as Education,
             });
             link && (data = { ...data, logo: link });
-            setEducation((prev) => prev.map((edu) => edu.id === (data as Education).id ? {...edu, logo: (data as Education).logo} : edu))
+            setEducation((prev) =>
+              prev.map((edu) =>
+                edu.id === (data as Education).id
+                  ? { ...edu, logo: (data as Education).logo }
+                  : edu
+              )
+            );
           }
           body = data;
           endpoint = config.server_endpoints.UPDATE_EDUCATION;
@@ -354,9 +386,12 @@ export default function Page() {
           endpoint = config.server_endpoints.UPDATE_USER_DATA;
           break;
         case "Template":
-          body = {...data}
-          endpoint = config.server_endpoints.UPDATE_USER_DATA
-          setPersonalInformation({...personalInformation,template:body.template})
+          body = { ...data };
+          endpoint = config.server_endpoints.UPDATE_USER_DATA;
+          setPersonalInformation({
+            ...personalInformation,
+            template: body.template,
+          });
 
           break;
       }
@@ -367,7 +402,8 @@ export default function Page() {
         body: JSON.stringify(body),
       });
 
-      if (!res.ok) throw new Error(`Failed with status ${res.status}`);
+      if (res.status !== 200)
+        throw new Error(`Failed with status ${res.status}`);
 
       toast.success(`${type} saved successfully`, { id: showSavingToast });
     } catch (err) {
@@ -498,10 +534,8 @@ export default function Page() {
             setEduImg={setImages}
           />
         );
-        case "Templates":
-          return(
-            <Templates onSelect={onSave}/>
-          )
+      case "Templates":
+        return <Templates onSelect={onSave} />;
       case "Preview":
         return (
           <TemplateRender

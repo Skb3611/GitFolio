@@ -3,6 +3,7 @@ import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next"
+import { auth } from "@clerk/nextjs/server";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],

@@ -34,21 +34,34 @@ import {
   MoveUpRight,
   Sparkles,
 } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { toast } from "@workspace/ui/components/sonner";
 import { config } from "@/config";
 
-const NavUser = ({ template,username }: { template?: string ,username:string}) => {
+const NavUser = ({
+  template,
+  username,
+}: {
+  template?: string;
+  username: string;
+}) => {
+  const { userId, signOut, isLoaded } = useAuth();
+  useEffect(() => {
+    (async () => {
+      if (isLoaded && !userId) await signOut();
+    })();
+  }, [userId, isLoaded]);
   const isMobile = useIsMobile();
   const { user } = useUser();
-  const { signOut } = useAuth();
   const { open } = useSidebar();
   const handleCopy = () => {
     if (!template) toast.warning("No template Selected");
     else {
-      const url = new URL(`${config.renderer_endpoint}/${template}/${username}`);
+      const url = new URL(
+        `${config.renderer_endpoint}/${template}/${username}`
+      );
       navigator.clipboard.writeText(url.href);
       toast.success("Link Coppied");
     }
@@ -74,7 +87,10 @@ const NavUser = ({ template,username }: { template?: string ,username:string}) =
           tooltip={"Visit Portfolio"}
           onClick={() => {
             template
-              ? window.open(`${config.renderer_endpoint}/${template}/${username}`, "_blank")
+              ? window.open(
+                  `${config.renderer_endpoint}/${template}/${username}`,
+                  "_blank"
+                )
               : toast.warning("No Template Selected");
           }}
         >

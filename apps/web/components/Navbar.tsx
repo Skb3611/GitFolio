@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ChevronRight, Code, Github, Menu } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { usePathname, useRouter } from "next/navigation";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import UserButton from "./UserButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
@@ -16,82 +16,93 @@ import {
   SheetTrigger,
 } from "@workspace/ui/components/sheet";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import {motion, useMotionValueEvent, useScroll} from "motion/react"
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-export const scrollToSection = (id: string,router?:AppRouterInstance) => {
+export const scrollToSection = (id: string, router?: AppRouterInstance) => {
   const element = document.getElementById(id);
   if (element) {
     const yOffset = -120;
     const y =
       element.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
-    window.location.href = `/#${id}`
-  }else{
-    router?.push(`/#${id}`,{scroll:false})
+    window.location.href = `/#${id}`;
+  } else {
+    router?.push(`/#${id}`, { scroll: false });
   }
 };
 const Navbar = () => {
   const router = useRouter();
-  const pathname= usePathname()
-  const [hash, setHash] = useState("")
-  const ref =useRef<HTMLDivElement>(null)
-  const isMobile=useIsMobile()
-  const [visible, setVisible] = useState<boolean>(false)
-  const [open, setOpen] = useState<boolean>(false)
+  const pathname = usePathname();
+  const [hash, setHash] = useState("");
+  const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const [visible, setVisible] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const { userId, signOut, isLoaded } = useAuth();
+  useEffect(() => {
+    (async () => {
+      if (isLoaded && !userId) await signOut();
+    })();
+  }, [userId, isLoaded]);
+
   const navItems = [
-  <Button
-    key={"home"}
-    variant={"link"}
-    onClick={() => {scrollToSection("home",router)
-      isMobile?setOpen(false):null
-    }}
-    className="p-0 text-white text-lg md:text-sm text-center"
-  >
-    Home
-  </Button>,
-  <Button
-    key={"about"}
-    variant={"link"}
-    onClick={() => {scrollToSection("about",router)
-      isMobile?setOpen(false):null
-    }}
-    className="p-0 text-white text-lg md:text-sm text-center"
-  >
-    About
-  </Button>,
-  <Button
-    key={"templates"}
-    variant={"link"}
-    onClick={() => {router.push("/templates")
-      isMobile?setOpen(false):null
-    }}
-    className="p-0 text-white text-lg md:text-sm text-center"
-  >
-    Templates
-  </Button>,
-  <Button
-    key={"contact"}
-    variant={"link"}
-    onClick={() => {scrollToSection("contact",router)
-      isMobile?setOpen(false):null
-    }}
-    className="p-0 text-white text-lg md:text-sm text-center"
-  >
-    Contact
-  </Button>,
-  <SignedOut key={"cta"}>
+    <Button
+      key={"home"}
+      variant={"link"}
+      onClick={() => {
+        scrollToSection("home", router);
+        isMobile ? setOpen(false) : null;
+      }}
+      className="p-0 text-white text-lg md:text-sm text-center"
+    >
+      Home
+    </Button>,
+    <Button
+      key={"about"}
+      variant={"link"}
+      onClick={() => {
+        scrollToSection("about", router);
+        isMobile ? setOpen(false) : null;
+      }}
+      className="p-0 text-white text-lg md:text-sm text-center"
+    >
+      About
+    </Button>,
+    <Button
+      key={"templates"}
+      variant={"link"}
+      onClick={() => {
+        router.push("/templates");
+        isMobile ? setOpen(false) : null;
+      }}
+      className="p-0 text-white text-lg md:text-sm text-center"
+    >
+      Templates
+    </Button>,
+    <Button
+      key={"contact"}
+      variant={"link"}
+      onClick={() => {
+        scrollToSection("contact", router);
+        isMobile ? setOpen(false) : null;
+      }}
+      className="p-0 text-white text-lg md:text-sm text-center"
+    >
+      Contact
+    </Button>,
+    <SignedOut key={"cta"}>
       <Button key={"cta"} variant="outline" className=" text-lg md:text-sm ">
-    <Link href={"/sign-in"} className="flex items-center  ">
-        Get Started <ChevronRight />
-    </Link>
+        <Link href={"/sign-in"} className="flex items-center  ">
+          Get Started <ChevronRight />
+        </Link>
       </Button>
-  </SignedOut>,
-];
+    </SignedOut>,
+  ];
 
   useEffect(() => {
-    setHash(window.location.hash)
-  },[pathname])
+    setHash(window.location.hash);
+  }, [pathname]);
 
   useEffect(() => {
     if (hash) {
@@ -99,7 +110,7 @@ const Navbar = () => {
       scrollToSection(id);
     }
   }, [hash]);
-   const { scrollY } = useScroll({
+  const { scrollY } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
@@ -114,18 +125,22 @@ const Navbar = () => {
     <div>
       <header className=" bg-transparent fixed top-2 w-full z-50 ">
         <motion.div
-        initial={{
-          maxWidth:isMobile?"90vw":"64rem"
-        }}
-        animate={{
-          maxWidth:isMobile?"90%":visible?"56rem":"64rem"
-        }}
-        transition={{
-          duration:"0.5"
-        }}
-        ref={ref}        
-        className={`container overflow-hidden  bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-5xl  relative  ${visible && "backdrop-blur-lg border supports-[backdrop-filter]:bg-background/20" }`}>
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={()=>router.push("/")}>
+          initial={{
+            maxWidth: isMobile ? "90vw" : "64rem",
+          }}
+          animate={{
+            maxWidth: isMobile ? "90%" : visible ? "56rem" : "64rem",
+          }}
+          transition={{
+            duration: "0.5",
+          }}
+          ref={ref}
+          className={`container overflow-hidden  bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-5xl  relative  ${visible && "backdrop-blur-lg border supports-[backdrop-filter]:bg-background/20"}`}
+        >
+          <div
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => router.push("/")}
+          >
             <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
               <Code className="w-5 h-5 text-black" />
             </div>
@@ -143,9 +158,9 @@ const Navbar = () => {
             <SignedIn>
               <UserButton />
             </SignedIn>
-            <Sheet open={open} onOpenChange={setOpen} >
+            <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                  <Menu />
+                <Menu />
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
@@ -160,15 +175,12 @@ const Navbar = () => {
                     </div>
                   </SheetTitle>
                   <SheetDescription>
-                    <AnimatedShinyText>
-                      Navigation Menu
-                    </AnimatedShinyText>
+                    <AnimatedShinyText>Navigation Menu</AnimatedShinyText>
                   </SheetDescription>
                 </SheetHeader>
                 <div className="flex flex-col gap-1 justify-center items-center">
                   {navItems}
                 </div>
-
               </SheetContent>
             </Sheet>
           </div>

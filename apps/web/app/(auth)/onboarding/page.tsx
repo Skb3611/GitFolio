@@ -28,6 +28,7 @@ export default function OnboardingPage() {
   const [githubURL, setGithubURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [Error, setError] = useState(false);
+  const { signOut } = useAuth();
   useEffect(() => {
     if (user?.externalAccounts[0]?.provider == "github") {
       setGithubURL(`www.github.com/${user.username}`);
@@ -46,11 +47,6 @@ export default function OnboardingPage() {
       setIsLoading(true);
       setCurrentStep(2);
       const token = await getToken();
-      const body = {
-        githubURL: githubURL,
-        authType: user?.externalAccounts[0]?.provider.toUpperCase(),
-      };
-      console.log(body);
       const res = await fetch(config.server_endpoints.ONBOARDING_URL, {
         headers: {
           authorization: `Bearer ${token}`,
@@ -65,20 +61,23 @@ export default function OnboardingPage() {
               : "EMAIL",
         }),
       });
-      const result = await res.json();
-      console.log(result);
-      if (result.status) {
-        setCurrentStep(3);
-        setIsLoading(false);
-      } else {
+      if (res.status == 401) {
+        toast.error("Token Expired. Login again");
+        await signOut();
+      } else if (res.status == 500) {
         toast.error(
           "Something went wrong. Check your URL or time some time later"
         );
         setError(true);
+      } else {
+        const result = await res.json();
+        result.status ? setCurrentStep(3) : setError(true);
+        result.status ? setIsLoading(false) : null;
       }
     } catch (e) {
       console.log(e);
       setError(true);
+      toast.info("Something went wrong, Please try again latter !");
     }
   };
 
@@ -104,116 +103,7 @@ export default function OnboardingPage() {
       </div>
 
       <div className=" absolute z-50 w-full max-w-md px-2">
-        <div className="mb-8">
-          {/* <div className="relative">
-      
-            <div className="absolute top-13 left-6 right-6 flex items-center">
-              <div className="flex-1 h-1 bg-muted rounded-full relative">
-             
-                <div
-                  className={`
-                    absolute top-0 left-0 h-1 rounded-full transition-all duration-700 ease-in-out
-                    ${currentStep > 1 ? "bg-primary" : "bg-primary/30"}
-                  `}
-                  style={{ width: "50%" }}
-                ></div>
-
-       
-                <div
-                  className={`
-                    absolute top-0 right-0 h-1 rounded-full transition-all duration-700 ease-in-out
-                    ${currentStep > 2 ? "bg-primary" : "bg-primary/30"}
-                  `}
-                  style={{
-                    width: "50%",
-                    transitionDelay: currentStep > 2 ? "300ms" : "0ms",
-                  }}
-                ></div>
-
-           
-                {currentStep === 2 && (
-                  <div
-                    className="absolute top-0 w-3 h-1 bg-primary rounded-full animate-pulse"
-                    style={{
-                      left: "50%",
-                      transform: "translateX(-50%) translateY(-1px)",
-                    }}
-                  ></div>
-                )}
-                {currentStep === 3 && (
-                  <div
-                    className="absolute top-0 w-3 h-1 bg-primary rounded-full animate-pulse"
-                    style={{
-                      right: "0%",
-                      transform: "translateY(-1px)",
-                    }}
-                  ></div>
-                )}
-              </div>
-            </div>
-
- 
-            <div className="flex items-start justify-between relative z-50">
-              {steps.map((step, index) => (
-                <div key={step.number} className="flex flex-col items-center">
-      
-                  <div className="mb-2">
-                    <span
-                      className={`
-                      text-xs font-bold px-2 py-1 rounded-full transition-all duration-500
-                      ${
-                        step.completed
-                          ? "bg-muted text-green-600"
-                          : currentStep === step.number
-                            ? "bg-muted text-primary"
-                            : "bg-muted text-primary"
-                      }
-                    `}
-                    >
-                      STEP {step.number}
-                    </span>
-                  </div>
-
-               
-                  <div
-                    className={`
-                    flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all duration-500 transform bg-foreground
-
-                    ${
-                      step.completed
-                        ? "border-green-600 text-green-600 scale-110"
-                        : currentStep === step.number
-                          ? "border-primary text-primary scale-110 shadow-lg ring-1 ring-primary"
-                          : "border-muted text-muted"
-                    }
-                  `}
-                  >
-                    {step.completed ? (
-                      <Check className="w-6 h-6 text-green-600" />
-                    ) : (
-                      <span className="text-lg font-bold">{step.number}</span>
-                    )}
-                  </div>
-
-                 
-                  <div className="mt-2 text-center max-w-20">
-                    <div
-                      className={`text-xs font-medium transition-colors duration-500 ${
-                        step.completed
-                          ? "text-green-600"
-                          : currentStep === step.number
-                            ? "text-primary"
-                            : "text-white/50"
-                      }`}
-                    >
-                      {step.title}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-        </div>
+        <div className="mb-8"></div>
 
         {/* Step 1: GitHub URL Input */}
         {currentStep === 1 && (
