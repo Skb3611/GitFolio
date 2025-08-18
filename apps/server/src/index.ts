@@ -3,6 +3,7 @@ import cors from "cors";
 import v1Router from "./Routes/v1/index";
 import { User } from "@clerk/backend";
 import { config } from "./config";
+import healthRouter from "./Routes/health/index";
 declare global {
   namespace Express {
     interface Request {
@@ -15,11 +16,15 @@ declare global {
   }
 }
 
-
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000","http://localhost:4000", "https://gitfolio-dev.vercel.app","https://gitfolio-template.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:4000",
+      "https://gitfolio-dev.vercel.app",
+      "https://gitfolio-template.vercel.app",
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -32,6 +37,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use("/api/health", healthRouter);
 app.use("/api/v1", v1Router);
 
 app.listen(port, () => {

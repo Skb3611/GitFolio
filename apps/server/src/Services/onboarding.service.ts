@@ -12,7 +12,6 @@ dotenv.config();
 export const clerkClient = createClerkClient({
   secretKey: config.CLERK_SECRET_KEY,
 });
-console.log(config.GITHUB_ACCESS_TOKEN);
 
 export const onBoardingProcess = async (
   githubURL: string,
