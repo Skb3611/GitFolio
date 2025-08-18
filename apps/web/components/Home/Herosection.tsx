@@ -11,6 +11,7 @@ import SectionLabel from "@workspace/ui/components/SectionLabel";
 import { motion } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import AnimatedScrollSection from "./AnimatedScrollSection";
+import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 
 const HeroSection = () => {
   return (
@@ -31,19 +32,37 @@ const HeroSection = () => {
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        <SectionLabel title={"✨ Introducing Gitfolio"} />
-        <SplitTextAnimation highlightWord="Seconds"  className="md:text-7xl text-3xl font-semibold text-center mb-5 ">
-          Turn Your GitHub Into a Personal Portfolio in  Seconds
-        </SplitTextAnimation>
-          <AnimatedShinyText>
+        {/* <SectionLabel title={"✨ Introducing Gitfolio"} /> */}
+        <div className="h-max w-max relative mb-2">
+          <Link
+            className="h-max w-max rounded-xl"
+            href="https://peerlist.io/skb3611/project/gitfolio--from-github-to-greatness"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://peerlist.io/api/v1/projects/embed/PRJHGNQ8DKL9LLNOK2AGMLJLBDDPJJ?showUpvote=true&theme=dark"
+              alt="Gitfolio - From GitHub to Greatness."
+              className="w-full h-14"
+            />
+            <BorderBeam />
+          </Link>
+        </div>
         <SplitTextAnimation
-        delay={0.5}
-          className="md:text-xl text-sm text-center max-w-2xl"
+          highlightWord="Seconds"
+          className="md:text-7xl text-3xl font-semibold text-center mb-5 "
         >
+          Turn Your GitHub Into a Personal Portfolio in Seconds
+        </SplitTextAnimation>
+        <AnimatedShinyText>
+          <SplitTextAnimation
+            delay={0.5}
+            className="md:text-xl text-sm text-center max-w-2xl"
+          >
             Your GitHub already tells your story — now turn it into a personal
             site that speaks for itself.
-        </SplitTextAnimation>
-          </AnimatedShinyText>
+          </SplitTextAnimation>
+        </AnimatedShinyText>
         <div className="md:space-x-5 mt-10 flex flex-col md:flex-row gap-1.5 justify-center items-center z-20">
           <motion.div
             variants={buttonVariants.fromLeft}
@@ -51,14 +70,14 @@ const HeroSection = () => {
             animate="animate"
           >
             <Link href={"/dashboard"}>
-            <Button
-              className="bg-white hover:bg-white/70 cursor-pointer text-black  rounded-full py-7 p-4 px-8 text-base "
-              size={"lg"}
-            >
-              Get Started
-              <ChevronRight className="h-10 w-10" />
-            </Button>
-              </Link>
+              <Button
+                className="bg-white hover:bg-white/70 cursor-pointer text-black  rounded-full py-7 p-4 px-8 text-base "
+                size={"lg"}
+              >
+                Get Started
+                <ChevronRight className="h-10 w-10" />
+              </Button>
+            </Link>
           </motion.div>
           <motion.div
             variants={buttonVariants.fromRight}
@@ -66,14 +85,14 @@ const HeroSection = () => {
             animate="animate"
           >
             <Link href={"/templates"}>
-            <Button className="text-white cursor-pointer" variant={"link"}>
-              Browse Templates
-              <ChevronRight className="h-10 w-10" />
-            </Button>
+              <Button className="text-white cursor-pointer" variant={"link"}>
+                Browse Templates
+                <ChevronRight className="h-10 w-10" />
+              </Button>
             </Link>
           </motion.div>
         </div>
-       <AnimatedScrollSection/>
+        <AnimatedScrollSection />
       </main>
     </div>
   );
