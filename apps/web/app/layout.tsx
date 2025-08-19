@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     },
   },
 };
-
+import Maintainance from "@workspace/ui/components/ui/Maintenance"
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,7 +61,8 @@ export default function RootLayout({
       </head>
       <body className={`${dmSans.variable} font-sans antialiased `}>
         <Providers>
-          {children}
+          {/* {children} */}
+        <Maintainance/>
           <Analytics/>
         </Providers>
       </body>

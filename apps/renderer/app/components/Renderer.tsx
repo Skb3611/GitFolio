@@ -1,7 +1,7 @@
-"use client"
-import React from 'react'
+"use client";
+import React from "react";
 import { USERDATA_ENDPOINT } from "@/app/config";
-import {LoaderOne } from "@workspace/ui/components/ui/loader"
+import { LoaderOne } from "@workspace/ui/components/ui/loader";
 import { Data } from "@workspace/templates/metadata";
 import {
   DATA,
@@ -14,28 +14,43 @@ import {
 import { useEffect, useState } from "react";
 import { NotFound } from "@workspace/ui/components/ui/not-found";
 
-const Renderer = ({ template, username }: { template: string; username: string }) => {
-  const Template = Data.filter(temp=>temp.id==decodeURIComponent(template))
-  const Component = Template[0]?.component as React.ComponentType<{ data: DATA }>
-  const [loading, setLoading] = useState(true)
+const Renderer = ({
+  template,
+  username,
+}: {
+  template: string;
+  username: string;
+}) => {
+  const [status, Setstatus] = useState<boolean>();
+  const Template = Data.filter(
+    (temp) => temp.id == decodeURIComponent(template)
+  );
+  const Component = Template[0]?.component as React.ComponentType<{
+    data: DATA;
+  }>;
+  const [loading, setLoading] = useState(true);
   const [data, setdata] = useState<DATA>();
   useEffect(() => {
     (async () => {
       const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
       const result = await res.json();
-      // console.log(result);
+      if (result.status == false) {
+        Setstatus(false);
+        setLoading(false);
+        return;
+      }
       const p: PersonalInformation = {
         username: result.data.username,
         email: result.data.email,
         profileImg: result.data.profileImg ?? null,
-        bio: result.data.bio ,
-        location: result.data.location ,
-        website: result.data.website ,
+        bio: result.data.bio,
+        location: result.data.location,
+        website: result.data.website,
         full_name: result.data.firstname + " " + result.data.lastname,
         followers: result.data.followers ?? 0,
         following: result.data.following ?? 0,
         githubLink: result.data.githubLink,
-        tagline: result.data.tagline ,
+        tagline: result.data.tagline,
       };
       const r: Projects[] = result.data.repos.map((repo: any) => {
         return {
@@ -97,18 +112,23 @@ const Renderer = ({ template, username }: { template: string; username: string }
         projects: r,
       });
       setTimeout(() => {
-        setLoading(false)
+        setLoading(false);
       }, 500);
     })();
   }, []);
-if(loading) return (
-    <div className="min-h-screen w-full flex justify-center items-center">
+  if (loading)
+    return (
+      <div className="min-h-screen w-full flex justify-center items-center">
         <LoaderOne />
-    </div>
-)
-  return (
-      Component && data ? <Component data={data} /> : <NotFound />
-  );
-}
+      </div>
+    );
+  else if (!loading && !status) return <NotFound />;
+  else
+    return Component && data && status ? (
+      <Component data={data} />
+    ) : (
+      <NotFound />
+    );
+};
 
-export default Renderer
+export default Renderer;

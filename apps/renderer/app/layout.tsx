@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/ui/globals.css";
 import { Providers } from "./components/providers";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import Maintenance from "@workspace/ui/components/ui/Maintenance";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,16 +22,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script defer data-domain="gitfolio-template.vercel.app" src="https://plausible.io/js/script.js"></script>
+        <script
+          defer
+          data-domain="gitfolio-template.vercel.app"
+          src="https://plausible.io/js/script.js"
+        ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-<Providers>    
-        {children}
-        <Analytics/>
-</Providers>
-
+        <Providers>
+          {children}
+          {/* <Maintenance/> */}
+          <Analytics />
+        </Providers>
       </body>
     </html>
   );

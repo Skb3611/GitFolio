@@ -9,17 +9,18 @@ export default async function Page({
 }) {
   const { template, username } = await params;
   return <Renderer template={template} username={username} />;
-}
+} 
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ username: string; template: string }>;
-}): Promise<Metadata> {
+}): Promise<Metadata|null> {  
   const { username } = await params;
   try {
     const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
     const result = await res.json();
+    if(!result.status) return null
     const encodedName = encodeURIComponent(
       result.data.firstname || result.data.username || ""
     );
