@@ -13,9 +13,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         baseTheme: dark,
         layout: {
           animations: true,
-          privacyPageUrl: `https://gitfolio-dev.vercel.app/privacy-policy`,
+          privacyPageUrl: `https://gitfolio.in/privacy-policy`,
           shimmer: true,
-          termsPageUrl: "https://gitfolio-dev.vercel.app/terms-of-service",
+          termsPageUrl: "https://gitfolio.in/terms-of-service",
           socialButtonsPlacement: "bottom",
         },
       }}

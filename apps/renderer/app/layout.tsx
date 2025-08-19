@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <script
           defer
-          data-domain="gitfolio-template.vercel.app"
+          data-domain="portfolio.gitfolio.in"
           src="https://plausible.io/js/script.js"
         ></script>
       </head>

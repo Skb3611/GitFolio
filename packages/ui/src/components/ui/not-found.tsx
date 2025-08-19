@@ -19,7 +19,7 @@ export const NotFound = () => {
           But don't worry - your perfect portfolio is just a click away!
         </AnimatedShinyText>
         <a
-          href="https://gitfolio-dev.vercel.app/"
+          href="https://gitfolio.in/"
           className="w-full flex justify-center"
         >
           <Button

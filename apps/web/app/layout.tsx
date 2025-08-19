@@ -2,8 +2,7 @@ import { DM_Sans } from "next/font/google";
 import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 import { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next"
-import { auth } from "@clerk/nextjs/server";
+import { Analytics } from "@vercel/analytics/next";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -13,11 +12,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Gitfolio - From GitHub to Greatness.",
   description: "Turn Your GitHub Into a Personal Portfolio in Seconds.",
-  keywords:["GitHub", "Portfolio", "Resume"],
+  keywords: ["GitHub", "Portfolio", "Resume"],
   openGraph: {
     title: "GitFolio - From GitHub to Greatness.",
     description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
-    url: "https://gitfolio-dev.vercel.app",
+    url: "https://gitfolio.in",
     siteName: "GitFolio",
     images: [
       {
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
     images: ["/assets/banner-card.png"],
   },
-  metadataBase: new URL("https://gitfolio-dev.vercel.app"),
+  metadataBase: new URL("https://gitfolio.in"),
   robots: {
     index: true,
     follow: true,
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
     },
   },
 };
-import Maintainance from "@workspace/ui/components/ui/Maintenance"
+import Maintainance from "@workspace/ui/components/ui/Maintenance";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,13 +56,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-      <script defer data-domain="gitfolio-dev.vercel.app" src="https://plausible.io/js/script.js"></script>
+        <script
+          defer
+          data-domain="gitfolio.in"
+          src="https://plausible.io/js/script.js"
+        ></script>
       </head>
       <body className={`${dmSans.variable} font-sans antialiased `}>
         <Providers>
           {children}
-        {/* <Maintainance/> */}
-          <Analytics/>
+          {/* <Maintainance/> */}
+          <Analytics />
         </Providers>
       </body>
     </html>
