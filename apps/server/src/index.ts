@@ -19,12 +19,25 @@ declare global {
 const app = express();
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:4000",
-      "https://gitfolio-dev.vercel.app",
-      "https://gitfolio-template.vercel.app",
-    ],
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      const allowedOrigins = [
+        "http://localhost:3000",
+        "http://localhost:4000",
+        "https://gitfolio.in",
+      ];
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      if (/^https:\/\/([a-z0-9-]+)\.gitfolio\.in$/.test(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
