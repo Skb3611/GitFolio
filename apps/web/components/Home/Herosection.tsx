@@ -32,22 +32,7 @@ const HeroSection = () => {
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        {/* <SectionLabel title={"✨ Introducing Gitfolio"} /> */}
-        <div className="h-max w-max relative mb-2">
-          <Link
-            className="h-max w-max rounded-xl"
-            href="https://peerlist.io/skb3611/project/gitfolio--from-github-to-greatness"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="https://peerlist.io/api/v1/projects/embed/PRJHGNQ8DKL9LLNOK2AGMLJLBDDPJJ?showUpvote=true&theme=dark"
-              alt="Gitfolio - From GitHub to Greatness."
-              className="w-full h-14"
-            />
-            <BorderBeam />
-          </Link>
-        </div>
+        <SectionLabel title={"✨ Introducing Gitfolio"} />
         <SplitTextAnimation
           highlightWord="Seconds"
           className="md:text-7xl text-3xl font-semibold text-center mb-5 "

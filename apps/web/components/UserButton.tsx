@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useUser, useClerk, useAuth } from "@clerk/nextjs";
 import {
   DropdownMenu,
@@ -19,7 +19,14 @@ import { useRouter } from "next/navigation";
 
 const UserButton = () => {
   const { user } = useUser();
-  const { signOut } = useClerk();
+
+  const { userId, signOut, isLoaded } = useAuth();
+  useEffect(() => {
+    (async () => {
+      if (isLoaded && !userId) await signOut();
+    })();
+  }, [userId, isLoaded]);
+  console.log(user)
   const router = useRouter();
   return (
     <DropdownMenu>

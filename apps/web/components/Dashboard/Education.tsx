@@ -160,7 +160,7 @@ export default function EducationTab({
       </div>
 
       <div
-        className={`space-y-4 ${education.length <= 0 ? "h-[70vh] flex justify-center items-center" : "grid grid-cols-1 xl:grid-cols-2 gap-5"}`}
+        className={` ${education.length <= 0 ? "h-[70vh] flex justify-center items-center" : "grid grid-cols-1 xl:grid-cols-2 gap-5"}`}
       >
         {education.length > 0 ? (
           education.map((edu) => (

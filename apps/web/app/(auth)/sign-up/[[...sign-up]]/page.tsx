@@ -7,7 +7,7 @@ import BackHomeButton from "@/components/BackHomeButton";
 
 
 
-export default function SigninPage() {
+export default function SignUpPage() {
   return (
     <div className=" relative flex min-h-screen">
       <BackHomeButton/>
@@ -30,7 +30,7 @@ export default function SigninPage() {
       
       <div className="flex-1 flex items-center justify-center lg:p-8 bg-gradient-to-r from-background to-background/5">
       <div className="relative rounded-xl">
-        <SignIn />
+        <SignUp  />
         <BorderBeam size={100}/>
       </div>
     </div>

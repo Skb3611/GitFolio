@@ -46,6 +46,14 @@ export const onBoardingProcess = async (
 
       case "GOOGLE":
         if (!githubUsername) throw Error("No UserName");
+        const AccountExists = await prisma.user.findUnique({
+          where: { username: githubUsername.toLowerCase() },
+        });
+        if (AccountExists)
+          return {
+            message: "User already exists with the following link",
+            status: false,
+          };
         userDetails = await getUserDetails({ username: githubUsername });
         userRepos = await getUserRepos({ username: githubUsername });
         contributions = userDetails

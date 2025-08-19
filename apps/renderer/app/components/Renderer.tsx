@@ -21,7 +21,7 @@ const Renderer = ({
   template: string;
   username: string;
 }) => {
-  const [status, Setstatus] = useState<boolean>();
+
   const Template = Data.filter(
     (temp) => temp.id == decodeURIComponent(template)
   );
@@ -34,11 +34,6 @@ const Renderer = ({
     (async () => {
       const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
       const result = await res.json();
-      if (result.status == false) {
-        Setstatus(false);
-        setLoading(false);
-        return;
-      }
       const p: PersonalInformation = {
         username: result.data.username,
         email: result.data.email,
@@ -122,9 +117,8 @@ const Renderer = ({
         <LoaderOne />
       </div>
     );
-  else if (!loading && !status) return <NotFound />;
   else
-    return Component && data && status ? (
+    return Component && data  ? (
       <Component data={data} />
     ) : (
       <NotFound />

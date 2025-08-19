@@ -61,8 +61,8 @@ export default function RootLayout({
       </head>
       <body className={`${dmSans.variable} font-sans antialiased `}>
         <Providers>
-          {/* {children} */}
-        <Maintainance/>
+          {children}
+        {/* <Maintainance/> */}
           <Analytics/>
         </Providers>
       </body>

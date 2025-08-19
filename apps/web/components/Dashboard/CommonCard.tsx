@@ -96,7 +96,7 @@ export const CardWrapper = ({
 
         <div className="bg-muted/30 rounded-lg p-4 border-l-2 dark:border-primary">
           <p className="md:text-sm text-xs leading-relaxed">
-            {data.description}
+            {data.description || "No description."}
           </p>
         </div>
       </CardContent>

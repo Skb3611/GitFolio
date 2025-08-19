@@ -11,6 +11,9 @@
 *{
   scroll-behavior: smooth;
 }
+.cl-internal-6if1su{
+  @apply grid-cols-1
+}
 /* 
 .cl-card{
   @apply bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm;

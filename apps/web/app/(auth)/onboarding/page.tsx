@@ -61,18 +61,14 @@ export default function OnboardingPage() {
               : "EMAIL",
         }),
       });
-      if (res.status == 401) {
-        toast.error("Token Expired. Login again");
-        await signOut();
-      } else if (res.status == 500) {
-        toast.error(
-          "Something went wrong. Check your URL or time some time later"
-        );
-        setError(true);
-      } else {
-        const result = await res.json();
+      const result = await res.json();
+      if (result.status) {
         result.status ? setCurrentStep(3) : setError(true);
         result.status ? setIsLoading(false) : null;
+      } else {
+        toast.error(result.message);
+        setError(true);
+        return;
       }
     } catch (e) {
       console.log(e);
@@ -110,7 +106,7 @@ export default function OnboardingPage() {
           <Card className="shadow-lg z-50">
             <CardHeader className="text-center">
               <div className="mx-auto w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center mb-4">
-                <Image src={"/assets/logo.png"} height={50} width={50} alt="" />
+                <Image src={"/assets/logo.png"} height={50} width={50} alt="" className="rounded-lg" />
               </div>
               <CardTitle className="text-lg sm:text-2xl font-bold">
                 Connect to Your Github{" "}
@@ -145,7 +141,7 @@ export default function OnboardingPage() {
           <Card className="shadow-lg">
             <CardHeader className="text-center">
               <div className="mx-auto w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center mb-4">
-                <Image src={"/assets/logo.png"} height={50} width={50} alt="" />
+                <Image src={"/assets/logo.png"} height={50} width={50} alt="" className="rounded-lg" />
               </div>
               <CardTitle className="text-2xl font-bold">
                 Analyzing Repository
@@ -188,6 +184,17 @@ export default function OnboardingPage() {
                     )}
                   </div>
                 </div>
+                {Error && (
+                  <Button
+                    className="w-1/2"
+                    onClick={() => {
+                      setCurrentStep(1);
+                      setError(false);
+                    }}
+                  >
+                    Try again
+                  </Button>
+                )}
               </div>
             </CardContent>
           </Card>

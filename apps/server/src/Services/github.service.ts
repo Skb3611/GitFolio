@@ -208,7 +208,7 @@ export const getUserContributionsGraph = async (
   token: string,
   username: string,
   createdAt: string
-): Promise<any[]> => {
+): Promise<any[] | null> => {
   try {
     const firstContributionYear = getYear(parseISO(createdAt));
     const currentYear = getYear(new Date());
@@ -289,6 +289,6 @@ export const getUserContributionsGraph = async (
     return allContributions;
   } catch (error) {
     console.error("Failed to fetch all user contributions graph data:", error);
-    throw error; // Re-throw the error for the calling context to handle
+    return null; // Re-throw the error for the calling context to handle
   }
 };

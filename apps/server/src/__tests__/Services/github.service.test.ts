@@ -31,7 +31,7 @@ describe("Github Service Tests",()=>{
           let contributions = await getUserContributionsGraph(token,"Skb3611","2023-07-26T06:04:19Z")
           expect(contributions).toBeDefined()
           expect(contributions).not.toBeFalsy()
-          expect(contributions.length).toBeGreaterThan(0)
+          expect(contributions?.length).toBeGreaterThan(0)
         //   console.log(contributions)
         }
     })

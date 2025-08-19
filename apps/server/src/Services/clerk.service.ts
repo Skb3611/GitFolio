@@ -5,10 +5,18 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
   const { data, type } = event;
   switch (type) {
     case "user.created":
+      if (data.external_accounts.length == 0) {
+        let res = await clerkClient.users.updateUser(data.id, {
+          firstName: data.email_addresses[0].email_address?.split("@")[0],
+        });
+      }
       const user = await prisma.user.create({
         data: {
           id: data.id,
-          firstname: data.first_name || data.username || "",
+          firstname:
+            data.first_name ||
+            data.username ||
+            data.email_addresses[0].email_address?.split("@")[0],
           lastname: data.last_name || "",
           email: data.email_addresses[0].email_address,
           profileImg: data.profile_image_url,
@@ -20,9 +28,9 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
           username:
             data.external_accounts.length !== 0
               ? data.external_accounts[0].provider === "oauth_github"
-                ? data.username
-                : ""
-              : "",
+                ? data.username?.toLowerCase()
+                : null
+              : null,
         },
       });
 
