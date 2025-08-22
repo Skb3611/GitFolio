@@ -1,16 +1,11 @@
 import React from "react";
 import { Separator } from "@workspace/ui/components/separator";
-import { Particles } from "@workspace/ui/components/magicui/particles";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import BackHomeButton from "@/components/BackHomeButton";
 import { SplitTextAnimation } from "@/components/SplitTextAnimation";
 const Page = () => {
   return (
-    <div className="relative w-full min-h-screen p-0">
-      <BackHomeButton  />
-      {/* <Meteors /> */}
-      <Particles className="absolute h-full w-full" />
-
+    <div className="w-full min-h-screen p-0">
+      
       <div className=" p-8 py-10 rounded-xl max-w-5xl mx-auto z-10">
         <div className="my-10">
           <div className="mb-8">
@@ -27,7 +22,7 @@ const Page = () => {
                 whileInView
                 duration={0.8}
                 staggerDelay={0.01}
-              >{`Last updated: ${new Date().toLocaleDateString()}`}</SplitTextAnimation>
+              >{`Last updated: 22/8/2025`}</SplitTextAnimation>
             </AnimatedShinyText>
           </div>
 

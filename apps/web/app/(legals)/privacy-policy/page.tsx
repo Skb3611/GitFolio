@@ -1,19 +1,17 @@
 "use client"
 import React from "react";
 import { Separator } from "@workspace/ui/components/separator";
-import { Particles } from "@workspace/ui/components/magicui/particles";
-import BackHomeButton from "@/components/BackHomeButton";
+
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Button, buttonVariants } from "@workspace/ui/components/button";
+import { Button } from "@workspace/ui/components/button";
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
 import { SplitTextAnimation } from "@/components/SplitTextAnimation";
 import { motion } from "motion/react";
+import ContactIcons from "@/components/Legals/Contact"
 const page = () => {
   return (
-    <div className="relative min-h-screen w-full">
-      <Particles className="absolute h-full w-full" />
-      <BackHomeButton />
+    <div className="min-h-screen w-full">
       <div className="p-8 py-10 mx-auto max-w-5xl z-10">
         <div className="my-10">
           <div className="mb-8">
@@ -25,7 +23,7 @@ const page = () => {
               <SplitTextAnimation duration={0.8}
               staggerDelay={0.01}
                 whileInView
-              >{`Last updated: ${new Date().toLocaleDateString()}`}</SplitTextAnimation>
+              >{`Last updated: 22/8/2025`}</SplitTextAnimation>
             </AnimatedShinyText>
           </div>
 
@@ -513,44 +511,7 @@ const page = () => {
                   Policy, please contact us at.
                 </SplitTextAnimation>
               </AnimatedShinyText>
-              <div className="flex w-full gap-5 items-center justify-center my-5">
-                <motion.div
-                  variants={ButtonVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <Button
-                    className="h-18 w-18 rounded-full cursor-pointer p-0"
-                    variant={"outline"}
-                    size={"default"}
-                  >
-                    <div className="bg-white rounded-2xl">
-                      <Image
-                        src={"/icons/x.png"}
-                        height={50}
-                        width={50}
-                        alt="X"
-                        className=""
-                      />
-                    </div>
-                  </Button>
-                </motion.div>
-                <motion.div
-                  variants={ButtonVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <Button
-                    className="h-18 w-18 rounded-full cursor-pointer"
-                    variant={"outline"}
-                    size={"default"}
-                  >
-                    <Linkedin className="size-10 " />
-                  </Button>
-                </motion.div>
-              </div>
+              <ContactIcons/>
             </section>
           </div>
         </div>
@@ -561,15 +522,4 @@ const page = () => {
 
 export default page;
 
-const ButtonVariant = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: "blur(5px)",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-  },
-};
+

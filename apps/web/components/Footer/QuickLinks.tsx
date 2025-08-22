@@ -66,6 +66,14 @@ const QuickLinks = () => {
            {" "}
            Terms
          </Button>
+         <Button variant={"link"} size={"sm"} className="p-0 px-1 text- text-xs md:text-base " onClick={()=>router.push("/shipping-policy")}>
+           {" "}
+           Shipping 
+         </Button>
+         <Button variant={"link"} size={"sm"} className="p-0 px-1 text- text-xs md:text-base"onClick={()=>router.push("/refund-policy")} >
+           {" "}
+           Refund
+         </Button>
             <p className="text-xs md:text-base">
 
          @ {new Date().getFullYear()} All rights reserved.
