@@ -1,5 +1,12 @@
-import prisma, { Education, Experience, Prisma, Repo, User } from "@workspace/db";
+import prisma, {
+  Education,
+  Experience,
+  Prisma,
+  Repo,
+  User,
+} from "@workspace/db";
 import { deleteObject } from "./S3.service";
+import { clerkClient } from "./onboarding.service";
 
 export const getUserDataById = async (userId: string): Promise<any> => {
   return await prisma.user.findUnique({
@@ -25,20 +32,32 @@ export const getUserDataByUsername = async (username: string) => {
     },
   });
 };
-export const getImageData = async (username:string)=>{
-  const user= await prisma.user.findUnique({
-    where:{
+export const getImageData = async (username: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
       username,
     },
-  })
-return{profileImg:user?.profileImg,name:user?.firstname}
-}
+  });
+  return { profileImg: user?.profileImg, name: user?.firstname };
+};
 
 export const updateUserData = async (
   userId: string,
   data: any
 ): Promise<boolean> => {
   try {
+    if (data.activeTemplateId) {
+      let user = await clerkClient.users.getUser(userId);
+      if (!user.publicMetadata?.purchasedTemplates) {
+        return false;
+      } else if (
+        !(user.publicMetadata.purchasedTemplates as [string]).includes(
+          data.activeTemplateId
+        )
+      ) {
+        return false;
+      }
+    }
     let res = await prisma.user.update({
       where: {
         id: userId,
@@ -177,5 +196,13 @@ export const deleteEducation = async (
   } catch (e) {
     console.log(e);
     return false;
+  }
+};
+
+export const getTemplateDetails = async (templateName: string) => {
+  try {
+    return prisma.template.findFirst({ where: { title: templateName } });
+  } catch (e) {
+    console.log(e);
   }
 };

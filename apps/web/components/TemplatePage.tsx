@@ -23,11 +23,15 @@ import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shi
 import { getIconComponent, hasIcon } from "@workspace/ui/icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion } from "motion/react";
+import { useAuth, useUser } from "@clerk/nextjs";
+import { toast } from "@workspace/ui/components/sonner";
+import { useUserLocation } from "@/hooks/getUserLocation";
+import { checkOut, createOrder, verifyPayment } from "@/lib/payments";
+import Script from "next/script";
 const stack: string[] = ["react", "typescript", "tailwind", "motion", "next"];
 
 const BASE_URL =
   "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates";
-
 export default function TemplatePage({
   templateId,
   onSelect,
@@ -38,6 +42,10 @@ export default function TemplatePage({
   const isMobile = useIsMobile();
   const pathname = usePathname();
   const router = useRouter();
+  const { user } = useUser();
+  const { getToken, isSignedIn } = useAuth();
+  const [isPurchased, setIsPurchased] = useState<boolean>(false);
+  const { country } = useUserLocation();
   useEffect(() => {
     const template = TemplateMetaData.find(
       (template) => template.id === decodeURIComponent(templateId)
@@ -61,20 +69,55 @@ export default function TemplatePage({
         "/assets/banner.png",
       ];
       setImages(Array(10).fill(baseImages).flat());
+      if (user?.publicMetadata.purchasedTemplates) {
+        (user?.publicMetadata.purchasedTemplates as string[]).map(
+          (templateName: string) => {
+            templateName == templateId ? setIsPurchased(true) : null;
+          }
+        );
+      }
       setIsLoading(false);
     } else {
       setTemplate(undefined);
       setIsLoading(false);
     }
-  }, [templateId]);
+  }, [templateId, user]);
   const [template, setTemplate] = useState<TemplateData>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [images, setImages] = useState<string[]>([]);
   console.log(templateId);
+
+  const handleClick = async (id: string) => {
+    if (!isSignedIn) {
+      toast.info("Sign in to purchase template");
+      router.push("/sign-in");
+      return;
+    } else if (isSignedIn && !isPurchased && template?.category != "FREE") {
+      let token = await getToken();
+      if (!token) return;
+      const order = await createOrder(token, {
+        templateName: id,
+        currency: country == "IN" ? "INR" : "USD",
+      });
+      console.log(order);
+      if(order){
+        token = await getToken()
+        const response = await checkOut(order?.order_id,template?.title || id,template?.description || "" ,token!)
+      }
+    } else
+      pathname.includes("dashboard")
+        ? onSelect?.({
+            type: "Template",
+            data: { activeTemplateId: id },
+          })
+        : router.push("/dashboard");
+  };
+
   if (isLoading) return <TemplateLoading />;
   if (!template) return <NotFound />;
   return (
     <div className="mt-10 sm:mt-0 overflow-hidden">
+      <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
       <main
         className={`flex-1 ${!pathname.includes("dashboard") ? "py-12 md:py-24 lg:py-32" : "py-10"} z-20`}
       >
@@ -111,6 +154,9 @@ export default function TemplatePage({
                 <AnimatedShinyText className="text-sm max-w-xl text-center  lg:text-xl">
                   {template?.description}
                 </AnimatedShinyText>
+                {/* <span className="text-sm max-w-xl text-white text-center line-through  lg:text-2xl ">
+                  $ {template?.pricing.toString()}
+                </span> */}
                 <div className="space-x-2 ">
                   <Link
                     href={`${config.renderer_endpoint}/${template.id}`}
@@ -127,17 +173,24 @@ export default function TemplatePage({
                   <Button
                     size={isMobile ? "sm" : "lg"}
                     variant={"outline"}
-                    className="cursor-pointer"
-                    onClick={() => {
-                      pathname.includes("dashboard")
-                        ? onSelect?.({
-                            type: "Template",
-                            data: { template: template.id },
-                          })
-                        : router.push("/dashboard");
-                    }}
+                    className="cursor-pointer bg-white text-black hover:bg-white/80 hover:text-black"
+                    onClick={() => handleClick(template.id)}
                   >
-                    Use Template
+                    {" "}
+                    {isPurchased || template.category == "FREE" ? (
+                      "Use Template"
+                    ) : (
+                      <>
+                        {" "}
+                        Buy Template{" "}
+                        <span className="font-bold">
+                          {country !== "IN" ? "$ " : "₹ "}
+                          {country !== "IN"
+                            ? template.USDpricing
+                            : template.INRpricing}
+                        </span>
+                      </>
+                    )}
                   </Button>
                 </div>
                 <div className="w-1/2 flex justify-center  h-2 mt-2">
@@ -182,7 +235,9 @@ export default function TemplatePage({
                         ✨ Experience It in Motion
                       </h2>
                       <AnimatedShinyText className="text-xs lg:text-xl sm:text-sm max-w-full mx-0 text-center lg:text-left font-medium w-full block">
-                        See the template in action — smooth transitions, engaging animations, and the complete user journey brought to life
+                        See the template in action — smooth transitions,
+                        engaging animations, and the complete user journey
+                        brought to life
                       </AnimatedShinyText>
                     </div>
                   </motion.div>
@@ -220,7 +275,9 @@ export default function TemplatePage({
                         🥱 Stunning on Desktop
                       </h2>
                       <AnimatedShinyText className="text-xs lg:text-xl sm:text-sm max-w-full mx-0 text-center lg:text-justify tracking-tight font-medium block ">
-                       Explore the template in its full-sized glory, optimized for clarity, detail, and a professional desktop browsing experience.
+                        Explore the template in its full-sized glory, optimized
+                        for clarity, detail, and a professional desktop browsing
+                        experience.
                       </AnimatedShinyText>
                     </div>
                   </motion.div>
@@ -276,10 +333,12 @@ export default function TemplatePage({
                     <div className="lg:max-w-full xl:max-w-[80%] mx-auto lg:mx-0 ">
                       <h2 className="text-2xl text-center lg:text-left sm:text-3xl lg:text-4xl font-semibold w-full">
                         {" "}
-                       🫣 Pocket-Perfect Design
+                        🫣 Pocket-Perfect Design
                       </h2>
                       <AnimatedShinyText className="text-xs sm:text-sm lg:text-xl max-w-full mx-0 text-center lg:text-left font-medium w-full block">
-                        Preview how the template adapts seamlessly to mobile, ensuring effortless navigation and stunning visuals on the go.
+                        Preview how the template adapts seamlessly to mobile,
+                        ensuring effortless navigation and stunning visuals on
+                        the go.
                       </AnimatedShinyText>
                     </div>
                   </motion.div>

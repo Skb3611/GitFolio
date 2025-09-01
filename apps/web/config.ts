@@ -14,6 +14,8 @@ export const config = {
     DELETE_EXPERIENCE: `${SERVER_ENDPOOINT}/api/v1/dashboard/user/experience/delete`,
     GET_PRESIGNED_URL: `${SERVER_ENDPOOINT}/api/v1/s3/generatePreSignedURL`,
     ONBOARDING_URL: `${SERVER_ENDPOOINT}/api/v1/onboarding`,
+    RAZORPAY_ORDER:  `${SERVER_ENDPOOINT}/api/v1/razorpay/create-order`,
+    RAZORPAY_VERIFY:  `${SERVER_ENDPOOINT}/api/v1/razorpay/verify-payment`,
   },
   links: {
     LINKEDIN: "https://www.linkedin.com/in/shubham-bhilare-0a694a309/",

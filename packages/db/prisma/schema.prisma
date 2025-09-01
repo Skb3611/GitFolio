@@ -15,30 +15,39 @@ datasource db {
 }
 
 model User {
-  id               String       @id
-  accountType      SigninType
-  onBoardingStatus Boolean      @default(false)
-  username         String?      @unique 
-  firstname        String      
-  lastname         String       
-  email            String       @unique
-  template         String?
-  profileImg       String
-  bio              String?
-  tagline          String?
-  location         String?
-  website          String?
-  githubLink       String?
-  followers        Int          @default(0)
-  following        Int          @default(0)
-  contributions    Json[]
-  socialAccounts   Json?
-  repos            Repo[]
-  experiences      Experience[]
-  educations       Education[]
-  skills           String[]
-  updatedAt        DateTime     @updatedAt
-  createdAt        DateTime     @default(now())
+  id                 String          @id
+  authType           SigninType
+  accountType        AccountType     @default(BASIC)
+  onBoardingStatus   Boolean         @default(false)
+  username           String?         @unique
+  firstname          String
+  lastname           String
+  email              String          @unique
+  activeTemplateId   String?
+  profileImg         String
+  bio                String?
+  tagline            String?
+  location           String?
+  website            String?
+  githubLink         String?
+  followers          Int             @default(0)
+  following          Int             @default(0)
+  contributions      Json[]
+  socialAccounts     Json?
+  repos              Repo[]
+  experiences        Experience[]
+  educations         Education[]
+  skills             String[]
+  updatedAt          DateTime        @updatedAt
+  createdAt          DateTime        @default(now())
+  payments           Payments[]
+  subscriptions      Subscriptions[]
+  purchasedTemplates UserTemplate[]
+
+  @@index([email])
+  @@index([username])
+  @@index([accountType])
+  @@index([createdAt])
 }
 
 model Repo {
@@ -62,12 +71,15 @@ model Repo {
   updated_at  DateTime?
   created_at  DateTime?
   pushed_at   DateTime?
+  // @@index([isIncluded])
+
+  @@index([userId])
 }
 
 model Experience {
   id          String   @id @default(uuid())
-  company     String   
-  role        String   
+  company     String
+  role        String
   logo        String?
   description String?
   start_date  String
@@ -76,13 +88,15 @@ model Experience {
   user        User     @relation(fields: [userId], references: [id])
   updated_at  DateTime @updatedAt
   created_at  DateTime @default(now())
+
+  @@index([userId])
 }
 
 model Education {
   id          String   @id @default(uuid())
-  title       String   
+  title       String
   logo        String?
-  institution String   
+  institution String
   description String?
   start_date  String
   end_date    String?
@@ -90,10 +104,95 @@ model Education {
   user        User     @relation(fields: [userId], references: [id])
   updated_at  DateTime @updatedAt
   created_at  DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Template {
+  id          String         @id @default(uuid())
+  title       String         @unique
+  category    String
+  USDpricing  Float
+  INRpricing  Float
+  purchasedBy UserTemplate[]
+  payments    Payments[]
+  createdAt   DateTime       @default(now())
+
+  @@index([category])
+}
+
+model UserTemplate {
+  id           String   @id @default(uuid())
+  userId       String
+  templateId   String
+  purchaseDate DateTime @default(now())
+  isActive     Boolean  @default(true)
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  template Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, templateId]) // Prevent duplicate purchases
+  @@index([userId])
+  @@index([templateId])
+}
+
+model Payments {
+  id         String        @id @default(uuid())
+  userId     String
+  amount     Float
+  currency   String
+  status     PaymentStatus @default(PENDING)
+  orderId    String?
+  paymentId  String?
+  metadata   Json?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  templateId String?
+  template   Template?     @relation(fields: [templateId], references: [id])
+  user       User          @relation(fields: [userId], references: [id])
+
+  @@unique([userId, orderId])
+}
+
+model Subscriptions {
+  id                     String             @id @default(uuid())
+  plan                   String
+  razorpaySubscriptionId String?
+  userId                 String
+  currentPeriodStart     DateTime?
+  currentPeriodEnd       DateTime?
+  nextBillingDate        DateTime?
+  status                 SubscriptionStatus @default(CREATED)
+  paymentRef             String?
+  metadata               Json?
+  createdAt              DateTime           @default(now())
+  user                   User               @relation(fields: [userId], references: [id])
+  @@unique([userId,razorpaySubscriptionId])
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+  PENDING
+}
+
+enum SubscriptionStatus {
+  PENDING_VERIFICATION
+  CREATED
+  ACTIVE
+  PAST_DUE
+  EXPIRED
+  CANCELED
 }
 
 enum SigninType {
   GITHUB
   GOOGLE
   EMAIL
+}
+
+enum AccountType {
+  BASIC
+  PREMIUM
+  CUSTOM
 }

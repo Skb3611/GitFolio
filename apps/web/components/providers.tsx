@@ -5,10 +5,10 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "@workspace/ui/components/sonner";
-import { config } from "@/config";
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
+    
       appearance={{
         baseTheme: dark,
         layout: {

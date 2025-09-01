@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { webhookController } from "../../Controllers/webhook.controller";
+import { ClerkwebhookController,RazorpayWebhookController } from "../../Controllers/webhook.controller";
 
 const router: Router = Router();
 
-router.post("/",webhookController)
+router.post("/clerk",ClerkwebhookController)
+router.post("/razorpay",RazorpayWebhookController)
 
 export default router;

@@ -9,6 +9,7 @@ import {
   deleteExperience,
   getUserDataById,
 } from "../Services/dashboard.service";
+import prisma from "@workspace/db";
 
 export const getUserDataController = async (req: Request, res: Response) => {
   try {

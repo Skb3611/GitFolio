@@ -4,10 +4,10 @@ import Maintenance from "@workspace/ui/components/ui/Maintenance";
 export default function HomeLayout({children}:{children:React.ReactNode}){
 return(
     <>
-    <Maintenance/>
-    {/* <Navbar/> */}
-    {/* {children} */}
-    {/* <Footer/> */}
+    {/* <Maintenance/> */}
+    <Navbar/>
+    {children}
+    <Footer/>
     </>
 )
 }

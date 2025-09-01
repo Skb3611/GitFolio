@@ -26,7 +26,7 @@ const UserButton = () => {
       if (isLoaded && !userId) await signOut();
     })();
   }, [userId, isLoaded]);
-  console.log(user)
+  // console.log(user)
   const router = useRouter();
   return (
     <DropdownMenu>

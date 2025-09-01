@@ -10,7 +10,7 @@ export interface PersonalInformation {
   githubLink: string;
   followers: number;
   following: number;
-  template?: string;
+  activeTemplateId?: string;
 }
 export interface Projects {
   id: string;
@@ -64,7 +64,7 @@ export type SavePayload =
   | { type: "Social Links"; data: SocialLinks }
   | { type: "Skills"; data: string[] }
   | { type: "Education"; data: Partial<Education> }
-  | { type: "Template"; data: { template: string } };
+  | { type: "Template"; data: { activeTemplateId: string } };
 
 export enum DeleteType {
   PROJECT,
@@ -108,4 +108,7 @@ export interface TemplateData {
   desktopPreview?: string[];
   mobilePreview?: string[];
   mobileDevice?: "Iphone15Pro" | "Android";
+  category: "FREE" | "PRO";
+  INRpricing:number;
+  USDpricing:number;
 }

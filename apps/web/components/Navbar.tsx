@@ -74,6 +74,15 @@ const Navbar = () => {
     >
       Templates
     </Button>,
+    <Link href={"/pricing"} key={"pricing"}>
+      <Button
+        key={"contact"}
+        variant={"link"}
+        className="p-0 text-white text-lg md:text-sm text-center"
+      >
+        Pricing
+      </Button>
+    </Link>,
     <Button
       key={"contact"}
       variant={"link"}

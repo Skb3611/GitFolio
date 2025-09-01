@@ -5,13 +5,12 @@ import React from "react";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
-import { Safari } from "@workspace/ui/components/magicui/safari";
 import Link from "next/link";
 import SectionLabel from "@workspace/ui/components/SectionLabel";
 import { motion } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import AnimatedScrollSection from "./AnimatedScrollSection";
-import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
+
 
 const HeroSection = () => {
   return (

@@ -160,7 +160,7 @@ export default function Page() {
           following: result.data.following ?? 0,
           githubLink: result.data.githubLink,
           tagline: result.data.tagline,
-          template: result.data.template,
+          activeTemplateId: result.data.activeTemplateId,
         };
         const r: Projects[] = result.data.repos.map((repo: any) => {
           return {
@@ -390,7 +390,7 @@ export default function Page() {
           endpoint = config.server_endpoints.UPDATE_USER_DATA;
           setPersonalInformation({
             ...personalInformation,
-            template: body.template,
+            activeTemplateId: body.activeTemplateId,
           });
 
           break;
@@ -547,7 +547,7 @@ export default function Page() {
               skills,
               socialLinks,
             }}
-            template={personalInformation?.template}
+            template={personalInformation?.activeTemplateId}
           />
         );
     }
@@ -559,7 +559,7 @@ export default function Page() {
         sidebarItems={sidebarItems}
         setActiveTab={setActiveTab}
         activeTab={activeTab}
-        selectedTemplate={personalInformation?.template}
+        selectedTemplate={personalInformation?.activeTemplateId}
         username={personalInformation.username}
       />
       <SidebarInset>

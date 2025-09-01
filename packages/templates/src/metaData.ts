@@ -14,6 +14,9 @@ export const Data: TemplateData[] = [
       "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black & White/preview/vid.mp4",
     component: Black_White,
     mobileDevice: "Iphone15Pro",
+    category: "FREE",
+    INRpricing: 0,
+    USDpricing: 0,
   },
   {
     id: "DevPro",
@@ -26,5 +29,8 @@ export const Data: TemplateData[] = [
       "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/vid.mp4",
     component: DevPro,
     mobileDevice: "Android",
+    category: "PRO",
+    INRpricing: 699,
+    USDpricing: 7.99,
   },
 ];

@@ -5,7 +5,8 @@
   "main": "./src/index.ts ",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "upload": "node ./src/scripts/upload.mjs"
+    "upload": "node ./src/scripts/upload.mjs",
+    "uploadToDB":"node ./src/scripts/uploadDB.mjs"
   },
   "exports": {
     ".": "./src/index.ts",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^19",
     "@workspace/types": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "@workspace/db": "workspace:*",
     "@workspace/ui": "workspace:*",
     "dotenv": "^16.5.0",
     "motion": "^12.23.6",

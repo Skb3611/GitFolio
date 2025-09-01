@@ -6,19 +6,18 @@ import { motion } from "motion/react";
 import { Button } from "@workspace/ui/components/button";
 import { SavePayload, TemplateData } from "@workspace/types";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Eye } from "lucide-react";
+import { Crown, Eye, Gem, Gift } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import { config } from "@/config";
 import { usePathname, useRouter } from "next/navigation";
+import { Badge } from "@workspace/ui/components/badge";
 
 interface TemplateCardProps {
   template: TemplateData;
   idx: number;
   // onClick?: ({ type, data }: SavePayload) => void;
-  setTemplate?: React.Dispatch<React.SetStateAction<string|undefined>>;
-
-
+  setTemplate?: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
@@ -94,20 +93,27 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
           </AnimatedShinyText>
         </motion.span>
         <div className="space-x-2 mt-3">
-          
-            <Button variant={"outline"} className="cursor-pointer"
+          <Button
+            variant={"outline"}
+            className="cursor-pointer"
             onClick={() => {
               !pathname.includes("dashboard")
-              ? router.push(`/templates/${template.id}`)
-              : setTemplate?.(template.id)
+                ? router.push(`/templates/${template.id}`)
+                : setTemplate?.(template.id);
             }}
-            >
+          >
             Explore Template
-            </Button>
-    
+          </Button>
 
         </div>
       </motion.div>
+          <Badge
+            className={`absolute top-3 right-3 rounded-sm [&>svg]:size-5  text-yellow-500  border backdrop-blur-xl `}
+            variant={"outline"}
+          >
+            {template.category=="Free"?<Gift/>:<Gem />}
+            {template.category}
+          </Badge>
       {/* Thumbnail */}
       <Safari
         imageSrc={template.thumbnail}

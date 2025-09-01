@@ -1,4 +1,4 @@
-import prisma, { Prisma, SigninType } from "@workspace/db";
+import prisma, { AccountType, Prisma, SigninType } from "@workspace/db";
 import { clerkClient } from "./onboarding.service";
 
 export const processClerkWebhook = async (event: any): Promise<boolean> => {
@@ -20,7 +20,8 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
           lastname: data.last_name || "",
           email: data.email_addresses[0].email_address,
           profileImg: data.profile_image_url,
-          accountType: getProvider(
+          accountType: AccountType.BASIC,
+          authType: getProvider(
             data.external_accounts.length !== 0
               ? data.external_accounts[0]?.provider
               : "email"
@@ -37,6 +38,8 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
       await clerkClient.users.updateUserMetadata(user.id, {
         publicMetadata: {
           onBoarding: false,
+          accountType:"BASIC",
+          purchasedTemplates:[]
         },
       });
       return user ? true : false;
