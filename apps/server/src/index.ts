@@ -27,6 +27,8 @@ app.use(
         "http://localhost:4000",
         "https://gitfolio.in",
         "https://www.gitfolio.in",
+        "https://portfolio.gitfolio.in/*",
+        "https://gitfolio-template.vercel.app/*",
       ];
 
       if (allowedOrigins.includes(origin)) {
