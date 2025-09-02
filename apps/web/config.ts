@@ -1,6 +1,9 @@
 const SERVER_ENDPOOINT =
   process.env.NEXT_PUBLIC_SERVER_ENDPOINT ?? "http://localhost:8080";
 export const config = {
+  razorpay:{
+    key:process.env.NEXT_PUBLIC_RAZORPAY_KEY,
+  },
   renderer_endpoint: process.env.NEXT_PUBLIC_RENDERER_ENDPOINT,
   server_endpoints: {
     BASE_URL: SERVER_ENDPOOINT,

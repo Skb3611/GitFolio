@@ -26,6 +26,7 @@ app.use(
         "http://localhost:3000",
         "http://localhost:4000",
         "https://gitfolio.in",
+        "https://www.gitfolio.in",
       ];
 
       if (allowedOrigins.includes(origin)) {

@@ -28,7 +28,7 @@ export const checkOut = async (
 ) => {
   try {
     const options = {
-      key: "rzp_test_R8jPShueKFRyNr",
+      key: config.razorpay.key,
       name: "GitFolio",
       description: name + " - " + desc,
       order_id: order_id,
