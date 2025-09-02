@@ -194,5 +194,4 @@ enum SigninType {
 enum AccountType {
   BASIC
   PREMIUM
-  CUSTOM
 }

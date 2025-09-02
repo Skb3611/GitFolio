@@ -111,7 +111,7 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
             className={`absolute top-3 right-3 rounded-sm [&>svg]:size-5  text-yellow-500  border backdrop-blur-xl `}
             variant={"outline"}
           >
-            {template.category=="Free"?<Gift/>:<Gem />}
+            {template.category=="FREE"?<Gift/>:<Gem />}
             {template.category}
           </Badge>
       {/* Thumbnail */}

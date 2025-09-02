@@ -135,7 +135,7 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
     githubLink: '',
     followers: 0,
     following: 0,
-    template:""
+    activeTemplateId:""
   }
 
   export const MONTHS = [

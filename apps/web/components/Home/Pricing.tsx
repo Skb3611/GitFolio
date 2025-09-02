@@ -37,40 +37,41 @@ const plans = [
       "Good for trying GitFolio quickly",
     ],
   },
-  {
-    name: "Pro",
-    USDPrice:"$ 3.99",
-    INRPrice: "₹ 299",
-    billing: "per month",
-    recommended: true,
-    icon: Zap,
-    features: [
-      "Unlock all current templates",
-      "Access to all future templates while subscribed",
-      "Switch templates anytime (1 active portfolio)",
-      "Remove GitFolio branding",
-      //   "Unlimited project links and sections",
-      //   "Basic analytics (visits + link clicks)",
-      //   "Faster hosting with CDN priority",
-      "Early access to new templates",
-      "Best for active developers and job seekers",
-    ],
-  },
+  // {
+  //   name: "Pro",
+  //   USDPrice:"$ 3.99",
+  //   INRPrice: "₹ 299",
+  //   billing: "per month",
+  //   recommended: true,
+  //   icon: Zap,
+  //   features: [
+  //     "Unlock all current templates",
+  //     "Access to all future templates while subscribed",
+  //     "Switch templates anytime (1 active portfolio)",
+  //     "Remove GitFolio branding",
+  //     //   "Unlimited project links and sections",
+  //     //   "Basic analytics (visits + link clicks)",
+  //     //   "Faster hosting with CDN priority",
+  //     "Early access to new templates",
+  //     "Best for active developers and job seekers",
+  //   ],
+  // },
   {
     name: "One-Time",
     USDPrice: "$ 9.99 - 14.99",
-    INRPrice: "₹ 799 - 1299",
+    INRPrice: "₹ 799 - 1499",
     billing: "per template",
+
     recommended: false,
     icon: Star,
     features: [
       "Unlock 1 premium template forever",
-      "No subscription required",
+      // "No subscription required",
       "Remove GitFolio branding",
       "Hosted on username.gitfolio.in",
       //   "30-day template switching window before final lock",
       //   "Includes 1 future update for chosen template",
-      "Perfect for devs who want a permanent simple portfolio",
+      "Perfect for devs who want a permanent portfolio.",
     ],
   },
 ];
@@ -133,7 +134,7 @@ export default function MinimalistPricing() {
           }}
           transition={{ duration: 0.3, delay: 0.1 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         >
           {plans.map((plan) => {
             const IconComponent = plan.icon;
