@@ -16,7 +16,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@workspace/ui/components/dialog"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card";
 type PaymentStatus = "SUCCESS" | "FAILED" | "PENDING";
@@ -62,7 +61,13 @@ export default function PaymentHistoryTable() {
         toast.error("Error in fetching payments. Try again Later");
         return;
       }
-      setPayments(payments.data);
+      const filteredPayments = payments.data.map((ptm:Payment)=>{
+        if(Date.now() - new Date(ptm.createdAt).getTime() > 1000 * 60 * 5){
+          return {...ptm,status:"FAILED"}
+        }
+        return ptm
+      })
+      setPayments(filteredPayments);
       setIsLoading(false);
     })();
   }, []);
