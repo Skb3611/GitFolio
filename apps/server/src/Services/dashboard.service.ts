@@ -215,6 +215,9 @@ export const getUserPayments = async (userId: string) => {
       },
       include:{
         template:true
+      },
+      orderBy:{
+        createdAt:"desc"
       }
     });
   } catch (error) {
