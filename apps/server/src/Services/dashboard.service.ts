@@ -206,3 +206,18 @@ export const getTemplateDetails = async (templateName: string) => {
     console.log(e);
   }
 };
+
+export const getUserPayments = async (userId: string) => {
+  try {
+    return prisma.payments.findMany({
+      where: {
+        userId: userId,
+      },
+      include:{
+        template:true
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

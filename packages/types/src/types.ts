@@ -81,7 +81,8 @@ export type TabTypes =
   | "Skills"
   | "Education"
   | "Templates"
-  | "Preview";
+  | "Preview"
+  | "Payments";
 
 export interface DATA {
   personalInfo: PersonalInformation;

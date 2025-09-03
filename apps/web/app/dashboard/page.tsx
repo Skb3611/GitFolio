@@ -28,6 +28,7 @@ import {
   BookOpen,
   BriefcaseBusiness,
   ChartNoAxesCombined,
+  CircleDollarSign,
   CodeXml,
   Command,
   FolderGit2,
@@ -59,6 +60,7 @@ import OverviewTab from "@/components/Dashboard/Overview";
 import { toast } from "@workspace/ui/components/sonner";
 import TemplateRender from "@/components/Dashboard/Overview/TemplateRender";
 import Templates from "@/components/Dashboard/Templates";
+import PaymentHistoryTable from "@/components/Dashboard/PaymentHistory";
 
 const sidebarItems = {
   HeaderNavItems: [
@@ -114,6 +116,10 @@ const sidebarItems = {
     {
       label: "Preview",
       icon: Globe,
+    },
+    {
+      label: "Payments",
+      icon: CircleDollarSign,
     },
   ],
 };
@@ -550,6 +556,8 @@ export default function Page() {
             template={personalInformation?.activeTemplateId}
           />
         );
+        case "Payments":
+          return <PaymentHistoryTable/>
     }
   };
 
@@ -562,7 +570,7 @@ export default function Page() {
         selectedTemplate={personalInformation?.activeTemplateId}
         username={personalInformation.username}
       />
-      <SidebarInset>
+      <SidebarInset className="w-full overflow-hidden">
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 rounded-xl">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />

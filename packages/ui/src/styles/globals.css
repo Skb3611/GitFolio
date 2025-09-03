@@ -221,3 +221,16 @@
 ::-webkit-scrollbar-track {
   background-color: var(--accent);
 }
+.no-scrollbar::-webkit-scrollbar {
+  width: 1px;
+  height: 2px;
+}
+
+/* .no-scrollbar::-webkit-scrollbar-thumb {
+  background: revert;
+  border-radius: revert;
+} */
+
+/* .no-scrollbar::-webkit-scrollbar-track {
+  background: revert;
+} */

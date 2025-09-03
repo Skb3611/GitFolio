@@ -25,7 +25,9 @@ export const RazorpayWebhookController = async (
   try {
     const signature = req.headers["x-razorpay-signature"] as string;
     await RZPWebhook(req.body,signature)
+    res.json({ success: true, message: "Webhook processed successfully" }).status(200);
   } catch (e) {
     console.log(e);
+    res.json({ success: false, message: "Webhook processing failed" }).status(400);
   }
 };

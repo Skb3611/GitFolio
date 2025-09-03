@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createOrUpdateEducationController, createOrUpdateExperienceController, createOrUpdateRepoController, deleteEducationController, deleteExperienceController, deleteRepoController, getUserDataController,updateUserDataController } from "../../Controllers/dashboaard.controller";
+import { createOrUpdateEducationController, createOrUpdateExperienceController, createOrUpdateRepoController, deleteEducationController, deleteExperienceController, deleteRepoController, getUserDataController,getUserPaymentsController,updateUserDataController } from "../../Controllers/dashboaard.controller";
 // import { authMiddleware } from "../../middleware/authMiddleware";
 const router:Router = Router()
 
@@ -15,4 +15,5 @@ router.delete("/user/education/delete/:educationId",deleteEducationController)
 router.post("/user/experience/update",createOrUpdateExperienceController)
 router.delete("/user/experience/delete/:experienceId",deleteExperienceController)
 
+router.get("/user/payments",getUserPaymentsController)
 export default router;

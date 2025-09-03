@@ -8,6 +8,7 @@ import {
   createOrUpdateExperience,
   deleteExperience,
   getUserDataById,
+  getUserPayments,
 } from "../Services/dashboard.service";
 import prisma from "@workspace/db";
 
@@ -256,3 +257,30 @@ export const deleteExperienceController = async (
     });
   }
 };
+
+export const getUserPaymentsController =async(req:Request,res:Response) => {
+  try{
+    const userId = req.auth?.user.id;
+    if (!userId) {
+      res.status(400).json({ message: "userId is required", status: "error" });
+      return;
+    }
+    const payments = await getUserPayments(userId);
+    payments
+      ? res.status(200).json({
+          message: "Payments fetched successfully",
+          status: "success",
+          data: payments,
+        })
+      : res.status(400).json({
+          message: "Payments not fetched",
+          status: "error",
+        });
+  }catch(e){
+    console.log(e)
+    res.status(500).json({
+      message: "Something went wrong",
+      status: "error",
+    });
+  }
+}

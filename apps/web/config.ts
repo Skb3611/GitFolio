@@ -8,6 +8,7 @@ export const config = {
   server_endpoints: {
     BASE_URL: SERVER_ENDPOOINT,
     GET_USER_DATA: `${SERVER_ENDPOOINT}/api/v1/dashboard`,
+    GET_USER_PAYMENTS:`${SERVER_ENDPOOINT}/api/v1/dashboard/user/payments`,
     UPDATE_USER_DATA: `${SERVER_ENDPOOINT}/api/v1/dashboard/user/update`,
     UPDATE_REPO: `${SERVER_ENDPOOINT}/api/v1/dashboard/user/repo/update`,
     DELETE_REPO: `${SERVER_ENDPOOINT}/api/v1/dashboard/user/repo/delete`,
