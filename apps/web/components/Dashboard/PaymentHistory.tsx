@@ -62,7 +62,7 @@ export default function PaymentHistoryTable() {
         return;
       }
       const filteredPayments = payments.data.map((ptm:Payment)=>{
-        if(Date.now() - new Date(ptm.createdAt).getTime() > 1000 * 60 * 5){
+        if(ptm.status == "PENDING" && Date.now() - new Date(ptm.createdAt).getTime() > 1000 * 60 * 5){
           return {...ptm,status:"FAILED"}
         }
         return ptm
