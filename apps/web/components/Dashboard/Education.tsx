@@ -210,10 +210,7 @@ export default function EducationTab({
                   />
                   <AvatarFallback>
                     {editingEducation.institution.length < 0
-                      ? editingEducation.institution
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")
+                      ? editingEducation.institution[0]
                       : "N/A"}
                   </AvatarFallback>
                 </Avatar>
@@ -338,7 +335,7 @@ export default function EducationTab({
                   checked={editingEducation.onGoing}
                   onCheckedChange={handleOngoingChange}
                 />
-                <label htmlFor="ongoing">Currently working here</label>
+                <label htmlFor="ongoing">Currently studing here</label>
               </div>
 
               <div className="space-y-2">
