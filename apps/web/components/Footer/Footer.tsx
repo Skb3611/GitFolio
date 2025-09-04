@@ -62,10 +62,6 @@ const Footer = () => {
       <BentoGrid className="h-full lg:grid-cols-3 auto-rows-[17.5rem]">
         {features.map((feature, index) => (
           <BentoCard
-          initial={cardVariants[feature.direction as keyof typeof cardVariants].initial}
-          animate={cardVariants[feature.direction as keyof typeof cardVariants].animate}
-          transition={cardVariants[feature.direction as keyof typeof cardVariants].transition}
-
           key={index} {...feature} />
         ))}
       </BentoGrid>
@@ -75,56 +71,3 @@ const Footer = () => {
 
 export default Footer;
 
-const cardVariants = {
-  fromLeft:{
-    initial:{
-      x:-20,
-      opacity:0,
-      scale:0.9,
-    },
-    animate:{
-      x:0,
-      opacity:1,
-      scale:1,
-    },
-    transition:{
-      duration:0.3,
-      delay:0.2,
-      ease:"easeOut"
-    }
-  },
-  fromRight:{
-    initial:{
-      x:20,
-      opacity:0,
-      scale:0.9,
-    },
-    animate:{
-      x:0,
-      opacity:1,
-      scale:1,
-    },
-    transition:{
-      duration:0.3,
-      delay:0.2,
-      ease:"easeOut"
-    }
-  },
-  fromBottom:{
-    initial:{
-      y:20,
-      opacity:0,
-      scale:0.9,
-    },
-    animate:{
-      y:0,
-      opacity:1,
-      scale:1,
-    },
-    transition:{
-      duration:0.3,
-      delay:0.2,
-      ease:"easeOut"
-    }
-  }
-}

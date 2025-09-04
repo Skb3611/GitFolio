@@ -56,7 +56,7 @@ const DevicesSection = () => {
             x:-20,
             opacity:0,
             scale:0.9,
-            filter:"blur(10px)"
+            filter:"blur(8px)"
           }}
           whileInView={{
             x:0,
@@ -66,8 +66,7 @@ const DevicesSection = () => {
           }}
           viewport={{once:true}}
           transition={{
-            duration:0.4,
-            delay:0.2,
+            duration:0.3,
           }}
 
           >
@@ -82,7 +81,7 @@ const DevicesSection = () => {
             x:20,
             opacity:0,
             scale:0.9,
-            filter:"blur(10px)"
+            filter:"blur(8px)"
           }}
           whileInView={{
             x:0,
@@ -92,8 +91,7 @@ const DevicesSection = () => {
           }}
           viewport={{once:true}}
           transition={{
-            duration:0.4,
-            delay:0.2,
+            duration:0.3,
           }}
           >
             <Safari

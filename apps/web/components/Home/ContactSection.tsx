@@ -103,7 +103,7 @@ export default ContactSection;
 const cardVariants = {
   fromLeft:{
     initial:{
-      x:-100,
+      x:-20,
       opacity:0
     },
     animate:{
@@ -113,7 +113,7 @@ const cardVariants = {
   },
   fromRight:{
     initial:{
-      x:100,
+      x:20,
       opacity:0
     },
     animate:{

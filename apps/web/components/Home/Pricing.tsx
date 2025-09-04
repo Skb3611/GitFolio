@@ -125,7 +125,7 @@ export default function MinimalistPricing() {
           initial={{
             opacity: 0,
             y: 10,
-            filter: "blur(8px)",
+            filter: "blur(5px)",
           }}
           whileInView={{
             opacity: 1,
