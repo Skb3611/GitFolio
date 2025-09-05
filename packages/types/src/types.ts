@@ -112,4 +112,5 @@ export interface TemplateData {
   category: "FREE" | "PRO";
   INRpricing:number;
   USDpricing:number;
+  theme:"dark" | "light"|"both"
 }

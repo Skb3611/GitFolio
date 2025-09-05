@@ -76,7 +76,7 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
         animate={isActive ? "hover" : "initial"}
         // whileTap={isMobile?"hover":""}
         onClick={handleClick}
-        className="absolute top-0 left-0 w-full h-full bg-black/5  backdrop-blur-xs rounded-lg  z-20 flex flex-col items-center justify-center "
+        className="absolute top-0 left-0 w-full h-full bg-black/15  backdrop-blur-[7.1px] rounded-lg  z-20 flex flex-col items-center justify-center "
       >
         <motion.span
           variants={textVariants}

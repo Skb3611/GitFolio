@@ -22,7 +22,6 @@
     "@types/react-dom": "^19",
     "@workspace/types": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "@workspace/db": "workspace:*",
     "@workspace/ui": "workspace:*",
     "dotenv": "^16.5.0",
     "motion": "^12.23.6",

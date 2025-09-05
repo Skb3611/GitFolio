@@ -103,17 +103,6 @@ personalInfo: {
     }
   ] ,
 
-  socialLinks: {
-    github: "#",
-    linkedin: "#",
-    twitter: "#",
-    website: "#",
-    instagram: "#",
-    facebook: "#",
-    behance: "#",
-    youtube: "#"
-  },
-
   education: [
     {
       id: "edu-001",
@@ -155,4 +144,14 @@ personalInfo: {
     "Node.js",
     "Python",
   ],
+   socialLinks: {
+    github: "#",
+    linkedin: "#",
+    twitter: "#",
+    website: "#",
+    instagram: "#",
+    facebook: "#",
+    behance: "#",
+    youtube: "#"
+  },
 };

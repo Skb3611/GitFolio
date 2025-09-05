@@ -68,6 +68,11 @@ export const generateTemplateMeta = () => {
     thumbnail: "${thumbnailUrl}",
     video: "${videoUrl}",
     component: ${templateImportName},
+    mobileDevice: "",
+    category: "",
+    INRpricing: 0,
+    USDpricing: 0,
+    theme:"both"
   }`;
 
       updatedDataArray = updatedDataArray

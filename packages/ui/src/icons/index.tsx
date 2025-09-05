@@ -6,6 +6,7 @@ import {
   Link,
   MailIcon,
   Infinity,
+  Globe,
 } from "lucide-react";
 import React from "react";
 type IconProps = React.HTMLAttributes<SVGElement>;
@@ -192,6 +193,7 @@ export const Icons = {
     </svg>
   ),
   facebook: (props: IconProps) => <Facebook {...props} />,
+  website: (props: IconProps) => <Globe {...props} />,
   link: (props: IconProps) => <Link {...props} />,
   instagram: (props: IconProps) => <Instagram {...props} />,
   tailwind: (props: IconProps) => (

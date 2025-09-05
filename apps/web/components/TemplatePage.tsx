@@ -51,24 +51,33 @@ export default function TemplatePage({
       (template) => template.id === decodeURIComponent(templateId)
     );
     if (template) {
+      let desktopPreview: string[] = [];
+      let mobilePreview: string[] = [];
+      if (template.theme == "dark" || template.theme == "both") {
+        desktopPreview.push(
+          `${BASE_URL}/${templateId}/preview/desktop-dark.png`
+        );
+        mobilePreview.push(`${BASE_URL}/${templateId}/preview/mobile-dark.png`);
+      } else if (template.theme == "light" || template.theme == "both") {
+        desktopPreview.push(
+          `${BASE_URL}/${templateId}/preview/desktop-light.png`
+        );
+        mobilePreview.push(
+          `${BASE_URL}/${templateId}/preview/mobile-light.png`
+        );
+      }
+
       setTemplate({
         ...template,
-        desktopPreview: [
-          `${BASE_URL}/${templateId}/preview/desktop-dark.png`,
-          `${BASE_URL}/${templateId}/preview/desktop-light.png`,
-        ],
-
-        mobilePreview: [
-          `${BASE_URL}/${templateId}/preview/mobile-dark.png`,
-          `${BASE_URL}/${templateId}/preview/mobile-light.png`,
-        ],
+        desktopPreview,
+        mobilePreview,
       });
-      const baseImages = [
-        `${BASE_URL}/${templateId}/preview/desktop-dark.png`,
-        `${BASE_URL}/${templateId}/preview/desktop-light.png`,
-        "/assets/banner.png",
-      ];
-      setImages(Array(10).fill(baseImages).flat());
+      const baseImages = [...desktopPreview, "/assets/banner.png",];
+      setImages(
+        Array(template.theme == "both" ? 10 : 20)
+          .fill(baseImages)
+          .flat()
+      );
       if (user?.publicMetadata.purchasedTemplates) {
         (user?.publicMetadata.purchasedTemplates as string[]).map(
           (templateName: string) => {
@@ -100,9 +109,14 @@ export default function TemplatePage({
         currency: country == "IN" ? "INR" : "USD",
       });
       console.log(order);
-      if(order){
-        token = await getToken()
-        const response = await checkOut(order?.order_id,template?.title || id,template?.description || "" ,token!)
+      if (order) {
+        token = await getToken();
+        const response = await checkOut(
+          order?.order_id,
+          template?.title || id,
+          template?.description || "",
+          token!
+        );
       }
     } else
       pathname.includes("dashboard")
@@ -139,11 +153,11 @@ export default function TemplatePage({
               transition={{ duration: 0.3, delay: 0.2 }}
               className="min-h-full sm:min-h-[70dvh] relative  flex w-full max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl"
             >
-              <div className="absolute inset-0 z-10 h-full w-full bg-black/50 "></div>
+              <div className="absolute inset-0 z-10 h-full w-full bg-black/60 "></div>
 
               <ThreeDMarquee
                 key={`marquee-${templateId}-${images.length}`}
-                className="pointer-events-none absolute inset-0 h-full w-full  opacity-40 "
+                className="pointer-events-none absolute inset-0 h-full w-full  opacity-50 "
                 images={images}
               />
 
@@ -302,18 +316,16 @@ export default function TemplatePage({
                       ]}
                     >
                       <CarouselContent>
-                        <CarouselItem>
-                          <Safari
-                            className="h-full w-full"
-                            imageSrc={template.desktopPreview?.[0]}
-                          />
-                        </CarouselItem>
-                        <CarouselItem>
-                          <Safari
-                            className="h-full w-full"
-                            imageSrc={template.desktopPreview?.[1]}
-                          />
-                        </CarouselItem>
+                        {template?.desktopPreview?.map((img: string,idx:number) => {
+                          return (
+                            <CarouselItem key={idx}>
+                              <Safari
+                                className="h-full w-full"
+                                imageSrc={img}
+                              />
+                            </CarouselItem>
+                          );
+                        })}
                       </CarouselContent>
                     </Carousel>
                   </motion.div>
@@ -351,7 +363,7 @@ export default function TemplatePage({
                       duration: 0.3,
                       delay: 0.3,
                     }}
-                    className="h-full md:w-1/2 flex gap-2"
+                    className="h-full md:w-1/2 flex justify-center gap-2"
                   >
                     {template.mobileDevice === "Iphone15Pro" &&
                       template.mobilePreview?.map((img, idx) => {
