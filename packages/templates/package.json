@@ -21,6 +21,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@workspace/types": "workspace:*",
+    "@workspace/db": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/ui": "workspace:*",
     "dotenv": "^16.5.0",

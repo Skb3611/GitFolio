@@ -44,9 +44,9 @@ export const Data: TemplateData[] = [
     video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Persona/preview/vid.mp4",
     component: Persona,
     mobileDevice: "Iphone15Pro",
-    category: "FREE",
-    INRpricing: 0,
-    USDpricing: 0,
+    category: "PRO",
+    INRpricing: 699,
+    USDpricing: 7.99,
     theme:"dark"
   }
 ];
