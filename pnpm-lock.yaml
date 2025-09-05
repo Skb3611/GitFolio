@@ -307,9 +307,6 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.1.6(@types/react@19.1.8)
-      '@workspace/db':
-        specifier: workspace:*
-        version: link:../db
       '@workspace/types':
         specifier: workspace:*
         version: link:../types

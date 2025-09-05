@@ -1,0 +1,3 @@
+# Ignore all preview assets inside template folders
+/src/Templates/*/preview/
+/src/Templates/*/preview/*
