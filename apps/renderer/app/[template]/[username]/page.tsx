@@ -1,6 +1,7 @@
 import Renderer from "@/app/components/Renderer";
 import { Metadata } from "next";
 import { BASE_URL, SITE_URL, USERDATA_ENDPOINT } from "@/app/config";
+import NotFound from "@/app/not-found";
 
 export default async function Page({
   params,
@@ -8,7 +9,8 @@ export default async function Page({
   params: Promise<{ template: string; username: string }>;
 }) {
   const { template, username } = await params;
-  return <Renderer template={template} username={username} />;
+  // return <Renderer template={template} username={username} />;
+  return <NotFound />
 } 
 
 export async function generateMetadata({
