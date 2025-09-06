@@ -11,7 +11,7 @@ import {
   SocialLinks,
 } from "@workspace/types";
 import { LoaderOne } from "@workspace/ui/components/ui/loader";
-import NotFound from "@/app/not-found";
+import {NotFound} from "@workspace/ui/components/ui/not-found";
 export default  function Page({
     params,
 }: {
@@ -115,7 +115,7 @@ export default  function Page({
     );
     if (error)
     return (
-        <NotFound />
+        <NotFound title="User Not Found" />
     )
     else if (data && data.personalInfo?.activeTemplateId) {
         return <Renderer data={data} template={data.personalInfo.activeTemplateId} />;

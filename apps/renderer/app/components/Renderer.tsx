@@ -1,17 +1,9 @@
 "use client";
 import React from "react";
-import { USERDATA_ENDPOINT } from "@/app/config";
-import { LoaderOne } from "@workspace/ui/components/ui/loader";
 import { Data } from "@workspace/templates/metadata";
 import {
-  DATA,
-  Education,
-  Experience,
-  PersonalInformation,
-  Projects,
-  SocialLinks,
+  DATA
 } from "@workspace/types";
-import { useEffect, useState } from "react";
 import { NotFound } from "@workspace/ui/components/ui/not-found";
 
 const Renderer = ({
