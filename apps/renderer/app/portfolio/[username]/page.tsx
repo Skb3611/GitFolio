@@ -26,7 +26,7 @@ export default  function Page({
     (async () => {
       const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
       const result = await res.json();
-      if (result.status!==true){
+      if (result.status!==true || !result.data.activeTemplateId || result.data.activeTemplateId==""){
         seterror(true)
         return 
       }
@@ -104,6 +104,7 @@ export default  function Page({
         projects: r,
       });
     })();
+        // seterror(true)
     setLoading(false);
   }, []);
 
@@ -115,7 +116,7 @@ export default  function Page({
     );
     if (error)
     return (
-        <NotFound title="User Not Found" />
+        <NotFound title={!data?.personalInfo.activeTemplateId?"No Template Activated":"User Not Found"} />
     )
     else if (data && data.personalInfo?.activeTemplateId) {
         return <Renderer data={data} template={data.personalInfo.activeTemplateId} />;
