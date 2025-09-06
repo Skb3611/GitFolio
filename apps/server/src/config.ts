@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 dotenv.config()
 export const config={
   PORT:process.env.PORT,
+  NODE_ENV:process.env.NODE_ENV,
   DB_API_SECRET:process.env.DB_API_SECRET,
   CLERK_SECRET_KEY:process.env.CLERK_SECRET_KEY,
   CLERK_JWT_KEY:process.env.CLERK_JWT_KEY,

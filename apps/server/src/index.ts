@@ -15,6 +15,9 @@ declare global {
     }
   }
 }
+const allowedOriginsRegex = config.NODE_ENV === "dev"
+  ? /^http:\/\/([a-z0-9-]+)\.gitfolio\.test(:\d+)?$/
+  : /^https:\/\/([a-z0-9-]+)\.gitfolio\.in$/;
 
 const app = express();
 app.use(
@@ -35,11 +38,12 @@ app.use(
         return callback(null, true);
       }
 
-      if (/^https:\/\/([a-z0-9-]+)\.gitfolio\.in$/.test(origin)) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || allowedOriginsRegex.test(origin)) {
         return callback(null, true);
       }
 
-      return callback(new Error("Not allowed by CORS"));
+      return callback(new Error("Not allowed by CORS :" + origin ));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],

@@ -90,9 +90,9 @@ export const onBoardingProcess = async (
           data: {
             profileImg: userDetails.avatar_url,
             username:
-              userDetails.username ||
-              userDetails?.githubLink?.match(regex)?.[1] ||
-              githubUsername,
+              userDetails.username?.toLowerCase() ||
+              userDetails?.githubLink?.match(regex)?.[1]?.toLowerCase() ||
+              githubUsername?.toLowerCase(),
             bio: userDetails.bio,
             location: userDetails.location,
             website: userDetails.website,
