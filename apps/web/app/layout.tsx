@@ -3,7 +3,7 @@ import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -62,6 +62,7 @@ export default function RootLayout({
           {children}
           {/* <Maintainance/> */}
           <Analytics />
+          <SpeedInsights/>
         </Providers>
       </body>
     </html>

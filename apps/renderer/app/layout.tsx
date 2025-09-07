@@ -3,6 +3,7 @@ import "@workspace/ui/globals.css";
 import { Providers } from "./components/providers";
 import { Analytics } from "@vercel/analytics/next";
 import Maintenance from "@workspace/ui/components/ui/Maintenance";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
           {children}
           {/* <Maintenance/> */}
           <Analytics />
+          <SpeedInsights/>
         </Providers>
       </body>
     </html>
