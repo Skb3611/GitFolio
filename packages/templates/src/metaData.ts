@@ -32,8 +32,8 @@ export const Data: TemplateData[] = [
     component: DevPro,
     mobileDevice: "Android",
     category: "PRO",
-    INRpricing: 699,
-    USDpricing: 7.99,
+    INRpricing: 999,
+    USDpricing: 9.99,
     theme:"both"
   },
   {
