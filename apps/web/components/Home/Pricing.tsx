@@ -124,7 +124,7 @@ export default function MinimalistPricing() {
         <motion.div
           initial={{
             opacity: 0,
-            y: 10,
+            y: 30,
             filter: "blur(5px)",
           }}
           whileInView={{
@@ -132,7 +132,7 @@ export default function MinimalistPricing() {
             y: 0,
             filter: "blur(0px)",
           }}
-          transition={{ duration: 0.3, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           viewport={{ once: true }}
           className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         >

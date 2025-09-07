@@ -11,6 +11,7 @@ import { config } from "@/config";
 import {motion} from "motion/react"
 import { TypewriterEffectSmooth } from "@workspace/ui/components/magicui/typewriter-effect";
 import { SplitTextAnimation } from "../SplitTextAnimation";
+import { filter } from "motion/react-client";
 const ContactSection = () => {
   return (
     <div
@@ -41,7 +42,7 @@ const ContactSection = () => {
         initial="initial"
         viewport={{once:true}}
         transition={{
-          duration:0.3,
+          duration:0.5,
           delay:0.3
         }}
         >
@@ -70,7 +71,7 @@ const ContactSection = () => {
         initial="initial"
         viewport={{once:true}}
         transition={{
-          duration:0.3,
+          duration:0.5,
           delay:0.3
         }}
         >
@@ -103,21 +104,25 @@ export default ContactSection;
 const cardVariants = {
   fromLeft:{
     initial:{
-      x:-20,
+      x:-30,
+      filter:"blur(3px)",
       opacity:0
     },
     animate:{
       x:0,
+      filter:"blur(0px)",
       opacity:1
     },
   },
   fromRight:{
     initial:{
-      x:20,
+      x:30,
+      filter:"blur(3px)",
       opacity:0
     },
     animate:{
       x:0,
+      filter:"blur(0px)",
       opacity:1
     },
   }

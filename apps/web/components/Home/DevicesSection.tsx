@@ -53,10 +53,10 @@ const DevicesSection = () => {
           <motion.div
           className="col-span-1 flex justify-center"
           initial={{
-            x:-20,
+            x:-50,
             opacity:0,
             scale:0.9,
-            filter:"blur(8px)"
+            filter:"blur(5px)"
           }}
           whileInView={{
             x:0,
@@ -66,7 +66,8 @@ const DevicesSection = () => {
           }}
           viewport={{once:true}}
           transition={{
-            duration:0.3,
+            duration:0.4,
+            delay:0.3
           }}
 
           >
@@ -78,10 +79,10 @@ const DevicesSection = () => {
           <motion.div
           className="col-span-2 relative place-content-center"
            initial={{
-            x:20,
+            x:50,
             opacity:0,
             scale:0.9,
-            filter:"blur(8px)"
+            filter:"blur(5px)"
           }}
           whileInView={{
             x:0,
@@ -91,7 +92,8 @@ const DevicesSection = () => {
           }}
           viewport={{once:true}}
           transition={{
-            duration:0.3,
+            duration:0.4,
+            delay:0.3
           }}
           >
             <Safari
