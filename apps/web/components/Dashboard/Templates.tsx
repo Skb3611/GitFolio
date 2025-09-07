@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Data } from "@workspace/templates/metadata";
 import TemplateCard from "../TemplateCard";
 import { SavePayload } from "@workspace/types";
 import TemplatePage from "../TemplatePage";
-import BackHomeButton from "../BackHomeButton";
+import { Button } from "@workspace/ui/components/button";
+import { MoveLeft } from "lucide-react";
 
 const Templates = ({
   onSelect,
@@ -11,6 +12,12 @@ const Templates = ({
   onSelect: ({ type, data }: SavePayload) => void;
 }) => {
   const [Template, setTemplate] = useState<string>();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // optional: adds smooth scrolling
+    });
+  }, [Template]);
   return (
     <div className="h-full w-full">
       <div className="flex items-center justify-between">
@@ -20,6 +27,15 @@ const Templates = ({
             Browse and select a template that pleases you !
           </p>
         </div>
+        {Template && (
+          <Button
+            className="w-full sm:w-auto"
+            onClick={() => setTemplate(undefined)}
+          >
+            <MoveLeft className="mr-2 h-4 w-4" />
+            Back to Templates
+          </Button>
+        )}
       </div>
       {!Template ? (
         <div className="container mx-auto px-4 py-20">
@@ -38,7 +54,7 @@ const Templates = ({
         </div>
       ) : (
         <>
-      <TemplatePage templateId={Template} onSelect={onSelect} />
+          <TemplatePage templateId={Template} onSelect={onSelect} />
         </>
       )}
     </div>

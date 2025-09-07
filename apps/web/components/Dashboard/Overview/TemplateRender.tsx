@@ -1,8 +1,8 @@
 
 import { DATA } from '@workspace/types'
-const TemplateRender =({data,template}:{data:DATA,template?:string}) => {
+const TemplateRender =({username,template}:{username:string,template?:string}) => {
 return template ? (
-<iframe src={`${data.personalInfo.username}.gitfolio.in`} className='h-full w-full rounded-2xl'/>
+<iframe src={`https://${username}.gitfolio.in`} className='h-full w-full rounded-2xl'/>
   ):(
     <>No Template Selected</>
   )

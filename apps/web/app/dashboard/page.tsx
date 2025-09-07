@@ -61,6 +61,7 @@ import { toast } from "@workspace/ui/components/sonner";
 import TemplateRender from "@/components/Dashboard/Overview/TemplateRender";
 import Templates from "@/components/Dashboard/Templates";
 import PaymentHistoryTable from "@/components/Dashboard/PaymentHistory";
+import { data } from "motion/react-client";
 
 const sidebarItems = {
   HeaderNavItems: [
@@ -545,14 +546,7 @@ export default function Page() {
       case "Preview":
         return (
           <TemplateRender
-            data={{
-              personalInfo: personalInformation,
-              education,
-              projects,
-              experience,
-              skills,
-              socialLinks,
-            }}
+            username={personalInformation.username}
             template={personalInformation?.activeTemplateId}
           />
         );
