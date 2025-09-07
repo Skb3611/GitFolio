@@ -1,124 +1,112 @@
-"use client"
-import Renderer from "@/app/components/Renderer"
-import { USERDATA_ENDPOINT } from "@/app/config"
-import { use, useEffect, useState } from "react"
-import {
-  DATA,
-  Education,
-  Experience,
-  PersonalInformation,
-  Projects,
-  SocialLinks,
-} from "@workspace/types";
-import { LoaderOne } from "@workspace/ui/components/ui/loader";
-import {NotFound} from "@workspace/ui/components/ui/not-found";
-export default  function Page({
-    params,
+import Renderer from "@/app/components/Renderer";
+import { USERDATA_ENDPOINT, BASE_URL, SITE_URL } from "@/app/config";
+import { Metadata } from "next";
+export default async function Page({
+  params,
 }: {
-    params: Promise<{ username: string }>
+  params: Promise<{ username: string }>;
 }) {
-    
-    const { username } = use(params)
-    const [data, setdata] = useState<DATA>();
-    const [loading, setLoading] = useState(true);
-    const [error, seterror] = useState(false)
-    useEffect(() => {
-    (async () => {
-      const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
-      const result = await res.json();
-      if (result.status!==true || !result.data.activeTemplateId || result.data.activeTemplateId==""){
-        seterror(true)
-        return 
-      }
-      const p: PersonalInformation = {
-        activeTemplateId: result.data.activeTemplateId,
-        username: result.data.username,
-        email: result.data.email,
-        profileImg: result.data.profileImg ?? null,
-        bio: result.data.bio,
-        location: result.data.location,
-        website: result.data.website,
-        full_name: result.data.firstname + " " + result.data.lastname,
-        followers: result.data.followers ?? 0,
-        following: result.data.following ?? 0,
-        githubLink: result.data.githubLink,
-        tagline: result.data.tagline,
-      };
-      const r: Projects[] = result.data.repos.map((repo: any) => {
-        return {
-          id: repo.id,
-          name: repo.name,
-          description: repo.description ?? "",
-          thumbnail: repo.thumbnail,
-          repoLink: repo.repoLink,
-          liveLink: repo.liveLink,
-          languages: repo.languages,
-          stars: repo.stars,
-          forks: repo.forks,
-          isIncluded: repo.isIncluded ?? true,
-          topics: repo.topics ?? [],
-        };
-      });
-      const e: Experience[] = result.data.experiences.map((exp: any) => {
-        return {
-          id: exp.id,
-          company: exp.company,
-          description: exp.description,
-          role: exp.role,
-          start_date: exp.start_date,
-          end_date: exp.end_date,
-          onGoing: exp.end_date === "Present" ? true : false,
-          logo: exp.logo,
-        };
-      });
+  const { username } = await params;
+  return <Renderer username={username} />;
+}
 
-      const edu: Education[] = result.data.educations.map((edu: any) => {
-        return {
-          id: edu.id,
-          title: edu.title,
-          institution: edu.institution,
-          start_date: edu.start_date,
-          end_date: edu.end_date,
-          description: edu.description,
-          onGoing: edu.end_date === "Present" ? true : false,
-          logo: edu.logo,
-        };
-      });
-      const s: SocialLinks = result.data.socialAccounts ?? {
-        github: "",
-        linkedin: "",
-        twitter: "",
-        website: "",
-        instagram: "",
-        facebook: "",
-        behance: "",
-        youtube: "",
-      };
-      const sk: string[] = result.data.skills ?? [];
-      setdata({
-        personalInfo: p,
-        education: edu,
-        experience: e,
-        socialLinks: s,
-        skills: sk,
-        projects: r,
-      });
-    })();
-        // seterror(true)
-    setLoading(false);
-  }, []);
-
-  if (loading)
-    return (
-      <div className="min-h-screen w-full flex justify-center items-center">
-        <LoaderOne />
-      </div>
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string; template: string }>;
+}): Promise<Metadata | null> {
+  const { username } = await params;
+  try {
+    const res = await fetch(`${USERDATA_ENDPOINT}/${username}`);
+    const result = await res.json();
+    if (!result.status) return null;
+    const encodedName = encodeURIComponent(
+      result.data.firstname || result.data.username || ""
     );
-    if (error)
-    return (
-        <NotFound title={!data?.personalInfo.activeTemplateId?"No Template Activated":"User Not Found"} />
-    )
-    else if (data && data.personalInfo?.activeTemplateId) {
-        return <Renderer data={data} template={data.personalInfo.activeTemplateId} />;
-    }
+    const encodedImg = result.data.profileImg
+      ? encodeURIComponent(result.data.profileImg)
+      : "";
+    const ogImageUrl = `${BASE_URL}/api/og?name=${encodedName}${encodedImg ? `&img=${encodedImg}` : ""}`;
+    return {
+      title: `${result.data.firstname}'s Portfolio - GitFolio`,
+      description:
+        result.data.bio ||
+        result.data.tagline ||
+        `A portfolio of ${result.data.name}'s projects on GitHub`,
+      keywords: result.data.topics?.join(",") || "",
+      creator: "GitFolio",
+      icons: {
+        icon: result.data.profileImg || `${SITE_URL}/favicon.ico`,
+      },
+      openGraph: {
+        title: `${result.data.firstname}'s GitFolio`,
+        description:
+          result.data.bio ||
+          result.data.tagline ||
+          `See ${result.data.firstname}'s work on GitFolio`,
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: `${result.data.firstname}'s Portfolio`,
+            type: "image/png",
+          },
+        ], // ✅ og:image
+        locale: "en_US",
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${result.data.firstname}'s GitFolio`,
+        description:
+          result.data.bio ||
+          result.data.tagline ||
+          `See ${result.data.firstname}'s work on GitFolio`,
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: `${result.data.firstname}'s Portfolio`,
+          },
+        ], // ✅ og:image
+      },
+      other: {
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:type": "image/png",
+        "twitter:image:src": ogImageUrl,
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      },
+    };
+  } catch (e) {
+    console.error("Error generating metadata:", e);
+    return {
+      title: `${username}'s Portfolio - GitFolio`,
+      description: `A portfolio of ${username}'s projects on GitHub`,
+      openGraph: {
+        title: `${username}'s GitFolio`,
+        description: `See ${username}'s work on GitFolio`,
+        images: [
+          {
+            url: `${BASE_URL}/api/og?name=${encodeURIComponent(username)}`,
+            width: 1200,
+            height: 630,
+          },
+        ],
+        type: "website",
+      },
+    };
+  }
 }
