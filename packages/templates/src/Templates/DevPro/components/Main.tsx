@@ -60,13 +60,15 @@ const Home = ({ data }: { data: DATA }) => {
               delay={1}
             />
             <div className="my-5 flex flex-wrap gap-x-4 gap-y-2">
-              {data.skills.map((skill, idx) => {
-                return (
-                  <BlurFade inView delay={idx * 0.1} key={idx}>
-                    <Skill label={skill} animate={false} />
-                  </BlurFade>
-                );
-              })}
+              {data.skills &&
+                data.skills.length > 0 &&
+                data.skills.map((skill, idx) => {
+                  return (
+                    <BlurFade inView delay={idx * 0.1} key={idx}>
+                      <Skill label={skill} animate={false} />
+                    </BlurFade>
+                  );
+                })}
             </div>
           </div>
         </section>
