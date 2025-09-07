@@ -59,10 +59,10 @@ const NavUser = ({
   const handleCopy = () => {
     if (!template) toast.warning("No template Selected");
     else {
-      const url = new URL(
-        `${username}.gitfolio.in`
-      );
-      navigator.clipboard.writeText(url.href);
+      const url = 
+      `https://${username}.gitfolio.in`
+      console.log(url)
+      navigator.clipboard.writeText(url);
       toast.success("Link Coppied");
     }
   };
@@ -88,7 +88,7 @@ const NavUser = ({
           onClick={() => {
             template
               ? window.open(
-                  `${username}.gitfolio.in`,
+                  `https://${username}.gitfolio.in`,
                   "_blank"
                 )
               : toast.warning("No Template Selected");
