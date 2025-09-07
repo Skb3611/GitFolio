@@ -53,12 +53,24 @@ export default function TemplatePage({
     if (template) {
       let desktopPreview: string[] = [];
       let mobilePreview: string[] = [];
-      if (template.theme == "dark" || template.theme == "both") {
+      console.log(template.theme);
+      if (template.theme == "both") {
+        desktopPreview.push(
+          `${BASE_URL}/${templateId}/preview/desktop-dark.png`,
+          `${BASE_URL}/${templateId}/preview/desktop-light.png`
+        );
+        mobilePreview.push(
+          `${BASE_URL}/${templateId}/preview/mobile-dark.png`,
+          `${BASE_URL}/${templateId}/preview/mobile-light.png`
+        );
+      } else if (template.theme == "dark") {
+        console.log("in dark");
         desktopPreview.push(
           `${BASE_URL}/${templateId}/preview/desktop-dark.png`
         );
         mobilePreview.push(`${BASE_URL}/${templateId}/preview/mobile-dark.png`);
-      } else if (template.theme == "light" || template.theme == "both") {
+      } else if (template.theme == "light") {
+        console.log("in light");
         desktopPreview.push(
           `${BASE_URL}/${templateId}/preview/desktop-light.png`
         );
@@ -72,7 +84,8 @@ export default function TemplatePage({
         desktopPreview,
         mobilePreview,
       });
-      const baseImages = [...desktopPreview, "/assets/banner.png",];
+      const baseImages = [...desktopPreview, "/assets/banner.png"];
+      console.log(baseImages);
       setImages(
         Array(template.theme == "both" ? 10 : 20)
           .fill(baseImages)
@@ -94,8 +107,6 @@ export default function TemplatePage({
   const [template, setTemplate] = useState<TemplateData>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [images, setImages] = useState<string[]>([]);
-  console.log(templateId);
-
   const handleClick = async (id: string) => {
     if (!isSignedIn) {
       toast.info("Sign in to purchase template");
@@ -316,16 +327,18 @@ export default function TemplatePage({
                       ]}
                     >
                       <CarouselContent>
-                        {template?.desktopPreview?.map((img: string,idx:number) => {
-                          return (
-                            <CarouselItem key={idx}>
-                              <Safari
-                                className="h-full w-full"
-                                imageSrc={img}
-                              />
-                            </CarouselItem>
-                          );
-                        })}
+                        {template?.desktopPreview?.map(
+                          (img: string, idx: number) => {
+                            return (
+                              <CarouselItem key={idx}>
+                                <Safari
+                                  className="h-full w-full"
+                                  imageSrc={img}
+                                />
+                              </CarouselItem>
+                            );
+                          }
+                        )}
                       </CarouselContent>
                     </Carousel>
                   </motion.div>
