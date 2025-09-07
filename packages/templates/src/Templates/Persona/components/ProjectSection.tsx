@@ -15,7 +15,7 @@ const ProjectsSection = ({ data }: { data: Projects[] }) => {
       {
       data.length > 0 ?
       <div className="grid lg:grid-cols-2 gap-4 mt-8">
-        {data.map((project) => (
+        {data.filter((pro)=>pro.isIncluded).map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>:<h4 className="text-xl min-[430px]:text-2xl md:text-3xl font-bold dark:text-stone-200">Add Projects from your Dashboard</h4>
