@@ -12,12 +12,14 @@ const ProjectsSection = ({ data }: { data: Projects[] }) => {
           My Projects
         </h2>
       </div>
-
+      {
+      data.length > 0 ?
       <div className="grid lg:grid-cols-2 gap-4 mt-8">
         {data.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
-      </div>
+      </div>:<h4 className="text-xl min-[430px]:text-2xl md:text-3xl font-bold dark:text-stone-200">Add Projects from your Dashboard</h4>
+      }
     </div>
   );
 };
