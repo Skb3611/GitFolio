@@ -60,7 +60,7 @@ const NavUser = ({
     if (!template) toast.warning("No template Selected");
     else {
       const url = new URL(
-        `${config.renderer_endpoint}/${template}/${username}`
+        `${username}.gitfolio.in`
       );
       navigator.clipboard.writeText(url.href);
       toast.success("Link Coppied");
@@ -88,7 +88,7 @@ const NavUser = ({
           onClick={() => {
             template
               ? window.open(
-                  `${config.renderer_endpoint}/${template}/${username}`,
+                  `${username}.gitfolio.in`,
                   "_blank"
                 )
               : toast.warning("No Template Selected");
