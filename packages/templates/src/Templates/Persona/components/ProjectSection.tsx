@@ -3,6 +3,7 @@ import { MoveUpRight } from "@workspace/ui/icons";
 import { motion } from "motion/react";
 import { Projects } from "@workspace/types";
 import { Icons } from "@workspace/ui/icons";
+import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 
 const ProjectsSection = ({ data }: { data: Projects[] }) => {
   return (
@@ -12,14 +13,19 @@ const ProjectsSection = ({ data }: { data: Projects[] }) => {
           My Projects
         </h2>
       </div>
-      {
-      data.length > 0 ?
-      <div className="grid lg:grid-cols-2 gap-4 mt-8">
-        {data.filter((pro)=>pro.isIncluded).map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>:<h4 className="text-xl min-[430px]:text-2xl md:text-3xl font-bold dark:text-stone-200">Add Projects from your Dashboard</h4>
-      }
+      {data.length > 0 ? (
+        <div className="grid lg:grid-cols-2 gap-4 mt-8">
+          {data
+            .filter((pro) => pro.isIncluded)
+            .map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+        </div>
+      ) : (
+        <h4 className="text-xl min-[430px]:text-2xl md:text-3xl font-bold dark:text-stone-200">
+          Add Projects from your Dashboard
+        </h4>
+      )}
     </div>
   );
 };
@@ -44,11 +50,18 @@ const ProjectCard = ({ project }: { project: Projects }) => {
       />
       <div>
         <h3 className="text-2xl sm:text-3xl font-semibold">{project.name}</h3>
+        <AnimatedShinyText className="text-xs sm:text-sm font-medium">
+          {project.description}
+        </AnimatedShinyText>
         <div className="mt-4 flex flex-col sm:flex-row justify-between gap-5">
           <ProjectTechnologiesMini
-            techStack={Array.from(Object.entries(project.languages)).map(
-              ([key, value]) => key
-            )}
+            techStack={
+              Array.from(Object.entries(project.languages)).length > 0
+                ? Array.from(Object.entries(project.languages)).map(
+                    ([key, value]) => key
+                  )
+                : project.topics?.map((topic) => topic)
+            }
           />
           <div className="flex gap-2">
             {project.liveLink && (
