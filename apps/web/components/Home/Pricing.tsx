@@ -23,13 +23,13 @@ import { useUserLocation } from "@/hooks/getUserLocation";
 const plans = [
   {
     name: "Free",
+    heading: "Perfect for Getting Started",
     USDPrice: "Free",
     INRPrice: "Free",
-    billing: "forever",
     recommended: false,
     icon: Gift,
     features: [
-      "Access to 2 starter templates",
+      "Access to 1 starter templates",
       "Hosted on username.gitfolio.in",
       "GitFolio branding in footer",
       //   "Limit of 3 project links",
@@ -58,11 +58,12 @@ const plans = [
   // },
   {
     name: "One-Time",
+    heading: "Unlock 1 Premium Template Forever",
     USDPrice: "$ 9.99 - 14.99",
     INRPrice: "₹ 799 - 1499",
     billing: "per template",
 
-    recommended: false,
+    recommended: true,
     icon: Star,
     features: [
       "Unlock 1 premium template forever",
@@ -71,14 +72,13 @@ const plans = [
       "Hosted on username.gitfolio.in",
       //   "30-day template switching window before final lock",
       //   "Includes 1 future update for chosen template",
-      "Perfect for devs who want a permanent portfolio.",
+      "The last portfolio you'll ever need.",
     ],
   },
 ];
 
 export default function MinimalistPricing() {
-  const {country} = useUserLocation()
-
+  const { country } = useUserLocation();
   const router = useRouter();
   const handleClick = (planName: string) => {
     switch (planName) {
@@ -120,7 +120,6 @@ export default function MinimalistPricing() {
             </SplitTextAnimation>
           </AnimatedShinyText>
         </div>
-
         <motion.div
           initial={{
             opacity: 0,
@@ -150,19 +149,25 @@ export default function MinimalistPricing() {
                 )}
 
                 <CardHeader className="text-center pb-8">
-                  <div className="mx-auto mb-4 p-3 bg-card rounded-full w-fit">
-                    <IconComponent className="h-6 w-6 text-primary" />
-                  </div>
                   <CardTitle className="text-2xl font-bold text-card-foreground">
+                    <div className="mx-auto mb-4 p-3 bg-card rounded-full w-fit">
+                      <IconComponent className="h-6 w-6 text-primary" />
+                    </div>
                     {plan.name}
+                    <p className="text-sm text-muted-foreground">
+                      {plan.heading}
+                    </p>
                   </CardTitle>
-                  <div className="mt-4">
+                  <div className="mt-4 flex items-center justify-center">
                     <span className="text-3xl font-bold text-card-foreground">
-                       {country === "US" ? plan.USDPrice : plan.INRPrice}
+                      {country === "US" ? plan.USDPrice : plan.INRPrice}
                     </span>
-                    <CardDescription className="mt-1">
-                      /{plan.billing}
-                    </CardDescription>
+                    <span
+                      className={`text-muted-foreground ${plan.billing ? "ml-2" : ""}`}
+                    >
+                      {plan.billing ? "/ " + plan.billing : null}
+                    </span>
+                    <CardDescription className="mt-1"></CardDescription>
                   </div>
                 </CardHeader>
 

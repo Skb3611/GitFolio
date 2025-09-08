@@ -1,4 +1,5 @@
 "use client";
+import { DATA } from "@workspace/types";
 import { cn } from "@workspace/ui/lib/utils";
 import {
   AnimatePresence,
@@ -11,13 +12,16 @@ import { JSX, useState } from "react";
 export const Navbar = ({
   navItems,
   className,
+  data,
 }: {
   navItems: {
     name: string;
     link: string;
     icon?: JSX.Element;
+    id:string
   }[];
   className?: string;
+  data: DATA;
 }) => {
   const { scrollYProgress } = useScroll();
 
@@ -59,18 +63,32 @@ export const Navbar = ({
           className
         )}
       >
-        {navItems.map((navItem: any, idx: number) => (
-          <a
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative text-neutral-50 items-center flex space-x-1 hover:text-neutral-300"
-            )}
+        {navItems.map((navItem: any, idx: number) => {
+        if(navItem.id!="none" && (data[navItem.id as keyof typeof data] as []).length>0){
+          
+          return <a
+          key={`link=${idx}`}
+          href={navItem.link}
+          className={cn(
+            "relative text-neutral-50 items-center flex space-x-1 hover:text-neutral-300"
+          )}
           >
             <span className="block sm:hidden">{navItem.icon}</span>
             <span className="hidden sm:block font-medium">{navItem.name}</span>
           </a>
-        ))}
+          }else if(navItem.id=="none"){
+            return <a
+          key={`link=${idx}`}
+          href={navItem.link}
+          className={cn(
+            "relative text-neutral-50 items-center flex space-x-1 hover:text-neutral-300"
+          )}
+          >
+            <span className="block sm:hidden">{navItem.icon}</span>
+            <span className="hidden sm:block font-medium">{navItem.name}</span>
+          </a>
+          }
+})}
       </motion.div>
     </AnimatePresence>
   );
