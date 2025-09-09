@@ -12,7 +12,7 @@ const AnimatedScrollSection = () => {
 useMotionValueEvent(scrollYProgress,"change", (latest:number)=>{
 })
 const setScale=() => {
-  return isMobile ? [0.8,1]:[0.8,1.05]
+  return isMobile ? [0.8,1]:[0.7,1.035]
 }
 const setTranslateY=() => {
   return isMobile ? [0,100]:[0,200]
@@ -41,7 +41,7 @@ const translateY = useTransform(scrollYProgress,[0,0.7],setTranslateY())
       delay:0.1
     }}
     ref={ref} 
-    className='[perspective:300px] [transform-style:preserve-3d] md:-mt-10 mb-20 '>
+    className='[perspective:500px] [transform-style:preserve-3d] md:-mt-10 mb-20'>
      <motion.div
      
       style={{
@@ -53,9 +53,9 @@ const translateY = useTransform(scrollYProgress,[0,0.7],setTranslateY())
         className="mt-20 mb-10 relative md:rounded-xl   z-20"
         >
           <Safari
-          url="Black & White"
+          url="portfolio.gitfolio.in/Persona"
           mode="simple"
-          videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black%20%26%20White/preview/vid.mp4"
+          videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Persona/preview/vid.mp4"
           className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"
           // height={650}
           />

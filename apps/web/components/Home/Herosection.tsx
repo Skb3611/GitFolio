@@ -31,7 +31,9 @@ const HeroSection = () => {
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        <SectionLabel title={"✨ Introducing Gitfolio"} />
+        <Link href={"/templates/Persona"}>
+        <SectionLabel  badge="New" title={"Template Persona ✨"} />
+        </Link>
         <SplitTextAnimation
           highlightWord="Seconds"
           className="md:text-7xl text-3xl font-semibold text-center mb-5 "

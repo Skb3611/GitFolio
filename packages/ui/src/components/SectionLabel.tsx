@@ -2,9 +2,10 @@
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { cn } from "@workspace/ui/lib/utils";
+import { Badge } from "@workspace/ui/components/badge";
 import { motion } from "motion/react";
 
-const SectionLabel = ({ title }: { title: string }) => {
+const SectionLabel = ({ title, badge }: { title: string,badge?:string }) => {
   return (
     <motion.div
       initial={{
@@ -24,10 +25,13 @@ const SectionLabel = ({ title }: { title: string }) => {
       }}
       viewport={{once:true}}
       className={cn(
-        "relative w-max mx-auto group rounded-full border border-black/5 bg-neutral-100 text-base text-white hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800 mb-5"
+        "relative w-max mx-auto group rounded-full border border-black/5 bg-neutral-100 text-base text-white hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800 mb-5 flex items-center px-2"
       )}
     >
-      <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 text-xs lg:text-base">
+        {badge && <Badge className="h-full mr-2 my-1" >
+          {badge}
+        </Badge>}
+      <AnimatedShinyText className="inline-flex items-center justify-center py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 text-xs lg:text-base">
         <span>{title}</span>
       </AnimatedShinyText>
       <BorderBeam />
