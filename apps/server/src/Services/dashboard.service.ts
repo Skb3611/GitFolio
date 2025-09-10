@@ -47,24 +47,41 @@ export const updateUserData = async (
 ): Promise<boolean> => {
   try {
     if (data.activeTemplateId) {
-      let user = await clerkClient.users.getUser(userId);
-      if (!user.publicMetadata?.purchasedTemplates) {
-        return false;
-      } else if (
-        !(user.publicMetadata.purchasedTemplates as [string]).includes(
-          data.activeTemplateId
-        )
-      ) {
-        return false;
+      const template = await prisma.template.findUnique({
+        where: { title: data.activeTemplateId },
+      });
+      if (template && template.category == "FREE") {
+        let res = await prisma.user.update({
+          where: {
+            id: userId,
+          },
+          data: {
+            activeTemplateId: data.activeTemplateId,
+          },
+        });
+        return res ? true : false;
+      } else if (template && template.category == "PRO") {
+        let user = await clerkClient.users.getUser(userId);
+        if (!user) return false;
+        if (
+          (user.publicMetadata?.purchasedTemplates as string[])?.includes(
+            data.activeTemplateId
+          )
+        ) {
+          let res = await prisma.user.update({
+            where: {
+              id: userId,
+            },
+            data: {
+              activeTemplateId: data.activeTemplateId,
+            },
+          });
+          return res ? true : false;
+        } else return false;
       }
     }
-    let res = await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: data,
-    });
-    return res ? true : false;
+
+    return false;
   } catch (e) {
     console.log(e);
     return false;
@@ -213,12 +230,12 @@ export const getUserPayments = async (userId: string) => {
       where: {
         userId: userId,
       },
-      include:{
-        template:true
+      include: {
+        template: true,
       },
-      orderBy:{
-        createdAt:"desc"
-      }
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   } catch (error) {
     console.log(error);

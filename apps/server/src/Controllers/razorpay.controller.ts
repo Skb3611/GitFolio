@@ -18,7 +18,6 @@ export const createOrderColtroller = async (req: Request, res: Response) => {
       return;
     }
     const templateData = await getTemplateDetails(templateName);
-    console.log(templateData)
     if (!templateData) {
       res.status(404).json({ status: false, message: "No template found." });
       return;
@@ -36,7 +35,6 @@ export const createOrderColtroller = async (req: Request, res: Response) => {
       },
       userId
     );
-    console.log(order)
     order
       ? res.status(201).json({
           status: true,

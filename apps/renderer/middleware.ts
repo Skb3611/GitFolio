@@ -15,7 +15,6 @@ export function middleware(req: NextRequest) {``
     const hostHeader = req.headers.get("host") || "";
     const hostname = hostHeader.split(":")[0]; // strip port if present
     const pathname = req.nextUrl.pathname;
-    console.log('[mw] host:', hostname, 'pathname:', pathname);
 
   // 1) skip internal requests (assets, api, next internals)
   if (SKIP_PATH_PREFIXES.some((p) => pathname.startsWith(p))) {

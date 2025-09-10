@@ -2,7 +2,7 @@ import { DATA, PersonalInformation } from "@workspace/types";
 
 export const DummyData: DATA = {
 personalInfo: {
-    profileImg: "https://images.clerk.dev/oauth_github/img_30KSBf1pkI81b0wxHk6q2lQy8mn",
+    profileImg: "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18zMjhRWkFrSjlET0xseXhjVmNiY1EwVjV1OUgifQ?width=128",
     full_name: "Shubham Bhilare",
     username: "alexjohnson",
     email: "alex.johnson@example.com",
