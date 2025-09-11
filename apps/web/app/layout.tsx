@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "GitFolio",
     images: [
       {
-        url: "/assets/banner-card.png",
+        url: "/assets/og.png",
         width: 1200,
         height: 630,
         alt: "GitFolio Banner",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GitFolio - From GitHub to Greatness.",
     description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
-    images: ["/assets/banner-card.png"],
+    images: ["/assets/og.png"],
   },
   metadataBase: new URL("https://gitfolio.in"),
   robots: {
