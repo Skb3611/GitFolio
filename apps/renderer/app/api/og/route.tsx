@@ -1,12 +1,15 @@
 import { SITE_URL } from "@/app/config";
 import { ImageResponse } from "next/og";
-export const dynamic = "force-dynamic"; // Changed from "edge"
+
+export const dynamic = "force-dynamic";
 export const runtime = "edge";
+
 export async function GET(req: Request) {
   const size = {
     width: 1200,
     height: 630,
   };
+
   try {
     const { searchParams } = new URL(req.url);
     const name = searchParams.get("name");
@@ -26,17 +29,23 @@ export async function GET(req: Request) {
             position: "relative",
           }}
         >
+          {/* Background OG image */}
           <img
-            src={`${SITE_URL}/assets/banner-card.png`}
-            alt={""}
-            style={{ width: "100%", height: "100%" }}
+            src={`${SITE_URL}/assets/og.png`}
+            alt=""
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover", // ✅ ensures scaling looks crisp
+            }}
           />
+
+          {/* Overlay content */}
           <div
             style={{
               position: "absolute",
-              top: decodedimg && decodedimg.length > 0 ? "8%" : "85%",
+              top: decodedimg && decodedimg.length > 0 ? "15%" : "85%",
               right: decodedimg && decodedimg.length > 0 ? "50%" : "5%",
-
               transform:
                 decodedimg && decodedimg.length > 0
                   ? "translateX(50%)"
@@ -47,23 +56,25 @@ export async function GET(req: Request) {
               gap: "10px",
             }}
           >
-            {decodedimg !== null && decodedimg.length > 0 && (
+            {decodedimg && decodedimg.length > 0 && (
               <img
                 src={decodedimg}
-                alt=""
+                alt="avatar"
                 style={{
                   width: "80px",
                   height: "80px",
                   borderRadius: "100%",
+                  objectFit: "cover", // ✅ keep image sharp
                 }}
               />
             )}
-            {name !== null && name.length > 0 && (
+            {name && name.length > 0 && (
               <span
                 style={{
                   color: "white",
                   fontSize: "35px",
                   fontWeight: "bold",
+                  textShadow: "1px 1px 3px rgba(0,0,0,0.6)", // ✅ better text contrast
                 }}
               >
                 {name}'s Portfolio
@@ -75,13 +86,13 @@ export async function GET(req: Request) {
       {
         ...size,
         headers: {
-          "Content-Type": "image/png",
+          "Content-Type": "image/jpeg", // ✅ switch to JPEG for better quality
           "Cache-Control": "public, max-age=31536000, immutable",
         },
       }
     );
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return new ImageResponse(
       (
         <div
@@ -96,16 +107,20 @@ export async function GET(req: Request) {
           }}
         >
           <img
-            src={`${SITE_URL}/assets/banner-card.png`}
+            src={`${SITE_URL}/assets/og.png`}
             alt=""
-            style={{ width: "100%", height: "100%" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
           />
         </div>
       ),
       {
         ...size,
         headers: {
-          "Content-Type": "image/png",
+          "Content-Type": "image/jpeg",
           "Cache-Control": "public, max-age=31536000, immutable",
         },
       }
