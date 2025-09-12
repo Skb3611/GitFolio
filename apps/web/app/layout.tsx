@@ -11,11 +11,11 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Gitfolio - From GitHub to Greatness.",
-  description: "Turn Your GitHub Into a Personal Portfolio in Seconds.",
+  description: "Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.",
   keywords: ["GitHub", "Portfolio", "Resume"],
   openGraph: {
     title: "GitFolio - From GitHub to Greatness.",
-    description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
+    description: "Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.",
     url: "https://gitfolio.in",
     siteName: "GitFolio",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "GitFolio - From GitHub to Greatness.",
-    description: "Turn Your GitHub Into a Personal Portfolio in Seconds",
+    description: "Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.",
     images: ["/assets/og.png"],
   },
   metadataBase: new URL("https://gitfolio.in"),

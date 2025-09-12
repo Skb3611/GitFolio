@@ -11,7 +11,7 @@ const SKIP_PATH_PREFIXES = [
   "/_next/image",
 ];
 
-export function middleware(req: NextRequest) {``
+export function middleware(req: NextRequest) {
     const hostHeader = req.headers.get("host") || "";
     const hostname = hostHeader.split(":")[0]; // strip port if present
     const pathname = req.nextUrl.pathname;

@@ -1,4 +1,5 @@
 import { DATA, PersonalInformation } from "@workspace/types";
+import { config } from "../config";
 
 export const DummyData: DATA = {
 personalInfo: {
@@ -17,57 +18,95 @@ personalInfo: {
 
   projects: [
     {
-      id: "proj-001",
-      name: "E-Commerce Dashboard",
-      description: "A comprehensive admin dashboard for managing e-commerce operations with real-time analytics, inventory management, and customer insights.",
-      thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-      repoLink: "https://github.com/alexjohnson/ecommerce-dashboard",
-      topics: ["react", "typescript", "tailwindcss", "prisma", "nextjs"],
-      liveLink: "https://ecommerce-dashboard-demo.vercel.app",
-      languages: {
-        TypeScript: 65.2,
-        JavaScript: 20.1,
-        CSS: 8.7,
-        HTML: 6.0
-      },
-      stars: 234,
-      forks: 45,
-      isIncluded: true
+    id: "1",
+    name: "TaskFlow Pro",
+    description:
+      "A modern project management application with real-time collaboration, Kanban boards, and team analytics.",
+    thumbnail: `${config.rendererUrl}/imgs/modern-project-management-dashboard-with-kanban-bo.jpg`,
+    repoLink: "https://github.com/johndoe/taskflow-pro",
+    topics: ["React", "TypeScript", "Next.js", "Prisma", "PostgreSQL"],
+    liveLink: "https://taskflow-pro.vercel.app",
+    languages: {
+      TypeScript: 65,
+      CSS: 20,
+      JavaScript: 15,
     },
-    {
-      id: "proj-002",
-      name: "Task Management App",
-      description: "A collaborative task management application with real-time updates, team collaboration features, and advanced filtering options.",
-      thumbnail: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
-      repoLink: "https://github.com/alexjohnson/task-manager",
-      topics: ["vue", "nodejs", "mongodb", "socket.io", "express"],
-      liveLink: "https://taskmanager-pro.netlify.app",
-      languages: {
-        JavaScript: 70.5,
-        Vue: 25.3,
-        CSS: 4.2
-      },
-      stars: 156,
-      forks: 28,
-      isIncluded: true
+    stars: 1247,
+    forks: 89,
+    isIncluded: true,
+  },
+  {
+    id: "2",
+    name: "EcoTracker",
+    description:
+      "Sustainability tracking app that helps users monitor their carbon footprint and environmental impact.",
+    thumbnail: `${config.rendererUrl}/imgs/green-sustainability-app-with-charts-and-eco-frien.jpg`,
+    repoLink: "https://github.com/johndoe/ecotracker",
+    topics: ["React Native", "Node.js", "MongoDB", "Chart.js"],
+    liveLink: "https://ecotracker.app",
+    languages: {
+      JavaScript: 70,
+      TypeScript: 25,
+      CSS: 5,
     },
-    {
-      id: "proj-003",
-      name: "Weather Forecast Widget",
-      description: "A beautiful and responsive weather widget with location-based forecasts, interactive maps, and customizable themes.",
-      thumbnail: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=400&h=300&fit=crop",
-      repoLink: "https://github.com/alexjohnson/weather-widget",
-      topics: ["react", "api", "responsive", "pwa"],
-      liveLink: "https://weather-widget-alex.vercel.app",
-      languages: {
-        JavaScript: 80.2,
-        CSS: 15.8,
-        HTML: 4.0
-      },
-      stars: 89,
-      forks: 12,
-      isIncluded: false
-    }
+    stars: 892,
+    forks: 156,
+    isIncluded: true,
+  },
+  {
+    id: "3",
+    name: "CodeSnippet Manager",
+    description:
+      "Developer tool for organizing, searching, and sharing code snippets with syntax highlighting and tagging.",
+    thumbnail: `${config.rendererUrl}/imgs/code-editor-interface-with-syntax-highlighting-and.jpg`,
+    repoLink: "https://github.com/johndoe/codesnippet-manager",
+    topics: ["Vue.js", "Express.js", "SQLite", "Prism.js"],
+    liveLink: "https://codesnippets.dev",
+    languages: {
+      Vue: 55,
+      JavaScript: 30,
+      CSS: 15,
+    },
+    stars: 634,
+    forks: 78,
+    isIncluded: true,
+  },
+  {
+    id: "4",
+    name: "FitnessPal AI",
+    description:
+      "AI-powered fitness companion that creates personalized workout plans and tracks progress with computer vision.",
+    thumbnail: `${config.rendererUrl}/imgs/fitness-app-interface-with-ai-workout-recommendati.jpg`,
+    repoLink: "https://github.com/johndoe/fitnesspal-ai",
+    topics: ["Python", "TensorFlow", "React", "FastAPI", "OpenCV"],
+    liveLink: "https://fitnesspal-ai.com",
+    languages: {
+      Python: 45,
+      TypeScript: 35,
+      CSS: 20,
+    },
+    stars: 2156,
+    forks: 234,
+    isIncluded: true,
+  },
+  {
+    id: "5",
+    name: "CryptoPortfolio Tracker",
+    description:
+      "Real-time cryptocurrency portfolio tracker with advanced analytics, price alerts, and market insights.",
+    thumbnail: `${config.rendererUrl}/imgs/cryptocurrency-trading-dashboard-with-charts-and-p.jpg`,
+    repoLink: "https://github.com/johndoe/crypto-portfolio",
+    topics: ["React", "Redux", "Node.js", "WebSocket", "Chart.js"],
+    liveLink: "https://cryptoportfolio.live",
+    languages: {
+      JavaScript: 60,
+      TypeScript: 30,
+      CSS: 10,
+    },
+    stars: 1789,
+    forks: 312,
+    isIncluded: true,
+  },
   ],
 
   experience: [
@@ -77,8 +116,8 @@ personalInfo: {
       company: "TechFlow Solutions",
       role: "Senior Full Stack Developer",
       description: "Led development of microservices architecture serving 10M+ users. Mentored junior developers and collaborated with cross-functional teams to deliver high-quality software solutions.",
-      start_date: "2022-03-01",
-      end_date: "2024-12-31",
+      start_date: "Jan 20XX",
+      end_date: "Dec 20XX",
       onGoing: true
     },
     {
@@ -87,8 +126,8 @@ personalInfo: {
       company: "StartupXYZ",
       role: "Frontend Developer",
       description: "Built responsive web applications using React and TypeScript. Improved application performance by 40% through code optimization and implemented modern CI/CD pipelines.",
-      start_date: "2020-06-15",
-      end_date: "2022-02-28",
+      start_date: "Jan 20XX",
+      end_date: "Dec 20XX",
       onGoing: false
     },
     {
@@ -97,8 +136,8 @@ personalInfo: {
       company: "Digital Innovations Inc",
       role: "Junior Web Developer",
       description: "Developed and maintained client websites using HTML, CSS, and JavaScript. Collaborated with designers to implement pixel-perfect UI components and learned modern development practices.",
-      start_date: "2019-01-10",
-      end_date: "2020-05-30",
+      start_date: "Jan 20XX",
+      end_date: "Dec 20XX",
       onGoing: false
     }
   ] ,
@@ -110,8 +149,8 @@ personalInfo: {
       title: "Master of Science in Computer Science",
       institution: "Stanford University",
       description: "Specialized in Software Engineering and Human-Computer Interaction. Completed thesis on 'Optimizing User Experience in Progressive Web Applications'.",
-      start_date: "2017-09-01",
-      end_date: "2019-06-15",
+      start_date: "Jan 20XX",
+      end_date: "Dec 20XX",
       onGoing: false
     },
     {
@@ -120,8 +159,8 @@ personalInfo: {
       title: "Bachelor of Engineering in Information Technology",
       institution: "University of California, Berkeley",
       description: "Comprehensive study of software development, algorithms, and system design. Active member of the Computer Science Society and participated in multiple hackathons.",
-      start_date: "2013-08-20",
-      end_date: "2017-05-20",
+      start_date: "Jan 20XX",
+      end_date: "Dec 20XX",
       onGoing: false
     },
     {
@@ -130,8 +169,8 @@ personalInfo: {
       title: "Full Stack Web Development Bootcamp",
       institution: "General Assembly",
       description: "Intensive 12-week program covering modern web development technologies including React, Node.js, databases, and deployment strategies.",
-      start_date: "2023-01-15",
-      end_date: "2023-04-15",
+      start_date: "Jan 20XX",
+      end_date: "Dec 20XX",
       onGoing: false
     }
   ] ,

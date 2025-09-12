@@ -2,6 +2,7 @@ import { TemplateData } from "@workspace/types";
 import { Black_White } from "./Templates";
 import { DevPro } from "./Templates";
 import { Persona } from "./Templates";
+import { Clean_Slate } from "./Templates";
 
 export const Data: TemplateData[] = [
 {
@@ -32,8 +33,8 @@ export const Data: TemplateData[] = [
     component: DevPro,
     mobileDevice: "Android",
     category: "PRO",
-    INRpricing: 999,
-    USDpricing: 9.99,
+    INRpricing: 899,
+    USDpricing: 8.99,
     theme:"both"
   },
   {
@@ -44,9 +45,22 @@ export const Data: TemplateData[] = [
     video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Persona/preview/vid.mp4",
     component: Persona,
     mobileDevice: "Iphone15Pro",
+    category: "FREE",
+    INRpricing: 0,
+    USDpricing: 0,
+    theme:"dark"
+  },
+  {
+    id: "Clean Slate",
+    title: "Clean Slate",
+    description: "A modern monochrome portfolio template that highlights your skills and projects with bold typography and a minimalist aesthetic.",
+    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Clean%20Slate/preview/desktop-light.png",
+    video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Clean Slate/preview/vid.mp4",
+    component: Clean_Slate,
+    mobileDevice: "Iphone15Pro",
     category: "PRO",
     INRpricing: 699,
     USDpricing: 7.99,
-    theme:"dark"
+    theme:"both"
   }
 ];

@@ -1,15 +1,25 @@
 "use client";
 
-import {SunIcon,MoonIcon} from "@workspace/ui/icons"
-import { Button } from "@workspace/ui/components/button";
+import { SunIcon, MoonIcon } from "@workspace/ui/icons";
+import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { useTheme } from "next-themes";
-
-export function ModeToggle() {
+export function ModeToggle({
+  variant = "ghost",
+  
+}: {
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
+}) {
   const { theme, setTheme } = useTheme();
 
   return (
     <Button
-      variant="ghost"
+      variant={variant}
       type="button"
       size="icon"
       className="px-2"
