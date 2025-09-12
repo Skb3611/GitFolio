@@ -54,7 +54,7 @@ export const Data: TemplateData[] = [
     id: "Clean Slate",
     title: "Clean Slate",
     description: "A modern monochrome portfolio template that highlights your skills and projects with bold typography and a minimalist aesthetic.",
-    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Clean%20Slate/preview/desktop-light.png",
+    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Clean%20Slate/preview/desktop-dark.png",
     video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Clean Slate/preview/vid.mp4",
     component: Clean_Slate,
     mobileDevice: "Iphone15Pro",

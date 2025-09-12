@@ -11,7 +11,6 @@ import { motion } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import AnimatedScrollSection from "./AnimatedScrollSection";
 
-
 const HeroSection = () => {
   return (
     <div
@@ -31,8 +30,8 @@ const HeroSection = () => {
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        <Link href={"/templates/Persona"}>
-        <SectionLabel  badge="New" title={"Template Persona ✨"} />
+        <Link href={"/templates/Clean%20Slate"}>
+          <SectionLabel badge="New" title={"Template Clean Slate ✨"} />
         </Link>
         <SplitTextAnimation
           highlightWord="Seconds"
