@@ -1,32 +1,26 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import { Safari } from "@workspace/ui/components/magicui/safari";
+"use client"
+import { useEffect, useRef, useState } from "react";
 
-import { motion } from "motion/react";
-import { Button } from "@workspace/ui/components/button";
-import { SavePayload, TemplateData } from "@workspace/types";
-import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Crown, Eye, Gem, Gift, MoveRight } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import Link from "next/link";
-import { config } from "@/config";
-import { usePathname, useRouter } from "next/navigation";
+import { TemplateData } from "@workspace/types";
 import { Badge } from "@workspace/ui/components/badge";
-
-interface TemplateCardProps {
-  template: TemplateData;
-  idx: number;
-  // onClick?: ({ type, data }: SavePayload) => void;
-  setTemplate?: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
-
-const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const cardRef = useRef<HTMLDivElement>(null);
+import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
+import { Safari } from "@workspace/ui/components/magicui/safari";
+import {  Gem, Gift, MoveRight } from "@workspace/ui/icons";
+import { motion } from "motion/react";
+import { BASE_URL } from "../config";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
+import Link from "next/link";
+export const Card = ({ template, idx }: { template: TemplateData; idx: number }) => {
   const isMobile = useIsMobile();
+  const cardRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
   const handleClick = (e: React.MouseEvent) => {
+    console.log(e);
+    // Don't toggle if clicking on buttons or their children
+    // if ((e.target as HTMLElement).closest("button")) {
+    //   return;
+    // }
+    console.log(isMobile);
     isMobile ? setIsActive(!isActive) : null;
   };
   useEffect(() => {
@@ -44,23 +38,13 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isActive]);
-
   return (
     <motion.div
       ref={cardRef}
       className="w-full h-full relative group overflow-hidden flex flex-col-reverse"
-      variants={CardVariants}
-      initial={
-        idx % 2 === 0
-          ? CardVariants.fromLeft.hidden
-          : CardVariants.fromRight.hidden
-      }
-      whileInView={
-        idx % 2 === 0
-          ? CardVariants.fromLeft.visible
-          : CardVariants.fromRight.visible
-      }
-      transition={{ duration: 0.5, delay: idx * 0.1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: idx * 0.15 }}
       viewport={{ once: true }}
       // whileHover="hover"
     >
@@ -81,16 +65,11 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
             <AnimatedShinyText className="text-xs uppercase text-primary-foreground font-medium ">
               {template.description}
             </AnimatedShinyText>
-            <p
-              onClick={() => {
-                !pathname.includes("dashboard")
-                  ? router.push(`/templates/${template.id}`)
-                  : setTemplate?.(template.id);
-              }}
-              className="flex items-center place-content-end gap-2 cursor-pointer text-right min-w-full text-sm"
-            >
-              Explore more <MoveRight />
-            </p>
+            <Link href={`/${template.title}`}>
+              <p className="flex items-center place-content-end gap-2 cursor-pointer text-right min-w-full text-sm">
+                Visit <MoveRight />
+              </p>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -104,7 +83,7 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
       {/* Thumbnail */}
       <Safari
         imageSrc={template.thumbnail}
-        url={`${config.renderer_endpoint}/${template.id}`}
+        url={`${BASE_URL}/${template.id}`}
         mode="simple"
         // videoSrc={template.video}
         className="w-full h-full"
@@ -113,34 +92,6 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
   );
 };
 
-export default TemplateCard;
-
-const CardVariants = {
-  fromLeft: {
-    hidden: {
-      opacity: 0,
-      x: -20,
-      filter: "blur(8px)",
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      filter: "blur(0px)",
-    },
-  },
-  fromRight: {
-    hidden: {
-      opacity: 0,
-      x: 20,
-      filter: "blur(8px)",
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      filter: "blur(0px)",
-    },
-  },
-};
 const overlayVariants = {
   initial: { opacity: 0 },
   hover: { opacity: 1, transition: { duration: 0.2 } },
