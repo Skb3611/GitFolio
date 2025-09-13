@@ -98,7 +98,7 @@ export default function MinimalistPricing() {
 
   return (
     <div className="min-h-screen bg-background relative ">
-      <BackgroundBeams className="absolute w-full h-full" />
+      {/* <BackgroundBeams className="absolute w-full h-full" /> */}
       <div className="container max-w-7xl mx-auto px-4 py-26 relative z-20">
         <div className="text-center mb-16">
           {/* <SectionLabel title={"✨ Fully Responsive UI"} /> */}

@@ -25,13 +25,13 @@ const DevicesSection = () => {
     "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-light.png";
   return (
     <div className="h-full w-full relative">
-      <Particles
+      {/* <Particles
         className="absolute inset-0 z-0"
         quantity={100}
         ease={80}
         color={"#ffffff"}
         refresh
-      />
+      /> */}
 
       <div className="relative h-full my-10 mx-auto max-w-7xl flex gap-4 justify-center items-center flex-col overflow-hidden">
         <SectionLabel title={"✨ Fully Responsive UI"} />
