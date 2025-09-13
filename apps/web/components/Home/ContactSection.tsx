@@ -35,7 +35,7 @@ const ContactSection = () => {
           on LinkedIn or X.
         </SplitTextAnimation>
       </AnimatedShinyText>
-       <div className="grid md:grid-cols-2 gap-6 my-10">
+       <div className="grid md:grid-cols-2 gap-6 my-10 max-w-4xl mx-auto">
         <motion.div
         variants={cardVariants.fromLeft}
         whileInView="animate"
