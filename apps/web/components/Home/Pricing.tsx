@@ -159,7 +159,7 @@ export default function MinimalistPricing() {
                     </p>
                   </CardTitle>
                   <div className="mt-4 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-card-foreground">
+                    <span className="text-xl sm:text-3xl font-bold text-card-foreground">
                       {country === "US" ? plan.USDPrice : plan.INRPrice}
                     </span>
                     <span

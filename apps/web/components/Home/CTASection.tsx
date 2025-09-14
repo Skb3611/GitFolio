@@ -19,10 +19,10 @@ interface ImageItemProps {
 
 const CTASection = () => {
   return (
-    <div className="relative min-h-[70dvh] flex w-full max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl">
-      <div className="absolute inset-0 z-10 h-full w-full bg-black/45 "></div>
+    <div className="relative min-h-[70dvh] flex w-full max-w-[95%] sm:max-w-[90%] xl:max-w-7xl mx-auto justify-center items-center overflow-hidden py-14 rounded-2xl">
+      <div className="absolute inset-0 z-10 h-full w-full bg-black/45"></div>
       <ThreeDMarquee
-        className="pointer-events-none absolute inset-0 h-full w-full -z-10 opacity-50"
+        className="pointer-events-none absolute inset-0 h-full w-full -z-10 opacity-50 "
         images={images}
       />
 
@@ -54,7 +54,7 @@ const CTASection = () => {
 
         <SplitTextAnimation
           whileInView
-          className="text-2xl sm:text-4xl md:text-6xl text-center mb-2 font-medium"
+          className="text-2xl sm:text-4xl md:text-5xl text-center mb-2 font-medium tracking-tight"
           delay={0.2}
         >
           What's stopping you now ?
@@ -62,7 +62,7 @@ const CTASection = () => {
 
         <AnimatedShinyText>
           <SplitTextAnimation
-            className="text-base sm:text-xl md:text-2xl text-center w-full font-medium"
+            className="text-base sm:text-xl md:text-xl text-center w-full font-medium"
             whileInView
             delay={0.2}
           >

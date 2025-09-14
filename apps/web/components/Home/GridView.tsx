@@ -5,8 +5,8 @@ import {
   BentoGrid,
 } from "@workspace/ui/components/magicui/bento-grid";
 import GlobeSection from "./GlobeSection";
-import FAQSection from "./FAQSection";
-import TechStackSection from "./TechStackSection";
+import CompareSection from "./CompareSection";
+import TemplatesSection from "./TemplatesSection";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 const features = [
@@ -25,7 +25,8 @@ const features = [
     href: "#",
     cta: "",
     className: "col-span-3 lg:col-span-1",
-    background: <GlobeSection />,
+    background: <TemplatesSection />,
+
     direction: "fromRight",
   },
   {
@@ -35,8 +36,9 @@ const features = [
     href: "#",
     cta: "Learn More",
     className: "col-span-3 lg:col-span-1",
-    background: <TechStackSection />,
     direction: "fromLeft",
+    background: <GlobeSection />,
+
   },
   {
     // Icon: CalendarIcon,
@@ -45,7 +47,7 @@ const features = [
     className: "col-span-3 lg:col-span-2",
     href: "#",
     cta: "",
-    background: <FAQSection />,
+    background: <CompareSection />,
     direction: "fromBottom",
   },
 ];
