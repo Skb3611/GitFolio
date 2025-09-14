@@ -1,4 +1,23 @@
 "use client";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@workspace/ui/components/dialog";
+import {
+  Share2,
+  Facebook,
+  Twitter,
+  Linkedin,
+  MessageCircle,
+  Mail,
+  Check,
+  Icons,
+} from "@workspace/ui/icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SignOutButton, useUser } from "@clerk/nextjs";
 
@@ -47,6 +66,8 @@ const NavUser = ({
   template?: string;
   username: string;
 }) => {
+  const url = `https://${username}.gitfolio.in`;
+  const title = "Check out my developer portfolio built with GitFolio! \n";
   const { userId, signOut, isLoaded } = useAuth();
   useEffect(() => {
     (async () => {
@@ -56,30 +77,115 @@ const NavUser = ({
   const isMobile = useIsMobile();
   const { user } = useUser();
   const { open } = useSidebar();
-  const handleCopy = () => {
-    if (!template) toast.warning("No template Selected");
-    else {
-      const url = 
-      `https://${username}.gitfolio.in`
-      console.log(url)
-      navigator.clipboard.writeText(url);
-      toast.success("Link Coppied");
+  const [copied, setCopied] = useState(false);
+
+  const socialPlatforms = [
+    {
+      name: "Twitter",
+      icon: Twitter,
+      shareUrl: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURI(title)}`,
+      color: "hover:bg-sky-50 hover:text-sky-600 dark:hover:bg-sky-950",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      shareUrl: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      color: "hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950",
+    },
+    {
+      name: "Reddit",
+      icon: Icons.reddit,
+      shareUrl: `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`,
+      color: "hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-950",
+    },
+    {
+      name: "WhatsApp",
+      icon: Icons.whatsapp,
+      shareUrl: `https://wa.me/?text=${encodeURIComponent(title)}%20${encodeURIComponent(url)}`,
+      color: "hover:bg-green-50 hover:text-green-600 dark:hover:bg-green-950",
+    },
+  ];
+
+  const handleShare = (shareUrl: string) => {
+    window.open(shareUrl, "_blank");
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      toast.success("Link Copied");
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast.error("Failed to Copy");
     }
   };
 
   return (
     <SidebarMenu className="items-center">
-      <SidebarMenuItem className="w-full  mb-1">
-        <SidebarMenuButton
-          className={`p-5  font-semibold ${open ? "rounded-4xl" : ""}`}
-          variant={"outline"}
-          tooltip={"Copy Link"}
-          onClick={handleCopy}
-        >
-          <Copy />
-          <span>Copy PortFolio Link</span>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
+      <Dialog>
+        <SidebarMenuItem className="w-full  mb-1">
+          <DialogTrigger asChild>
+            <SidebarMenuButton
+              className={`p-5  font-semibold ${open ? "rounded-4xl" : ""}`}
+              variant={"outline"}
+              tooltip={"Copy Link"}
+            >
+              <Share2 />
+              <span>Share Portfolio</span>
+            </SidebarMenuButton>
+          </DialogTrigger>
+        </SidebarMenuItem>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Share this content</DialogTitle>
+            <DialogDescription>
+              Choose a platform to share this content with your friends and
+              followers.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            {/* Social Media Platforms */}
+            <div className="grid grid-cols-2 gap-3">
+              {socialPlatforms.map((platform) => {
+                const IconComponent = platform.icon;
+                return (
+                  <Button
+                    key={platform.name}
+                    variant="outline"
+                    className={`justify-start gap-1 sm:gap-3 h-12 ${platform.color}`}
+                    onClick={() => handleShare(platform.shareUrl)}
+                  >
+                    <IconComponent className="h-5 w-5" />
+                    {platform.name}
+                  </Button>
+                );
+              })}
+            </div>
+
+            {/* Copy Link Section */}
+            <div className="border-t pt-4">
+              <div className="flex items-center space-x-2">
+                <div className="flex-1 bg-muted rounded-md px-3 py-2 text-sm text-muted-foreground truncate">
+                  {url}
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyLink}
+                  className="shrink-0 bg-transparent"
+                >
+                  {copied ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <Copy className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
       <SidebarMenuItem className="w-full ">
         <SidebarMenuButton
           className={`p-5 font-semibold ${open ? "rounded-4xl" : ""} bg-primary hover:bg-primary/80`}
@@ -87,10 +193,7 @@ const NavUser = ({
           tooltip={"Visit Portfolio"}
           onClick={() => {
             template
-              ? window.open(
-                  `https://${username}.gitfolio.in`,
-                  "_blank"
-                )
+              ? window.open(`https://${username}.gitfolio.in`, "_blank")
               : toast.warning("No Template Selected");
           }}
         >
@@ -156,3 +259,22 @@ const NavUser = ({
 };
 
 export default NavUser;
+
+interface ShareButtonProps {
+  url: string;
+  title: string;
+  description?: string;
+}
+
+function ShareButton({ url, title }: ShareButtonProps) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" className="gap-2 bg-transparent ">
+          <Share2 className="h-4 w-4" />
+          Share
+        </Button>
+      </DialogTrigger>
+    </Dialog>
+  );
+}
