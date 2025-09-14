@@ -81,28 +81,28 @@ const NavUser = ({
 
   const socialPlatforms = [
     {
-      name: "Twitter",
-      icon: Twitter,
+      name: "X (Twitter)",
+      icon: Icons.twitter,
       shareUrl: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURI(title)}`,
-      color: "hover:bg-sky-50 hover:text-sky-600 dark:hover:bg-sky-950",
+      color: "",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
       shareUrl: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-      color: "hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950",
+      color: "text-sky-600",
     },
     {
       name: "Reddit",
       icon: Icons.reddit,
       shareUrl: `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`,
-      color: "hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-950",
+      color: "text-orange-500",
     },
     {
       name: "WhatsApp",
       icon: Icons.whatsapp,
       shareUrl: `https://wa.me/?text=${encodeURIComponent(title)}%20${encodeURIComponent(url)}`,
-      color: "hover:bg-green-50 hover:text-green-600 dark:hover:bg-green-950",
+      color: "text-green-600",
     },
   ];
 
