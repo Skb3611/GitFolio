@@ -2,7 +2,7 @@ import { Button, Link, Preview, Row, Section, Text } from "@react-email/componen
 import Wrapper from "./Wrapper";
 
 import React from 'react'
-import { config } from "src/config";
+import { config } from "../config";
 
 const WelcomeEmail = ({name}:{name:string}) => {
   return (
@@ -38,7 +38,7 @@ const WelcomeEmail = ({name}:{name:string}) => {
               </Row>
             </Section>
 
-            <Section className="text-center">
+            <Section className="text-center mt-10">
               <Link href={`${config.URLS.site_url}/dashboard`}>
                 <Button className="rounded-md bg-black px-[18px] py-3 text-white">
                   Visit Dashboard

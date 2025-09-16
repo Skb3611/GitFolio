@@ -8,7 +8,7 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import { config } from "src/config";
+import { config } from "../config";
 const TemplateActivationReminderEmail = ({name}:{name:string}) => {
   return (
     <Wrapper>
@@ -39,7 +39,7 @@ const TemplateActivationReminderEmail = ({name}:{name:string}) => {
           <li>🌐 Share your work with the world in just a few clicks</li>
         </ul>
       </Section>
-      <Section className="text-center">
+      <Section className="text-center mt-10">
         <Link href={`${config.URLS.site_url}/onboarding`}>
           <Button className="rounded-md bg-black px-[18px] py-3 text-white">
             Visit DashBoard

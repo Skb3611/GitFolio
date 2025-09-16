@@ -9,7 +9,7 @@ import {
 import Wrapper from "./Wrapper";
 
 import React from "react";
-import { config } from "src/config";
+import { config } from "../config";
 
 const OnBoardingEmail = ({name}:{name:string}) => {
   return (
@@ -42,7 +42,7 @@ const OnBoardingEmail = ({name}:{name:string}) => {
         </ul>
       </Section>
 
-      <Section className="text-center">
+      <Section className="text-center mt-10">
         <Link href={`${config.URLS.site_url}/onboarding`}>
           <Button className="rounded-md bg-black px-[18px] py-3 text-white">
             Complete OnBoarding

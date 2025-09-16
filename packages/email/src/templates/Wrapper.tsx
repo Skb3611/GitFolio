@@ -16,11 +16,9 @@ import {
   Text,
 } from "@react-email/components";
 import type * as React from "react";
-import { Icons } from "@workspace/ui/icons";
-import { config } from "src/config";
+import { config } from "../config";
 
-
-export const Wrapper = ({children}:{children:React.ReactNode}) => {
+export const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <Html>
       <Head />
@@ -46,7 +44,7 @@ export const Wrapper = ({children}:{children:React.ReactNode}) => {
           <Img
             src={`${config.URLS.site_url}/assets/brand-light.png`}
             alt="Netlify"
-            className="mx-auto my-20 object-cover w-[50%]"
+            className="mx-auto my-20 object-cover w-[35%]"
           />
           <Container className="bg-white p-45">
             <Heading className="my-0 text-center leading-8">
@@ -75,24 +73,34 @@ export const Wrapper = ({children}:{children:React.ReactNode}) => {
                 <tr>
                   <td align="center">
                     <Row className="table-cell h-[44px] w-[56px] align-bottom">
-                      <Column className="pr-[8px]">
+                      <Column className="pr-[8px] w-full h-full">
                         <Link href={config.social_links.x}>
-                          <Icons.twitter className="size-5 text-black"/>
+                          <Img className="size-7" src={`${config.URLS.site_url}/icons/x.png`} />
                         </Link>
                       </Column>
-                      <Column className="pr-[8px]">
-                        <Link href={config.social_links.linkedin}>
-                          <Icons.linkedin className="size-5 text-black"/>
+                      <Column className="pr-[8px] w-full h-full">
+                        <Link
+                          href={config.social_links.linkedin}
+                          className="w-full h-full"
+                        >
+                          <Img className="size-7"
+                            src={`${config.URLS.site_url}/icons/linkedin.png`}
+                          />
                         </Link>
                       </Column>
-                      <Column className="pr-[8px]">
+                      <Column className="pr-[8px] w-full h-full">
                         <Link href={config.social_links.github}>
-                          <Icons.github className="size-5 text-black"/>
+                          <Img
+                          className="size-7"
+                            src={`${config.URLS.site_url}/icons/github-black.png`}
+                          />
                         </Link>
                       </Column>
                       <Column>
                         <Link href={config.social_links.peerlist}>
-                          <Icons.peerlist className="size-5 text-black"/>
+                          <Img src={`${config.URLS.site_url}/icons/peerlist.png`} 
+                          className="size-7"
+                          />
                         </Link>
                       </Column>
                     </Row>
@@ -106,6 +114,5 @@ export const Wrapper = ({children}:{children:React.ReactNode}) => {
     </Html>
   );
 };
-
 
 export default Wrapper;
