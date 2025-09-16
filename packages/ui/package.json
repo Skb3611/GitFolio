@@ -55,9 +55,6 @@
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
-    "./icons": {
-      "import": "./src/icons/index.tsx",
-      "types": "./src/icons/index.tsx"
-    }
+    "./icons": "./src/icons/index.tsx"
   }
 }

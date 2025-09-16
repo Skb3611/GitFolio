@@ -6,7 +6,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "types": ["react", "node"]
+    "types": ["react", "node"],
+    "outDir": "dist",
+    "rootDir": "./src"
+
   },
   "include": ["./src/**/*", "src/templates"],
   "exclude": ["node_modules", "dist"]
