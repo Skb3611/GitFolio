@@ -101,7 +101,7 @@ const Navbar = () => {
     </Button>,
     <SignedOut key={"cta"}>
       <Button key={"cta"} variant="outline" className=" text-lg md:text-sm ">
-        <Link href={"/sign-in"} className="flex items-center  ">
+        <Link href={"/sign-up"} className="flex items-center  ">
           Get Started <ChevronRight />
         </Link>
       </Button>

@@ -110,7 +110,7 @@ export default function TemplatePage({
   const handleClick = async (id: string) => {
     if (!isSignedIn) {
       toast.info("Sign in to purchase template");
-      router.push("/sign-in");
+      router.push("/sign-up");
       return;
     } else if (isSignedIn && !isPurchased && template?.category != "FREE") {
       let token = await getToken();
