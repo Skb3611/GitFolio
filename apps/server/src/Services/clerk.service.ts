@@ -1,5 +1,6 @@
 import prisma, { AccountType, Prisma, SigninType } from "@workspace/db";
 import { clerkClient } from "./onboarding.service";
+import { sendEmail } from "@workspace/email";
 
 export const processClerkWebhook = async (event: any): Promise<boolean> => {
   const { data, type } = event;
@@ -35,13 +36,17 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
         },
       });
 
-      await clerkClient.users.updateUserMetadata(user.id, {
-        publicMetadata: {
-          onBoarding: false,
-          accountType:"BASIC",
-          purchasedTemplates:[]
-        },
-      });
+      await Promise.all([
+        clerkClient.users.updateUserMetadata(user.id, {
+          publicMetadata: {
+            onBoarding: false,
+            accountType: "BASIC",
+            purchasedTemplates: [],
+          },
+        }),
+        sendEmail(user.firstname, user.email, "welcome"),
+      ]);
+
       return user ? true : false;
     case "user.updated":
       const updatedUser = await prisma.user.update({

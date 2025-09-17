@@ -50,7 +50,7 @@ export const Wrapper = ({ children }: { children: React.ReactNode }) => {
           }}
         >
           <Img
-            src={`${config.URLS.site_url}/assets/brand-light.png`}
+            src={`${config.URLS.site_url}/assets/brand-dark.png`}
             alt="GitFolio"
             className="mx-auto my-20 object-cover w-[35%] brand-logo"
           />
