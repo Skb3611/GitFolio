@@ -11,14 +11,19 @@ import Wrapper from "./Wrapper";
 import React from "react";
 import { config } from "../config";
 
-const OnBoardingEmail = ({name}:{name:string}) => {
+const OnBoardingEmail = ({ name }: { name: string }) => {
   return (
     <Wrapper>
       <Preview>Complete OnBoarding...</Preview>
-      <Section>
+      <Section
+        style={{
+          backgroundColor: "white",
+        }}
+      >
         <Row>
           <Text className="text-base font-semibold">
-            Thanks for joining GitFolio! Complete your OnBoarding process to get started.
+            Thanks for joining GitFolio! Complete your OnBoarding process to get
+            started.
           </Text>
         </Row>
       </Section>
@@ -43,11 +48,13 @@ const OnBoardingEmail = ({name}:{name:string}) => {
       </Section>
 
       <Section className="text-center mt-10">
-        <Link href={`${config.URLS.site_url}/onboarding`}>
-          <Button className="rounded-md bg-black px-[18px] py-3 text-white">
-            Complete OnBoarding
-          </Button>
-        </Link>
+        <Button
+          href={`${config.URLS.site_url}/onboarding`}
+          target="_blank"
+          className="rounded-md bg-black px-[18px] py-3  cursor-pointer text-white"
+        >
+          Complete OnBoarding
+        </Button>
       </Section>
     </Wrapper>
   );

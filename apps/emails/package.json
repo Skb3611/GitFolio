@@ -20,6 +20,7 @@
     "resend": "^6.1.0"
   },
   "devDependencies": {
-    "@workspace/email": "workspace:*"
+    "@workspace/email": "workspace:*",
+    "@workspace/db":"workspace:*"
   }
 }

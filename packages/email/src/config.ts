@@ -1,6 +1,3 @@
-import dotnev from "dotenv"
-
-dotnev.config()
 export const config = {
     social_links:{
         x:"https://x.com/SKB3611",
@@ -12,5 +9,4 @@ export const config = {
         site_url:"https://gitfolio.in",
         renderer_url:"https://portfolio.gitfolio.in"
     },
-    RESEND_API_KEY:process.env.RESEND_API_KEY
 }

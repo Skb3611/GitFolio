@@ -9,11 +9,15 @@ import {
   Text,
 } from "@react-email/components";
 import { config } from "../config";
-const TemplateActivationReminderEmail = ({name}:{name:string}) => {
+const TemplateActivationReminderEmail = ({ name }: { name: string }) => {
   return (
     <Wrapper>
       <Preview>Activte a Template</Preview>
-      <Section>
+      <Section
+        style={{
+          backgroundColor: "white",
+        }}
+      >
         <Row>
           <Text className="text-base font-semibold">
             Thanks for joining GitFolio! Activte a template and make your
@@ -40,11 +44,13 @@ const TemplateActivationReminderEmail = ({name}:{name:string}) => {
         </ul>
       </Section>
       <Section className="text-center mt-10">
-        <Link href={`${config.URLS.site_url}/onboarding`}>
-          <Button className="rounded-md bg-black px-[18px] py-3 text-white">
-            Visit DashBoard
-          </Button>
-        </Link>
+        <Button
+          href={`${config.URLS.site_url}/onboarding`}
+          target="_blank"
+          className="rounded-md bg-black px-[18px] py-3 text-white cursor-pointer"
+        >
+          Visit DashBoard
+        </Button>
       </Section>
     </Wrapper>
   );

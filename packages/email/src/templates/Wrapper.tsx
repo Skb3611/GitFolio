@@ -21,7 +21,10 @@ import { config } from "../config";
 export const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <Html>
-      <Head />
+      <Head>
+        <meta name="color-scheme" content="light" />
+        <meta name="supported-color-schemes" content="light" />
+      </Head>
       <Tailwind
         config={{
           presets: [pixelBasedPreset],
@@ -40,19 +43,35 @@ export const Wrapper = ({ children }: { children: React.ReactNode }) => {
           },
         }}
       >
-        <Body className="bg-offwhite font-sans text-base">
+        <Body
+          className="force-light font-sans text-base"
+          style={{
+            backgroundColor: "white",
+          }}
+        >
           <Img
             src={`${config.URLS.site_url}/assets/brand-light.png`}
-            alt="Netlify"
-            className="mx-auto my-20 object-cover w-[35%]"
+            alt="GitFolio"
+            className="mx-auto my-20 object-cover w-[35%] brand-logo"
           />
-          <Container className="bg-white p-45">
+
+          <Container
+            className=" force-light p-45"
+            style={{
+              backgroundColor: "white",
+            }}
+          >
             <Heading className="my-0 text-center leading-8">
               Welcome to GitFolio
             </Heading>
 
             {children}
-            <Section className="text-center mt-10">
+            <Section
+              style={{
+                backgroundColor: "white",
+              }}
+              className="text-center mt-10"
+            >
               <table className="w-full">
                 <tr className="w-full">
                   <td align="center">
@@ -75,7 +94,10 @@ export const Wrapper = ({ children }: { children: React.ReactNode }) => {
                     <Row className="table-cell h-[44px] w-[56px] align-bottom">
                       <Column className="pr-[8px] w-full h-full">
                         <Link href={config.social_links.x}>
-                          <Img className="size-7" src={`${config.URLS.site_url}/icons/x.png`} />
+                          <Img
+                            className="size-7"
+                            src={`${config.URLS.site_url}/icons/x.png`}
+                          />
                         </Link>
                       </Column>
                       <Column className="pr-[8px] w-full h-full">
@@ -83,7 +105,8 @@ export const Wrapper = ({ children }: { children: React.ReactNode }) => {
                           href={config.social_links.linkedin}
                           className="w-full h-full"
                         >
-                          <Img className="size-7"
+                          <Img
+                            className="size-7"
                             src={`${config.URLS.site_url}/icons/linkedin.png`}
                           />
                         </Link>
@@ -91,15 +114,8 @@ export const Wrapper = ({ children }: { children: React.ReactNode }) => {
                       <Column className="pr-[8px] w-full h-full">
                         <Link href={config.social_links.github}>
                           <Img
-                          className="size-7"
+                            className="size-7"
                             src={`${config.URLS.site_url}/icons/github-black.png`}
-                          />
-                        </Link>
-                      </Column>
-                      <Column>
-                        <Link href={config.social_links.peerlist}>
-                          <Img src={`${config.URLS.site_url}/icons/peerlist.png`} 
-                          className="size-7"
                           />
                         </Link>
                       </Column>
