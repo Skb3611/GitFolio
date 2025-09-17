@@ -3,9 +3,11 @@ import OnBoardingEmail from "./templates/OnboardingEmail";
 import TemplateActivationReminderEmail from "./templates/TemplateActivationReminderEmail";
 import { render } from "@react-email/components";
 import {Resend} from "resend"
+import dotenv from "dotenv"
+dotenv.config()
 
 type EmailType = "welcome" | "onboarding" | "template_reminder";
-const resend = new Resend("re_cvrvGxDK_9oMkcct3A9a7N3vKzv6cxqWt")
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const rednerWelcomeEmail = (name: string) =>render(WelcomeEmail({ name }));
 export const renderOnBoardingEmail = (name: string) =>render(OnBoardingEmail({ name }));
@@ -13,6 +15,7 @@ export const renderTemplateActivationReminderEmail = (name: string) =>render(Tem
 
 export const sendEmail = async (name: string, email: string, type: EmailType) => {
   let subject, template;
+console.log(process.env.RESEND_API_KEY)
   switch (type) {
     case "welcome":
       subject = "Welcome to GitFolio";

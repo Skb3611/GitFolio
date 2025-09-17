@@ -36,7 +36,7 @@ export const processClerkWebhook = async (event: any): Promise<boolean> => {
         },
       });
 
-      await Promise.all([
+      let a = await Promise.all([
         clerkClient.users.updateUserMetadata(user.id, {
           publicMetadata: {
             onBoarding: false,
