@@ -36,26 +36,13 @@ const TemplatesSection = () => {
         className="h-full max-w-sm sm:max-w-2xl lg:max-w-full w-full"
       >
         <CarouselContent className=" h-max mt-2 ">
-          {TemplateData.map((template) => (
-            <CarouselItem key={template.id} className="w-full h-full relative sm:basis-1/2 lg:basis-full">
+          {TemplateData.map((template,idx) => (
+            <CarouselItem key={idx} className="w-full h-full relative sm:basis-1/2 lg:basis-full">
               <Safari className="size-full" imageSrc={template.thumbnail} />
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
-      {/* <div className="absolute -bottom-10 blur-[.5px] opacity-20 flex h-full w-full flex-col items-center justify-center overflow-hidden">
-      <OrbitingCircles iconSize={isMobile?30:40} radius={70}>
-        <Image src="/icons/nextjs.png" alt='nextjs' height={50}  width={50}/ >
-        <Image src="/icons/prisma.png" alt='prisma' height={50}  width={50}/ >
-        <Image src="/icons/clerk.png" alt='clerk' height={50}  width={50}/ >
-      </OrbitingCircles>
-      <OrbitingCircles iconSize={isMobile?30:40} radius={isMobile?120:150} reverse speed={2}>
-        <Image src="/icons/github.png" alt='github' height={50}  width={50}/ >
-        <Image src="/icons/magicui.png" alt='magicui' height={50}  width={50}/ >
-        <Image src="/icons/shadcn.png" alt='shadcn' height={50}  width={50}/ >
-        <Image src="/icons/turborepo.png" alt='turborepo' height={50}  width={50}/ >
-      </OrbitingCircles>
-    </div> */}
     </div>
   );
 };

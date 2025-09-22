@@ -51,8 +51,8 @@ export const generateTemplateMeta = () => {
       .trim()
       .replace(/\s+/g, "_");
 
-    let thumbnailUrl = `${process.env.S3_PUBLIC_ENDPOINT}/templates/${templateFolder}/preview/desktop-dark.png`;
-    let videoUrl = `${process.env.S3_PUBLIC_ENDPOINT}/templates/${templateFolder}/preview/vid.mp4`;
+    let thumbnailUrl = `${process.env.S3_PUBLIC_ENDPOINT}/templates/${slugify(templateFolder)}/preview/desktop-dark.png`;
+    let videoUrl = `${process.env.S3_PUBLIC_ENDPOINT}/templates/${slugify(templateFolder)}/preview/vid.mp4`;
 
     // Add import if missing
     if (!updatedImports.includes(templateImportName)) {
@@ -62,14 +62,14 @@ export const generateTemplateMeta = () => {
     // Add object if missing
     if (!updatedDataArray.includes(`id: "${templateFolder}"`)) {
       const newEntry = `  {
-    id: "${templateFolder}",
+    id: "${slugify(templateFolder)}",
     title: "${templateFolder}",
     description: "Template Description",
     thumbnail: "${thumbnailUrl}",
     video: "${videoUrl}",
     component: ${templateImportName},
-    mobileDevice: "",
-    category: "",
+    mobileDevice: "Iphone15Pro",
+    category: "FREE",
     INRpricing: 0,
     USDpricing: 0,
     theme:"both"
@@ -92,3 +92,11 @@ ${updatedDataArray}
   fs.writeFileSync(metaFilePath, finalTS, "utf8");
   console.log(`✅ Metadata updated in ${metaFilePath}`);
 };
+function slugify(name) {
+  return name
+    .toLowerCase() // lower case
+    .trim() // remove leading/trailing spaces
+    .replace(/[^a-z0-9\s-]/g, "") // remove special chars (keep letters, numbers, spaces, and -)
+    .replace(/\s+/g, "-") // replace spaces with "-"
+    .replace(/-+/g, "-"); // collapse multiple "-" into one
+}

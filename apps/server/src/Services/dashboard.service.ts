@@ -45,10 +45,11 @@ export const updateUserData = async (
   userId: string,
   data: any
 ): Promise<boolean> => {
+  console.log(userId,data)
   try {
     if (data.activeTemplateId) {
       const template = await prisma.template.findUnique({
-        where: { title: data.activeTemplateId },
+        where: { id: data.activeTemplateId },
       });
       if (template && template.category == "FREE") {
         let res = await prisma.user.update({
@@ -218,7 +219,7 @@ export const deleteEducation = async (
 
 export const getTemplateDetails = async (templateName: string) => {
   try {
-    return prisma.template.findFirst({ where: { title: templateName } });
+    return prisma.template.findFirst({ where: { id: templateName } });
   } catch (e) {
     console.log(e);
   }

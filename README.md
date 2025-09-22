@@ -47,9 +47,9 @@ Imagine your personal brand brought to life:
 
 A Glimpse of Templates at GitFolio
 
-| ![Img1](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-dark.png) | ![Img2](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black%20%26%20White/preview/desktop-dark.png) |
+| ![Img1](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/devpro/preview/desktop-dark.png) | ![Img2](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/black-white/preview/desktop-dark.png) |
 | ------------------------------------- | -------------------------------------------------- |
-| ![Img3](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Persona/preview/desktop-dark.png) | ![Img4](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Clean%20Slate/preview/desktop-light.png)       |
+| ![Img3](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/persona/preview/desktop-dark.png) | ![Img4](https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/clean-slate/preview/desktop-light.png)       |
 
 ## ✅ Why Choose GitFolio Over Templates?
 

@@ -22,6 +22,7 @@ const uploadToDB = async () => {
       } else
         return prisma.template.create({
           data: {
+            id:template.id,
             title: template.title,
             category: template.category,
             INRpricing:template.INRpricing,

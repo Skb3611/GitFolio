@@ -65,7 +65,7 @@ export const Card = ({ template, idx }: { template: TemplateData; idx: number })
             <AnimatedShinyText className="text-xs uppercase text-primary-foreground font-medium ">
               {template.description}
             </AnimatedShinyText>
-            <Link href={`/${template.title}`}>
+            <Link href={`/${template.id}`}>
               <p className="flex items-center place-content-end gap-2 cursor-pointer text-right min-w-full text-sm">
                 Visit <MoveRight />
               </p>

@@ -94,6 +94,7 @@ export default function TemplatePage({
       if (user?.publicMetadata.purchasedTemplates) {
         (user?.publicMetadata.purchasedTemplates as string[]).map(
           (templateName: string) => {
+            console.log(templateName,templateId)
             templateName == templateId ? setIsPurchased(true) : null;
           }
         );

@@ -19,10 +19,10 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const DevicesSection = () => {
   const isMobile = useIsMobile();
   const mobileUrl = isMobile
-    ? "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/mobile-light.png"
-    : "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/Black%20&%20White/preview/mobile-light.png";
+    ? "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/devpro/preview/mobile-light.png"
+    : "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/black-white/preview/mobile-light.png";
   const desktopUrl =
-    "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/DevPro/preview/desktop-light.png";
+    "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/devpro/preview/desktop-light.png";
   return (
     <div className="h-full w-full relative">
       {/* <Particles

@@ -191,7 +191,7 @@ export const RZPWebhook = async (
 
           // Step 2: Merge with the new template (avoid duplicates if you want)
           const updatedTemplates = Array.from(
-            new Set([...currentTemplates, temp.template.title])
+            new Set([...currentTemplates, paymentEntity.notes.templateId])
           );
 
           // Step 3: Update metadata

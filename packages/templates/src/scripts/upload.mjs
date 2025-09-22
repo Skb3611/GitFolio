@@ -58,10 +58,11 @@ const run = async () => {
       return;
     }
     const assetsFiles = fs.readdirSync(assetsPath);
-    assetsFiles.forEach((file) => {
+    assetsFiles.forEach(async(file) => {
       const filepath = path.join(assetsPath, file);
-      const key = `templates/${folder}/preview/${file}`;
-      uploadToS3(filepath, key);
+      const key = `templates/${slugify(folder)}/preview/${file}`;
+      console.log("uploading",key)
+      await uploadToS3(filepath, key);
     });
     uploadedJSON[folder] = true;
     fs.writeFileSync(JSONPath, JSON.stringify(uploadedJSON, null, 2));
@@ -70,3 +71,11 @@ const run = async () => {
 generateTemplateMeta()
 };
 run().catch(console.error);
+function slugify(name) {
+  return name
+    .toLowerCase() // lower case
+    .trim() // remove leading/trailing spaces
+    .replace(/[^a-z0-9\s-]/g, "") // remove special chars (keep letters, numbers, spaces, and -)
+    .replace(/\s+/g, "-") // replace spaces with "-"
+    .replace(/-+/g, "-"); // collapse multiple "-" into one
+}

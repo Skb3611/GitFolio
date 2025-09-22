@@ -27,9 +27,11 @@ export const createOrderColtroller = async (req: Request, res: Response) => {
         .json({ status: false, message: "Order Failed , Free Template!" });
       return;
     }
+    console.log(templateData);
     const order = await createOrder(
       {
-        amount: currency=="USD"?templateData.USDpricing:templateData.INRpricing,
+        amount:
+          currency == "USD" ? templateData.USDpricing : templateData.INRpricing,
         currency,
         template_id: templateData.id,
       },
@@ -40,7 +42,7 @@ export const createOrderColtroller = async (req: Request, res: Response) => {
           status: true,
           message: "Order Created.",
           data: {
-            order_id:order.id,
+            order_id: order.id,
             amount: order.amount,
             currency: order.currency,
             receipt: order.receipt,
