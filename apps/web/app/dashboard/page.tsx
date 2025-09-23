@@ -154,7 +154,6 @@ export default function Page() {
           },
         });
         const result = await res.json();
-        console.log(result);
         const p: PersonalInformation = {
           username: result.data.username,
           email: result.data.email,
@@ -330,7 +329,6 @@ export default function Page() {
               data: data as Projects,
             });
             link && (data = { ...data, thumbnail: link });
-            console.log(link, data);
             setProjects((prev) =>
               prev.map((project) =>
                 project.id === (data as Projects).id

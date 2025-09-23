@@ -53,7 +53,6 @@ export default function TemplatePage({
     if (template) {
       let desktopPreview: string[] = [];
       let mobilePreview: string[] = [];
-      console.log(template.theme);
       if (template.theme == "both") {
         desktopPreview.push(
           `${BASE_URL}/${templateId}/preview/desktop-dark.png`,
@@ -64,13 +63,11 @@ export default function TemplatePage({
           `${BASE_URL}/${templateId}/preview/mobile-light.png`
         );
       } else if (template.theme == "dark") {
-        console.log("in dark");
         desktopPreview.push(
           `${BASE_URL}/${templateId}/preview/desktop-dark.png`
         );
         mobilePreview.push(`${BASE_URL}/${templateId}/preview/mobile-dark.png`);
       } else if (template.theme == "light") {
-        console.log("in light");
         desktopPreview.push(
           `${BASE_URL}/${templateId}/preview/desktop-light.png`
         );
@@ -85,7 +82,7 @@ export default function TemplatePage({
         mobilePreview,
       });
       const baseImages = [...desktopPreview, "/assets/og.png"];
-      console.log(baseImages);
+
       setImages(
         Array(template.theme == "both" ? 10 : 20)
           .fill(baseImages)
@@ -94,7 +91,6 @@ export default function TemplatePage({
       if (user?.publicMetadata.purchasedTemplates) {
         (user?.publicMetadata.purchasedTemplates as string[]).map(
           (templateName: string) => {
-            console.log(templateName,templateId)
             templateName == templateId ? setIsPurchased(true) : null;
           }
         );
@@ -120,7 +116,6 @@ export default function TemplatePage({
         templateName: id,
         currency: country == "IN" ? "INR" : "USD",
       });
-      console.log(order);
       if (order) {
         token = await getToken();
         const response = await checkOut(

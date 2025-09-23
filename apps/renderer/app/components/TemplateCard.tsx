@@ -15,12 +15,6 @@ export const Card = ({ template, idx }: { template: TemplateData; idx: number })
   const cardRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
   const handleClick = (e: React.MouseEvent) => {
-    console.log(e);
-    // Don't toggle if clicking on buttons or their children
-    // if ((e.target as HTMLElement).closest("button")) {
-    //   return;
-    // }
-    console.log(isMobile);
     isMobile ? setIsActive(!isActive) : null;
   };
   useEffect(() => {

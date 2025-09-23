@@ -18,7 +18,6 @@ const page = () => {
       body: JSON.stringify({ templateName: "DevPro", currency: "INR" }),
     });
     const order = await res.json();
-    console.log(order);
     // 2. Open Razorpay Checkout
     if (order) {
       const options = {
@@ -47,7 +46,6 @@ const page = () => {
             }
           );
           const isVerifed = await res.json()
-          console.log(isVerifed)
         },
       };
 

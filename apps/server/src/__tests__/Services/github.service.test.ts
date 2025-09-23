@@ -12,8 +12,6 @@ describe("Github Service Tests",()=>{
            let userdetails = await getUserDetails({token})
            expect(userdetails).toBeDefined()
            expect(userdetails).not.toBeFalsy()
-        //    console.log(userdetails)
-
         }
     })
     test("Should return user repos",async()=>{
@@ -22,7 +20,6 @@ describe("Github Service Tests",()=>{
            let userdetails = await getUserRepos({token})
            expect(userdetails).toBeDefined()
            expect(userdetails).not.toBeFalsy()
-        //    console.log(userdetails)
         }
     })
     test("Should return user contibutions",async()=>{
@@ -32,7 +29,7 @@ describe("Github Service Tests",()=>{
           expect(contributions).toBeDefined()
           expect(contributions).not.toBeFalsy()
           expect(contributions?.length).toBeGreaterThan(0)
-        //   console.log(contributions)
+
         }
     })
 })

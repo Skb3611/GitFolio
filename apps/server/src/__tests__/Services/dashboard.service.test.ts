@@ -15,7 +15,6 @@ describe("Dashboard Service", () => {
   it("Should return user data", async () => {
     const data = await getUserDataById(USERNAME);
     expect(data).toBeDefined();
-    // console.log(data)
   });
   it("Should update user data-name", async () => {
     const data = await updateUserData(USERNAME, {
@@ -23,7 +22,6 @@ describe("Dashboard Service", () => {
     });
     expect(data).toBeDefined();
     expect(data).toBeTruthy();
-    console.log(data);
   });
   it("Should update user data-languages", async () => {
     const data = await updateUserData(USERNAME, {

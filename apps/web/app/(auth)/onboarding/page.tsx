@@ -22,7 +22,6 @@ import { toast } from "@workspace/ui/components/sonner";
 export default function OnboardingPage() {
   const regex = /^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9-]{1,39}\/?$/;
   const { user } = useUser();
-  console.log(user);
   const { getToken } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [githubURL, setGithubURL] = useState("");

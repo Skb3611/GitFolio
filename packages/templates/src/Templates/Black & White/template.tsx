@@ -17,7 +17,6 @@ import { config } from "../../config";
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page({ data = DummyData }: { data?: DATA }) {
-  console.log(data);
   if (!data) {
     return <>loading</>;
   }

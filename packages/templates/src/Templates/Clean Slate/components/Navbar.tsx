@@ -37,8 +37,6 @@ export default function Navbar({
     };
   }, [isMenuOpen]);
 
-
-
   return (
     <>
       {/* <style jsx global>{`
@@ -114,8 +112,8 @@ export default function Navbar({
         <Sheet>
           <div className="flex items-center justify-between w-full text-foreground">
             <div className="flex gap-2 justify-center items-center">
-            <ModeToggle variant="outline"/>
-              </div>
+              <ModeToggle variant="outline" />
+            </div>
             <SheetTrigger>
               <Button
                 asChild={true}
@@ -173,8 +171,7 @@ export default function Navbar({
               <div className="flex-1 px-6 py-4">
                 <div className="space-y-4">
                   {Object.entries(activeSocialLinks).map(([name, link]) => {
-                    console.log(link)
-                if (link.length == 0) return;
+                    if (link.length == 0) return;
                     const IconComponent = getIconComponent(name);
                     return (
                       <a

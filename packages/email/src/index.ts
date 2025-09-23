@@ -15,7 +15,6 @@ export const renderTemplateActivationReminderEmail = (name: string) =>render(Tem
 
 export const sendEmail = async (name: string, email: string, type: EmailType) => {
   let subject, template;
-console.log(process.env.RESEND_API_KEY)
   switch (type) {
     case "welcome":
       subject = "Welcome to GitFolio";

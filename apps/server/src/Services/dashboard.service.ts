@@ -45,7 +45,6 @@ export const updateUserData = async (
   userId: string,
   data: any
 ): Promise<boolean> => {
-  console.log(userId,data)
   try {
     if (data.activeTemplateId) {
       const template = await prisma.template.findUnique({

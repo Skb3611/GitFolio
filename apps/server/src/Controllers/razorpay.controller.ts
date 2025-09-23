@@ -27,7 +27,6 @@ export const createOrderColtroller = async (req: Request, res: Response) => {
         .json({ status: false, message: "Order Failed , Free Template!" });
       return;
     }
-    console.log(templateData);
     const order = await createOrder(
       {
         amount:

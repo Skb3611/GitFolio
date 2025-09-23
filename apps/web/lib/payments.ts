@@ -67,7 +67,6 @@ export const verifyPayment = async (token: string, response: any) => {
       : toast.info(
           "Payment Unverified. Check your dashboard for more details."
         );
-    // console.log(isVerifed);
   } catch (e) {
     console.log(e);
   }

@@ -40,11 +40,11 @@ const Navbar = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const {getToken} = useAuth()
-  useEffect(()=>{
-    (async ()=>{
-      console.log(await getToken())
-    })()
-  },[])
+  // useEffect(()=>{
+  //   (async ()=>{
+  //     console.log(await getToken())
+  //   })()
+  // },[])
   const navItems = [
     <Button
       key={"home"}
