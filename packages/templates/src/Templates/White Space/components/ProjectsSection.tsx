@@ -19,7 +19,7 @@ const ProjectsSection = ({ projects }: { projects: Projects[] }) => {
         </div>
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-8 px-4 sm:px-6 md:px-8">
-          {projects.map((data, index) => {
+          {projects.filter(p=>p.isIncluded).map((data, index) => {
             console.log(data.thumbnail);
             return (
               <div key={index} className="border rounded-2xl">
