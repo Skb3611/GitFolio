@@ -14,15 +14,31 @@ import EducationSection from "./components/EducationSection";
 import ExperienceSection from "./components/ExperienceSection";
 import { DATA } from "@workspace/types";
 import { DummyData } from "../dummyData";
+import { useEffect } from "react";
+import { useTheme } from "next-themes";
 const navItems = [
-  {id:"none", name: "Home", link: "#home", icon: <House /> },
-  {id:"projects", name: "Work", link: "#work", icon: <BriefcaseBusiness /> },
-  {id:"skills", name: "About", link: "#about", icon: <UserRound /> },
-  {id:"experience", name: "Experience", link: "#experience", icon: <BriefcaseBusiness /> },
-  {id:"education", name: "Education", link: "#education", icon: <BriefcaseBusiness /> },
-  {id:"none", name: "Contact", link: "#contact", icon: <ContactIco /> },
+  { id: "none", name: "Home", link: "#home", icon: <House /> },
+  { id: "projects", name: "Work", link: "#work", icon: <BriefcaseBusiness /> },
+  { id: "skills", name: "About", link: "#about", icon: <UserRound /> },
+  {
+    id: "experience",
+    name: "Experience",
+    link: "#experience",
+    icon: <BriefcaseBusiness />,
+  },
+  {
+    id: "education",
+    name: "Education",
+    link: "#education",
+    icon: <BriefcaseBusiness />,
+  },
+  { id: "none", name: "Contact", link: "#contact", icon: <ContactIco /> },
 ];
 const template = ({ data = DummyData }: { data?: DATA }) => {
+  const { setTheme } = useTheme();
+  useEffect(() => {
+    setTheme("dark");
+  });
   return (
     <main className="antialiased  bg-[#0a0a0a] text-dark-200 dark:text-stone-200 min-h-screen w-full flex flex-col px-5 sm:px-10 relative">
       <div className="max-w-6xl mx-auto w-full">
