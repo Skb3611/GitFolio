@@ -3,9 +3,10 @@
 import { SunIcon, MoonIcon } from "@workspace/ui/icons";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { useTheme } from "next-themes";
+import { cn } from "@workspace/ui/lib/utils";
 export function ModeToggle({
   variant = "ghost",
-  
+  classname
 }: {
   variant?:
     | "default"
@@ -14,6 +15,7 @@ export function ModeToggle({
     | "secondary"
     | "ghost"
     | "link";
+    classname?:string
 }) {
   const { theme, setTheme } = useTheme();
 
@@ -22,7 +24,7 @@ export function ModeToggle({
       variant={variant}
       type="button"
       size="icon"
-      className="px-2"
+      className={cn(classname,"px-2")}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       <SunIcon className="h-[1.2rem] w-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
