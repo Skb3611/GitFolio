@@ -83,16 +83,14 @@ export default function Navbar({
           <div className="space-x-8 flex items-center">
             {Array.from(Object.entries(activeSocialLinks)).map(
               ([name, link]) => {
-                if (link.length == 0) return;
+                if (link === "" || link.length <= 0) return null;
                 const IconComponent = getIconComponent(name);
                 return (
                   <a
                     key={Math.random()}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:opacity-80 transition-opacity"
-                    aria-label={link.name}
+                    href={link}
+                    target={link != "#" || link.length > 1 ? "_blank" : "_self"}
+                    className="hover:opacity-80 z-10 transition-opacity cursor-pointer"
                   >
                     {IconComponent && (
                       <IconComponent className="flex-shrink-0 w-[23px] h-[23px]" />
