@@ -1,5 +1,5 @@
 import { Experience } from "@workspace/db";
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../../components/AnimatedSection";
 import { ResumeCard } from "../../Black & White/components/resume-card";
 import { Projects } from "@workspace/types";
 import { ProjectCard } from "../../Black & White/components/project-card";

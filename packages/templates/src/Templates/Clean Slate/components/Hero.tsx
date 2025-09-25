@@ -1,5 +1,6 @@
 import { PersonalInformation } from '@workspace/types';
-import AnimatedSection from './AnimatedSection';
+import AnimatedSection from "../../components/AnimatedSection";
+
 
 export default function Hero({data,link}:{data:PersonalInformation,link:string}) {
   return (

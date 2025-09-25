@@ -1,7 +1,5 @@
-import { getIconComponent } from "@workspace/ui/icons";
-import React from "react";
 import Skill from "../../components/Skill";
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../../components/AnimatedSection";
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
 const SkillsSection = ({ skills }: { skills: string[] }) => {

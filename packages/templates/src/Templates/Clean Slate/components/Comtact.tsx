@@ -1,5 +1,5 @@
 "use client"
-import AnimatedSection from './AnimatedSection';
+import AnimatedSection from "../../components/AnimatedSection";
 
 export default function Contact({link}:{link:string}) {
   return (

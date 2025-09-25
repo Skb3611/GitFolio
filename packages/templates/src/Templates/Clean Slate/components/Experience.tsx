@@ -1,5 +1,5 @@
 import { Experience } from "@workspace/db";
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../../components/AnimatedSection";
 import { ResumeCard } from "../../Black & White/components/resume-card";
 
 export default function WorkExperience({ data }: { data: Experience[] }) {
