@@ -60,7 +60,7 @@ export const generateTemplateMeta = () => {
     }
 
     // Add object if missing
-    if (!updatedDataArray.includes(`id: "${templateFolder}"`)) {
+    if (!updatedDataArray.includes(`id: "${slugify(templateFolder)}"`)) {
       const newEntry = `  {
     id: "${slugify(templateFolder)}",
     title: "${templateFolder}",

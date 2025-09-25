@@ -106,7 +106,9 @@ export default function TemplatePage({
   const [images, setImages] = useState<string[]>([]);
   const handleClick = async (id: string) => {
     if (!isSignedIn) {
-      toast.info("Sign in to purchase template");
+      toast.info(
+        `Sign in to ${template?.category == "FREE" ? "use" : "purchase"} template`
+      );
       router.push("/sign-up");
       return;
     } else if (isSignedIn && !isPurchased && template?.category != "FREE") {
