@@ -12,7 +12,7 @@ export default function ProjectsSection({ data }: { data: Projects[] }) {
           My Projects
         </h2>
         <div className="space-y-8 sm:space-y-6 w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {data.map((project, index) => (
+          {data.filter(p=>p.isIncluded).map(project => (
             <AnimatedSection key={project.id}>
               <ProjectCard
               className="h-full"
