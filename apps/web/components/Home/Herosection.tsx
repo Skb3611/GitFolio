@@ -30,8 +30,8 @@ const HeroSection = () => {
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        <Link href={"/templates/clean-slate"}>
-          <SectionLabel badge="New" title={"Template Clean Slate ✨"} />
+        <Link href={"/templates/white-space"}>
+          <SectionLabel badge="New" title={"Template White Space ✨"} />
         </Link>
         <SplitTextAnimation
           highlightWord="Seconds"
