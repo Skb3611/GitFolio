@@ -1,4 +1,10 @@
-import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@workspace/types"
+import {
+  Education,
+  Experience,
+  PersonalInformation,
+  Projects,
+  SocialLinks,
+} from "@workspace/types";
 // export const dummypersonalInformation: PersonalInformation = {
 //     image: 'https://avatars.githubusercontent.com/u/12345678?v=4',
 //     full_name: 'Shubham Bhilare',
@@ -12,57 +18,58 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
 //     followers: 120,
 //     following: 85,
 //   };
-  
-  export const dummyprojects: Projects[] = [
-    {
-      id: '1',
-      name: 'Focus Hub',
-      description: 'A productivity tool to manage tasks and time blocks for deep work.',
-      thumbnail: 'https://via.placeholder.com/300x180',
-      repoLink: 'https://github.com/skb3611/focus-hub',
-      liveLink: 'https://focushub.dev',
-      languages: { JavaScript: 80, TypeScript: 20} ,
-      stars: 78,
-      forks: 12,
-      isIncluded: true,
-      topics:[]
-    },
-    {
-      id: '2',
-      name: 'Expense Tracker',
-      description: 'A simple expense tracking app with local storage support.',
-      thumbnail: 'https://via.placeholder.com/300x180',
-      repoLink: 'https://github.com/skb3611/expense-tracker',
-      liveLink: 'https://skb3611.github.io/Expense-Tracker/',
-      languages: { "JavaScript": 33.33, "HTML": 33.33, "CSS": 33.34 },
-      stars: 45,
-      forks: 6,
-      isIncluded: true,
-      topics:[]
-    },
-  ];
-  
-  // export const dummyexperience: Experience[] = [
-  //   {
-  //     id: '1',
-  //     role: 'Frontend Developer',
-  //     company: 'TechNova',
-  //     description: 'Built and maintained features for an enterprise dashboard using React and Redux.',
-  //     start_date: '2022-01-01',
-  //     end_date: '2023-06-30',
-  //     onGoing:false
-  //   },
-  //   {
-  //     id: '2',
-  //     company: 'DevVerse',
-  //     role: 'Full Stack Intern',
-  //     description: 'Worked on internal tools and helped integrate APIs using Node.js and Prisma.',
-  //     start_date: '2021-06-01',
-  //     end_date: '2021-12-01',
-  //     onGoing:false
-  //   },
-  // ];
-  
+
+export const dummyprojects: Projects[] = [
+  {
+    id: "1",
+    name: "Focus Hub",
+    description:
+      "A productivity tool to manage tasks and time blocks for deep work.",
+    thumbnail: "https://via.placeholder.com/300x180",
+    repoLink: "https://github.com/skb3611/focus-hub",
+    liveLink: "https://focushub.dev",
+    languages: { JavaScript: 80, TypeScript: 20 },
+    stars: 78,
+    forks: 12,
+    isIncluded: true,
+    topics: [],
+  },
+  {
+    id: "2",
+    name: "Expense Tracker",
+    description: "A simple expense tracking app with local storage support.",
+    thumbnail: "https://via.placeholder.com/300x180",
+    repoLink: "https://github.com/skb3611/expense-tracker",
+    liveLink: "https://skb3611.github.io/Expense-Tracker/",
+    languages: { JavaScript: 33.33, HTML: 33.33, CSS: 33.34 },
+    stars: 45,
+    forks: 6,
+    isIncluded: true,
+    topics: [],
+  },
+];
+
+// export const dummyexperience: Experience[] = [
+//   {
+//     id: '1',
+//     role: 'Frontend Developer',
+//     company: 'TechNova',
+//     description: 'Built and maintained features for an enterprise dashboard using React and Redux.',
+//     start_date: '2022-01-01',
+//     end_date: '2023-06-30',
+//     onGoing:false
+//   },
+//   {
+//     id: '2',
+//     company: 'DevVerse',
+//     role: 'Full Stack Intern',
+//     description: 'Worked on internal tools and helped integrate APIs using Node.js and Prisma.',
+//     start_date: '2021-06-01',
+//     end_date: '2021-12-01',
+//     onGoing:false
+//   },
+// ];
+
 //   export const dummysocialLinks: SocialLinks = {
 //     github: 'https://github.com/skb3611',
 //     linkedin: 'https://linkedin.com/in/skb3611',
@@ -73,7 +80,7 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
 //     behance: 'https://behance.net/skb3611',
 //     youtube: 'https://youtube.com/@skbdev',
 //   };
-  
+
 //   export const dummyeducation: Education[] = [
 //     {
 //       id: '1',
@@ -84,76 +91,172 @@ import {Education,Experience,PersonalInformation,Projects,SocialLinks} from "@wo
 //       description: 'Studied core computer science subjects including data structures, algorithms, and web development.',
 //     },
 //   ];
-  export const availableSkills = [
-    "React",
-    "Vue",
-    "Angular",
-    "TypeScript",
-    "JavaScript",
-    "Node.js",
-    "Python",
-    "Java",
-    "Rust",
-    "AWS",
-    "Azure",
-    "GCP",
-    "Docker",
-    "Kubernetes",
-    "MongoDB",
-    "PostgreSQL",
-    "MySQL",
-    "Git",
-    "CI/CD",
-    "Jest",
-    "Vite",
-    "Next.js",
-    "Nuxt.js",
-    "Express",
-    "FastAPI",
-  ]
+export const availableSkills = [
+  "React",
+  "Vue",
+  "Angular",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Python",
+  "Java",
+  "Rust",
+  "AWS",
+  "Azure",
+  "GCP",
+  "Docker",
+  "Kubernetes",
+  "MongoDB",
+  "PostgreSQL",
+  "MySQL",
+  "Git",
+  "CI/CD",
+  "Jest",
+  "Vite",
+  "Next.js",
+  "Nuxt.js",
+  "Express",
+  "FastAPI",
+  "Svelte",
+  "jQuery",
+  "Astro",
+  "Fastify",
+  "NextJs",
+  "Meteor",
+  "SocketIo",
+  "Strapi",
+  "Prisma",
+  "tRPC",
+  "GraphQL",
+  "Relay",
+  "Remix",
+  "Gatsby",
+  "Gridsome",
+  "Expo",
+  "Flutter",
+  "Kotlin",
+  "Swift",
+  "Dart",
+  "Elixir",
+  "Crystal",
+  "Zig",
+  "C#",
+  "C++",
+  "C",
+  "PHP",
+  "Ruby",
+  "Perl",
+  "Lua",
+  "HTML",
+  "CSS",
+  "SASS",
+  "BootStrap",
+  "Webpack",
+  "RollUp",
+  "Parcel",
+  "esBuild",
+  "TurboPack",
+  "npm",
+  "pnpm",
+  "yarn",
+  "bun",
+  "Vitest",
+  "Mocha",
+  "Cypress",
+  "Playwright",
+  "Puppeteer",
+  "Selenium",
+  "Storybook",
+  "PyTest",
+  "SQLite",
+  "Reddis",
+  "GoogleCloud",
+  "DigitalOcean",
+  "Linode",
+  "Heroku",
+  "Vercel",
+  "Netlify",
+  "Render",
+  "SupaBase",
+  "FireBase",
+  "Appwrite",
+  "Cloudflare",
+  "RabbitMQ",
+  "Kafka",
+  "PostMan",
+  "Clerk",
+  "WordPress",
+  "Sanity",
+  "Shopify",
+  "WooCommerce",
+  "Paypal",
+  "TensorFlow",
+  "PyTorch",
+  "Keras",
+  "Pandas",
+  "NumPy",
+  "Matplotlib",
+  "Jupyter",
+  "OpenAi",
+  "Solidity",
+  "Web3",
+  "Ethers",
+  "MetaMask",
+  "Django",
+  "Flask",
+  "Linux",
+  "Ubuntu",
+  "Debian",
+  "Fedora",
+  "Alphine",
+  "macOS",
+];
 
-  export const initialSocailLinks:SocialLinks = {
-    github: '',
-    linkedin: '',
-    twitter: '',
-    website: '',
-    instagram: '',
-    facebook: '',
-    behance: '',
-    youtube: '',
-  }
+export const initialSocailLinks: SocialLinks = {
+  github: "",
+  linkedin: "",
+  twitter: "",
+  website: "",
+  instagram: "",
+  facebook: "",
+  behance: "",
+  youtube: "",
+};
 
-  export const initialPersonalInformation:PersonalInformation = {
-    profileImg: '',
-    full_name: '',
-    username: '',
-    email: '',
-    location: '',
-    tagline: '',
-    bio: '',
-    website: '',
-    githubLink: '',
-    followers: 0,
-    following: 0,
-    activeTemplateId:""
-  }
+export const initialPersonalInformation: PersonalInformation = {
+  profileImg: "",
+  full_name: "",
+  username: "",
+  email: "",
+  location: "",
+  tagline: "",
+  bio: "",
+  website: "",
+  githubLink: "",
+  followers: 0,
+  following: 0,
+  activeTemplateId: "",
+};
 
-  export const MONTHS = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
+export const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
-export const YEARS = Array.from({ length: new Date().getFullYear() - 1980 + 1 }, (_, i) => 1980 + i).reverse()
+export const YEARS = Array.from(
+  { length: new Date().getFullYear() - 1980 + 1 },
+  (_, i) => 1980 + i
+).reverse();
 // export const dummyEducation: Education[] = [
 //   {
 //     id: '1',
@@ -183,4 +286,3 @@ export const YEARS = Array.from({ length: new Date().getFullYear() - 1980 + 1 },
 //     onGoing:false
 //   }
 // ];
-

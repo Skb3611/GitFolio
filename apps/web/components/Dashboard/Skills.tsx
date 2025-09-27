@@ -6,6 +6,7 @@ import { Save, X } from 'lucide-react'
 import React, { Dispatch, SetStateAction } from 'react'
 import { Badge } from '@workspace/ui/components/badge'
 import { SavePayload } from '@workspace/types'
+import { getIconComponent } from '@workspace/ui/icons'
 
 const SkillsTab = ({skills,onChange,onSave,availableSkills}:{
     skills: string[]
@@ -63,11 +64,12 @@ const SkillsTab = ({skills,onChange,onSave,availableSkills}:{
         </div>
         {newSkill && filteredSkills.length > 0 && (
           <div className="border rounded-md p-2 max-h-32 overflow-y-auto">
-            {filteredSkills.slice(0, 5).map((skill) => (
-              <div key={skill} className="p-1 hover:bg-muted rounded cursor-pointer" onClick={() => addSkill(skill)}>
-                {skill}
+            {filteredSkills.slice(0, 5).map((skill) => {
+              const Icon = getIconComponent(skill)
+              return <div key={skill} className="p-1 hover:bg-muted rounded cursor-pointer flex items-center gap-2" onClick={() => addSkill(skill)}>
+               {Icon && <Icon/>} {skill}
               </div>
-            ))}
+})}
           </div>
         )}
       </div>
