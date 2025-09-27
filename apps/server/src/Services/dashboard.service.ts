@@ -46,7 +46,8 @@ export const updateUserData = async (
   data: any
 ): Promise<boolean> => {
   try {
-    if (data.activeTemplateId) {
+
+    if (data?.activeTemplateId) {
       const template = await prisma.template.findUnique({
         where: { id: data.activeTemplateId },
       });
@@ -79,6 +80,18 @@ export const updateUserData = async (
           return res ? true : false;
         } else return false;
       }
+    }
+    else{
+     let a= await prisma.user.update({
+        where:{
+          id:userId,
+        },
+        data:{
+          ...data,
+        }
+      })
+      return a?true:false
+      console.log(a)
     }
 
     return false;

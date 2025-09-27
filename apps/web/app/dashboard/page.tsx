@@ -382,6 +382,15 @@ export default function Page() {
           break;
 
         case "Social Links":
+          const invalidLinks = Object.entries(data).filter(
+            ([key, value]) => value && !value.startsWith("https://")
+          );
+          if (invalidLinks.length > 0) {
+            toast.error(
+              `Please make sure the following links start with https://`
+            ,{ id: showSavingToast });
+            return;
+          }
           body = { socialAccounts: { ...data } };
           endpoint = config.server_endpoints.UPDATE_USER_DATA;
           break;
@@ -548,8 +557,8 @@ export default function Page() {
             template={personalInformation?.activeTemplateId}
           />
         );
-        case "Payments":
-          return <PaymentHistoryTable/>
+      case "Payments":
+        return <PaymentHistoryTable />;
     }
   };
 
