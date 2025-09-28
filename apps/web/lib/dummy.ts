@@ -149,6 +149,7 @@ export const availableSkills = [
   "Lua",
   "HTML",
   "CSS",
+  "Tailwind",
   "SASS",
   "BootStrap",
   "Webpack",
