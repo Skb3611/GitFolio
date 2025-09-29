@@ -16,6 +16,7 @@ import { SplitTextAnimation } from "../SplitTextAnimation";
 import { useRouter } from "next/navigation";
 import { toast } from "@workspace/ui/components/sonner";
 import { useUserLocation } from "@/hooks/getUserLocation";
+import SectionLabel from "@workspace/ui/components/SectionLabel";
 
 const plans = [
   {
@@ -97,6 +98,7 @@ export default function MinimalistPricing() {
     <div className="min-h-screen bg-background relative ">
       {/* <BackgroundBeams className="absolute w-full h-full" /> */}
       <div className="container max-w-7xl mx-auto px-4 py-26 relative z-20">
+      <SectionLabel title="✨ Free Trial Period"/>
         <div className="text-center mb-16">
           {/* <SectionLabel title={"✨ Fully Responsive UI"} /> */}
           <SplitTextAnimation
@@ -113,7 +115,7 @@ export default function MinimalistPricing() {
               delay={0.3}
             >
               Build your perfect developer portfolio with GitFolio. Start free
-              or unlock premium features to showcase your work professionally.
+              or unlock premium  features to showcase your work professionally.
             </SplitTextAnimation>
           </AnimatedShinyText>
         </div>
