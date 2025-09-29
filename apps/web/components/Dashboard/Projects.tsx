@@ -180,7 +180,7 @@ const ProjectsTab = ({
         </div>
         <Button onClick={handleAddProject} className="w-full md:w-auto">
           <Plus className="mr-2 h-4 w-4" />
-          Add Education
+          Add Project
         </Button>
       </div>
 
