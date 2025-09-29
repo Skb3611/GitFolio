@@ -23,13 +23,13 @@ export const Data: TemplateData[] = [
     id: "clean-slate",
     title: "Clean Slate",
     description: "A modern monochrome portfolio template that highlights your skills and projects with bold` typography and a minimalist aesthetic.",
-    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/clean-slate/preview/desktop-dark.png",
+    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/clean-slate/preview/desktop-light.png",
     video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/clean-slate/preview/vid.mp4",
     component: Clean_Slate,
     mobileDevice: "Iphone15Pro",
-    category: "PRO",
-    INRpricing: 699,
-    USDpricing: 7.99,
+    category: "FREE",
+    INRpricing: 0,
+    USDpricing: 0,
     theme:"both"
   },
   {
@@ -40,9 +40,9 @@ export const Data: TemplateData[] = [
     video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/devpro/preview/vid.mp4",
     component: DevPro,
     mobileDevice: "Android",
-    category: "PRO",
-    INRpricing: 899,
-    USDpricing: 8.99,
+    category: "FREE",
+    INRpricing: 0,
+    USDpricing: 0,
     theme:"both"
   },
   {

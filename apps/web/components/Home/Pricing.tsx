@@ -10,33 +10,30 @@ import {
 } from "@workspace/ui/components/card";
 import { Badge } from "@workspace/ui/components/badge";
 import { Check, Star, Zap, Gift } from "lucide-react";
-import { BackgroundBeams } from "@workspace/ui/components/ui/background-beams";
 import { motion } from "motion/react";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import { useRouter } from "next/navigation";
 import { toast } from "@workspace/ui/components/sonner";
-import { useEffect, useState } from "react";
-import { useAuth } from "@clerk/nextjs";
 import { useUserLocation } from "@/hooks/getUserLocation";
 
 const plans = [
   {
-    name: "Free",
+    name: "Limited Offer",
     heading: "Perfect for Getting Started",
     USDPrice: "Free",
     INRPrice: "Free",
-    recommended: false,
+    recommended: true,
     icon: Gift,
     features: [
-      "Access to 1 starter templates",
+      "Access to all starter templates",
       "Hosted on username.gitfolio.in",
       "GitFolio branding in footer",
       //   "Limit of 3 project links",
       //   "Basic profile only (bio + links)",
       "Good for trying GitFolio quickly",
     ],
-  },
+  }
   // {
   //   name: "Pro",
   //   USDPrice:"$ 3.99",
@@ -56,25 +53,25 @@ const plans = [
   //     "Best for active developers and job seekers",
   //   ],
   // },
-  {
-    name: "One-Time",
-    heading: "Unlock 1 Premium Template Forever",
-    USDPrice: "$ 9.99 - 14.99",
-    INRPrice: "₹ 799 - 1499",
-    billing: "per template",
+  // {
+  //   name: "One-Time",
+  //   heading: "Unlock 1 Premium Template Forever",
+  //   USDPrice: "$ 9.99 - 14.99",
+  //   INRPrice: "₹ 799 - 1499",
+  //   billing: "per template",
 
-    recommended: true,
-    icon: Star,
-    features: [
-      "Unlock 1 premium template forever",
-      // "No subscription required",
-      "Remove GitFolio branding",
-      "Hosted on username.gitfolio.in",
-      //   "30-day template switching window before final lock",
-      //   "Includes 1 future update for chosen template",
-      "The last portfolio you'll ever need.",
-    ],
-  },
+  //   recommended: true,
+  //   icon: Star,
+  //   features: [
+  //     "Unlock 1 premium template forever",
+  //     // "No subscription required",
+  //     "Remove GitFolio branding",
+  //     "Hosted on username.gitfolio.in",
+  //     //   "30-day template switching window before final lock",
+  //     //   "Includes 1 future update for chosen template",
+  //     "The last portfolio you'll ever need.",
+  //   ],
+  // },
 ];
 
 export default function MinimalistPricing() {
@@ -133,14 +130,14 @@ export default function MinimalistPricing() {
           }}
           transition={{ duration: 0.4, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          className="grid md:grid-cols-1 gap-8 max-w-4xl mx-auto justify-items-center"
         >
           {plans.map((plan) => {
             const IconComponent = plan.icon;
             return (
               <Card
                 key={plan.name}
-                className={`relative ${plan.recommended ? "border-primary shadow-lg scale-105" : "border-border"} hover:shadow-xl transition-all duration-300`}
+                className={`relative min-w-md ${plan.recommended ? "border-primary shadow-lg scale-105" : "border-border"} hover:shadow-xl transition-all duration-300`}
               >
                 {plan.recommended && (
                   <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
@@ -163,9 +160,9 @@ export default function MinimalistPricing() {
                       {country === "US" ? plan.USDPrice : plan.INRPrice}
                     </span>
                     <span
-                      className={`text-muted-foreground ${plan.billing ? "ml-2" : ""}`}
+                      className={`text-muted-foreground ${'billing' in plan && plan.billing ? "ml-2" : ""}`}
                     >
-                      {plan.billing ? "/ " + plan.billing : null}
+                      {'billing' in plan && plan.billing ? "/ " + plan.billing : null}
                     </span>
                     <CardDescription className="mt-1"></CardDescription>
                   </div>
@@ -188,7 +185,7 @@ export default function MinimalistPricing() {
                     size="lg"
                     onClick={() => handleClick(plan.name)}
                   >
-                    {plan.name === "Free"
+                    {plan.INRPrice === "Free"
                       ? "Get Started Free"
                       : `Choose ${plan.name}`}
                   </Button>

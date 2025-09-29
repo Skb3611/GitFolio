@@ -95,7 +95,8 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
         </div>
       </motion.div>
       <Badge
-        className={`absolute top-3 right-3 rounded-sm [&>svg]:size-5  text-yellow-500  border backdrop-blur-xl `}
+        className={`absolute top-3 right-3 rounded-sm [&>svg]:size-5  text-yellow-500  border backdrop-blur-xl 
+          ${template.thumbnail?.includes("light") ? "bg-muted" : ""}`}
         variant={"outline"}
       >
         {template.category == "FREE" ? <Gift /> : <Gem />}
