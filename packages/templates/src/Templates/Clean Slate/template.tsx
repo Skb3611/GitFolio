@@ -49,7 +49,7 @@ const template = ({ data = DummyData }: { data?: DATA }) => {
             <hr className="w-full h-px max-md:max-w-[150px] mx-auto bg-muted" />
           </>
         )}
-        {data.experience && (
+        {data.experience &&data.experience.length>0 && (
           <>
             <WorkExperience data={data.experience as unknown as Experience[]} />
             <hr className="w-full h-px max-md:max-w-[150px] mx-auto bg-muted" />
