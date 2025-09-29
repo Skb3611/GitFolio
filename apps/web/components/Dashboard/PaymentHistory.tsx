@@ -76,7 +76,7 @@ export default function PaymentHistoryTable() {
       const statusMatch = status === "All" || pmt.status === status;
       const queryMatch =
         q.trim() === "" ||
-        pmt.template.title.toLowerCase().includes(q.toLowerCase()) ||
+        pmt?.template?.title.toLowerCase().includes(q.toLowerCase()) ||
         pmt.orderId.toLowerCase().includes(q.toLowerCase()) ||
         (pmt.paymentId || "").toLowerCase().includes(q.toLowerCase());
 
@@ -186,7 +186,7 @@ const handleOpenModal =(ptm:Payment) => {
                   </>
                   }
                   <Td className="max-w-[360px] truncate">
-                    {pmt.template.title}
+                    {pmt?.template?.title}
                   </Td>
                   <Td className="text-right font-medium">
                     <span className="text-sm text-muted-foreground">

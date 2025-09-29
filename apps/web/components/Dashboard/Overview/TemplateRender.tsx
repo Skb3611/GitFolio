@@ -2,7 +2,7 @@
 import { DATA } from '@workspace/types'
 const TemplateRender =({username,template}:{username:string,template?:string}) => {
 return template ? (
-<iframe src={`https://${username}.gitfolio.in`} className='h-full w-full rounded-2xl'/>
+<iframe src={`https://${username}.gitfolio.in`} className='h-full w-full rounded-md'/>
   ):(
     <>No Template Selected</>
   )

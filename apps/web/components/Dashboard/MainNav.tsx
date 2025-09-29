@@ -28,7 +28,7 @@ const MainNav = ({
             <SidebarMenuButton
               isActive={activeTab === nav.label}
               tooltip={nav.label}
-              className={`mx-auto w-[95%] sm:w-full py-5 px-5  ${open?"rounded-full":""} `}
+              className={`mx-auto w-[95%] sm:w-full py-5 px-5 `}
               onClick={() => setActiveTab(nav.label as TabTypes)}
             >
               <nav.icon/>

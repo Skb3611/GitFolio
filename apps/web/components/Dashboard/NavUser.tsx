@@ -127,7 +127,7 @@ const NavUser = ({
         <SidebarMenuItem className="w-full  mb-1">
           <DialogTrigger asChild>
             <SidebarMenuButton
-              className={`p-5  font-semibold ${open ? "rounded-4xl" : ""}`}
+              className={`p-5  font-semibold`}
               variant={"outline"}
               tooltip={"Copy Link"}
             >
@@ -188,7 +188,7 @@ const NavUser = ({
       </Dialog>
       <SidebarMenuItem className="w-full ">
         <SidebarMenuButton
-          className={`p-5 font-semibold ${open ? "rounded-4xl" : ""} bg-primary hover:bg-primary/80`}
+          className={`p-5 font-semibold  bg-primary hover:bg-primary/80`}
           variant={"outline"}
           tooltip={"Visit Portfolio"}
           onClick={() => {
