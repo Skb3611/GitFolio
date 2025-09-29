@@ -86,9 +86,6 @@ export default function MinimalistPricing() {
       case "One-Time":
         router.push("/templates");
         break;
-      case "Pro":
-        toast.message("Pro version");
-        break;
       default:
         toast.error("Some Error Occured");
     }
@@ -185,7 +182,7 @@ export default function MinimalistPricing() {
                   <Button
                     className={`w-full cursor-pointer ${plan.recommended ? "bg-primary hover:bg-primary/90" : "bg-secondary hover:bg-secondary/90"}`}
                     size="lg"
-                    onClick={() => handleClick(plan.name)}
+                    onClick={() => router.push("/dashboard")}
                   >
                     {plan.INRPrice === "Free"
                       ? "Get Started Free"
