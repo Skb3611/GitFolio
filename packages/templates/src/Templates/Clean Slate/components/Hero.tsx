@@ -5,7 +5,7 @@ import AnimatedSection from "../../components/AnimatedSection";
 export default function Hero({data,link}:{data:PersonalInformation,link:string}) {
   return (
     <AnimatedSection>
-      <div className="sm:px-6 lg:px-8 relative max-w-2xl pt-[40px] sm:pt-[130px] md:pt-[150px] lg:pt-[188px] mx-auto flex flex-col justify-center px-4 gap-6">
+      <div className="sm:px-6 relative max-w-2xl pt-[40px] sm:pt-[130px] md:pt-[150px] lg:pt-[188px] mx-auto flex flex-col justify-center px-4 gap-6">
         <AnimatedSection>
           <img
             alt={data.username}
