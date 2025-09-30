@@ -68,7 +68,7 @@ export const Card = ({ template, idx }: { template: TemplateData; idx: number })
         </div>
       </motion.div>
       <Badge
-        className={`absolute top-3 right-3 rounded-sm [&>svg]:size-5  text-yellow-500  border backdrop-blur-xl `}
+        className={`absolute top-3 right-3 rounded-sm [&>svg]:size-5  text-yellow-500  border backdrop-blur-xl bg-muted`}
         variant={"outline"}
       >
         {template.category == "FREE" ? <Gift /> : <Gem />}
