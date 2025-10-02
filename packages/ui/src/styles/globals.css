@@ -8,12 +8,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
-*{
+* {
   scroll-behavior: smooth;
 }
-.cl-internal-6if1su{
-  @apply grid-cols-1
+.cl-internal-6if1su {
+  @apply grid-cols-1;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Bytesized&family=Geist:wght@100..900&display=swap");
 
 :root {
   --radius: 0.65rem;
@@ -53,6 +55,7 @@
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+  --edge: color-mix(in oklab, #e4e4e7 64%, #fff);
 }
 
 .dark {
@@ -83,15 +86,18 @@
   --sidebar-foreground: oklch(1 0 0);
   --sidebar-primary: oklch(0.6132 0.2294 291.7437);
   --sidebar-primary-foreground: oklch(0 0 0);
-  --sidebar-accent: oklch(0.3200 0 0);
+  --sidebar-accent: oklch(0.32 0 0);
   --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.3200 0 0);
-  --sidebar-ring: oklch(0.7200 0 0);
+  --sidebar-border: oklch(0.32 0 0);
+  --sidebar-ring: oklch(0.72 0 0);
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+
+  --edge:color-mix(in oklab, #27272a 64%, #09090b);
+  --pattern-foreground: color-mix(in oklab, var(--edge) 60%, transparent);
 }
 
 @theme inline {
@@ -132,84 +138,93 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-shiny-text: shiny-text 8s infinite;
+  --color-edge: var(--edge);
   @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
     }
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
     }
   }
-  --animate-background-position-spin: background-position-spin 3000ms infinite alternate
-;
+  --animate-background-position-spin: background-position-spin 3000ms infinite
+    alternate;
   @keyframes background-position-spin {
-  0% {
-    background-position: top center;
+    0% {
+      background-position: top center;
     }
-  100% {
-    background-position: bottom center;
+    100% {
+      background-position: bottom center;
     }
   }
   --animate-shine: shine var(--duration) infinite linear;
   @keyframes shine {
-  0% {
-    background-position: 0% 0%;
+    0% {
+      background-position: 0% 0%;
     }
-  50% {
-    background-position: 100% 100%;
+    50% {
+      background-position: 100% 100%;
     }
-  to {
-    background-position: 0% 0%;
+    to {
+      background-position: 0% 0%;
     }
   }
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
-  --animate-orbit: orbit calc(var(--duration)*1s) linear infinite;
+  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
   @keyframes orbit {
-  0% {
-    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg))
+        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
     }
-  100% {
-    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg))
+        translateY(calc(var(--radius) * 1px))
+        rotate(calc((var(--angle) * -1deg) - 360deg));
     }
   }
   --animate-meteor: meteor 5s linear infinite;
   @keyframes meteor {
-  0% {
-    transform: rotate(var(--angle)) translateX(0);
-    opacity: 1;
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
     }
-  70% {
-    opacity: 1;
+    70% {
+      opacity: 1;
     }
-  100% {
-    transform: rotate(var(--angle)) translateX(-500px);
-    opacity: 0;
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
     }
   }
-  --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
+  --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s)
+    infinite;
   @keyframes ripple {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
     }
-  50% {
-    transform: translate(-50%, -50%) scale(0.9);
+    50% {
+      transform: translate(-50%, -50%) scale(0.9);
     }
   }
   --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
@@ -219,13 +234,14 @@
   --color-color-2: var(--color-2);
   --color-color-1: var(--color-1);
   @keyframes rainbow {
-  0% {
-    background-position: 0%;
+    0% {
+      background-position: 0%;
     }
-  100% {
-    background-position: 200%;
+    100% {
+      background-position: 200%;
     }
-  }}
+  }
+}
 
 @layer base {
   * {
@@ -240,7 +256,7 @@
   width: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground rounded-2xl
+  @apply bg-muted-foreground rounded-2xl;
 }
 ::-webkit-scrollbar-track {
   background-color: var(--accent);
@@ -258,3 +274,14 @@
 /* .no-scrollbar::-webkit-scrollbar-track {
   background: revert;
 } */
+.screen-line-before {
+  @apply relative before:absolute before:top-0 before:-left-[100vw] before:-z-1 before:h-px before:w-[200vw] before:bg-edge;
+}
+.screen-line-after {
+  @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
+}
+.bytesized-regular {
+  font-family: "Bytesized";
+  font-weight: 400;
+  font-style: normal;
+}

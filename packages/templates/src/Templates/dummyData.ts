@@ -1,17 +1,17 @@
-import { DATA, PersonalInformation } from "@workspace/types";
+import { DATA } from "@workspace/types";
 import { config } from "../config";
 
 export const DummyData: DATA = {
 personalInfo: {
     profileImg: "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18zMjhRWkFrSjlET0xseXhjVmNiY1EwVjV1OUgifQ?width=128",
     full_name: "Shubham Bhilare",
-    username: "alexjohnson",
-    email: "alex.johnson@example.com",
+    username: "SKB3611",
+    email: "shubham.bhilare@example.com",
     location: "San Francisco, CA",
     tagline: "Full Stack Developer & UI/UX Enthusiast",
     bio: "Passionate developer with 5+ years of experience building scalable web applications. I love creating intuitive user experiences and solving complex problems with clean, efficient code.",
-    website: "https://alexjohnson.dev",
-    githubLink: "https://github.com/alexjohnson",
+    website: "https://skb3611.gitfolio.in",
+    githubLink: "https://github.com/SKB3611",
     followers: 1247,
     following: 389
   } ,
