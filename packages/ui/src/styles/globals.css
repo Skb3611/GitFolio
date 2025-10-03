@@ -15,7 +15,7 @@
   @apply grid-cols-1;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Bytesized&family=Geist:wght@100..900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Bytesized&family=Geist:wght@100..900&display=swap"); */
 
 :root {
   --radius: 0.65rem;
