@@ -37,7 +37,7 @@ export function MobileNav({
       <DropdownMenuContent className="w-64" align="end" sideOffset={8}>
         {items.map((link) => (
           <DropdownMenuItem key={link.href} asChild>
-            <a href={link.href}>{link.title}</a>
+            <span onClick={() => scrollIntoView(link.href)}>{link.title}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
@@ -65,7 +65,6 @@ export function DeskTopNav({ items }: { items: NavItem[] }) {
     </>
   );
 }
-
 function scrollIntoView(elementId: string) {
   const element = document.querySelector(elementId);
   console.log(element);

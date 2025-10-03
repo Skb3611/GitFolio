@@ -24,7 +24,7 @@ export const MAIN_NAV = [
     href: "#connect",
   },
 ];
-export function Header({name}:{name:string}) {
+export function Header({name}:{name:string}) {  
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -40,7 +40,7 @@ export function Header({name}:{name:string}) {
       )}
     >
       <div
-        className="screen-line-before screen-line-after mx-auto flex h-14 items-center justify-between gap-2 border-x border-edge px-2 after:z-1 after:transition-[background-color] sm:gap-4 md:max-w-3xl "
+        className="screen-line-before screen-line-after mx-auto flex h-12 items-center justify-between gap-2 border-x border-edge px-2 after:z-1 after:transition-[background-color] sm:gap-4 md:max-w-3xl "
         data-header-container
       >
         <motion.div
@@ -66,11 +66,11 @@ export function Header({name}:{name:string}) {
 
         <div className="flex-1" />
 
-        <DeskTopNav items={MAIN_NAV} />
+        <DeskTopNav items={MAIN_NAV}  />
 
         <div className="flex items-center gap-2">
-          <ToggleTheme />
-          <MobileNav className="sm:hidden" items={MAIN_NAV} />
+          <ToggleTheme  />
+          <MobileNav className="sm:hidden" items={MAIN_NAV}/>
         </div>
       </div>
     </SiteHeaderWrapper>

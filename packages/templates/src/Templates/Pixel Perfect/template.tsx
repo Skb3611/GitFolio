@@ -15,7 +15,7 @@ import { SiteFooter } from "./components/Footer";
 const template = ({ data = DummyData }: { data?: DATA }) => {
   return (
     <div>
-      <Header name={data.personalInfo.full_name}/>
+      <Header name={data.personalInfo.full_name} />
       <main className="max-w-screen overflow-x-hidden px-2">
         <div className="mx-auto md:max-w-3xl">
           <ProfileCover name={data.personalInfo.full_name} />
@@ -23,22 +23,32 @@ const template = ({ data = DummyData }: { data?: DATA }) => {
           <Separator />
           <Overview data={data.personalInfo} />
           <Separator />
-          <TeckStack skills={data.skills} />
-          <Separator />
-          <ProjectSection projects={data.projects} />
-          <Separator />
-          <Experiences experiences={data.experience} />
-          <Separator />
+          {data.skills.length > 0 && (
+            <>
+              <TeckStack skills={data.skills} />
+              <Separator />
+            </>
+          )}
+          {data.projects.length > 0 && (
+            <>
+              <ProjectSection projects={data.projects} />
+              <Separator />
+            </>
+          )}
+          {data.experience.length > 0 && (
+            <>
+              <Experiences experiences={data.experience} />
+              <Separator />
+            </>
+          )}
           <SocialLinksSection data={data.socialLinks} />
           <Separator />
           {/* 
-          <About />
-          <Separator />
 
           <GitHubContributions />
           <Separator />
          */}
-         <SiteFooter username={data.personalInfo.username}/>
+          <SiteFooter username={data.personalInfo.username} />
         </div>
       </main>
     </div>

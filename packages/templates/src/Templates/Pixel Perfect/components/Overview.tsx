@@ -26,15 +26,17 @@ export function Overview({ data }: { data: PersonalInformation }) {
 
         <IntroItem icon={Mail} content={data.email} />
 
-        <IntroItem icon={MapPinIcon} content={data.location} />
+        <IntroItem icon={MapPinIcon} content={data.location || "On Earth"} />
 
-        <IntroItem
-          icon={GlobeIcon}
-          content={urlToName(data.website || "")}
-          href={data.website || ""}
-        />
+        {data.website && (
+          <IntroItem
+            icon={GlobeIcon}
+            content={urlToName(data.website || "")}
+            href={data.website || ""}
+          />
+        )}
 
-        <IntroItem icon={Info} content={data.bio} />
+        <IntroItem icon={Info} content={data.bio || "No Bio"} />
       </PanelContent>
     </Panel>
   );

@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import Gallery from "./components/Gallery";
+import { Pixel_Perfect } from "../../../packages/templates/src/Templates";
 
 export default function Page() {
   return (
-    <Gallery/>
+    // <Gallery/>
+    <Pixel_Perfect/>
   );
 }
 
