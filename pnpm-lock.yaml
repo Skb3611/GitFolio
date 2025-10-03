@@ -368,6 +368,12 @@ importers:
       '@workspace/ui':
         specifier: workspace:*
         version: link:../ui
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
+      daysjs:
+        specifier: ^1.0.2
+        version: 1.0.2
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
@@ -448,6 +454,9 @@ importers:
       cobe:
         specifier: ^0.6.4
         version: 0.6.4
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       embla-carousel-autoplay:
         specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
@@ -4251,6 +4260,9 @@ packages:
 
   date-fns@4.1.0:
     resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+
+  daysjs@1.0.2:
+    resolution: {integrity: sha512-aata7iSt3gAap32EffH3qM75HY7BbjwpOk55NyAMD42oO55HnG4Q1PGu77A5vd/yry3f7joPQU5LPNKgz1JUMQ==}
 
   debounce@2.2.0:
     resolution: {integrity: sha512-Xks6RUDLZFdz8LIdR6q0MTH44k7FikOmnh5xkSjMig6ch45afc8sjTjRQf3P6ax8dMgcQrYO/AR2RGWURrruqw==}
@@ -12303,6 +12315,8 @@ snapshots:
       is-data-view: 1.0.2
 
   date-fns@4.1.0: {}
+
+  daysjs@1.0.2: {}
 
   debounce@2.2.0: {}
 

@@ -26,15 +26,6 @@ export function ProjectSection({ projects }: { projects: Projects[] }) {
           ))}
         </div>
       </div>
-
-      {/* <div className="screen-line-before flex justify-center py-2">
-        <Button variant="default" asChild>
-          <Link href="/blog">
-            All Posts
-            <ArrowRightIcon />
-          </Link>
-        </Button>
-      </div> */}
     </Panel>
   );
 }
@@ -64,12 +55,6 @@ function ProjectCard({
           />
 
           <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
-
-          {/* {post.metadata.new && (
-            <span className="absolute top-1.5 right-1.5 rounded-md bg-info px-1.5 font-mono text-sm font-medium text-white text-shadow-xs">
-              New
-            </span>
-          )} */}
         </div>
       )}
 
@@ -87,14 +72,26 @@ function ProjectCard({
           <dt className="sr-only">Links</dt>
           <dd className="text-sm text-muted-foreground space-x-2">
             {project.repoLink && (
-              <Button variant={"outline"} size={"icon"} className="cursor-pointer">
-                <Github />
-              </Button>
+              <a href={project.repoLink} target="_blank">
+                <Button
+                  variant={"outline"}
+                  size={"icon"}
+                  className="cursor-pointer"
+                >
+                  <Github />
+                </Button>
+              </a>
             )}
             {project.liveLink && (
-              <Button variant={"outline"} size={"icon"} className="cursor-pointer">
-                <ArrowUpRight />
-              </Button>
+              <a href={project.liveLink} target="_blank">
+                <Button
+                  variant={"outline"}
+                  size={"icon"}
+                  className="cursor-pointer"
+                >
+                  <ArrowUpRight />
+                </Button>
+              </a>
             )}
           </dd>
         </dl>

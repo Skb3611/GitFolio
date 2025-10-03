@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -32,15 +26,15 @@ model User {
   githubLink         String?
   followers          Int             @default(0)
   following          Int             @default(0)
-  contributions      Json[]
+  // contributions      Json[]
   socialAccounts     Json?
-  repos              Repo[]
-  experiences        Experience[]
-  educations         Education[]
   skills             String[]
   updatedAt          DateTime        @updatedAt
   createdAt          DateTime        @default(now())
+  educations         Education[]
+  experiences        Experience[]
   payments           Payments[]
+  repos              Repo[]
   subscriptions      Subscriptions[]
   purchasedTemplates UserTemplate[]
 
@@ -62,16 +56,13 @@ model Repo {
   thumbnail   String?
   repoLink    String
   liveLink    String?
-  // readmeLink  String? for future scope
   isPinned    Boolean   @default(false)
   isIncluded  Boolean   @default(true)
   userId      String
-  owner       User      @relation(fields: [userId], references: [id])
-  // contributors String[] for future scope
   updated_at  DateTime?
   created_at  DateTime?
   pushed_at   DateTime?
-  // @@index([isIncluded])
+  owner       User      @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
@@ -85,9 +76,9 @@ model Experience {
   start_date  String
   end_date    String?
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
   updated_at  DateTime @updatedAt
   created_at  DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
@@ -101,9 +92,9 @@ model Education {
   start_date  String
   end_date    String?
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
   updated_at  DateTime @updatedAt
   created_at  DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
@@ -114,9 +105,9 @@ model Template {
   category    String
   USDpricing  Float
   INRpricing  Float
-  purchasedBy UserTemplate[]
-  payments    Payments[]
   createdAt   DateTime       @default(now())
+  payments    Payments[]
+  purchasedBy UserTemplate[]
 
   @@index([category])
 }
@@ -127,11 +118,10 @@ model UserTemplate {
   templateId   String
   purchaseDate DateTime @default(now())
   isActive     Boolean  @default(true)
+  template     Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  template Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, templateId]) // Prevent duplicate purchases
+  @@unique([userId, templateId])
   @@index([userId])
   @@index([templateId])
 }
@@ -167,7 +157,8 @@ model Subscriptions {
   metadata               Json?
   createdAt              DateTime           @default(now())
   user                   User               @relation(fields: [userId], references: [id])
-  @@unique([userId,razorpaySubscriptionId])
+
+  @@unique([userId, razorpaySubscriptionId])
 }
 
 enum PaymentStatus {

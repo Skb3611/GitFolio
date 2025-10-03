@@ -66,6 +66,14 @@ export type SavePayload =
   | { type: "Education"; data: Partial<Education> }
   | { type: "Template"; data: { activeTemplateId: string } };
 
+export type GitHubContributionsResponse = {
+  contributions: Activity[];
+};
+export type Activity = {
+  date: string;
+  count: number;
+  level: number;
+};
 export enum DeleteType {
   PROJECT,
   EXPERIENCE,
@@ -110,7 +118,7 @@ export interface TemplateData {
   mobilePreview?: string[];
   mobileDevice?: "Iphone15Pro" | "Android";
   category: "FREE" | "PRO";
-  INRpricing:number;
-  USDpricing:number;
-  theme:"dark" | "light"|"both"
+  INRpricing: number;
+  USDpricing: number;
+  theme: "dark" | "light" | "both";
 }

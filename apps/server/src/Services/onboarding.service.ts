@@ -23,8 +23,7 @@ export const onBoardingProcess = async (
 }> => {
   try {
     let userDetails;
-    let userRepos;
-    let contributions;
+    let userRepos;    
     const regex =
       /^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?#]+)(?:[\/\?#]|$)/i;
     const githubUsername = githubURL.match(regex)?.[1];
@@ -34,14 +33,6 @@ export const onBoardingProcess = async (
         if (!token) throw Error("Invalid userID");
         userDetails = await getUserDetails({ token });
         userRepos = await getUserRepos({ token });
-        contributions = userDetails
-          ? await getUserContributionsGraph(
-              token,
-              userDetails?.username,
-              userDetails?.created_at
-            )
-          : null;
-
         break;
 
       case "GOOGLE":
@@ -56,25 +47,11 @@ export const onBoardingProcess = async (
           };
         userDetails = await getUserDetails({ username: githubUsername });
         userRepos = await getUserRepos({ username: githubUsername });
-        contributions = userDetails
-          ? await getUserContributionsGraph(
-              config.GITHUB_ACCESS_TOKEN ?? "",
-              userDetails?.username,
-              userDetails?.created_at
-            )
-          : null;
         break;
       case "EMAIL":
         if (!githubUsername) throw Error("No UserName");
         userDetails = await getUserDetails({ username: githubUsername });
         userRepos = await getUserRepos({ username: githubUsername });
-        contributions = userDetails
-          ? await getUserContributionsGraph(
-              config.GITHUB_ACCESS_TOKEN ?? "",
-              userDetails?.username,
-              userDetails?.created_at
-            )
-          : null;
         break;
 
       default:
@@ -100,7 +77,6 @@ export const onBoardingProcess = async (
             followers: userDetails.followers,
             following: userDetails.following,
             onBoardingStatus: true,
-            contributions: contributions ?? undefined,
             socialAccounts: {
               github: userDetails.githubLink || "",
               linkedin: "",

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "./components/Header";
 import { cn } from "@workspace/ui/lib/utils";
 import ProfileCover from "./components/ProfileCover";
@@ -12,7 +12,13 @@ import { TeckStack } from "./components/TechStack";
 import { ProjectSection } from "./components/Projects";
 import { Experiences } from "./components/Experience";
 import { SiteFooter } from "./components/Footer";
+import { GitHubContributions } from "./components/GitHubContributions";
+import { useTheme } from "next-themes";
 const template = ({ data = DummyData }: { data?: DATA }) => {
+  const { setTheme } = useTheme();
+  useEffect(() => {
+    setTheme("dark");
+  }, []);
   return (
     <div>
       <Header name={data.personalInfo.full_name} />
@@ -29,6 +35,8 @@ const template = ({ data = DummyData }: { data?: DATA }) => {
               <Separator />
             </>
           )}
+          <GitHubContributions username={data.personalInfo.username} />
+          <Separator />
           {data.projects.length > 0 && (
             <>
               <ProjectSection projects={data.projects} />
@@ -43,11 +51,9 @@ const template = ({ data = DummyData }: { data?: DATA }) => {
           )}
           <SocialLinksSection data={data.socialLinks} />
           <Separator />
-          {/* 
 
-          <GitHubContributions />
-          <Separator />
-         */}
+          {/*
+           */}
           <SiteFooter username={data.personalInfo.username} />
         </div>
       </main>

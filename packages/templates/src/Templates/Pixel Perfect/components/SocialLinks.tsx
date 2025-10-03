@@ -49,8 +49,8 @@ function SocialLinkItem({
         "screen-line-before screen-line-after",
         "odd:screen-line-before odd:screen-line-after"
       )}
-      // href={link}.\
-      // target="_blank"
+      href={link}
+      target={link!="#"?"_blank":"_self"}
       rel="noopener"
     >
       {Icon && <Icon className="size-10" />}

@@ -17,6 +17,7 @@ export function ToggleTheme() {
 
   return (
     <Button
+    className="rounded-full cursor-pointer"
       variant="outline"
       size="icon"
       onClick={() => {

@@ -28,7 +28,7 @@ COMMIT;
 
 
 ALTER TYPE "SubscriptionStatus" ADD VALUE 'PENDING_VERIFICATION';
-ALTER TYPE "SubscriptionStatus" ADD VALUE 'CREATED';
+ALTER TYPE "SubscriptionStatus" ADD VALUE IF NOT EXISTS 'CREATED';
 ALTER TYPE "SubscriptionStatus" ADD VALUE 'PAST_DUE';
 
 -- AlterTable
@@ -38,8 +38,8 @@ DROP COLUMN "startDate",
 ADD COLUMN     "currentPeriodEnd" TIMESTAMP(3),
 ADD COLUMN     "currentPeriodStart" TIMESTAMP(3),
 ADD COLUMN     "nextBillingDate" TIMESTAMP(3),
-ADD COLUMN     "razorpaySubscriptionId" TEXT,
-ALTER COLUMN "status" SET DEFAULT 'CREATED';
+ADD COLUMN     "razorpaySubscriptionId" TEXT;
+-- ALTER COLUMN "status" SET DEFAULT 'CREATED';
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Subscriptions_userId_razorpaySubscriptionId_key" ON "Subscriptions"("userId", "razorpaySubscriptionId");
