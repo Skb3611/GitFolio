@@ -129,14 +129,14 @@ export default function MinimalistPricing() {
           }}
           transition={{ duration: 0.4, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-1 gap-8 max-w-4xl mx-auto justify-items-center"
+          className="grid grid-cols-1 gap-8 max-w-4xl mx-auto justify-items-center"
         >
           {plans.map((plan) => {
             const IconComponent = plan.icon;
             return (
               <Card
                 key={plan.name}
-                className={`relative min-w-md ${plan.recommended ? "border-primary shadow-lg scale-105" : "border-border"} hover:shadow-xl transition-all duration-300`}
+                className={`relative min-w-[80%] sm:min-w-md ${plan.recommended ? "border-primary shadow-lg scale-105" : "border-border"} hover:shadow-xl transition-all duration-300`}
               >
                 {plan.recommended && (
                   <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
@@ -150,9 +150,9 @@ export default function MinimalistPricing() {
                       <IconComponent className="h-6 w-6 text-primary" />
                     </div>
                     {plan.name}
-                    <p className="text-sm text-muted-foreground">
+                    <AnimatedShinyText className="text-sm block  font-normal text-muted-foreground">
                       {plan.heading}
-                    </p>
+                    </AnimatedShinyText>
                   </CardTitle>
                   <div className="mt-4 flex items-center justify-center">
                     <span className="text-xl sm:text-3xl font-bold text-card-foreground">
