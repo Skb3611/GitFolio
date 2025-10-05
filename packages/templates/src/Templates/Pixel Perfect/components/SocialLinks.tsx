@@ -21,8 +21,8 @@ export function SocialLinksSection({ data }: { data: SocialLinks }) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {Object.entries(data).map(([socialNetwork, link], index) => {
             return (
-              link.lenght > 0 &&
-              link != "#" && (
+              link.length > 0 &&
+               (
                 <SocialLinkItem
                   key={index}
                   socialNetwork={socialNetwork}
