@@ -21,11 +21,14 @@ export function SocialLinksSection({ data }: { data: SocialLinks }) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {Object.entries(data).map(([socialNetwork, link], index) => {
             return (
-              <SocialLinkItem
-                key={index}
-                socialNetwork={socialNetwork}
-                link={link}
-              />
+              link.lenght > 0 &&
+              link != "#" && (
+                <SocialLinkItem
+                  key={index}
+                  socialNetwork={socialNetwork}
+                  link={link}
+                />
+              )
             );
           })}
         </div>
@@ -50,7 +53,7 @@ function SocialLinkItem({
         "odd:screen-line-before odd:screen-line-after"
       )}
       href={link}
-      target={link!="#"?"_blank":"_self"}
+      target={link != "#" ? "_blank" : "_self"}
       rel="noopener"
     >
       {Icon && <Icon className="size-10" />}
