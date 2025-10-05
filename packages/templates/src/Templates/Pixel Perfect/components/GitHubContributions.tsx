@@ -37,7 +37,7 @@ export async function getGitHubContributions(username:string) {
   const res = await fetch(
     `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
     {
-    //   next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
+      // next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
     }
   );
   const data = (await res.json()) as GitHubContributionsResponse;
@@ -89,7 +89,7 @@ export function GitHubContributionGraph({
         <ContributionGraphTotalCount>
           {({ totalCount, year }) => (
             <div className="text-muted-foreground">
-              {totalCount.toLocaleString("en")} contributions in {year} on{" "}
+              {totalCount.toLocaleString("en")} contributions in since {year} on{" "}
               <a
                 className="font-medium underline underline-offset-4"
                 href={`https://github.com/${username}`}
