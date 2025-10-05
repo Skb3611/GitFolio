@@ -5,6 +5,7 @@ import { SavePayload } from "@workspace/types";
 import TemplatePage from "../TemplatePage";
 import { Button } from "@workspace/ui/components/button";
 import { MoveLeft } from "lucide-react";
+import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 
 const Templates = ({
   onSelect,
@@ -20,12 +21,12 @@ const Templates = ({
   }, [Template]);
   return (
     <div className="h-full w-full">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Select a Template</h3>
-          <p className="text-sm  text-muted-foreground">
+          <AnimatedShinyText className="text-sm  text-muted-foreground">
             Browse and select a template that pleases you !
-          </p>
+          </AnimatedShinyText>
         </div>
         {Template && (
           <Button

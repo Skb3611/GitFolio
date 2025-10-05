@@ -48,14 +48,14 @@ const SkillsTab = ({
   return (
     <Card>
       <CardHeader>
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center justify-between">
+        <div className="flex flex-col gap-2 sm:flex-row items-start sm:items-center justify-between">
           <div>
             <CardTitle>Skills & Technologies</CardTitle>
-            <CardDescription>
+            <CardDescription >
               Add your technical skills and expertise
             </CardDescription>
           </div>
-          <Button onClick={() => onSave({ type: "Skills", data: skills })}>
+          <Button className="w-full sm:w-auto" onClick={() => onSave({ type: "Skills", data: skills })}>
             <Save className="mr-2 h-4 w-4" />
             Save Changes
           </Button>
@@ -66,7 +66,7 @@ const SkillsTab = ({
           <Label>Add New Skill</Label>
           <div className="flex gap-2">
             <Input
-              className="text-sm"
+              className="text-xs sm:text-sm"
               value={newSkill}
               onChange={(e) => setNewSkill(e.target.value)}
               placeholder="Type a skill..."
@@ -105,9 +105,9 @@ const SkillsTab = ({
                 <Badge
                   key={skill}
                   variant="outline"
-                  className="flex items-center gap-2 py-2 text-sm"
+                  className="flex items-center gap-2 py-2 text-xs sm:text-sm"
                 >
-                  {Icon && <Icon className="!size-5"/>}
+                  {Icon && <Icon className="!size-3.5 sm:!size-5"/>}
                   {skill}
                   <Button
                     onClick={() => removeSkill(skill)}

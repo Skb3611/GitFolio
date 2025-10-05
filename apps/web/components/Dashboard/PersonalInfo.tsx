@@ -78,7 +78,7 @@ const PersonalInfoTab = ({
   return (
     <Card>
       <CardHeader>
-        <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-2 items-start justify-between">
           <div>
             <CardTitle>Personal Information</CardTitle>
             <CardDescription>
@@ -87,7 +87,7 @@ const PersonalInfoTab = ({
           </div>
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-              <Button className="w-full md:w-auto">
+              <Button className="w-full sm:w-auto">
                 <Edit className="mr-2 h-4 w-4" />
                 Edit Profile
               </Button>
@@ -205,7 +205,7 @@ const PersonalInfoTab = ({
           </Dialog>
         </div>
       </CardHeader>
-      <CardContent className="md:space-y-6 space-y-4 text-sm md:text-base">
+      <CardContent className="px-4 sm:px-6 md:space-y-6 space-y-4 text-sm md:text-base">
         <div className="flex items-center gap-4">
           <Avatar className="md:size-20 size-15">
             <AvatarImage

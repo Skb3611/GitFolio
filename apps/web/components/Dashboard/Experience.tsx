@@ -173,19 +173,19 @@ const ExperienceTab = ({
   };
   return (
     <div className="space-y-4">
-      <div className="flex flex-col md:flex-row items-center gap-2 justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 justify-between">
         <div>
           <h3 className="text-lg font-medium">
             {experience.length == 0 ? "No Experiences" : "Work Experiences"}
           </h3>
-          <AnimatedShinyText>
+          <AnimatedShinyText className="text-sm">
             {experience.length == 0
               ? "Add some experiences to showcase your skills and achievements"
               : "Your professional experience and roles"}
             .
           </AnimatedShinyText>
         </div>
-        <Button onClick={handleAddExperience} className="w-full md:w-auto">
+        <Button onClick={handleAddExperience} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Experience
         </Button>
@@ -209,10 +209,10 @@ const ExperienceTab = ({
           <div className="text-center py-8 text-muted-foreground">
             <BriefcaseBusiness className="size-16 md:size-24 mx-auto opacity-50" />
             <AnimatedShinyText className="flex flex-col">
-              <span className="text-xl">
+              <span className="text-base sm:text-lg">
                 No Experience included in portfolio yet
               </span>
-              <span>
+              <span className="text-xs sm:text-sm">
                 Add atleast one Experience to showcase it on your portfolio
               </span>
             </AnimatedShinyText>

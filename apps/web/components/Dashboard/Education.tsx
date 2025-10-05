@@ -146,14 +146,14 @@ export default function EducationTab({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Education</h3>
-          <p className="text-sm text-muted-foreground">
+          <AnimatedShinyText className="text-sm text-muted-foreground">
             Your educational background and qualifications
-          </p>
+          </AnimatedShinyText>
         </div>
-        <Button onClick={handleAddEducation} className="w-full md:w-auto">
+        <Button onClick={handleAddEducation} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Education
         </Button>
@@ -177,10 +177,10 @@ export default function EducationTab({
           <div className="text-center py-8 text-muted-foreground">
             <GraduationCap className="size-20 mx-auto opacity-50" />
             <AnimatedShinyText className="flex flex-col">
-              <span className="md:text-lg">
+              <span className="text-base sm:text-lg">
                 No Education included in portfolio yet
               </span>
-              <span>
+              <span className="text-xs sm:text-sm">
                 Add atleast one Education to showcase it on your portfolio
               </span>
             </AnimatedShinyText>

@@ -8,9 +8,10 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import { Input } from "@workspace/ui/components/input";
-import { Save } from "lucide-react";
+import { icons, Save } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
 import { SavePayload, SocialLinks } from "@workspace/types";
+import { getIconComponent } from "@workspace/ui/icons";
 
 const SocialLinksTab = ({
   links,
@@ -24,7 +25,7 @@ const SocialLinksTab = ({
   const handleSave = () => {
     // Get the current links data
     const currentLinks = links;
-    
+
     // Check if any link has changed by comparing with the initial data
     const hasChanges = Object.entries(currentLinks).some(([key, value]) => {
       // If any link value is not empty and different from initial state
@@ -34,11 +35,11 @@ const SocialLinksTab = ({
     // Only call save if there are changes
     if (hasChanges) {
       onSave({
-        type: 'Social Links',
-        data: currentLinks
+        type: "Social Links",
+        data: currentLinks,
       });
     }
-  }
+  };
   return (
     <Card>
       <CardHeader>
@@ -57,13 +58,15 @@ const SocialLinksTab = ({
       </CardHeader>
       <CardContent className="space-y-2 grid lg:grid-cols-2 gap-3">
         {Object.entries(links).map(([key, value]) => {
+          const Icon = getIconComponent(key);
           return (
             <div className="space-y-2" key={key}>
-              <Label htmlFor={key}>
+              <Label htmlFor={key} className="flex gap-2 items-center">
+                {Icon && <Icon className="size-4" />}
                 {key[0]?.toUpperCase() + key.slice(1)}
               </Label>
               <Input
-              className="text-sm"
+                className="text-sm"
                 id={key}
                 value={value}
                 onChange={(e) => onChange({ ...links, [key]: e.target.value })}

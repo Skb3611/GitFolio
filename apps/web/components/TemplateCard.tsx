@@ -60,12 +60,12 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
           ? CardVariants.fromLeft.visible
           : CardVariants.fromRight.visible
       }
-      transition={{ duration: 0.5, delay: idx * 0.1 }}
+      transition={{ duration: 0.5, delay: idx * 0.1 - (idx > 3 ? 0.25 : 0) }}
       viewport={{ once: true }}
       // whileHover="hover"
     >
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end"
+        className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end w-full"
         variants={overlayVariants}
         initial="initial"
         whileHover="hover"
@@ -73,13 +73,15 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
         // whileTap={isMobile?"hover":""}
         onClick={handleClick}
       >
-        <div className="p-6 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-          <div className="space-y-1 flex flex-col">
-            <div className="text-lg font-semibold text-primary">
+        <div className="p-4 sm:p-6 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 w-full">
+          <div className="space-y-1 flex flex-col items-start">
+            <div className="text-sm sm:text-lg font-semibold text-primary">
               {template.title}
             </div>
-            <AnimatedShinyText className="text-xs uppercase text-primary-foreground font-medium ">
-              {template.description}
+            <AnimatedShinyText className="text-[0.55rem] sm:text-xs uppercase text-primary-foreground font-medium max-w-full w-full">
+              {isMobile
+                ? template.description.slice(0, 80) + "..."
+                : template.description}
             </AnimatedShinyText>
             <p
               onClick={() => {
@@ -87,7 +89,7 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
                   ? router.push(`/templates/${template.id}`)
                   : setTemplate?.(template.id);
               }}
-              className="flex items-center place-content-end gap-2 cursor-pointer text-right min-w-full text-sm"
+              className="flex items-center place-content-end gap-2 cursor-pointer text-right min-w-full text-xs sm:text-sm"
             >
               Explore more <MoveRight />
             </p>

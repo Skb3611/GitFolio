@@ -171,14 +171,14 @@ const ProjectsTab = ({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Portfolio Projects</h3>
-          <p className="text-sm  text-muted-foreground">
+          <AnimatedShinyText className="text-sm  text-muted-foreground">
             Manage your projects and customize how they appear in your portfolio
-          </p>
+          </AnimatedShinyText>
         </div>
-        <Button onClick={handleAddProject} className="w-full md:w-auto">
+        <Button onClick={handleAddProject} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Project
         </Button>
