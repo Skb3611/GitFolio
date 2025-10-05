@@ -111,39 +111,39 @@ export const DummyData: DATA = {
   ],
 
   experience: [
-    {
-      id: "exp-001",
-      logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop",
-      company: "TechFlow Solutions",
-      role: "Senior Full Stack Developer",
-      description:
-        "Led development of microservices architecture serving 10M+ users. Mentored junior developers and collaborated with cross-functional teams to deliver high-quality software solutions.",
-      start_date: "Jan 20XX",
-      end_date: "Dec 20XX",
-      onGoing: true,
-    },
-    {
-      id: "exp-002",
-      logo: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=100&h=100&fit=crop",
-      company: "StartupXYZ",
-      role: "Frontend Developer",
-      description:
-        "Built responsive web applications using React and TypeScript. Improved application performance by 40% through code optimization and implemented modern CI/CD pipelines.",
-      start_date: "Jan 20XX",
-      end_date: "Dec 20XX",
-      onGoing: false,
-    },
-    {
-      id: "exp-003",
-      logo: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&h=100&fit=crop",
-      company: "Digital Innovations Inc",
-      role: "Junior Web Developer",
-      description:
-        "Developed and maintained client websites using HTML, CSS, and JavaScript. Collaborated with designers to implement pixel-perfect UI components and learned modern development practices.",
-      start_date: "Jan 20XX",
-      end_date: "Dec 20XX",
-      onGoing: false,
-    },
+    // {
+    //   id: "exp-001",
+    //   logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop",
+    //   company: "TechFlow Solutions",
+    //   role: "Senior Full Stack Developer",
+    //   description:
+    //     "Led development of microservices architecture serving 10M+ users. Mentored junior developers and collaborated with cross-functional teams to deliver high-quality software solutions.",
+    //   start_date: "Jan 20XX",
+    //   end_date: "Dec 20XX",
+    //   onGoing: true,
+    // },
+    // {
+    //   id: "exp-002",
+    //   logo: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=100&h=100&fit=crop",
+    //   company: "StartupXYZ",
+    //   role: "Frontend Developer",
+    //   description:
+    //     "Built responsive web applications using React and TypeScript. Improved application performance by 40% through code optimization and implemented modern CI/CD pipelines.",
+    //   start_date: "Jan 20XX",
+    //   end_date: "Dec 20XX",
+    //   onGoing: false,
+    // },
+    // {
+    //   id: "exp-003",
+    //   logo: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&h=100&fit=crop",
+    //   company: "Digital Innovations Inc",
+    //   role: "Junior Web Developer",
+    //   description:
+    //     "Developed and maintained client websites using HTML, CSS, and JavaScript. Collaborated with designers to implement pixel-perfect UI components and learned modern development practices.",
+    //   start_date: "Jan 20XX",
+    //   end_date: "Dec 20XX",
+    //   onGoing: false,
+    // },
   ],
 
   education: [

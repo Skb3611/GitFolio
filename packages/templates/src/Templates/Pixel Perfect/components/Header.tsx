@@ -24,7 +24,7 @@ export const MAIN_NAV = [
     href: "#connect",
   },
 ];
-export function Header({name}:{name:string}) {  
+export function Header({ name, exp }: { name: string; exp: boolean }) {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -59,25 +59,36 @@ export function Header({name}:{name:string}) {
                   y: 10,
                 }
           }
-          className="overflow-hidden" 
+          className="overflow-hidden"
         >
           <Initial name={name} size="sm" />
         </motion.div>
 
         <div className="flex-1" />
 
-        <DeskTopNav items={MAIN_NAV}  />
+        <DeskTopNav
+          items={
+            exp
+              ? MAIN_NAV
+              : MAIN_NAV.filter((item) => item.title !== "Experience")
+          }
+        />
 
         <div className="flex items-center gap-2">
-          <ToggleTheme  />
-          <MobileNav className="sm:hidden" items={MAIN_NAV}/>
+          <ToggleTheme />
+          <MobileNav
+            className="sm:hidden"
+            items={
+              exp
+                ? MAIN_NAV
+                : MAIN_NAV.filter((item) => item.title !== "Experience")
+            }
+          />
         </div>
       </div>
     </SiteHeaderWrapper>
   );
 }
-
-
 
 export function SiteHeaderWrapper(props: React.ComponentProps<"header">) {
   const { scrollY } = useScroll();

@@ -21,7 +21,10 @@ const template = ({ data = DummyData }: { data?: DATA }) => {
   }, []);
   return (
     <div>
-      <Header name={data.personalInfo.full_name} />
+      <Header
+        name={data.personalInfo.full_name}
+        exp={data.experience && data.experience.length > 0 ? true : false}
+      />
       <main className="max-w-screen overflow-x-hidden px-2">
         <div className="mx-auto md:max-w-3xl">
           <ProfileCover name={data.personalInfo.full_name} />
