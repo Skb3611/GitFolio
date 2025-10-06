@@ -9,7 +9,7 @@ import BackHomeButton from "@/components/BackHomeButton";
 
 export default function SignUpPage() {
   return (
-    <div className=" relative flex min-h-screen">
+    <div className=" relative flex min-h-screen overflow-hidden w-full">
       <BackHomeButton/>
       {/* Left Side - SaaS Marketing */}
       <div className="hidden lg:flex lg:w-1/2 bg-background">
