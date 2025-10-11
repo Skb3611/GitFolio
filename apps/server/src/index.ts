@@ -4,6 +4,7 @@ import v1Router from "./Routes/v1/index";
 import { User } from "@clerk/backend";
 import { config } from "./config";
 import healthRouter from "./Routes/health/index";
+import "./Services/email.service"
 declare global {
   namespace Express {
     interface Request {
