@@ -3,24 +3,27 @@ import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Github, MoveUpRight } from "@workspace/ui/icons";
+import AnimatedSection from "../../components/AnimatedSection";
 
 const ProjectsSection = ({ data }: { data: Projects[] }) => {
   return (
-    <div className="py-8 border-b border-dotted">
-      <h2 className="text-2xl font-bold font-doto pb-4">
-        Projects{" "}
-        <AnimatedShinyText className="text-sm font-jetbrains">
-          Which I have worked on
-        </AnimatedShinyText>
-      </h2>
-      <div className="flex flex-wrap gap-x-4 gap-y-4">
-        {data
-          .filter((pro) => pro.isIncluded)
-          .map((project, idx) => {
-            return <CardWrapper key={idx} project={project} />;
-          })}
+    <AnimatedSection>
+      <div className="py-8 border-b border-dotted">
+        <h2 className="text-2xl font-bold font-doto pb-4">
+          Projects{" "}
+          <AnimatedShinyText className="text-sm font-jetbrains">
+            Which I have worked on
+          </AnimatedShinyText>
+        </h2>
+        <div className="flex flex-wrap gap-x-4 gap-y-4">
+          {data
+            .filter((pro) => pro.isIncluded)
+            .map((project, idx) => {
+              return <CardWrapper key={idx} project={project} />;
+            })}
+        </div>
       </div>
-    </div>
+    </AnimatedSection>
   );
 };
 
