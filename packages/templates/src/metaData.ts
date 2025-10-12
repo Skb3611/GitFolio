@@ -5,6 +5,7 @@ import { DevPro } from "./Templates";
 import { Persona } from "./Templates";
 import { White_Space } from "./Templates";
 import { Pixel_Perfect } from "./Templates";
+import { Obsidian } from "./Templates";
 
 export const Data: TemplateData[] = [
 {
@@ -84,5 +85,18 @@ export const Data: TemplateData[] = [
     INRpricing: 0,
     USDpricing: 0,
     theme:"both"
+  },
+  {
+    id: "obsidian",
+    title: "Obsidian",
+    description: "A sleek dark-themed template featuring center-aligned text, crisp contrast, and minimalist styling for focused writing.",
+    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/obsidian/preview/desktop-dark.png",
+    video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/obsidian/preview/vid.mp4",
+    component: Obsidian,
+    mobileDevice: "Iphone15Pro",
+    category: "FREE",
+    INRpricing: 0,
+    USDpricing: 0,
+    theme:"dark"
   }
 ];
