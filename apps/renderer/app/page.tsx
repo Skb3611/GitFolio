@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import Gallery from "./components/Gallery";
+import { Obsidian } from "../../../packages/templates/src/Templates";
 
 export default function Page() {
   return (
-    <Gallery/>
+    // <Gallery/>
+    <Obsidian/>
   );
 }
 

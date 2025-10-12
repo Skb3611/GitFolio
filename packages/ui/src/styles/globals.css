@@ -139,6 +139,9 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-shiny-text: shiny-text 8s infinite;
   --color-edge: var(--edge);
+  --font-doto:"Doto";
+  --font-jetbrains:"JetBrains Mono";
+  --font-figtree:"Figtree";
   @keyframes shiny-text {
     0%,
     90%,
