@@ -22,9 +22,9 @@ const template = ({ data = DummyData }: { data?: DATA }) => {
       </style>
       <Hero data={data.personalInfo} />
       <SocialButtons data={data.socialLinks} />
-      <SkillsSection data={data.skills} />
-      <ProjectsSection data={data.projects} />
-      <ExperienceSection data={data.experience} />
+      {data.skills && <SkillsSection data={data.skills} />}
+      {data.projects && <ProjectsSection data={data.projects} />}
+      {data.experience && <ExperienceSection data={data.experience} />}
       <Footer username={data.personalInfo.username} />
     </div>
   );
