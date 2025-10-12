@@ -81,7 +81,11 @@ export default function TemplatePage({
         desktopPreview,
         mobilePreview,
       });
-      const baseImages = [...desktopPreview, "/assets/og.png"];
+      const baseImages = [
+        ...desktopPreview,
+        "/assets/og.png",
+        `${config.renderer_endpoint}/imgs/og.png`,
+      ];
 
       setImages(
         Array(template.theme == "both" ? 10 : 20)
