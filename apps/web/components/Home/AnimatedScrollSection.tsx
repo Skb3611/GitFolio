@@ -56,7 +56,7 @@ const AnimatedScrollSection = () => {
         className="mt-20 mb-10 relative md:rounded-xl   z-20"
       >
         <Safari
-          url="portfolio.gitfolio.in/pixel-perfect"
+          url="portfolio.gitfolio.in/obsidian"
           mode="simple"
           videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/obsidian/preview/vid.mp4"
           className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"
