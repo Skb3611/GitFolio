@@ -5,6 +5,11 @@
 ✨ **Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.**
 
 ---
+## 🤝 Contributing
+
+We’d love your help in improving GitFolio!  
+See our [Contribution Guide](./CONTRIBUTING.md) for details on how to contribute templates and features.
+
 
 ## 🚀 What is GitFolio?
 
