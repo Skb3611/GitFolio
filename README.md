@@ -4,6 +4,9 @@
 
 ✨ **Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/skb3611/gitfolio?style=social)](https://github.com/skb3611/gitfolio/stargazers)
+
 ---
 ## 🤝 Contributing
 
@@ -87,3 +90,8 @@ A Glimpse of Templates at GitFolio
 ---
 
 👉 With **GitFolio**, your work deserves more than a GitHub profile. It deserves a **professional presence**.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE) © 2025 Shubham Bhilare.
+
