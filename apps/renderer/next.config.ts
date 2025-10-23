@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: { ignoreDuringBuilds: true },
   allowedDevOrigins: [
     "http://portfolio.gitfolio.test",
     "http://skb3611.gitfolio.test", // your subdomain
