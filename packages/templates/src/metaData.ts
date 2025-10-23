@@ -6,6 +6,7 @@ import { Persona } from "./Templates";
 import { White_Space } from "./Templates";
 import { Pixel_Perfect } from "./Templates";
 import { Obsidian } from "./Templates";
+import { Notion_Theme } from "./Templates";
 
 export const Data: TemplateData[] = [
 {
@@ -98,5 +99,18 @@ export const Data: TemplateData[] = [
     INRpricing: 0,
     USDpricing: 0,
     theme:"dark"
+  },
+  {
+    id: "notion-theme",
+    title: "Notion Theme",
+    description: "A sleek,Notion portfolio template for creatives and professionals to showcase their work, projects, and skills with no coding required.",
+    thumbnail: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/notion-theme/preview/desktop-light.png",
+    video: "https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/notion-theme/preview/vid.mp4",
+    component: Notion_Theme,
+    mobileDevice: "Iphone15Pro",
+    category: "FREE",
+    INRpricing: 0,
+    USDpricing: 0,
+    theme:"both"
   }
 ];
