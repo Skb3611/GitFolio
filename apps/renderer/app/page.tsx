@@ -1,11 +1,9 @@
 import { Metadata } from "next";
 import Gallery from "./components/Gallery";
-import { Notion_Theme } from "@workspace/templates";
 
 export default function Page() {
   return (
-    // <Gallery/>
-    <Notion_Theme/>
+    <Gallery/>
   );
 }
 
