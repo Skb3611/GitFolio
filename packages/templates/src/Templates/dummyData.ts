@@ -189,7 +189,7 @@ export const DummyData: DATA = {
     "Node.js",
     "Python",
     "MongoDB",
-    "PostgresSQL",
+    "PostgreSQL",
     "Prisma",
     "AWS",
     "Git",
