@@ -90,7 +90,7 @@ export const updateUserData = async (
           ...data,
         }
       })
-      console.log(a)
+      console.log("updated user ",a)
       return a?true:false
     }
 

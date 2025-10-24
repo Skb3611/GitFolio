@@ -152,6 +152,7 @@ export default function Page() {
           headers: {
             authorization: `Bearer ${token}`,
           },
+          credentials:"include"
         });
         const result = await res.json();
         const p: PersonalInformation = {
@@ -264,6 +265,7 @@ export default function Page() {
           "Content-Type": "application/json",
           authorization: `Bearer ${params.token}`,
         },
+        credentials: "include",
         body: JSON.stringify({
           type: params.type,
           filename: returnFileName() + ".jpg",
@@ -387,8 +389,9 @@ export default function Page() {
           );
           if (invalidLinks.length > 0) {
             toast.error(
-              `Please make sure the following links start with https://`
-            ,{ id: showSavingToast });
+              `Please make sure the following links start with https://`,
+              { id: showSavingToast }
+            );
             return;
           }
           body = { socialAccounts: { ...data } };
@@ -413,6 +416,7 @@ export default function Page() {
       const res = await fetch(endpoint, {
         method: "POST",
         headers,
+        credentials:"include",
         body: JSON.stringify(body),
       });
 
@@ -444,6 +448,7 @@ export default function Page() {
           res = await fetch(`${config.server_endpoints.DELETE_REPO}/${id}`, {
             method: "DELETE",
             headers,
+            credentials:"include"
           });
           break;
 
@@ -454,6 +459,7 @@ export default function Page() {
             {
               method: "DELETE",
               headers,
+              credentials:"include"
             }
           );
           break;
@@ -465,6 +471,7 @@ export default function Page() {
             {
               method: "DELETE",
               headers,
+              credentials:"include"
             }
           );
           break;

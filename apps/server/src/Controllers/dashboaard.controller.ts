@@ -43,8 +43,7 @@ export const getUserDataController = async (req: Request, res: Response) => {
 export const updateUserDataController = async (req: Request, res: Response) => {
   try {
     const userId = req.auth?.user.id;
-    console.log(req.auth?.user);
-    console.log(req.body);
+    console.log("update user data req.body", req.body);
     if (!userId) {
       res.status(400).json({ message: "userId is required", status: "error" });
       return;

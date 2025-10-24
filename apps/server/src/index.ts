@@ -21,6 +21,7 @@ const allowedOriginsRegex = config.NODE_ENV === "dev"
   : /^https:\/\/([a-z0-9-]+)\.gitfolio\.in$/;
 
 const app = express();
+app.set("trust proxy", true);
 app.use(
   cors({
     origin: (origin, callback) => {
