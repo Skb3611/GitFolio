@@ -90,8 +90,8 @@ export const updateUserData = async (
           ...data,
         }
       })
-      return a?true:false
       console.log(a)
+      return a?true:false
     }
 
     return false;
