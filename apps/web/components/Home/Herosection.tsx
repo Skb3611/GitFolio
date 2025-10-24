@@ -30,8 +30,8 @@ const HeroSection = () => {
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        <Link href={"/templates/obsidian"}>
-          <SectionLabel badge="New" title={"Template Obsidian ✨"} />
+        <Link href={"/templates/notion-theme"}>
+          <SectionLabel badge="New" title={"Notion Theme Template ✨"} />
         </Link>
         <SplitTextAnimation
           highlightWord="Seconds"
