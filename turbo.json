@@ -4,43 +4,45 @@
   "remoteCache": {
     "signature": true
   },
+  "globalEnv": [
+    "NODE_ENV"
+  ],
   "tasks": {
     "build": {
-      "dependsOn": ["^build", "^db:generate"],
-      "env": ["DATABASE_URL"],
-      "outputs": [".next/**", "!.next/cache/**"],
+      "dependsOn": ["^build"],
+      "outputs": [
+        ".next/**",
+        "dist/**",
+        "build/**"
+      ],
       "cache": true
     },
-    "start":{
-      "dependsOn": ["^build", "build"],
-      "cache": false
-    },
     "lint": {
-      "dependsOn": ["^lint"]
+      "outputs": [],
+      "cache": true
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "outputs": [],
+      "cache": true
     },
     "dev": {
       "dependsOn": ["^dev"],
       "cache": false,
       "persistent": true
     },
-    "test":{},
-    "test:watch":{
-      "cache": false,
-      "persistent": true
+    "start": {
+      "dependsOn": ["build"],
+      "cache": false
     },
-    "test:coverage": {
-      "cache": false,
-      "outputs": ["./coverage/**"]
+    "test": {
+      "outputs": ["coverage/**"],
+      "cache": false
     },
     "db:generate": {
       "cache": false
     },
     "db:migrate": {
-      "cache": false,
-      "persistent": true
+      "cache": false
     },
     "db:deploy": {
       "cache": false
@@ -48,7 +50,7 @@
     "db:studio": {
       "cache": false
     },
-    "db:seed":{
+    "db:seed": {
       "cache": false
     }
   }
