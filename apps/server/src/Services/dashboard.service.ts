@@ -57,16 +57,17 @@ export const updateUserData = async (
           },
           data: {
             activeTemplateId: data.activeTemplateId,
+            ...data
           },
         });
-        console.log("from first if", res);
         return res ? true : false;
       } else if (template && template.category == "PRO") {
         let user = await clerkClient.users.getUser(userId);
         if (!user) return false;
         if (
           (user.publicMetadata?.purchasedTemplates as string[])?.includes(
-            data.activeTemplateId
+            data.activeTemplateId,
+            ...data
           )
         ) {
           let res = await prisma.user.update({
@@ -77,7 +78,6 @@ export const updateUserData = async (
               activeTemplateId: data.activeTemplateId,
             },
           });
-          console.log("from second if", res);
           return res ? true : false;
         } else return false;
       }
@@ -90,7 +90,6 @@ export const updateUserData = async (
           ...data,
         },
       });
-      console.log("From else", a);
       return a ? true : false;
     }
 
