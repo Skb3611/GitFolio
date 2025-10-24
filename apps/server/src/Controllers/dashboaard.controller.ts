@@ -50,6 +50,7 @@ export const updateUserDataController = async (req: Request, res: Response) => {
     }
     const data = req.body;
     const response = await updateUserData(userId, data);
+    console.log(response)
     response
       ? res.status(200).json({
           message: "Data updated successfully",

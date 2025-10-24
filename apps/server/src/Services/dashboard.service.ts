@@ -46,7 +46,6 @@ export const updateUserData = async (
   data: any
 ): Promise<boolean> => {
   try {
-
     if (data?.activeTemplateId) {
       const template = await prisma.template.findUnique({
         where: { id: data.activeTemplateId },
@@ -60,6 +59,7 @@ export const updateUserData = async (
             activeTemplateId: data.activeTemplateId,
           },
         });
+        console.log("from first if", res);
         return res ? true : false;
       } else if (template && template.category == "PRO") {
         let user = await clerkClient.users.getUser(userId);
@@ -77,21 +77,21 @@ export const updateUserData = async (
               activeTemplateId: data.activeTemplateId,
             },
           });
+          console.log("from second if", res);
           return res ? true : false;
         } else return false;
       }
-    }
-    else{
-     let a= await prisma.user.update({
-        where:{
-          id:userId,
+    } else {
+      let a = await prisma.user.update({
+        where: {
+          id: userId,
         },
-        data:{
+        data: {
           ...data,
-        }
-      })
-      console.log("updated user ",a)
-      return a?true:false
+        },
+      });
+      console.log("From else", a);
+      return a ? true : false;
     }
 
     return false;
