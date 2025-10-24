@@ -144,7 +144,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -158,7 +158,7 @@ export const Icons = {
       viewBox="0 0 1024 1024"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -166,10 +166,14 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  calendar: (props: IconProps) => <CalendarIcon {...props} />,
-  email: (props: IconProps) => <MailIcon {...props} />,
+  calendar: (props: IconProps) => <CalendarIcon {...(props as any)} />,
+  email: (props: IconProps) => <MailIcon {...(props as any)} />,
   linkedin: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...(props as any)}
+    >
       <title>LinkedIn</title>
       <path
         fill="currentColor"
@@ -178,7 +182,11 @@ export const Icons = {
     </svg>
   ),
   twitter: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...(props as any)}
+    >
       <title>X</title>
       <path
         fill="currentColor"
@@ -193,31 +201,31 @@ export const Icons = {
       viewBox="0 0 32 32"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...(props as any)}
     >
       <title>youtube</title>
       <path d="M29.41,9.26a3.5,3.5,0,0,0-2.47-2.47C24.76,6.2,16,6.2,16,6.2s-8.76,0-10.94.59A3.5,3.5,0,0,0,2.59,9.26,36.13,36.13,0,0,0,2,16a36.13,36.13,0,0,0,.59,6.74,3.5,3.5,0,0,0,2.47,2.47C7.24,25.8,16,25.8,16,25.8s8.76,0,10.94-.59a3.5,3.5,0,0,0,2.47-2.47A36.13,36.13,0,0,0,30,16,36.13,36.13,0,0,0,29.41,9.26ZM13.2,20.2V11.8L20.47,16Z" />
     </svg>
   ),
   github: (props: IconProps) => (
-    <svg viewBox="0 0 438.549 438.549" {...props}>
+    <svg viewBox="0 0 438.549 438.549" {...(props as any)}>
       <path
         fill="currentColor"
         d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"
       ></path>
     </svg>
   ),
-  facebook: (props: IconProps) => <Facebook {...props} />,
-  website: (props: IconProps) => <Globe {...props} />,
-  link: (props: IconProps) => <Link {...props} />,
-  instagram: (props: IconProps) => <Instagram {...props} />,
+  facebook: (props: IconProps) => <Facebook {...(props as any)} />,
+  website: (props: IconProps) => <Globe {...(props as any)} />,
+  link: (props: IconProps) => <Link {...(props as any)} />,
+  instagram: (props: IconProps) => <Instagram {...(props as any)} />,
   reddit: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1792 1792"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -231,7 +239,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -249,7 +257,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60" />
@@ -283,7 +291,7 @@ export const Icons = {
         width="1em"
         height="1em"
         viewBox="0 0 140 140"
-        {...props}
+        {...(props as any)}
       >
         <image
           xlinkHref="data:image/png;base64,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"
@@ -301,7 +309,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="#61DAFB">
         <circle cx="64" cy="64" r="11.4"></circle>
@@ -315,7 +323,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="none"
@@ -337,7 +345,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#DD0031"
@@ -359,7 +367,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path fill="#fff" d="M22.67 47h99.67v73.67H22.67z"></path>
       <path
@@ -374,7 +382,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z"></path>
       <path
@@ -389,7 +397,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="url(#deviconNodejs0)"
@@ -456,7 +464,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#242938" rx="60"></rect>
@@ -501,7 +509,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -522,7 +530,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#E43717" rx="60"></rect>
@@ -539,7 +547,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -568,7 +576,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <linearGradient
@@ -635,7 +643,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -664,7 +672,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#2396ED" rx="60"></rect>
@@ -681,7 +689,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#326CE5" rx="60"></rect>
@@ -700,7 +708,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#439934"
@@ -806,7 +814,7 @@ export const Icons = {
       viewBox="0 0 264 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path d="M255.008 158.086c-1.535-4.649-5.556-7.887-10.756-8.664c-2.452-.366-5.26-.21-8.583.475c-5.792 1.195-10.089 1.65-13.225 1.738c11.837-19.985 21.462-42.775 27.003-64.228c8.96-34.689 4.172-50.492-1.423-57.64C233.217 10.847 211.614.683 185.552.372c-13.903-.17-26.108 2.575-32.475 4.549c-5.928-1.046-12.302-1.63-18.99-1.738c-12.537-.2-23.614 2.533-33.079 8.15c-5.24-1.772-13.65-4.27-23.362-5.864c-22.842-3.75-41.252-.828-54.718 8.685C6.622 25.672-.937 45.684.461 73.634c.444 8.874 5.408 35.874 13.224 61.48c4.492 14.718 9.282 26.94 14.237 36.33c7.027 13.315 14.546 21.156 22.987 23.972c4.731 1.576 13.327 2.68 22.368-4.85c1.146 1.388 2.675 2.767 4.704 4.048c2.577 1.625 5.728 2.953 8.875 3.74c11.341 2.835 21.964 2.126 31.027-1.848c.056 1.612.099 3.152.135 4.482c.06 2.157.12 4.272.199 6.25c.537 13.374 1.447 23.773 4.143 31.049c.148.4.347 1.01.557 1.657c1.345 4.118 3.594 11.012 9.316 16.411c5.925 5.593 13.092 7.308 19.656 7.308c3.292 0 6.433-.432 9.188-1.022c9.82-2.105 20.973-5.311 29.041-16.799c7.628-10.86 11.336-27.217 12.007-52.99q.13-1.094.244-2.088l.16-1.362l1.797.158l.463.031c10.002.456 22.232-1.665 29.743-5.154c5.935-2.754 24.954-12.795 20.476-26.351"></path>
       <path
@@ -829,7 +837,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#00618A"
@@ -851,7 +859,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#F34F29"
@@ -859,14 +867,14 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  "ci/cd": (props: IconProps) => <Infinity {...props} />,
+  "ci/cd": (props: IconProps) => <Infinity {...(props as any)} />,
   jest: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#99424F" rx="60"></rect>
@@ -883,7 +891,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <linearGradient
@@ -928,7 +936,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <circle cx="64" cy="64" r="64"></circle>
       <path
@@ -973,7 +981,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -990,7 +998,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1007,7 +1015,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#049688"
@@ -1021,7 +1029,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#FF3E00" rx="60"></rect>
@@ -1049,7 +1057,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#0868AC"
@@ -1067,7 +1075,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -1081,7 +1089,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
       className="dark:invert"
     >
       <path d="m89.663 24.816l-.162-.253l-.001.001l-.006.004a.513.513 0 0 1-.026.016l-.103.064a60.12 60.12 0 0 1-1.901 1.121a69.437 69.437 0 0 1-5.182 2.645c-4.196 1.919-9.503 3.791-14.045 3.691c-2.294-.051-4.2-.242-5.997-.431l-.294-.031c-1.686-.178-3.294-.347-5.041-.384c-3.707-.078-8.022.443-15.121 2.707c-7.158 2.282-11.743 6.925-15.043 11.348c-1.281 1.717-2.374 3.407-3.345 4.911c-.278.43-.546.845-.806 1.241c-1.18 1.797-2.17 3.17-3.143 3.876c-2.054 1.489-6.299 4.657-10.029 7.45a4307.818 4307.818 0 0 0-4.874 3.656L3.03 67.586l-.415.313l-.108.082l-.028.021l-.007.005l-.002.001l.134.178l-.134-.177l-.145.109l.029.179l.028.172l.056.343l.331-.105l10.46-3.331c-.395.422-.931 1.01-1.611 1.792c-1.614 1.858-4.039 4.81-7.323 9.223a3.526 3.526 0 0 1-.071-.066l-.664-.611l.167.886l.012.064l.011.059l.033.05l.073-.048l-.073.048l.001.002l.003.005l.012.019l.048.072a24.262 24.262 0 0 0 .882 1.198a24.062 24.062 0 0 0 2.483 2.721c1.026.954 2.232 1.872 3.533 2.453c1.303.582 2.717.834 4.138.425h.001c.52-.152 1.094-.39 1.709-.697c2.15 1.181 4.939 2.332 8.02 2.654l.751.079l-.492-.573l-.001-.001l-.004-.005a.245.245 0 0 0-.018-.02l-.068-.081a54.757 54.757 0 0 1-1.165-1.444a47.48 47.48 0 0 1-2.4-3.368l.833-.541l4.288 1.576l.458.168l-.057-.485l-.436-3.716l3.933 1.445l.471.173l-.071-.497l-.509-3.568c.485-.25.965-.487 1.445-.708l.131-.059l.036-.137l4.498-17.014l17.815-12.152l-1.125 2.83v.001c-1.875 4.61-4.568 7.452-6.786 9.141a16.783 16.783 0 0 1-2.813 1.747a11.248 11.248 0 0 1-1.059.449l-.056.019l-.005.002a.069.069 0 0 0-.008.003l-.003.001l-.009.003l-.009.003l-2.975 1.128l-.073.026l-.05.059l-.345.405c-.926 1.084-1.643 1.923-2.202 3.389c-.621 1.628-1.046 4.02-1.425 8.409l-.036.419l.408-.103c1.753-.44 3.402-.539 4.879-.141c3.893 1.049 6.525 3.923 7.92 6.876c.697 1.476 1.08 2.961 1.159 4.231c.08 1.282-.152 2.293-.622 2.874c-.509.629-1.733 1.721-3.318 3.035h-3.433l-.005.295l-.042 2.487l-.002.002l-.138.107h-3.493l-.005.295l-.038 2.422l-.416.313l-.252.19c-1.454.002-3.115-.618-4.447-1.268a21.133 21.133 0 0 1-2.146-1.211a4.868 4.868 0 0 1-.127-.084l-.032-.022l-.006-.004l-.001-.001l-.002-.001l-.47-.323v.571c0 1.295.534 2.905 1.048 4.164a27.627 27.627 0 0 0 .949 2.06l.002.003l-.123.088l.262.175l.085.157l.089-.042l.024.016l.277.175a31.893 31.893 0 0 0 4.483 2.301c1.378.569 2.931 1.078 4.477 1.314c1.544.236 3.102.201 4.476-.338c1.192-.467 2.838-1.417 4.781-2.632c1.336-.835 2.823-1.804 4.413-2.839c.729-.475 1.479-.963 2.246-1.459c4.885-3.159 10.465-6.638 15.63-8.874l31.427-8.279l.148-.039l.055-.143l4.147-10.744l.211-.547l-.567.15l-23.591 6.215V65.12l27.898-7.35l.148-.039l.055-.143l4.147-10.744l.211-.547l-.567.15L85.4 54.848v-9.032l36.183-9.534l.148-.039l.055-.143l3.863-10.004l.035-.092l-.026-.095l-.168-.62l-.078-.287l-.288.076l-37.453 9.868c1.73-2.73 2.328-5.184 2.48-7.005c.082-.982.033-1.778-.037-2.332a7.645 7.645 0 0 0-.147-.814a2.191 2.191 0 0 0-.012-.046l-.004-.013l-.001-.004v-.001l-.287.085zm0 0l-.162-.253l.336-.214l.113.382l-.287.085zm-.288.085c0-.001 0-.001 0 0zM64.657 56.695l7.017-1.85l-2.232 5.783l-7.017 1.85l2.232-5.783zm4.357 6.619l-2.232 5.787l-7.017 1.851l2.233-5.788l7.016-1.85zm10.077-2.163l-2.232 5.787l-7.017 1.851l2.233-5.788l7.016-1.85z"></path>
@@ -1097,7 +1105,7 @@ export const Icons = {
       viewBox="0 0 512 512"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -1111,7 +1119,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -1120,7 +1128,26 @@ export const Icons = {
     </svg>
   ),
   socketio: (props: IconProps) => (
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width='1em' height='1em' {...props}><path fill="#010101" d="M96.447 7.382c32.267-8.275 67.929-3.453 96.386 14.11c35.84 21.433 59.238 61.976 59.833 103.71c1.31 42.15-20.659 83.944-55.963 106.865c-39.293 26.433-93.648 27.446-133.775 2.322c-40.9-24.41-64.774-73.645-58.641-120.916c4.94-49.95 43.52-94.005 92.16-106.09"/><path fill="#FFF" d="M91.505 27.803c60.964-24.41 135.74 20.658 142.05 86.028c9.824 58.82-38.995 118.593-98.59 120.32c-56.677 5.656-111.449-42.39-113.056-99.304c-4.227-46.08 26.136-91.803 69.596-107.044"/><path fill="#010101" d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097c-14.646 22.505-29.708 44.711-44.354 67.215c-12.562.06-25.123.06-37.626-.119m23.1 12.443c12.621 0 25.183 0 37.745.179c-27.505 22.206-54.117 45.484-82.099 67.096c14.646-22.505 29.708-44.77 44.354-67.275"/></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      width="1em"
+      height="1em"
+      {...(props as any)}
+    >
+      <path
+        fill="#010101"
+        d="M96.447 7.382c32.267-8.275 67.929-3.453 96.386 14.11c35.84 21.433 59.238 61.976 59.833 103.71c1.31 42.15-20.659 83.944-55.963 106.865c-39.293 26.433-93.648 27.446-133.775 2.322c-40.9-24.41-64.774-73.645-58.641-120.916c4.94-49.95 43.52-94.005 92.16-106.09"
+      />
+      <path
+        fill="#FFF"
+        d="M91.505 27.803c60.964-24.41 135.74 20.658 142.05 86.028c9.824 58.82-38.995 118.593-98.59 120.32c-56.677 5.656-111.449-42.39-113.056-99.304c-4.227-46.08 26.136-91.803 69.596-107.044"
+      />
+      <path
+        fill="#010101"
+        d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097c-14.646 22.505-29.708 44.711-44.354 67.215c-12.562.06-25.123.06-37.626-.119m23.1 12.443c12.621 0 25.183 0 37.745.179c-27.505 22.206-54.117 45.484-82.099 67.096c14.646-22.505 29.708-44.77 44.354-67.275"
+      />
+    </svg>
   ),
   strapi: (props: IconProps) => (
     <svg
@@ -1128,7 +1155,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#4945FF"
@@ -1151,7 +1178,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#677EEB" rx="60"></rect>
@@ -1170,7 +1197,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#398ccb"
@@ -1188,7 +1215,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1227,7 +1254,7 @@ export const Icons = {
       viewBox="0 0 151 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#F26B00"
@@ -1241,7 +1268,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <path
@@ -1282,7 +1309,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#639" rx="60"></rect>
@@ -1299,7 +1326,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <linearGradient
@@ -1381,7 +1408,7 @@ export const Icons = {
       viewBox="0 0 231 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
       className="dark:invert"
     >
       <path
@@ -1396,7 +1423,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1421,7 +1448,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1452,7 +1479,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F05138" rx="60"></rect>
@@ -1469,7 +1496,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1506,7 +1533,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1660,7 +1687,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F4ED" rx="60"></rect>
@@ -1677,7 +1704,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1722,7 +1749,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#9B4F96"
@@ -1744,7 +1771,7 @@ export const Icons = {
       viewBox="0 0 32 32"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#659ad2"
@@ -1799,7 +1826,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -1816,7 +1843,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <linearGradient
         id="deviconOriginalRuby0"
@@ -2138,7 +2165,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#004065" rx="60"></rect>
@@ -2155,7 +2182,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -2198,7 +2225,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#E44D26"
@@ -2221,7 +2248,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#1572B6"
@@ -2255,7 +2282,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#CD6799" rx="60"></rect>
@@ -2279,7 +2306,7 @@ export const Icons = {
       viewBox="0 0 204 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#7E13F8"
@@ -2293,7 +2320,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#8ed6fb"
@@ -2311,7 +2338,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -2426,7 +2453,7 @@ export const Icons = {
       viewBox="0 0 193 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <linearGradient
@@ -2705,7 +2732,7 @@ export const Icons = {
       viewBox="0 0 32 32"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <circle cx="16" cy="16" r="14" fill="#ffcf00"></circle>
       <path
@@ -2720,7 +2747,7 @@ export const Icons = {
       viewBox="0 0 293 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <linearGradient
@@ -2747,7 +2774,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#cb3837"
@@ -2761,7 +2788,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#f9ad00"
@@ -2779,7 +2806,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="#2c8ebb">
         <path d="M99.24 80.71C94.9 80.76 91.1 83 87.89 85c-6 3.71-9 3.47-9 3.47l-.1-.17c-.41-.67 1.92-6.68-.69-13.84c-2.82-7.83-7.3-9.72-6.94-10.32c1.53-2.59 5.36-6.7 6.89-14.36c.91-4.64.67-12.28-1.39-16.28c-.38-.74-3.78 1.24-3.78 1.24s-3.18-7.09-4.07-7.66c-2.87-1.84-6 7.61-6 7.61a14 14 0 0 0-11.71 4.5a9.64 9.64 0 0 1-3.85 2.27c-.41.14-.91.12-2.15 3.47c-1.9 5.07 3.24 10.81 3.24 10.81s-6.13 4.33-8.4 9.72a24.78 24.78 0 0 0-1.75 11.68s-4.36 3.78-4.64 7.68a12.87 12.87 0 0 0 1.77 7.83a1.94 1.94 0 0 0 2.63.91s-2.9 3.38-.19 4.81c2.47 1.29 6.63 2 8.83-.19c1.6-1.6 1.92-5.17 2.51-6.63c.14-.34.62.57 1.08 1a10 10 0 0 0 1.36 1s-3.9 1.68-2.3 5.51c.53 1.27 2.42 2.08 5.51 2.06c1.15 0 13.76-.72 17.12-1.53a4.33 4.33 0 0 0 2.61-1.46a63 63 0 0 0 15.49-7c4.74-3.09 6.68-3.93 10.51-4.84c3.16-.75 2.95-5.65-1.24-5.58z"></path>
@@ -2793,7 +2820,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path d="M113.744 41.999a19 19 0 0 0-.8-.772c-.272-.246-.528-.524-.8-.771s-.528-.525-.8-.771c-.272-.247-.528-.525-.8-.772s-.528-.524-.8-.771s-.528-.525-.8-.772s-.528-.524-.8-.771c7.936 7.52 12.483 17.752 12.656 28.481c0 25.565-26.912 46.363-60 46.363c-18.528 0-35.104-6.526-46.128-16.756l.8.772l.8.771l.8.772l.8.771l.8.772l.8.771l.8.771c11.008 10.662 27.952 17.527 46.928 17.527c33.088 0 60-20.797 60-46.285c0-10.893-4.864-21.215-13.456-29.33"></path>
       <path
@@ -2840,7 +2867,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -2866,7 +2893,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#8d6748"
@@ -2879,7 +2906,88 @@ export const Icons = {
     </svg>
   ),
   cypress: (props: IconProps) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width='1em' height='1em'><g fill="none"><g clip-path="url(#skillIconsCypressLight3)"><path fill="#F4F2ED" d="M196 0H60C26.863 0 0 26.863 0 60v136c0 33.137 26.863 60 60 60h136c33.137 0 60-26.863 60-60V60c0-33.137-26.863-60-60-60"/><path fill="#1B1E2E" d="M101.859 109.68c6.978 0 12.648 3.731 15.555 10.211l.218.51l11.703-3.986l-.236-.601c-4.525-11.067-14.974-17.93-27.24-17.93c-8.632 0-15.647 2.767-21.444 8.464c-5.76 5.662-8.668 12.779-8.668 21.152c0 8.319 2.926 15.399 8.668 21.042c5.797 5.698 12.812 8.464 21.444 8.464c12.266 0 22.697-6.88 27.24-17.929l.236-.601l-11.721-3.986l-.2.528c-2.617 6.389-8.432 10.193-15.555 10.193c-4.852 0-8.96-1.693-12.194-5.042c-3.29-3.386-4.943-7.663-4.943-12.669c0-5.042 1.618-9.229 4.943-12.778c3.253-3.35 7.342-5.042 12.194-5.042"/><path fill="url(#skillIconsCypressLight0)" d="m152.669 210.085l-3.489-11.522c31.474-9.575 52.627-38.135 52.627-71.063c0-9.083-1.617-17.966-4.816-26.376l11.231-4.277c3.725 9.793 5.615 20.095 5.615 30.671c-.018 38.244-24.587 71.427-61.168 82.567"/><path fill="#69D3A7" d="M198.554 105.73c-9.613-31.418-38.162-52.515-71.054-52.515c-4.471 0-8.941.4-13.302 1.183l-2.126-11.85a87.3 87.3 0 0 1 15.428-1.383c38.198 0 71.363 24.519 82.539 61.015z"/><path fill="url(#skillIconsCypressLight1)" d="M46.706 157.935c-3.671-9.72-5.525-19.968-5.525-30.435c0-44.596 33.42-81.53 77.742-85.898l1.181 11.977c-38.144 3.768-66.91 35.55-66.91 73.921c0 9.011 1.598 17.839 4.742 26.194z"/><path fill="#1B1E2E" d="m175.148 98.977l-16.664 42.302l-16.791-42.302h-13.739l23.552 57.738l-17.155 41.684l12.012 2.403l41.76-101.825z"/><path fill="url(#skillIconsCypressLight2)" d="m136.513 193.157l-2.526 6.134c-.581 1.402-1.908 2.366-3.398 2.421c-1.036.036-2.053.073-3.107.073c-32.983 0-62.35-22.116-71.418-53.789l-11.557 3.313c10.54 36.787 44.65 62.49 82.957 62.508h.018c1.199 0 2.398-.018 3.598-.073c6.16-.255 11.666-4.132 14.029-9.866l3.416-8.318z"/></g><defs><linearGradient id="skillIconsCypressLight0" x1="220.45" x2="143.302" y1="128.046" y2="177.914" gradientUnits="userSpaceOnUse"><stop offset=".081" stop-color="#69D3A7"/><stop offset="1" stop-color="#69D3A7" stop-opacity="0"/></linearGradient><linearGradient id="skillIconsCypressLight1" x1="98.766" x2="50.215" y1="42.257" y2="145.059" gradientUnits="userSpaceOnUse"><stop stop-color="#69D3A7"/><stop offset=".823" stop-color="#2AB586"/><stop offset="1" stop-color="#1CAE7F"/></linearGradient><linearGradient id="skillIconsCypressLight2" x1="41.059" x2="168.061" y1="167.026" y2="206.818" gradientUnits="userSpaceOnUse"><stop offset=".077" stop-color="#1CAE7F"/><stop offset=".164" stop-color="#1CA379"/><stop offset=".316" stop-color="#1C8568"/><stop offset=".516" stop-color="#1B554D"/><stop offset=".719" stop-color="#1B1E2E"/></linearGradient><clipPath id="skillIconsCypressLight3"><path fill="#fff" d="M0 0h256v256H0z"/></clipPath></defs></g></svg>
+    <svg
+      {...(props as any)}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      width="1em"
+      height="1em"
+    >
+      <g fill="none">
+        <g clip-path="url(#skillIconsCypressLight3)">
+          <path
+            fill="#F4F2ED"
+            d="M196 0H60C26.863 0 0 26.863 0 60v136c0 33.137 26.863 60 60 60h136c33.137 0 60-26.863 60-60V60c0-33.137-26.863-60-60-60"
+          />
+          <path
+            fill="#1B1E2E"
+            d="M101.859 109.68c6.978 0 12.648 3.731 15.555 10.211l.218.51l11.703-3.986l-.236-.601c-4.525-11.067-14.974-17.93-27.24-17.93c-8.632 0-15.647 2.767-21.444 8.464c-5.76 5.662-8.668 12.779-8.668 21.152c0 8.319 2.926 15.399 8.668 21.042c5.797 5.698 12.812 8.464 21.444 8.464c12.266 0 22.697-6.88 27.24-17.929l.236-.601l-11.721-3.986l-.2.528c-2.617 6.389-8.432 10.193-15.555 10.193c-4.852 0-8.96-1.693-12.194-5.042c-3.29-3.386-4.943-7.663-4.943-12.669c0-5.042 1.618-9.229 4.943-12.778c3.253-3.35 7.342-5.042 12.194-5.042"
+          />
+          <path
+            fill="url(#skillIconsCypressLight0)"
+            d="m152.669 210.085l-3.489-11.522c31.474-9.575 52.627-38.135 52.627-71.063c0-9.083-1.617-17.966-4.816-26.376l11.231-4.277c3.725 9.793 5.615 20.095 5.615 30.671c-.018 38.244-24.587 71.427-61.168 82.567"
+          />
+          <path
+            fill="#69D3A7"
+            d="M198.554 105.73c-9.613-31.418-38.162-52.515-71.054-52.515c-4.471 0-8.941.4-13.302 1.183l-2.126-11.85a87.3 87.3 0 0 1 15.428-1.383c38.198 0 71.363 24.519 82.539 61.015z"
+          />
+          <path
+            fill="url(#skillIconsCypressLight1)"
+            d="M46.706 157.935c-3.671-9.72-5.525-19.968-5.525-30.435c0-44.596 33.42-81.53 77.742-85.898l1.181 11.977c-38.144 3.768-66.91 35.55-66.91 73.921c0 9.011 1.598 17.839 4.742 26.194z"
+          />
+          <path
+            fill="#1B1E2E"
+            d="m175.148 98.977l-16.664 42.302l-16.791-42.302h-13.739l23.552 57.738l-17.155 41.684l12.012 2.403l41.76-101.825z"
+          />
+          <path
+            fill="url(#skillIconsCypressLight2)"
+            d="m136.513 193.157l-2.526 6.134c-.581 1.402-1.908 2.366-3.398 2.421c-1.036.036-2.053.073-3.107.073c-32.983 0-62.35-22.116-71.418-53.789l-11.557 3.313c10.54 36.787 44.65 62.49 82.957 62.508h.018c1.199 0 2.398-.018 3.598-.073c6.16-.255 11.666-4.132 14.029-9.866l3.416-8.318z"
+          />
+        </g>
+        <defs>
+          <linearGradient
+            id="skillIconsCypressLight0"
+            x1="220.45"
+            x2="143.302"
+            y1="128.046"
+            y2="177.914"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".081" stop-color="#69D3A7" />
+            <stop offset="1" stop-color="#69D3A7" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient
+            id="skillIconsCypressLight1"
+            x1="98.766"
+            x2="50.215"
+            y1="42.257"
+            y2="145.059"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#69D3A7" />
+            <stop offset=".823" stop-color="#2AB586" />
+            <stop offset="1" stop-color="#1CAE7F" />
+          </linearGradient>
+          <linearGradient
+            id="skillIconsCypressLight2"
+            x1="41.059"
+            x2="168.061"
+            y1="167.026"
+            y2="206.818"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".077" stop-color="#1CAE7F" />
+            <stop offset=".164" stop-color="#1CA379" />
+            <stop offset=".316" stop-color="#1C8568" />
+            <stop offset=".516" stop-color="#1B554D" />
+            <stop offset=".719" stop-color="#1B1E2E" />
+          </linearGradient>
+          <clipPath id="skillIconsCypressLight3">
+            <path fill="#fff" d="M0 0h256v256H0z" />
+          </clipPath>
+        </defs>
+      </g>
+    </svg>
   ),
   playwright: (props: IconProps) => (
     <svg
@@ -2887,7 +2995,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#2D4552"
@@ -2925,7 +3033,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#dfdedf"
@@ -2948,7 +3056,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <g clipPath="url(#skillIconsSelenium0)">
@@ -2974,7 +3082,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#FF4785"
@@ -2988,7 +3096,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#696969"
@@ -3012,7 +3120,7 @@ export const Icons = {
       viewBox="0 0 32 32"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <linearGradient
@@ -3049,7 +3157,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -3105,7 +3213,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#ea4535"
@@ -3131,7 +3239,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#0080ff"
@@ -3145,7 +3253,7 @@ export const Icons = {
       viewBox="0 0 32 32"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -3159,7 +3267,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#430098" rx="60"></rect>
@@ -3176,7 +3284,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -3190,7 +3298,7 @@ export const Icons = {
       viewBox="0 0 32 32"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#014847"
@@ -3216,7 +3324,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -3230,7 +3338,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -3285,7 +3393,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#ffa000"
@@ -3317,7 +3425,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#fd366e"
@@ -3331,7 +3439,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#FFF"
@@ -3353,7 +3461,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -3370,7 +3478,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#A9CBD4" rx="60"></rect>
@@ -3394,7 +3502,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#FF6C37" rx="60"></rect>
@@ -3479,7 +3587,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -3493,7 +3601,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#0073AA" rx="60"></rect>
@@ -3518,7 +3626,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path fill="#F03E2F" d="M0 0h128v128H0z"></path>
       <path
@@ -3537,7 +3645,7 @@ export const Icons = {
       viewBox="0 0 292 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#95BF46"
@@ -3559,7 +3667,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#7f54b3"
@@ -3578,7 +3686,7 @@ export const Icons = {
       viewBox="0 0 302 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#27346A"
@@ -3604,7 +3712,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -3621,7 +3729,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -3642,7 +3750,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path fill="#d00000" d="M128 128H0V0h128z"></path>
       <path
@@ -3657,7 +3765,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#130754"
@@ -3678,7 +3786,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#4DABCF"
@@ -3696,7 +3804,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#fff"
@@ -3814,7 +3922,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#4e4e4e"
@@ -3844,7 +3952,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -3858,7 +3966,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#65AFFF" rx="60"></rect>
@@ -3901,7 +4009,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#f16822"
@@ -3923,7 +4031,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"
@@ -3937,7 +4045,7 @@ export const Icons = {
       viewBox="0 0 240 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path fill="#E17726" d="M250.066 0L140.219 81.279l20.427-47.9z"></path>
       <path
@@ -3992,7 +4100,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#092E20" rx="60"></rect>
@@ -4013,7 +4121,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -4030,7 +4138,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <rect width="256" height="256" fill="#F4F2ED" rx="60"></rect>
@@ -4071,7 +4179,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <g clipPath="url(#skillIconsUbuntuLight0)">
@@ -4145,7 +4253,7 @@ export const Icons = {
       viewBox="0 0 256 256"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <g fill="none">
         <g clipPath="url(#skillIconsDebianLight0)">
@@ -4181,7 +4289,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#294172"
@@ -4219,7 +4327,7 @@ export const Icons = {
       viewBox="0 0 128 128"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="#77c1d2"
@@ -4241,7 +4349,7 @@ export const Icons = {
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
-      {...props}
+      {...(props as any)}
     >
       <path
         fill="currentColor"

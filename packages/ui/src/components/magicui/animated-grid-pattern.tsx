@@ -108,7 +108,7 @@ export function AnimatedGridPattern({
         "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
         className,
       )}
-      {...props}
+      {...(props as any)}
     >
       <defs>
         <pattern
