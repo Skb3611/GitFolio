@@ -250,6 +250,15 @@ importers:
         specifier: ^5.7.3
         version: 5.8.3
 
+  apps/worker:
+    dependencies:
+      '@workspace/email':
+        specifier: workspace:*
+        version: link:../../packages/email
+      dotenv:
+        specifier: ^16.5.0
+        version: 16.5.0
+
   packages/db:
     dependencies:
       '@prisma/client':

@@ -1,9 +1,8 @@
 import cron from "node-cron";
-import { sendEmail } from "@workspace/email";
 import prisma from "@workspace/db";
-
+import { emailQueue } from "@workspace/email/queue";
 // 🕒 Schedule a task to run every 2 days at 9 AM
-cron.schedule("0 9 */2 * *", async () => {
+cron.schedule("*/2 * * * *", async () => {
   console.log("📅 Running 2-day email scheduler...");
 
   const users = await prisma.user.findMany({});
@@ -11,26 +10,20 @@ cron.schedule("0 9 */2 * *", async () => {
     (user) => user.onBoardingStatus == false
   );
   const templateUsers = users.filter((user) => !user.activeTemplateId);
-  onBoardingUsers.forEach((user, i) => {
-    setTimeout(async () => {
-      try {
-        await sendEmail(user.firstname, user.email, "onboarding");
-        console.log(`✅ Email sent to ${user.email}`);
-      } catch (e) {
-        console.log(`❌ Error sending email to ${user.email}:`, e);
-      }
-    }, i * 1000);
-  });
-  templateUsers.forEach((user, i) => {
-    setTimeout(async () => {
-      try {
-        await sendEmail(user.firstname, user.email, "template_reminder");
-        console.log(`✅ Email sent to ${user.email}`);
-      } catch (e) {
-        console.log(`❌ Error sending email to ${user.email}:`, e);
-      }
-    }, i * 1000);
-  });
+  for (const user of onBoardingUsers) {
+    await emailQueue.add("onboarding", {
+      name: user.firstname,
+      email: user.email,
+      type: "onboarding",
+    });
+  }
+  for (const user of templateUsers) {
+    await emailQueue.add("template_reminder", {
+      name: user.firstname,
+      email: user.email,
+      type: "template_reminder",
+    });
+  }
 
   console.log("✅ All scheduled emails sent.");
 });
