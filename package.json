@@ -1,10 +1,10 @@
 {
-  "name": "shadcn-ui-monorepo",
+  "name": "GitFolio",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "start":"turbo start",
+    "build": "dotenv -e .env -- turbo build",
+    "start": "turbo start",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "dotenv-cli": "^10.0.0",
     "prettier": "^3.5.1",
     "turbo": "^2.4.2",
     "typescript": "5.7.3"

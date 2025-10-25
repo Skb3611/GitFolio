@@ -2,7 +2,7 @@ import cron from "node-cron";
 import prisma from "@workspace/db";
 import { emailQueue } from "@workspace/email/queue";
 // 🕒 Schedule a task to run every 2 days at 9 AM
-cron.schedule("*/2 * * * *", async () => {
+cron.schedule("0 9 */2 * *", async () => {
   console.log("📅 Running 2-day email scheduler...");
 
   const users = await prisma.user.findMany({});
