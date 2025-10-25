@@ -4,7 +4,8 @@
   "description": "",
   "main": "./src/index.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./queue": "./dist/queue/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
