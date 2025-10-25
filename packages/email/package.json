@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preview": "email dev --dir ./src/templates -p 5000",
-    "build":"tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,9 @@
   "packageManager": "pnpm@10.4.1",
   "dependencies": {
     "@react-email/components": "0.5.3",
+    "bullmq": "^5.61.2",
     "dotenv": "^16.5.0",
+    "ioredis": "^5.8.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "resend": "^6.1.0"
