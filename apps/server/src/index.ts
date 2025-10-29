@@ -5,6 +5,7 @@ import { User } from "@clerk/backend";
 import { config } from "./config";
 import healthRouter from "./Routes/health/index";
 import "./Services/email.service"
+import "./Services/UserSync.service"
 declare global {
   namespace Express {
     interface Request {

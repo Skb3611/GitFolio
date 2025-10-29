@@ -18,8 +18,9 @@ createEmailWorker(async (job: any) => {
   const { email, name, type } = job.data;
 
   console.log("Sending email to", email);
-
-  const result = await sendEmail(name, email, type);
-
-  console.log("Sent!", result);
+  try {
+    const result = await sendEmail(name, email, type);
+  } catch (e) {
+    console.log("Failed to send email to", email, e);
+  }
 });
