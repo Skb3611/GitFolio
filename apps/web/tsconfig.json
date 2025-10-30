@@ -22,6 +22,6 @@
     "pages/**/*",
     "components/**/*",
     "lib/**/*"
-  ],
+, "next-sitemap.config.cjs"  ],
   "exclude": ["node_modules"]
 }
