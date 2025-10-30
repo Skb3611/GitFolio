@@ -18,6 +18,10 @@ export const getUserDataById = async (userId: string): Promise<any> => {
       experiences: true,
       educations: true,
     },
+    cacheStrategy: {
+      ttl: 30,
+      swr: 60,
+    },
   });
 };
 export const getUserDataByUsername = async (username: string) => {
@@ -30,12 +34,20 @@ export const getUserDataByUsername = async (username: string) => {
       experiences: true,
       educations: true,
     },
+    cacheStrategy: {
+      ttl: 30,
+      swr: 60,
+    },
   });
 };
 export const getImageData = async (username: string) => {
   const user = await prisma.user.findUnique({
     where: {
       username,
+    },
+    cacheStrategy: {
+      ttl: 30,
+      swr: 60,
     },
   });
   return { profileImg: user?.profileImg, name: user?.firstname };
@@ -57,7 +69,7 @@ export const updateUserData = async (
           },
           data: {
             activeTemplateId: data.activeTemplateId,
-            ...data
+            ...data,
           },
         });
         return res ? true : false;
@@ -230,7 +242,13 @@ export const deleteEducation = async (
 
 export const getTemplateDetails = async (templateName: string) => {
   try {
-    return prisma.template.findFirst({ where: { id: templateName } });
+    return prisma.template.findFirst({
+      where: { id: templateName },
+      cacheStrategy: {
+        ttl: 30,
+        swr: 60,
+      },
+    });
   } catch (e) {
     console.log(e);
   }
@@ -247,6 +265,10 @@ export const getUserPayments = async (userId: string) => {
       },
       orderBy: {
         createdAt: "desc",
+      },
+      cacheStrategy: {
+        ttl: 30,
+        swr: 60,
       },
     });
   } catch (error) {

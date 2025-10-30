@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:generate": "prisma generate",
+    "db:generate": "prisma generate --no-engine",
     "db:migrate": "prisma migrate dev --skip-generate",
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
@@ -21,11 +21,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.9.0",
+    "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@types/node": "^20",
     "@types/uuid": "^10.0.0",
-    "prisma": "^6.9.0",
+    "prisma": "^6.18.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
