@@ -1,9 +1,5 @@
-// apps/worker/index.ts
-import dotenv from "dotenv";
-import { createEmailWorker } from "@workspace/email/queue";
-import { sendEmail } from "@workspace/email";
 import express from "express";
-dotenv.config();
+import "./worker";
 
 const app = express();
 app.use(express.json());
@@ -12,15 +8,4 @@ app.get("/", (req, res) => {
 });
 app.listen(3000, () => {
   console.log("Worker is running on port 3000");
-});
-
-createEmailWorker(async (job: any) => {
-  const { email, name, type } = job.data;
-
-  console.log("Sending email to", email);
-  try {
-    const result = await sendEmail(name, email, type);
-  } catch (e) {
-    console.log("Failed to send email to", email, e);
-  }
 });
