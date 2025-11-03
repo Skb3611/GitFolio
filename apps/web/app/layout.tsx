@@ -10,12 +10,23 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Gitfolio - From GitHub to Greatness.",
+  title: "Gitfolio - From GitHub to Portfolio.",
   description:
     "Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.",
-  keywords: ["GitHub", "Portfolio", "Resume"],
+  keywords: [
+    "GitHub",
+    "Portfolio",
+    "Resume",
+    "Developer",
+    "Tech",
+    "Personal Portfolio",
+    "Portfolio Website",
+    "Portfolio builder",
+    "Portfolio website builder",
+    "GitHub to Portfolio",
+  ],
   openGraph: {
-    title: "GitFolio - From GitHub to Greatness.",
+    title: "GitFolio - From GitHub to Portfolio.",
     description:
       "Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.",
     url: "https://gitfolio.in",
@@ -32,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "GitFolio - From GitHub to Greatness.",
+    title: "GitFolio - From GitHub to Portfolio.",
     description:
       "Turn Your GitHub Into a Personal Portfolio in Seconds. Built for developers who'd rather code than design — we make your GitHub shine so you can focus on building.",
     images: ["/assets/og.png"],
