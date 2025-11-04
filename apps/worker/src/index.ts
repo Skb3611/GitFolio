@@ -8,6 +8,6 @@ app.get("/", async (req, res) => {
   const count = await emailQueue.getJobCounts();
   res.send(`Worker is running, ${JSON.stringify(count)} jobs in queue`);
 });
-app.listen(3000, () => {
-  console.log("Worker is running on port 3000");
+app.listen(4040, () => {
+  console.log("Worker is running on port 4040");
 });
