@@ -2,11 +2,10 @@
 import { config } from "@/config";
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@workspace/ui/components/button";
-import Head from "next/head";
 import Script from "next/script";
-import React, { useState } from "react";
+import React from "react";
 
-const page = () => {
+const PaymentPage = () => {
   const { getToken } = useAuth();
   const handlePayment = async () => {
     const res = await fetch(config.server_endpoints.RAZORPAY_ORDER, {
@@ -30,22 +29,18 @@ const page = () => {
         // amount:order.amount,
         // currency:order.data.currency,
         handler: async function (response: any) {
-          const res = await fetch(
-            config.server_endpoints.RAZORPAY_VERIFY,
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${await getToken()}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                orderId: response.razorpay_order_id,
-                rzp_payment_id: response.razorpay_payment_id,
-                rzp_signature: response.razorpay_signature,
-              }),
-            }
-          );
-          const isVerifed = await res.json()
+          await fetch(config.server_endpoints.RAZORPAY_VERIFY, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${await getToken()}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              orderId: response.razorpay_order_id,
+              rzp_payment_id: response.razorpay_payment_id,
+              rzp_signature: response.razorpay_signature,
+            }),
+          });
         },
       };
 
@@ -64,4 +59,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default PaymentPage;

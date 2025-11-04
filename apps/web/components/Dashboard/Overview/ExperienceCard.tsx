@@ -1,14 +1,7 @@
 import { Experience, TabTypes } from "@workspace/types";
 import { Button } from "@workspace/ui/components/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@workspace/ui/components/card";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { ArrowRight, BriefcaseBusiness, MoveRight } from "lucide-react";
+import { BriefcaseBusiness, MoveRight } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
 
 const ExperienceCard = ({ experience,setActiveTab }: { experience?: Experience[],setActiveTab:Dispatch<SetStateAction<TabTypes>> }) => {

@@ -1,13 +1,8 @@
 "use client"
 import React from "react";
 import { Separator } from "@workspace/ui/components/separator";
-
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Button } from "@workspace/ui/components/button";
-import Image from "next/image";
-import { Linkedin } from "lucide-react";
 import { SplitTextAnimation } from "@/components/SplitTextAnimation";
-import { motion } from "motion/react";
 import ContactIcons from "@/components/Legals/Contact"
 const page = () => {
   return (

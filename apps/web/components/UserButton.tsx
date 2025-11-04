@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useUser, useClerk, useAuth } from "@clerk/nextjs";
+import { useUser, useAuth } from "@clerk/nextjs";
 import {
   DropdownMenu,
   DropdownMenuContent,

@@ -13,9 +13,7 @@ import {
   MapPin,
   Rocket,
   User,
-  User2,
   User2Icon,
-  UserCircle2,
 } from "lucide-react";
 import React from "react";
 

@@ -3,7 +3,6 @@ import React from "react";
 import Iphone15Pro from "@workspace/ui/components/magicui/iphone-15-pro";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Particles } from "@workspace/ui/components/magicui/particles";
 import Android from "@workspace/ui/components/magicui/android";
 import {
   Carousel,

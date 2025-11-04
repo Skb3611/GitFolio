@@ -25,12 +25,10 @@ import {
   SidebarTrigger,
 } from "@workspace/ui/components/sidebar";
 import {
-  BookOpen,
   BriefcaseBusiness,
   ChartNoAxesCombined,
   CircleDollarSign,
   CodeXml,
-  Command,
   FolderGit2,
   Globe,
   GraduationCap,
@@ -61,7 +59,6 @@ import { toast } from "@workspace/ui/components/sonner";
 import TemplateRender from "@/components/Dashboard/Overview/TemplateRender";
 import Templates from "@/components/Dashboard/Templates";
 import PaymentHistoryTable from "@/components/Dashboard/PaymentHistory";
-import { data } from "motion/react-client";
 
 const sidebarItems = {
   HeaderNavItems: [
@@ -152,7 +149,7 @@ export default function Page() {
           headers: {
             authorization: `Bearer ${token}`,
           },
-          credentials:"include"
+          credentials: "include",
         });
         const result = await res.json();
         const p: PersonalInformation = {
@@ -228,7 +225,7 @@ export default function Page() {
       error: "Data Fetch Failed",
       invert: true,
     });
-  }, []);
+  });
 
   const uploadImage = async (
     params: SavePayload & { token: string }
@@ -280,7 +277,7 @@ export default function Page() {
         return null;
       }
       const { url, link } = (await res.json()).data;
-      const r = await fetch(url, {
+      await fetch(url, {
         method: "PUT",
         body: returnImage(),
       });
@@ -313,7 +310,7 @@ export default function Page() {
             });
             link && (data = { ...data, profileImg: link });
           }
-          let d = {
+          const d = {
             ...data,
             firstname: (data as PersonalInformation).full_name?.split(" ")[0],
             lastname: (data as PersonalInformation).full_name?.split(" ")[1],
@@ -385,7 +382,7 @@ export default function Page() {
 
         case "Social Links":
           const invalidLinks = Object.entries(data).filter(
-            ([key, value]) => value && !value.startsWith("https://")
+            ([_key, value]) => value && !value.startsWith("https://")
           );
           if (invalidLinks.length > 0) {
             toast.error(
@@ -416,7 +413,7 @@ export default function Page() {
       const res = await fetch(endpoint, {
         method: "POST",
         headers,
-        credentials:"include",
+        credentials: "include",
         body: JSON.stringify(body),
       });
 
@@ -448,7 +445,7 @@ export default function Page() {
           res = await fetch(`${config.server_endpoints.DELETE_REPO}/${id}`, {
             method: "DELETE",
             headers,
-            credentials:"include"
+            credentials: "include",
           });
           break;
 
@@ -459,7 +456,7 @@ export default function Page() {
             {
               method: "DELETE",
               headers,
-              credentials:"include"
+              credentials: "include",
             }
           );
           break;
@@ -471,7 +468,7 @@ export default function Page() {
             {
               method: "DELETE",
               headers,
-              credentials:"include"
+              credentials: "include",
             }
           );
           break;

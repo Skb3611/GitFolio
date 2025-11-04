@@ -1,7 +1,7 @@
 import { Education, TabTypes } from '@workspace/types'
 import { Button } from '@workspace/ui/components/button'
 import { AnimatedShinyText } from '@workspace/ui/components/magicui/animated-shiny-text'
-import { ArrowRight, GraduationCap, MoveRight } from 'lucide-react'
+import { GraduationCap, MoveRight } from 'lucide-react'
 import React, { Dispatch, SetStateAction } from 'react'
 
 const EducationCard = ({education,setActiveTab }:{education?:Education[],setActiveTab:Dispatch<SetStateAction<TabTypes>>}) => {

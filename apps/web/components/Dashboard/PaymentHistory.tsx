@@ -10,10 +10,7 @@ import { toast } from "@workspace/ui/components/sonner";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@workspace/ui/components/dialog"
@@ -70,7 +67,7 @@ export default function PaymentHistoryTable() {
       setPayments(filteredPayments);
       setIsLoading(false);
     })();
-  }, []);
+  });
   const filteredPayments = useMemo(() => {
     return payments.filter((pmt) => {
       const statusMatch = status === "All" || pmt.status === status;

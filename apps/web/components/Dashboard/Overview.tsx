@@ -9,7 +9,6 @@ import ProjectsCard from './Overview/ProjectsCard';
 import SkillsCard from './Overview/SkillsCard';
 import EducationCard from './Overview/EducationCard';
 import ExperienceCard from './Overview/ExperienceCard';
-import { Skeleton } from '@workspace/ui/components/skeleton';
 
 const OverviewTab = ({
     personalInfo,

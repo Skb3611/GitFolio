@@ -1,7 +1,7 @@
 "use client"
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Linkedin, MessageCircle, Twitter, Users, X } from "lucide-react";
+import { Linkedin, Twitter} from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { Card, CardContent } from "@workspace/ui/components/card";
@@ -9,9 +9,7 @@ import SectionLabel from "@workspace/ui/components/SectionLabel";
 import Link from "next/link";
 import { config } from "@/config";
 import {motion} from "motion/react"
-import { TypewriterEffectSmooth } from "@workspace/ui/components/magicui/typewriter-effect";
 import { SplitTextAnimation } from "../SplitTextAnimation";
-import { filter } from "motion/react-client";
 const ContactSection = () => {
   return (
     <div

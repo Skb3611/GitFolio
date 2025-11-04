@@ -47,7 +47,6 @@ const SocialLinksCard = ({ links }: { links: SocialLinks }) => {
     </div>
   );
 };
-``;
 export default SocialLinksCard;
 
 const icons = {

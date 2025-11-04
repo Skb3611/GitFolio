@@ -3,11 +3,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
-import { Button } from "@workspace/ui/components/button";
-import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -58,7 +55,7 @@ const Navigation = ({
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Navigation
             </DropdownMenuLabel>
-            {navItems.map((nav, index) => (
+            {navItems.map((nav) => (
               <DropdownMenuItem key={nav.label} className="gap-2 p-2" onClick={()=>router.push(nav.href,{scroll:false})}>
                 <div className="flex size-6.5 items-center justify-center rounded-md border">
                   <nav.icon className="size-4 shrink-0" />

@@ -6,7 +6,7 @@ export const createOrder = async (
   body: { templateName: string; currency: "INR" | "USD" }
 ) => {
   try {
-    let order = await fetch(config.server_endpoints.RAZORPAY_ORDER, {
+    const order = await fetch(config.server_endpoints.RAZORPAY_ORDER, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -14,9 +14,10 @@ export const createOrder = async (
       },
       body: JSON.stringify(body),
     });
-    let res = await order.json();
+    const res = await order.json();
     return res?.data;
   } catch (e) {
+    console.log(e);
     return null;
   }
 };

@@ -1,8 +1,5 @@
 "use client";
-import { useIsMobile } from "@/hooks/use-mobile";
 import React from "react";
-import { OrbitingCircles } from "@workspace/ui/components/magicui/orbiting-circles";
-import Image from "next/image";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import { Data as TemplateData } from "@workspace/templates/metadata";
@@ -14,7 +11,6 @@ import {
 } from "@workspace/ui/components/carousel";
 
 const TemplatesSection = () => {
-  const isMobile = useIsMobile();
   return (
     <div className="h-90 flex flex-col p-4 sm:p-8 justify-between items-center">
       <div className="w-full">

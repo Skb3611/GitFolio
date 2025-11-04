@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import {
   motion,
-  useMotionValueEvent,
   useScroll,
   useTransform,
 } from "motion/react";
@@ -14,7 +13,6 @@ const AnimatedScrollSection = () => {
     target: ref,
     offset: ["start end", "end start"],
   });
-  useMotionValueEvent(scrollYProgress, "change", (latest: number) => {});
   const setScale = () => {
     return isMobile ? [0.8, 1] : [0.7, 1.035];
   };

@@ -1,7 +1,7 @@
 "use client";
 import { Code } from "lucide-react";
 import { Ripple } from "@workspace/ui/components/magicui/ripple";
-import { SignIn, SignUp, useSignIn,useSignUp } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs";
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import BackHomeButton from "@/components/BackHomeButton";
 

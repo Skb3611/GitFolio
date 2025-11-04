@@ -1,21 +1,14 @@
 "use client";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Marquee } from "@workspace/ui/components/magicui/marquee";
-import { ChevronRight, HeartHandshake, ShieldQuestion } from "lucide-react";
-import Image from "next/image";
+import { ChevronRight, HeartHandshake } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { BorderBeam } from "@workspace/ui/components/magicui/border-beam";
 import { motion } from "motion/react";
 import { SplitTextAnimation } from "../SplitTextAnimation";
 import { ThreeDMarquee } from "@workspace/ui/components/ui/3d-marquee";
-interface ImageItemProps {
-  img: string;
-  gradient: string;
-  alt: string;
-}
+
 
 const CTASection = () => {
   return (

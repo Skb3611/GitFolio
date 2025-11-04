@@ -6,7 +6,7 @@ import {
 } from "@workspace/ui/components/avatar";
 import { Button } from "@workspace/ui/components/button";
 import { Card, CardContent } from "@workspace/ui/components/card";
-import { Briefcase, Calendar, Edit, Trash2 } from "lucide-react";
+import { Calendar, Edit, Trash2 } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
 export const CardWrapper = ({

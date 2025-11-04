@@ -1,5 +1,4 @@
 import {
-  ExternalLink,
   FolderGit2,
   FolderOpen,
   GitFork,
@@ -11,7 +10,6 @@ import { Projects, TabTypes } from "@workspace/types";
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import Image from "next/image";
 
 const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:Dispatch<SetStateAction<TabTypes>>}) => {
   return (
@@ -47,7 +45,7 @@ const ProjectsCard = ({projects,setActiveTab}:{projects:Projects[],setActiveTab:
               <div className="flex justify-center xl:justify-start xl:gap-2 xl:items-center items-start flex-col xl:flex-row gap-">
                 <span className="font-medium text-sm">{project.name}</span>
                 <span className="space-x-2 flex">
-                {Object.entries(project.languages).slice(0,5).map(([key, value]) => {
+                {Object.entries(project.languages).slice(0,5).map(([key, _value]) => {
                   return (
                     <Badge key={key} variant="secondary" className="text-[0.5rem]">
                       {key}

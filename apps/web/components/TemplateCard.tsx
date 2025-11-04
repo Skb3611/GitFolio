@@ -3,12 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 
 import { motion } from "motion/react";
-import { Button } from "@workspace/ui/components/button";
-import { SavePayload, TemplateData } from "@workspace/types";
+import { TemplateData } from "@workspace/types";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Crown, Eye, Gem, Gift, MoveRight } from "lucide-react";
+import { Gem, Gift, MoveRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Link from "next/link";
 import { config } from "@/config";
 import { usePathname, useRouter } from "next/navigation";
 import { Badge } from "@workspace/ui/components/badge";
@@ -26,7 +24,7 @@ const TemplateCard = ({ template, idx, setTemplate }: TemplateCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [isActive, setIsActive] = useState(false);
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     isMobile ? setIsActive(!isActive) : null;
   };
   useEffect(() => {

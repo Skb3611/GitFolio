@@ -1,16 +1,11 @@
 import { Button } from "@workspace/ui/components/button";
 import {
-  Briefcase,
   BriefcaseBusiness,
-  Calendar,
-  Edit,
   Plus,
   Save,
-  Trash2,
 } from "lucide-react";
 import React, { Dispatch, SetStateAction, useRef } from "react";
 import { DeleteType, Experience, ImagesTypes, SavePayload } from "@workspace/types";
-import { Card, CardContent } from "@workspace/ui/components/card";
 import {
   Dialog,
   DialogContent,

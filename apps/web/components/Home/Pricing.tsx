@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import { Badge } from "@workspace/ui/components/badge";
-import { Check, Star, Zap, Gift } from "lucide-react";
+import { Check, Gift } from "lucide-react";
 import { motion } from "motion/react";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { SplitTextAnimation } from "../SplitTextAnimation";

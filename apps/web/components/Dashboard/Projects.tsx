@@ -16,7 +16,6 @@ import {
   Plus,
   Save,
   Star,
-  Trash,
   Trash2,
   Upload,
   X,
@@ -35,7 +34,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@workspace/ui/components/dialog";
-import Image from "next/image";
 import { toast } from "@workspace/ui/components/sonner";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import {
@@ -511,7 +509,7 @@ const ProjectCard = ({
                   <span className="flex gap-2">
                     {Object.entries(project.languages)
                       .slice(0, 3)
-                      .map(([keyframes, value]) => {
+                      .map(([keyframes, _value]) => {
                         return (
                           <Badge key={keyframes} variant="secondary">
                             {keyframes}

@@ -26,7 +26,7 @@ import { motion } from "motion/react";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { toast } from "@workspace/ui/components/sonner";
 import { useUserLocation } from "@/hooks/getUserLocation";
-import { checkOut, createOrder, verifyPayment } from "@/lib/payments";
+import { checkOut, createOrder } from "@/lib/payments";
 import Script from "next/script";
 const stack: string[] = ["react", "typescript", "tailwind", "motion", "next"];
 
@@ -51,8 +51,8 @@ export default function TemplatePage({
       (template) => template.id === decodeURIComponent(templateId)
     );
     if (template) {
-      let desktopPreview: string[] = [];
-      let mobilePreview: string[] = [];
+      const desktopPreview: string[] = [];
+      const mobilePreview: string[] = [];
       if (template.theme == "both") {
         desktopPreview.push(
           `${BASE_URL}/${templateId}/preview/desktop-dark.png`,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Data } from "@workspace/templates/metadata";
 import TemplateCard from "../TemplateCard";
 import { SavePayload } from "@workspace/types";

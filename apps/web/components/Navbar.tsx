@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronRight, Code, Github, Menu } from "lucide-react";
+import { ChevronRight, Code, Menu } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { usePathname, useRouter } from "next/navigation";
-import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import UserButton from "./UserButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
@@ -39,12 +39,7 @@ const Navbar = () => {
   const isMobile = useIsMobile();
   const [visible, setVisible] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
-  const {getToken} = useAuth()
-  // useEffect(()=>{
-  //   (async ()=>{
-  //     console.log(await getToken())
-  //   })()
-  // },[])
+
   const navItems = [
     <Button
       key={"home"}

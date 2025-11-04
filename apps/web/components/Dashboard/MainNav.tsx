@@ -3,7 +3,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@workspace/ui/components/sidebar";
 import React, { Dispatch, SetStateAction } from "react";
 
@@ -19,7 +18,6 @@ const MainNav = ({
   setActiveTab: Dispatch<SetStateAction<TabTypes>>;
   activeTab: string;
 }) => {
-  const {open}= useSidebar()
   return (
     <SidebarMenu>
       {navItems.map((nav) => {

@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
-import { Github, Loader2, ArrowRight, Check, Code } from "lucide-react";
+import { Loader2, ArrowRight, Check, Code } from "lucide-react";
 import Image from "next/image";
 import { ThreeDMarquee } from "@workspace/ui/components/ui/3d-marquee";
 import { useAuth, useUser } from "@clerk/nextjs";
@@ -27,7 +27,6 @@ export default function OnboardingPage() {
   const [githubURL, setGithubURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [Error, setError] = useState(false);
-  const { signOut } = useAuth();
   useEffect(() => {
     if (user?.externalAccounts[0]?.provider == "github") {
       setGithubURL(`www.github.com/${user.username}`);

@@ -3,7 +3,6 @@ import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shi
 import { Code, Linkedin } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { Meteors } from "@workspace/ui/components/magicui/meteors";
 import Link from "next/link";
 import { config } from "@/config";
 

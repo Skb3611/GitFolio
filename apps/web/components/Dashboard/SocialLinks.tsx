@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import { Input } from "@workspace/ui/components/input";
-import { icons, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
 import { SavePayload, SocialLinks } from "@workspace/types";
 import { getIconComponent } from "@workspace/ui/icons";
@@ -27,7 +27,7 @@ const SocialLinksTab = ({
     const currentLinks = links;
 
     // Check if any link has changed by comparing with the initial data
-    const hasChanges = Object.entries(currentLinks).some(([key, value]) => {
+    const hasChanges = Object.entries(currentLinks).some(([_key, value]) => {
       // If any link value is not empty and different from initial state
       return value && value.trim().length > 0;
     });

@@ -1,8 +1,5 @@
-import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
-import { Globe } from "@workspace/ui/components/magicui/globe";
-import React, { useRef } from "react";
-import { useState,useEffect } from "react";
+import React from "react";
 
 const GlobeSection = () => {
   return (

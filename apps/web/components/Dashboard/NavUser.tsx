@@ -10,16 +10,12 @@ import {
 } from "@workspace/ui/components/dialog";
 import {
   Share2,
-  Facebook,
-  Twitter,
   Linkedin,
-  MessageCircle,
-  Mail,
   Check,
   Icons,
 } from "@workspace/ui/icons";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 import {
   Avatar,
@@ -32,7 +28,6 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
 } from "@workspace/ui/components/dropdown-menu";
@@ -40,24 +35,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@workspace/ui/components/sidebar";
 import {
-  BadgeCheck,
-  Bell,
   Copy,
-  CreditCard,
   Ellipsis,
   LogOut,
-  MoveRight,
   MoveUpRight,
-  Sparkles,
 } from "lucide-react";
 import React, { useEffect } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { toast } from "@workspace/ui/components/sonner";
-import { config } from "@/config";
 
 const NavUser = ({
   template,
@@ -76,7 +64,6 @@ const NavUser = ({
   }, [userId, isLoaded]);
   const isMobile = useIsMobile();
   const { user } = useUser();
-  const { open } = useSidebar();
   const [copied, setCopied] = useState(false);
 
   const socialPlatforms = [
@@ -117,7 +104,7 @@ const NavUser = ({
       toast.success("Link Copied");
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      toast.error("Failed to Copy");
+      toast.error("Failed to Copy",{description:err as string});
     }
   };
 
@@ -259,22 +246,3 @@ const NavUser = ({
 };
 
 export default NavUser;
-
-interface ShareButtonProps {
-  url: string;
-  title: string;
-  description?: string;
-}
-
-function ShareButton({ url, title }: ShareButtonProps) {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" className="gap-2 bg-transparent ">
-          <Share2 className="h-4 w-4" />
-          Share
-        </Button>
-      </DialogTrigger>
-    </Dialog>
-  );
-}
