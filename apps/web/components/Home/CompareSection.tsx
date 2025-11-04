@@ -24,7 +24,7 @@ const CompareSection = () => {
         </div>
         <Safari
           className="size-full col-span-3 max-w-xs"
-          imageSrc="/assets/desktop-black.png"
+          imageSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/obsidian/preview/desktop-dark.png"
           url="skb3611.gitfolio.in"
         />
       </div>
@@ -49,7 +49,7 @@ const CompareSection = () => {
           <CarouselItem>
             <Safari
               className="size-full col-span-3"
-              imageSrc="/assets/desktop-black.png"
+              imageSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/obsidian/preview/desktop-dark.png"
               url="skb3611.gitfolio.in"
             />
           </CarouselItem>
