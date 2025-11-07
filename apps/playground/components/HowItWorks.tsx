@@ -32,19 +32,19 @@ const HowItWorks = () => {
   const ref2 = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="max-w-6xl mx-auto py-10">
-      <div className="flex justify-between items-end mb-20">
-        <h1 className="text-6xl font-bold text-white">
+    <div className="max-w-6xl mx-auto py-10 px-5">
+      <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-0 md:items-end mb-20">
+        <h1 className="text-2xl md:text-6xl font-bold text-white">
           Explore the working of <br /> GitFolio Playground
         </h1>
-        <AnimatedShinyText className="text-base font-bold max-w-md">
+        <AnimatedShinyText className="text-sm sm:text-base font-bold max-w-md">
           Get Started with GitFolio Playground and build your personalized
           developer portfolio in minutes.
         </AnimatedShinyText>
       </div>
-      <div className="grid grid-cols-3 gap-3 min-h-96">
-        <div className="w-full h-full bg-card/30 rounded-lg rounded-l-3xl p-5">
-          <div className="relative h-2/3 w-full perspective-distant [transform-style:preserve-3d] -translate-x-2 translate-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 place-items-center">
+        <div className="w-full h-full bg-card/30 rounded-lg rounded-l-3xl  min-h-96 max-w-sm">
+          <div className="relative h-2/3 w-full perspective-distant [transform-style:preserve-3d] -translate-x-2 sm:-translate-x-0 translate-y-5 scale-90 sm:scale-95">
             <Card className="rotate-x-[20deg] rotate-y-[-20deg] rotate-z-[10deg] absolute translate-y-10  translate-x-2 z-50 mask-[linear-gradient(0deg,transparent_0%,#000_50%)]">
               <CardHeader>
                 <div className="flex flex-row items-center gap-2">
@@ -107,12 +107,12 @@ const HowItWorks = () => {
             </Card>
           </div>
           <div className="p-5">
-            <AnimatedShinyText className="text-xl font-bold">
+            <AnimatedShinyText className="text-lg sm:text-xl font-bold">
               Enter your Github URL To Get Started
             </AnimatedShinyText>
           </div>
         </div>
-        <div className="w-full h-full bg-card/30 rounded-lg">
+        <div className="w-full h-full bg-card/30 rounded-lg min-h-96 max-w-sm">
           <div className="relative h-2/3 w-full perspective-distant [transform-style:preserve-3d] translate-x-5 translate-y-4 ">
             <Card className=" scale-90 rotate-x-[20deg] rotate-y-[20deg] rotate-z-[-10deg] absolute translate-y-5 -translate-x-2 z-50 mask-r-from-50% mask-b-from-50%  ">
               <CardHeader>
@@ -158,7 +158,7 @@ const HowItWorks = () => {
             </AnimatedShinyText>
           </div>
         </div>
-        <div className="w-full h-full bg-card/30 rounded-lg rounded-r-3xl">
+        <div className="w-full h-full bg-card/30 rounded-lg rounded-r-3xl min-h-96 max-w-sm">
           <div className="relative h-2/3 w-full perspective-distant [transform-style:preserve-3d] -translate-x-2 translate-y-2 flex justify-center items-center">
             {/* <Fingerprint className="border size-30 p-3 rounded-full" /> */}
             <Image

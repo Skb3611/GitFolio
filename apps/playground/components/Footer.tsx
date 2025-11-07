@@ -40,10 +40,10 @@ const templates = [
 
 const Footer = () => {
   return (
-    <footer className="border-t min-h-72 ">
+    <footer className="border-t min-h-72 px-5">
       <div className="flex flex-col relative max-w-5xl mx-auto py-20 gap-20">
-        <div className="flex w-full ">
-          <div className="w-1/2 space-y-2">
+        <div className="flex w-full flex-col  sm:flex-row gap-5">
+          <div className="sm:w-1/2 space-y-2">
             <div className="initial flex items-center gap-2">
               <Image
                 src={"https://gitfolio.in/favicon.ico"}
@@ -73,9 +73,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/2">
-            <h2 className="text-lg font-medium mb-2 text-right">GitFolio Templates</h2>
-            <div className="grid justify-items-end  grid-cols-2 gap-1.5">
+          <div className="sm:w-1/2">
+            <h2 className="text-lg font-medium mb-2 sm:text-right">GitFolio Templates</h2>
+            <div className="grid sm:justify-items-end  grid-cols-2 gap-1.5">
               {templates.map((template) => (
                 <a
                   key={template.name}
@@ -88,9 +88,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="w-full bottom-0 flex justify-between">
+        <div className="w-full bottom-0 flex flex-col gap-2 sm:flex-row items-center justify-between">
           <div>
-            <AnimatedShinyText>
+            <AnimatedShinyText className="text-sm">
               @{new Date().getFullYear()} GitFolio Playground. All rights
               reserved.
             </AnimatedShinyText>
