@@ -1,6 +1,7 @@
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import Image from "next/image";
+import motion from ""
 
 const Hero = () => {
   return (
