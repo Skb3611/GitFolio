@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "@workspace/ui/globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const manRope = Manrope({
   display: "swap",
@@ -35,6 +36,7 @@ export default function RootLayout({
         className={`  ${manRope.className} antialiased dark overflow-x-hidden max-w-screen h-full`}
       >
         {children}
+        <Analytics/>
       </body>
     </html>
   );
