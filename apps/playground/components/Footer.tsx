@@ -2,6 +2,7 @@ import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Icons } from "@workspace/ui/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const templates = [
   {
@@ -59,7 +60,7 @@ const Footer = () => {
               </AnimatedShinyText>
               <div className="space-x-3 mt-3">
                 <Button
-                  className="bg-white/90 text-black font-medium"
+                  className="bg-white/90 hover:bg-white/70 cursor-pointer text-black font-medium"
                   style={{
                     boxShadow:
                       "-82px 54px 27px 0px rgba(255,255,255,.01),-52px 35px 25px 0px rgba(255,255,255,.04),-29px 19px 21px 0px rgba(255,255,255,.15),-13px 9px 16px 0px rgba(255,255,255,.25),-3px 2px 9px 0px rgba(255,255,255,.29)",
@@ -67,9 +68,11 @@ const Footer = () => {
                 >
                   Get Started
                 </Button>
-                <Button className="font-medium" variant={"outline"}>
+                <Link href={"https://gitfolio.in"} target="_blank">
+                <Button className="font-medium cursor-pointer" variant={"outline"}>
                   Visit GitFolio.in
                 </Button>
+                </Link>
               </div>
             </div>
           </div>

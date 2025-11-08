@@ -1,13 +1,28 @@
+"use client";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import Image from "next/image";
-import motion from ""
+import { motion } from "motion/react";
+import Link from "next/link";
 
 const Hero = () => {
   return (
     <div className=" pt-20 sm:pt-30 sm:px-10 overflow-hidden relative px-5">
       <div className="absolute inset-x-0 bottom-0 h-60 sm:h-80 md:h-120  w-full mask-t-from-10% bg-background z-50"></div>
-      <div className="sm:space-y-2 max-w-6xl mx-auto  sm:px-0">
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -20,
+          filter: "blur(5px)",
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          filter: "blur(0px)",
+        }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="sm:space-y-2 max-w-6xl mx-auto  sm:px-0"
+      >
         <h1 className="text-2xl md:text-6xl font-semibold font-manrope">
           Where Ideas Go Live
         </h1>
@@ -26,23 +41,39 @@ const Hero = () => {
               boxShadow:
                 "-82px 54px 27px 0px rgba(255,255,255,.01),-52px 35px 25px 0px rgba(255,255,255,.04),-29px 19px 21px 0px rgba(255,255,255,.15),-13px 9px 16px 0px rgba(255,255,255,.25),-3px 2px 9px 0px rgba(255,255,255,.29)",
             }}
-            className="bg-foreground/90 font-semibold text-background hover:bg-foreground/70"
+            className="bg-foreground/90 font-semibold text-background hover:bg-foreground/70 cursor-pointer"
           >
             Craft your Portfolio
           </Button>
-          <Button variant={"outline"}>
-            Visit GitFolio
-            <Image
-              src={"https://gitfolio.in/favicon.ico"}
-              alt="GitFolio Logo"
-              width={20}
-              height={20}
-            />
-          </Button>
+          <Link href="https://gitfolio.in" target="_blank">
+            <Button variant={"outline"} className="cursor-pointer">
+              Visit GitFolio
+              <Image
+                src={"https://gitfolio.in/favicon.ico"}
+                alt="GitFolio Logo"
+                width={20}
+                height={20}
+              />
+            </Button>
+          </Link>
         </div>
-      </div>
+      </motion.div>
       <div className="relative min-h-72 min-[425px]:min-h-80 md:h-[75vh] lg:h-[80vh]  flex justify-center translate-y-8 min-[425px]:translate-x-5 sm:translate-y-0 md:translate-x-15 lg:-translate-x-5 xl:translate-x-10">
-        <div className="absolute perspective-[4000px] [transform-style:preserve:3d] z-10">
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: -20,
+            filter: "blur(8px)",
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+          }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="absolute perspective-[4000px] [transform-style:preserve:3d] z-10"
+        >
           <div className="rotate-x-[35deg] rotate-y-[10deg] rotate-z-[-30deg] translate-y-[-5px] translate-x-[55px] sm:translate-y-[-30px] lg:translate-y-[-100px] lg:translate-x-[150px]">
             <Image
               src={
@@ -54,8 +85,22 @@ const Hero = () => {
               height={720}
             />
           </div>
-        </div>
-        <div className="absolute perspective-[4000px] [transform-style:preserve:3d]">
+        </motion.div>
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: -10,
+            filter: "blur(5px)",
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+          }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="absolute perspective-[4000px] [transform-style:preserve:3d]"
+        >
           <div className="rotate-x-[35deg] rotate-y-[10deg] rotate-z-[-30deg] translate-y-[50px] translate-x-[25px] lg:translate-y-[50px] lg:translate-x-[100px]">
             <Image
               src={
@@ -67,7 +112,7 @@ const Hero = () => {
               height={720}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
