@@ -225,7 +225,7 @@ export default function Page() {
       error: "Data Fetch Failed",
       invert: true,
     });
-  });
+  },[]);
 
   const uploadImage = async (
     params: SavePayload & { token: string }
