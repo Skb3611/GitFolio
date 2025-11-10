@@ -34,9 +34,21 @@ const SkillsCard = ({
         className={`flex ${skills?.length && "justify-start items-start"} justify-center items-center flex-wrap space-x-3 space-y-3 my-5 w-full`}
       >
         {skills?.length ? (
-          skills?.map((skill, idx) => {
-            return <Skill key={idx} label={skill} animate={false} />;
-          })
+          skills.length < 10 ? (
+            skills?.map((skill, idx) => {
+              return <Skill key={idx} label={skill} animate={false} />;
+            })
+          ) : (
+            skills.splice(0, 10).map((skill, idx) => {
+              return <Skill key={idx} label={skill} animate={false} />;
+            }) && (
+              <Skill
+                key={10}
+                label={`+${skills.length - 10}`}
+                animate={false}
+              />
+            )
+          )
         ) : (
           <div className="text-center py-8 text-muted-foreground">
             <Code2 className="h-12 w-12 mx-auto mb-4 opacity-50" />
