@@ -15,7 +15,6 @@ const CTASection = () => {
       <div className="absolute w-full h-full top-[-50%]">
         <Ripple mainCircleSize={!isMobile?300:200} mainCircleOpacity={0.3} />
       </div>
-      {/* <Image src="https://gitfolio.in/favicon.ico" alt="gitfolio" width={100} height={100} className=" top-3" /> */}
       <span className="text-3xl md:text-5xl font-semibold text-center max-w-3xl">
         Connect With GitFolio And Get Your Dev Portfolio
       </span>

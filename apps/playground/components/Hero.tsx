@@ -4,6 +4,7 @@ import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shi
 import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { config } from "@/config";
 
 const Hero = () => {
   return (
@@ -49,7 +50,7 @@ const Hero = () => {
             <Button variant={"outline"} className="cursor-pointer">
               Visit GitFolio
               <Image
-                src={"https://gitfolio.in/favicon.ico"}
+                src={config.gitfolio_url + "/favicon.ico"}
                 alt="GitFolio Logo"
                 width={20}
                 height={20}

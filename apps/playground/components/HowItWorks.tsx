@@ -19,6 +19,7 @@ import { Fingerprint, Github, InfoIcon, Send } from "@workspace/ui/icons";
 import { Spinner } from "@workspace/ui/components/spinner";
 import { Button } from "@workspace/ui/components/button";
 import { useState } from "react";
+import { config } from "@/config";
 
 const HowItWorks = () => {
   const [loading, setLoading] = useState(false);
@@ -163,7 +164,7 @@ const HowItWorks = () => {
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Image
-                      src="https://gitfolio.in/favicon.ico"
+                      src={config.gitfolio_url + "/favicon.ico"}
                       alt="1"
                       width={25}
                       height={25}
@@ -192,14 +193,14 @@ const HowItWorks = () => {
                 translateY: -5,
               }}
               transition={{ duration: 0.2 }}
-onHoverStart={()=>setLoading(true)}
-onHoverEnd={()=>setLoading(false)}
+              onHoverStart={() => setLoading(true)}
+              onHoverEnd={() => setLoading(false)}
             >
               <Card className=" scale-90 rotate-x-[20deg] rotate-y-[20deg] rotate-z-[-10deg] absolute ">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Image
-                      src="https://gitfolio.in/favicon.ico"
+                      src={config.gitfolio_url + "/favicon.ico"}
                       alt="1"
                       width={25}
                       height={25}
@@ -209,7 +210,7 @@ onHoverEnd={()=>setLoading(false)}
                 </CardHeader>
                 <CardContent className="flex flex-col justify-center items-center gap-2">
                   <Button variant={"secondary"}>
-                    <Spinner state={loading?"loading":"pause"} />
+                    <Spinner state={loading ? "loading" : "pause"} />
                   </Button>
                   <span className="text-sm ">Fetching Your Data</span>
                   <AnimatedShinyText className="text-xs text-center text-muted-foreground">

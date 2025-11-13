@@ -21,7 +21,7 @@ const Skill = ({ label, animate = true }: SkillProps) => {
           variant={"outline"} 
           className="rounded-sm flex items-center justify-center py-1.5"
         >
-          <span className="text-sm px-2">{label}</span>
+          <span className="text-sm px-2">{label?.charAt(0).toUpperCase() + label.slice(1)}</span>
         </Badge>
       </div>
     )
@@ -36,7 +36,7 @@ const Skill = ({ label, animate = true }: SkillProps) => {
           className="rounded-sm flex items-center justify-center py-1.5 [&>svg]:size-6 gap-2 w-full "
         >
           {Icon && <Icon />}
-          <span className="text-xs sm:text-sm">{label}</span>
+          <span className="text-xs sm:text-sm">{label?.charAt(0).toUpperCase() + label.slice(1)}</span>
         </Badge>
       </div>
     )

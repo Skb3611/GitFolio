@@ -1,3 +1,4 @@
+import { config } from "@/config";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { Icons } from "@workspace/ui/icons";
@@ -47,7 +48,7 @@ const Footer = () => {
           <div className="sm:w-1/2 space-y-2">
             <div className="initial flex items-center gap-2">
               <Image
-                src={"https://gitfolio.in/favicon.ico"}
+                src={config.gitfolio_url + "/favicon.ico"}
                 alt="logo"
                 width={35}
                 height={35}

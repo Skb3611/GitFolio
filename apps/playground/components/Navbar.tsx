@@ -4,6 +4,7 @@ import { Code } from "@workspace/ui/icons";
 import { Button } from "@workspace/ui/components/button";
 import Image from "next/image";
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
+import { config } from "@/config";
 
 const Navbar = () => {
   const isMobile =useIsMobile()
@@ -15,7 +16,7 @@ const Navbar = () => {
         className="flex items-center space-x-2 cursor-pointer"
       >
         <Image
-          src={"https://gitfolio.in/favicon.ico"}
+          src={config.gitfolio_url + "/favicon.ico"}
           alt="logo"
           width={30}
           height={30}
