@@ -135,7 +135,7 @@ const Navbar = () => {
             maxWidth: isMobile ? "90%" : visible ? "56rem" : "64rem",
           }}
           transition={{
-            duration: "0.5",
+            duration: 0.5,
           }}
           ref={ref}
           className={`container overflow-hidden  bg-transparent rounded-xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between max-w-[90%] lg:max-w-5xl  relative  ${visible && "backdrop-blur-lg border supports-[backdrop-filter]:bg-background/20"}`}

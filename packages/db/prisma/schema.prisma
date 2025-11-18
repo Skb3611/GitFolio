@@ -27,7 +27,6 @@ model User {
   githubLink         String?
   followers          Int             @default(0)
   following          Int             @default(0)
-  // contributions      Json[]
   socialAccounts     Json?
   skills             String[]
   updatedAt          DateTime        @updatedAt
