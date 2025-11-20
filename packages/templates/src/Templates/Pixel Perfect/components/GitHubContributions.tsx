@@ -1,7 +1,7 @@
 "use client";
 import { Suspense } from "react";
 import { Panel } from "./Panel";
-import {GitHubContributionsResponse,Activity} from "@workspace/types";
+import { GitHubContributionsResponse, Activity } from "@workspace/types";
 import { LoaderIcon } from "@workspace/ui/icons";
 import { use } from "react";
 import {
@@ -11,7 +11,7 @@ import {
   ContributionGraphFooter,
   ContributionGraphLegend,
   ContributionGraphTotalCount,
-} from "@workspace/ui/components/ui/kibo-ui/contribution-graph";
+} from "@workspace/ui/components/contribution-graph";
 import {
   Tooltip,
   TooltipContent,
@@ -19,21 +19,24 @@ import {
 } from "@workspace/ui/components/tooltip";
 import { format } from "date-fns";
 
-export function GitHubContributions({username}:{username:string}) {
+export function GitHubContributions({ username }: { username: string }) {
   const contributions = getGitHubContributions(username);
 
   return (
     <Panel>
       <h2 className="sr-only">GitHub Contributions</h2>
-    
+
       <Suspense fallback={<GitHubContributionFallback />}>
-        <GitHubContributionGraph contributions={contributions} username={username} />
+        <GitHubContributionGraph
+          contributions={contributions}
+          username={username}
+        />
       </Suspense>
     </Panel>
   );
 }
 
-export async function getGitHubContributions(username:string) {
+export async function getGitHubContributions(username: string) {
   const res = await fetch(
     `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
     {
@@ -44,13 +47,12 @@ export async function getGitHubContributions(username:string) {
   return data.contributions;
 }
 
-
 export function GitHubContributionGraph({
   contributions,
-  username
+  username,
 }: {
   contributions: Promise<Activity[]>;
-  username:string
+  username: string;
 }) {
   const data = use(contributions);
 
@@ -65,7 +67,7 @@ export function GitHubContributionGraph({
       <ContributionGraphCalendar className="no-scrollbar px-2">
         {({ activity, dayIndex, weekIndex }) => (
           <Tooltip>
-            <TooltipTrigger  asChild>
+            <TooltipTrigger asChild>
               <g>
                 <ContributionGraphBlock
                   activity={activity}
@@ -78,7 +80,7 @@ export function GitHubContributionGraph({
             <TooltipContent className="font-sans" sideOffset={0}>
               <p>
                 {activity.count} contribution{activity.count > 1 ? "s" : null}{" "}
-                on {format(new Date(activity.date), 'dd.MM.yyyy')}
+                on {format(new Date(activity.date), "dd.MM.yyyy")}
               </p>
             </TooltipContent>
           </Tooltip>

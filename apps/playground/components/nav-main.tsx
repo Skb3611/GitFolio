@@ -11,30 +11,39 @@ import {
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function NavMain({
+  state,
   items,
 }: {
+  state: State;
   items: {
     title: string;
     url: string;
     icon?: typeof MailIcon;
   }[];
 }) {
+  const router = useRouter();
   return (
     <SidebarGroup>
       <SidebarGroupContent>
         <SidebarMenu className="gap-1">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <Link
-                href={`?edit=${item.title.toLocaleLowerCase().replace(" ", "-")}`}
+              <SidebarMenuButton
+              className="cursor-pointer"
+                tooltip={item.title}
+                disabled={state != "craft"}
+                onClick={() =>
+                  router.push(
+                    `?edit=${item.title.toLocaleLowerCase().replace(" ", "-")}`
+                  )
+                }
               >
-                <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
-              </Link>
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+              </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>

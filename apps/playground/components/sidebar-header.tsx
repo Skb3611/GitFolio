@@ -3,7 +3,7 @@ import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shi
 import { Separator } from "@workspace/ui/components/separator";
 import { SidebarTrigger } from "@workspace/ui/components/sidebar";
 
-export function SiteHeader() {
+export function SiteHeader({text}:{text:string}) {
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 z-50">
       <div className="flex items-center gap-2 px-4">
@@ -12,7 +12,7 @@ export function SiteHeader() {
           orientation="vertical"
           className="mr-2 data-[orientation=vertical]:h-4"
         />
-        <AnimatedShinyText>OnBoarding Process</AnimatedShinyText>
+        <AnimatedShinyText>{text}</AnimatedShinyText>
       </div>
     </header>
   );

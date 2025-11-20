@@ -8,6 +8,7 @@ import {
   FolderGit2,
   GraduationCap,
   UserRoundPenIcon,
+  Layout,
 } from "@workspace/ui/icons";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -23,6 +24,7 @@ import {
 import Image from "next/image";
 import { config } from "@/config";
 import Link from "next/link";
+import { title } from "process";
 
 // This is sample data.
 const data = {
@@ -63,12 +65,17 @@ const data = {
       url: "#",
       icon: Code2,
     },
+    {
+      title: "Templates",
+      url: "#",
+      icon: Layout,
+    },
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ state, ...props }: {state:State} & React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" variant="inset"  {...props}>
+    <Sidebar collapsible="offcanvas" variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -98,7 +105,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain state={state} items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
