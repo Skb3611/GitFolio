@@ -37,13 +37,7 @@ const Hero = () => {
           </AnimatedShinyText>
         </div>
         <div className="my-5 flex flex-col-reverse min-[425px]:flex-row  gap-2 items-center">
-          <Button
-            style={{
-              boxShadow:
-                "-82px 54px 27px 0px rgba(255,255,255,.01),-52px 35px 25px 0px rgba(255,255,255,.04),-29px 19px 21px 0px rgba(255,255,255,.15),-13px 9px 16px 0px rgba(255,255,255,.25),-3px 2px 9px 0px rgba(255,255,255,.29)",
-            }}
-            className="bg-foreground/90 font-semibold text-background hover:bg-foreground/70 cursor-pointer"
-          >
+          <Button className="playground-white-button">
             Craft your Portfolio
           </Button>
           <Link href="https://gitfolio.in" target="_blank">

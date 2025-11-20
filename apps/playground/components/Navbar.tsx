@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { Code } from "@workspace/ui/icons";
 import { Button } from "@workspace/ui/components/button";
@@ -7,7 +7,7 @@ import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 import { config } from "@/config";
 
 const Navbar = () => {
-  const isMobile =useIsMobile()
+  const isMobile = useIsMobile();
   return (
     <nav className="flex justify-between items-center max-w-6xl mx-auto mt-5 px-5">
       <Link
@@ -26,8 +26,9 @@ const Navbar = () => {
           GitFolio
         </span>
       </Link>
-      <Button className=" font-semibold cursor-pointer group transition-all duration-500 bg-foreground/90 text-background hover:bg-foreground/70"
-      size={isMobile?"sm":"default"}
+      <Button
+        className="playground-white-button"
+        size={isMobile ? "sm" : "default"}
       >
         Get Started
       </Button>

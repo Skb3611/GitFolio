@@ -60,25 +60,22 @@ const Footer = () => {
                 Explore Premium GitFolio for Free{" "}
               </AnimatedShinyText>
               <div className="space-x-3 mt-3">
-                <Button
-                  className="bg-white/90 hover:bg-white/70 cursor-pointer text-black font-medium"
-                  style={{
-                    boxShadow:
-                      "-82px 54px 27px 0px rgba(255,255,255,.01),-52px 35px 25px 0px rgba(255,255,255,.04),-29px 19px 21px 0px rgba(255,255,255,.15),-13px 9px 16px 0px rgba(255,255,255,.25),-3px 2px 9px 0px rgba(255,255,255,.29)",
-                  }}
-                >
-                  Get Started
-                </Button>
+                <Button className="playground-white-button">Get Started</Button>
                 <Link href={"https://gitfolio.in"} target="_blank">
-                <Button className="font-medium cursor-pointer" variant={"outline"}>
-                  Visit GitFolio.in
-                </Button>
+                  <Button
+                    className="font-medium cursor-pointer"
+                    variant={"outline"}
+                  >
+                    Visit GitFolio.in
+                  </Button>
                 </Link>
               </div>
             </div>
           </div>
           <div className="sm:w-1/2">
-            <h2 className="text-lg font-medium mb-2 sm:text-right">GitFolio Templates</h2>
+            <h2 className="text-lg font-medium mb-2 sm:text-right">
+              GitFolio Templates
+            </h2>
             <div className="grid sm:justify-items-end  grid-cols-2 gap-1.5">
               {templates.map((template) => (
                 <a

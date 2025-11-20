@@ -96,7 +96,7 @@
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
 
-  --edge:color-mix(in oklab, #27272a 64%, #09090b);
+  --edge: color-mix(in oklab, #27272a 64%, #09090b);
   --pattern-foreground: color-mix(in oklab, var(--edge) 60%, transparent);
 }
 
@@ -139,10 +139,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-shiny-text: shiny-text 8s infinite;
   --color-edge: var(--edge);
-  --font-doto:"Doto";
-  --font-jetbrains:"JetBrains Mono";
-  --font-figtree:"Figtree";
-  --font-architects_daughter:"Architects Daughter";
+  --font-doto: "Doto";
+  --font-jetbrains: "JetBrains Mono";
+  --font-figtree: "Figtree";
+  --font-architects_daughter: "Architects Daughter";
   @keyframes shiny-text {
     0%,
     90%,
@@ -288,4 +288,9 @@
   font-family: "Bytesized";
   font-weight: 400;
   font-style: normal;
+}
+
+.playground-white-button {
+  box-shadow: -82px 54px 27px 0px rgba(255,255,255,.01),-52px 35px 25px 0px rgba(255,255,255,.04),-29px 19px 21px 0px rgba(255,255,255,.15),-13px 9px 16px 0px rgba(255,255,255,.25),-3px 2px 9px 0px rgba(255,255,255,.29);
+  @apply bg-foreground/90 font-semibold text-background hover:bg-foreground/70 cursor-pointer
 }
