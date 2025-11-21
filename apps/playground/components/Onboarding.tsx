@@ -11,6 +11,8 @@ import { Button } from "@workspace/ui/components/button";
 import { AnimatedShinyText } from "@workspace/ui/components/magicui/animated-shiny-text";
 import { UserCard } from "@/components/UserCard";
 import { DATA as USER_DATA } from "@workspace/types";
+import { Spinner } from "@workspace/ui/components/spinner";
+import { useRouter } from "next/navigation";
 
 export function Onboarding({
   setState,
@@ -18,9 +20,10 @@ export function Onboarding({
   user,
 }: {
   setState: (state: State) => void;
-  setUser: (user: USER_DATA) => void;
-  user?: USER_DATA;
+  setUser: (user: USER_DATA | null) => void;
+  user?: USER_DATA | null;
 }) {
+  const router = useRouter();
   const [step, setStep] = useState<"input" | "loading" | "success" | "error">(
     "input"
   );
@@ -42,8 +45,9 @@ export function Onboarding({
   };
 
   const handleReset = () => {
-    setStep("input");
+    setStep("input"); 
     setUsername("");
+    router.replace("/craft?state=onboarding", { scroll: false });
   };
 
   return (
@@ -54,8 +58,17 @@ export function Onboarding({
         {step === "input" && (
           <div className="space-y-6 animate-in fade-in duration-300">
             <div className="space-y-2">
-              <div className="flex  relative items-center justify-center size-15 mx-auto">
-                <Image src={"/github.png"} alt="" fill />
+              <div className="flex  relative items-center justify-center  mx-auto">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  fill="currentColor"
+                  className="bi bi-github size-15"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                </svg>
               </div>
               <h2 className="text-2xl font-bold text-foreground text-center">
                 Connect GitHub
@@ -96,10 +109,10 @@ export function Onboarding({
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   variant="outline"
-                  onClick={handleReset}
+                  onClick={() => setUsername("")}
                   className="w-full bg-transparent"
                 >
-                  Cancel
+                  Clear
                 </Button>
                 <Button
                   onClick={handleSubmit}
@@ -117,7 +130,7 @@ export function Onboarding({
         {step === "loading" && (
           <div className="space-y-8 py-8 animate-in fade-in duration-300">
             <div className="text-center space-y-3">
-              <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto" />
+              <Spinner state="loading" className="w-12 h-12 mx-auto" />
               <h2 className="text-xl font-semibold text-foreground">
                 Fetching Details
               </h2>

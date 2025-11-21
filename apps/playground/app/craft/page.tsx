@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@workspace/ui/components/button";
 import { SiteHeader } from "@/components/sidebar-header";
 import { X } from "@workspace/ui/icons";
-import { Onboarding } from "./Onboarding";
+import { Onboarding } from "../../components/Onboarding";
 import TemplateSelect from "@/components/TemplateSelect";
 import TemplatePreview from "@/components/TemplatePreview";
 import { DATA as USER_DETAILS } from "@workspace/types";
@@ -30,7 +30,7 @@ export default function Page() {
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>("");
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [user, setUser] = useState<USER_DETAILS>();
+  const [user, setUser] = useState<USER_DETAILS|null>();
   useEffect(() => {
     const tempId = localStorage.getItem("selectedTemplateId");
     const user = localStorage.getItem("user");
@@ -47,6 +47,13 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
+    const state = searchParams.get("state");
+    if (state && state == "onboarding") {
+      setState("onboarding");
+      router.replace("/craft", { scroll: false });
+      localStorage.clear();
+      setUser(null);
+    }
     setSlug(searchParams.get("edit") || "");
   }, [searchParams]);
   useEffect(() => {
@@ -127,7 +134,15 @@ export default function Page() {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-      <AppSidebar state={state} />
+      <AppSidebar
+        state={state}
+        userDetails={{
+          username: user?.personalInfo.username,
+          name: user?.personalInfo.full_name,
+          email: user?.personalInfo.email,
+          avatar: user?.personalInfo.profileImg,
+        }}
+      />
       <SidebarInset className="relative">
         <SiteHeader text={returnText(state)} />
         {renderComp(state)}

@@ -37,9 +37,11 @@ const Hero = () => {
           </AnimatedShinyText>
         </div>
         <div className="my-5 flex flex-col-reverse min-[425px]:flex-row  gap-2 items-center">
-          <Button className="playground-white-button">
-            Craft your Portfolio
-          </Button>
+          <Link href={"/craft"}>
+            <Button className="playground-white-button playground-white-shadow">
+              Craft your Portfolio
+            </Button>
+          </Link>
           <Link href="https://gitfolio.in" target="_blank">
             <Button variant={"outline"} className="cursor-pointer">
               Visit GitFolio

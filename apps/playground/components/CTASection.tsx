@@ -5,6 +5,7 @@ import { RainbowButton } from "@workspace/ui/components/magicui/rainbow-button";
 import { Ripple } from "@workspace/ui/components/magicui/ripple";
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CTASection = () => {
@@ -20,7 +21,11 @@ const CTASection = () => {
       <span className="text-3xl md:text-5xl font-semibold text-center max-w-3xl">
         Connect With GitFolio And Get Your Dev Portfolio
       </span>
-      <Button className="playground-white-button">Get Started</Button>
+      <Link href={"/craft"}>
+        <Button className="playground-white-button playground-white-shadow">
+          Get Started
+        </Button>
+      </Link>
     </div>
   );
 };

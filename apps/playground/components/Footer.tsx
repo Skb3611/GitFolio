@@ -60,7 +60,11 @@ const Footer = () => {
                 Explore Premium GitFolio for Free{" "}
               </AnimatedShinyText>
               <div className="space-x-3 mt-3">
-                <Button className="playground-white-button">Get Started</Button>
+                <Link href={"/craft"}>
+                  <Button className="playground-white-button playground-white-shadow">
+                    Get Started
+                  </Button>
+                </Link>
                 <Link href={"https://gitfolio.in"} target="_blank">
                   <Button
                     className="font-medium cursor-pointer"

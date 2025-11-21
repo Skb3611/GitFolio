@@ -291,6 +291,13 @@
 }
 
 .playground-white-button {
-  box-shadow: -82px 54px 27px 0px rgba(255,255,255,.01),-52px 35px 25px 0px rgba(255,255,255,.04),-29px 19px 21px 0px rgba(255,255,255,.15),-13px 9px 16px 0px rgba(255,255,255,.25),-3px 2px 9px 0px rgba(255,255,255,.29);
-  @apply bg-foreground/90 font-semibold text-background hover:bg-foreground/70 cursor-pointer
+  @apply bg-foreground/90 font-semibold text-background hover:bg-foreground/70 cursor-pointer;
+}
+.playground-white-shadow {
+  box-shadow:
+    -82px 54px 27px 0px rgba(255, 255, 255, 0.01),
+    -52px 35px 25px 0px rgba(255, 255, 255, 0.04),
+    -29px 19px 21px 0px rgba(255, 255, 255, 0.15),
+    -13px 9px 16px 0px rgba(255, 255, 255, 0.25),
+    -3px 2px 9px 0px rgba(255, 255, 255, 0.29);
 }

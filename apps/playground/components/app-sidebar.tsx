@@ -73,7 +73,19 @@ const data = {
   ],
 };
 
-export function AppSidebar({ state, ...props }: {state:State} & React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  state,
+  userDetails,
+  ...props
+}: {
+  state: State;
+  userDetails: {
+    username?: string;
+    name?: string;
+    email?: string;
+    avatar?: string;
+  };
+} & React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" variant="inset" {...props}>
       <SidebarHeader>
@@ -108,7 +120,7 @@ export function AppSidebar({ state, ...props }: {state:State} & React.ComponentP
         <NavMain state={state} items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userDetails} />
       </SidebarFooter>
       {/* <SidebarRail /> */}
     </Sidebar>
