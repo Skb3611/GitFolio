@@ -112,9 +112,7 @@ const Renderer = ({ username }: { username: string }) => {
     (temp) =>
       temp.id == decodeURIComponent(data?.personalInfo.activeTemplateId ?? "")
   );
-  const Component = Template[0]?.component as React.ComponentType<{
-    data: DATA;
-  }>;
+  const Component = Template[0]?.component;
 
   if (loading && !data) {
     return (
@@ -133,7 +131,7 @@ const Renderer = ({ username }: { username: string }) => {
       />
     );
   }
-  return data ? <Component data={data} /> : null;
+  return data && Component ? <Component data={data} /> : null;
 };
 
 export default Renderer;

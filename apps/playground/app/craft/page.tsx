@@ -85,7 +85,7 @@ export default function Page() {
       case "template-select":
         return <TemplateSelect setSelectedTemplateId={setSelectedTemplateId} />;
       case "craft":
-        return <TemplatePreview id={selectedTemplateId} />;
+        return <TemplatePreview id={selectedTemplateId} data={user || null} />;
     }
   };
 

@@ -113,7 +113,7 @@ export interface TemplateData {
   thumbnail?: string;
   video?: string;
   description: string;
-  component: React.FC;
+  component: React.ComponentType<{ data?: DATA }>;
   desktopPreview?: string[];
   mobilePreview?: string[];
   mobileDevice?: "Iphone15Pro" | "Android";
