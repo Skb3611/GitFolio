@@ -30,7 +30,7 @@ export default function Page() {
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>("");
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [user, setUser] = useState<USER_DETAILS|null>();
+  const [user, setUser] = useState<USER_DETAILS | null>();
   useEffect(() => {
     const tempId = localStorage.getItem("selectedTemplateId");
     const user = localStorage.getItem("user");
@@ -73,6 +73,10 @@ export default function Page() {
       router.replace("craft", { scroll: false });
     }
   }, [slug]);
+
+  useEffect(() => {
+    if (!isOpen) router.replace("/craft", { scroll: false });
+  }, [isOpen]);
   const closeSheet = () => {
     console.log("close sheet");
     router.replace("craft", { scroll: false });
