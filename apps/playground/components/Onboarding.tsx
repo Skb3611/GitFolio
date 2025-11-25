@@ -45,7 +45,7 @@ export function Onboarding({
   };
 
   const handleReset = () => {
-    setStep("input"); 
+    setStep("input");
     setUsername("");
     router.replace("/craft?state=onboarding", { scroll: false });
   };
@@ -184,7 +184,7 @@ export function Onboarding({
 
         {/* Error State */}
         {step === "error" && (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-4 animate-in fade-in duration-300 flex justify-center items-center flex-col">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-destructive/20 mx-auto">
               <X className="w-8 h-8 text-destructive" />
             </div>
@@ -193,7 +193,7 @@ export function Onboarding({
               <h2 className="text-xl font-bold text-foreground">Invalid URL</h2>
               <p className="text-sm text-muted-foreground">
                 Please enter a valid GitHub URL in the format:
-                github.com/username/repo
+                https://github.com/username
               </p>
             </div>
 

@@ -8,7 +8,7 @@ const page = ({ params }: { params: Promise<{ template: string }> }) => {
   const searchParams = useSearchParams();
   const data = searchParams.get("data");
   const Component = Data.filter((temp) => temp.id == template)[0]?.component;
-  return Component && <Component />;
+  return Component && <Component data={data && JSON.parse(decodeURI(data))} />;
 };
 
 export default page;
