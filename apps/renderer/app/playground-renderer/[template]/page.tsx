@@ -10,9 +10,9 @@ const page = ({ params }: { params: Promise<{ template: string }> }) => {
   useEffect(() => {
     window.parent.postMessage({ type: "RENDERER_READY" }, "*");
     const handler = (event: MessageEvent) => {
-      if (event.origin !== "http://localhost:8000") return; // playground origin
+      if (event.origin !== "https://playground.gitfolio.in") return; // playground origin
       if (event.data?.type === "update-data") {
-        setData({...event.data.payload});
+        setData({ ...event.data.payload });
       }
     };
 
