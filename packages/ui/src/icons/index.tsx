@@ -2914,7 +2914,7 @@ export const Icons = {
       height="1em"
     >
       <g fill="none">
-        <g clip-path="url(#skillIconsCypressLight3)">
+        <g clipPath="url(#skillIconsCypressLight3)">
           <path
             fill="#F4F2ED"
             d="M196 0H60C26.863 0 0 26.863 0 60v136c0 33.137 26.863 60 60 60h136c33.137 0 60-26.863 60-60V60c0-33.137-26.863-60-60-60"
@@ -2953,8 +2953,8 @@ export const Icons = {
             y2="177.914"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset=".081" stop-color="#69D3A7" />
-            <stop offset="1" stop-color="#69D3A7" stop-opacity="0" />
+            <stop offset=".081" stopColor="#69D3A7" />
+            <stop offset="1" stopColor="#69D3A7" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="skillIconsCypressLight1"
@@ -2964,9 +2964,9 @@ export const Icons = {
             y2="145.059"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#69D3A7" />
-            <stop offset=".823" stop-color="#2AB586" />
-            <stop offset="1" stop-color="#1CAE7F" />
+            <stop stopColor="#69D3A7" />
+            <stop offset=".823" stopColor="#2AB586" />
+            <stop offset="1" stopColor="#1CAE7F" />
           </linearGradient>
           <linearGradient
             id="skillIconsCypressLight2"
@@ -2976,11 +2976,11 @@ export const Icons = {
             y2="206.818"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset=".077" stop-color="#1CAE7F" />
-            <stop offset=".164" stop-color="#1CA379" />
-            <stop offset=".316" stop-color="#1C8568" />
-            <stop offset=".516" stop-color="#1B554D" />
-            <stop offset=".719" stop-color="#1B1E2E" />
+            <stop offset=".077" stopColor="#1CAE7F" />
+            <stop offset=".164" stopColor="#1CA379" />
+            <stop offset=".316" stopColor="#1C8568" />
+            <stop offset=".516" stopColor="#1B554D" />
+            <stop offset=".719" stopColor="#1B1E2E" />
           </linearGradient>
           <clipPath id="skillIconsCypressLight3">
             <path fill="#fff" d="M0 0h256v256H0z" />

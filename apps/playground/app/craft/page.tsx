@@ -4,15 +4,7 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@workspace/ui/components/sidebar";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from "@workspace/ui/components/sheet";
+import { Sheet } from "@workspace/ui/components/sheet";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -23,6 +15,7 @@ import { Onboarding } from "../../components/Onboarding";
 import TemplateSelect from "@/components/TemplateSelect";
 import TemplatePreview from "@/components/TemplatePreview";
 import { DATA as USER_DETAILS } from "@workspace/types";
+import CustomSheetContent from "@/components/sidebar-sheets/SheetContent";  
 export default function Page() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [state, setState] = useState<State>("onboarding");
@@ -37,7 +30,7 @@ export default function Page() {
     if (user && tempId) {
       setSelectedTemplateId(tempId);
       setUser(JSON.parse(user));
-      setState("craft");
+      setState("craft");  
     } else if (user) {
       setUser(JSON.parse(user));
       setState("template-select");
@@ -78,9 +71,9 @@ export default function Page() {
     if (!isOpen) router.replace("/craft", { scroll: false });
   }, [isOpen]);
   const closeSheet = () => {
-    console.log("close sheet");
     router.replace("craft", { scroll: false });
     setSlug("");
+    setIsOpen(false);
   };
   const renderComp = (state: State) => {
     switch (state) {
@@ -103,40 +96,17 @@ export default function Page() {
         return "Craft your Portfolio";
     }
   };
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   return (
     <SidebarProvider>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent>
-          <SheetClose asChild>
-            <button
-              className=" cursor-pointer absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 focus:outline-none z-50"
-              onClick={closeSheet}
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </SheetClose>
-          <SheetHeader>
-            <SheetTitle>Are you absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
-          <SheetFooter>
-            <Button
-              type="submit"
-              className="bg-white/90 hover:bg-white/70  text-black font-semibold cursor-pointer"
-            >
-              Save changes
-            </Button>
-            <SheetClose asChild>
-              <Button variant="outline" onClick={closeSheet}>
-                Close
-              </Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
+        <CustomSheetContent
+          closeSheet={closeSheet}
+          slug={slug}
+          user={user!}
+          setUser={setUser}
+        />
       </Sheet>
       <AppSidebar
         state={state}

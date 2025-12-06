@@ -46,16 +46,16 @@ export interface SocialLinks {
   behance: string | null;
   youtube: string | null;
 }
-export interface Education {
-  id: string;
-  logo: string;
-  title: string;
-  institution: string;
-  description: string;
-  start_date: string;
-  end_date: string;
-  onGoing: boolean;
-}
+  export interface Education {
+    id: string;
+    logo: string;
+    title: string;
+    institution: string;
+    description: string;
+    start_date: string;
+    end_date: string;
+    onGoing: boolean;
+  }
 
 export type SavePayload =
   | { type: "Personal Information"; data: Partial<PersonalInformation> }

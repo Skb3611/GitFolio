@@ -56,7 +56,7 @@ const data = {
       icon: GraduationCap,
     },
     {
-      title: "Socail Links",
+      title: "Social Links",
       url: "#",
       icon: LinkIcon,
     },
