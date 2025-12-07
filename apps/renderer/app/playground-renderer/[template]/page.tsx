@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React, { use, useEffect, useState } from "react";
 import { Data } from "@workspace/templates/metadata";
 import { DATA } from "@workspace/types";
+import { PLAYGROUND_URL } from "@/app/config";
 
 const page = ({ params }: { params: Promise<{ template: string }> }) => {
   let { template } = use(params);
@@ -10,7 +11,7 @@ const page = ({ params }: { params: Promise<{ template: string }> }) => {
   useEffect(() => {
     window.parent.postMessage({ type: "RENDERER_READY" }, "*");
     const handler = (event: MessageEvent) => {
-      if (event.origin !== "https://playground.gitfolio.in") return; // playground origin
+      if (event.origin !== PLAYGROUND_URL) return; // playground origin
       if (event.data?.type === "update-data") {
         setData({ ...event.data.payload });
       }

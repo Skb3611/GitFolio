@@ -7,12 +7,12 @@ const TemplatePreview = ({ id, data }: { id: string; data: DATA | null }) => {
   useEffect(() => {
     console.log("RendererComponent re-rendered with data:", data);
     window.addEventListener("message", (event) => {
-      if (event.origin !== "https://portfolio.gitfolio.in") return; // renderer origin
+      if (event.origin !== config.renderer_url) return; // renderer origin
       if (event.data?.type === "RENDERER_READY") {
         if (ref.current) {
           ref.current.contentWindow?.postMessage(
             { type: "update-data", payload: data },
-            "https://portfolio.gitfolio.in"
+            config.renderer_url
           );
         }
       }
@@ -20,12 +20,12 @@ const TemplatePreview = ({ id, data }: { id: string; data: DATA | null }) => {
     if (ref.current) {
       ref.current.contentWindow?.postMessage(
         { type: "update-data", payload: data },
-        "https://portfolio.gitfolio.in"
+        config.renderer_url
       );
     }
   }, [data]);
 
-  const URL = `https://portfolio.gitfolio.in/playground-renderer/${id}`;
+  const URL = `${config.renderer_url}/playground-renderer/${id}`;
   return (
     <iframe
       id="renderer-frame"

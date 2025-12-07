@@ -17,7 +17,13 @@ export function ModeToggle({
     | "link";
     classname?:string
 }) {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme,resolvedTheme } = useTheme();
+  
+  const changeTheme=() => {
+    console.log(theme,resolvedTheme)
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
+
 
   return (
     <Button
@@ -25,7 +31,7 @@ export function ModeToggle({
       type="button"
       size="icon"
       className={cn(classname,"px-2")}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={changeTheme}
     >
       <SunIcon className="h-[1.2rem] w-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
       <MoonIcon className="hidden h-[1.2rem] w-[1.2rem] text-neutral-800 dark:block dark:text-neutral-200" />

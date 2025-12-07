@@ -4,3 +4,4 @@ export const USERDATA_ENDPOINT =  `${SERVER_ENDPOOINT}/api/v1/renderer`
 export const USER_IMAGE_ENDPOINT =`${SERVER_ENDPOOINT}/api/v1/renderer/image`
 export const SITE_URL = "https://gitfolio.in";
 export const BASE_URL ="https://portfolio.gitfolio.in"
+export const PLAYGROUND_URL = process.env.NODE_ENV === "development" ? "http://localhost:8000" : "https://playground.gitfolio.in";
