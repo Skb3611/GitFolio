@@ -24,6 +24,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@workspace/ui/components/tooltip";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 import {
   FolderGit2,
   Frown,
@@ -66,7 +67,6 @@ const ProjectsSheetContent = ({
       {data.map((project) => (
         <ProjectCard project={project} key={project.id} setUser={setUser} />
       ))}
-      {/* <ProjectCard project={data[0]} key={data[0].id} setUser={setUser} /> */}
     </div>
   );
 };
@@ -79,6 +79,7 @@ const ProjectCard = ({
   project: Projects;
   setUser: Dispatch<SetStateAction<DATA>>;
 }) => {
+  const isMobile = useIsMobile()
   const [currentTopic, setCurrentTopic] = useState<string>("");
   const ref = useRef<HTMLInputElement>(null);
   const handleChange = (type: keyof Projects, value: string) => {
@@ -192,6 +193,7 @@ const ProjectCard = ({
               )}
             </div>
             <Button
+              size={isMobile ? "sm" : "default"}
               variant={"outline"}
               onClick={() => ref.current?.click()}
               className="w-full"
@@ -241,7 +243,7 @@ const ProjectCard = ({
                 <Badge
                   key={t}
                   variant={"secondary"}
-                  className="flex justify-between"
+                  className="flex justify-between text-xs md:text-sm"
                 >
                   {t}
                   <button onClick={() => deleteTopic(t)}>

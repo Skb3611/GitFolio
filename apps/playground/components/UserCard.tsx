@@ -5,7 +5,7 @@ import { DATA as USER_DATA } from "@workspace/types";
 export function UserCard({ user }: { user: USER_DATA | null }) {
   return (
     <div className="w-full max-w-sm mx-auto">
-      <div className="flex flex-col items-center gap-6 p-8 bg-card border border-border rounded-xl shadow-md">
+      <div className="flex flex-col items-center gap-3 sm:gap-6 p-8 bg-card border border-border rounded-xl shadow-md">
         {/* Avatar */}
         <div className="relative w-24 h-24 rounded-full overflow-hidden ring-4 ring-white/50">
           <img
@@ -26,21 +26,21 @@ export function UserCard({ user }: { user: USER_DATA | null }) {
         </div>
 
         {/* Stats Badges */}
-        <div className="flex gap-3 w-full">
+        <div className="grid grid-cols-3 gap-3 w-full">
           <div className="flex-1 text-center px-3 py-2 bg-muted rounded-lg">
-            <div className="text-lg font-bold text-foreground">
+            <div className="sm:text-lg font-bold text-foreground">
               {user?.personalInfo.followers?.toLocaleString() || 0}
             </div>
             <div className="text-xs text-muted-foreground">Followers</div>
           </div>
           <div className="flex-1 text-center px-3 py-2 bg-muted rounded-lg">
-            <div className="text-lg font-bold text-foreground">
+            <div className="sm:text-lg font-bold text-foreground">
               {user?.personalInfo.following?.toLocaleString() || 0}
             </div>
             <div className="text-xs text-muted-foreground">Following</div>
           </div>
           <div className="flex-1 text-center px-3 py-2 bg-muted rounded-lg">
-            <div className="text-lg font-bold text-foreground">
+            <div className="sm:text-lg font-bold text-foreground">
               {user?.projects?.length || 0}
             </div>
             <div className="text-xs text-muted-foreground">Repos</div>

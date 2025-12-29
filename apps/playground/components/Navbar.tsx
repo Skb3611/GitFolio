@@ -19,9 +19,9 @@ const Navbar = () => {
           alt="logo"
           width={30}
           height={30}
-          className="size-8 sm:size-10"
+          className="size-7 sm:size-10"
         />
-        <span className="text-xl sm:text-2xl text-white bg-clip-text">
+        <span className="text-md sm:text-2xl text-white bg-clip-text">
           GitFolio
         </span>
       </Link>

@@ -25,6 +25,7 @@ import {
 } from "@/lib/dummy";
 import ExperienceSheetContent from "./ExperienceSheetContent";
 import EducationSheetContent from "./EducationSheetContent";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
 const CustomSheetContent = ({
   closeSheet,
@@ -39,6 +40,7 @@ const CustomSheetContent = ({
 }) => {
   const [dummyuser, setdummyuser] = useState<DATA>(user);
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const isMobile = useIsMobile();
   useEffect(() => {
     setdummyuser(user);
   }, [user]);
@@ -147,9 +149,9 @@ const CustomSheetContent = ({
   };
 
   return (
-    <SheetContent className="overflow-y-auto">
+    <SheetContent className="overflow-y-auto w-full md:w-auto">
       <SheetHeader>
-        <SheetTitle>
+        <SheetTitle className="text-sm md:text-base">
           {sheetConfig[slug as keyof typeof sheetConfig]?.title}
         </SheetTitle>
       </SheetHeader>
@@ -161,21 +163,27 @@ const CustomSheetContent = ({
           slug === "experience" ||
           slug === "education") && (
           <Button
-            className="bg-white/90 hover:bg-white/70  text-black font-semibold cursor-pointer"
+            size={isMobile ? "sm" : "default"}
+            className="bg-white/90 hover:bg-white/70  text-black font-semibold cursor-pointer text-sm"
             onClick={handleAddEntry}
           >
             <Plus /> Add {slug[0].toUpperCase() + slug.slice(1)}
           </Button>
         )}
         <Button
+          size={isMobile ? "sm" : "default"}
           type="submit"
-          className="bg-white/90 hover:bg-white/70  text-black font-semibold cursor-pointer"
+          className="bg-white/90 hover:bg-white/70  text-black font-semibold cursor-pointer text-sm"
           onClick={handleSave}
         >
           Save changes
         </Button>
         <SheetClose asChild>
-          <Button variant="outline" onClick={closeSheet}>
+          <Button
+            variant="outline"
+            onClick={closeSheet}
+            size={isMobile ? "sm" : "default"}
+          >
             Close
           </Button>
         </SheetClose>

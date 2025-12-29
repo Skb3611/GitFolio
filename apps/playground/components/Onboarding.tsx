@@ -13,6 +13,7 @@ import { UserCard } from "@/components/UserCard";
 import { DATA as USER_DATA } from "@workspace/types";
 import { Spinner } from "@workspace/ui/components/spinner";
 import { useRouter } from "next/navigation";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
 export function Onboarding({
   setState,
@@ -50,8 +51,10 @@ export function Onboarding({
     router.replace("/craft?state=onboarding", { scroll: false });
   };
 
+  const isMobile = useIsMobile();
+
   return (
-    <div className="w-full max-w-md mx-auto my-auto">
+    <div className="w-full max-w-md mx-auto my-auto px-4">
       {/* Modal Container */}
       <div className="relative">
         {/* Input State */}
@@ -89,7 +92,7 @@ export function Onboarding({
                     <Github />
                   </InputGroupButton>
                 </InputGroupAddon>
-                <InputGroupAddon className="text-muted-foreground pl-1.5">
+                <InputGroupAddon className="text-muted-foreground pl-1.5 text-xs md:text-sm">
                   https://github.com/
                 </InputGroupAddon>
                 <InputGroupInput
@@ -108,6 +111,7 @@ export function Onboarding({
 
               <div className="grid grid-cols-2 gap-3">
                 <Button
+                  size={isMobile ? "sm" : "default"}
                   variant="outline"
                   onClick={() => setUsername("")}
                   className="w-full bg-transparent"
@@ -115,6 +119,7 @@ export function Onboarding({
                   Clear
                 </Button>
                 <Button
+                  size={isMobile ? "sm" : "default"}
                   onClick={handleSubmit}
                   disabled={!username}
                   className="w-full playground-white-button"

@@ -65,7 +65,7 @@ export const TemplateCard = ({
             <div className="text-lg font-semibold text-white">
               {template.title}
             </div>
-            <AnimatedShinyText className="text-xs uppercase text-primary-foreground font-medium ">
+            <AnimatedShinyText className="text-[.5rem] uppercase text-primary-foreground font-medium ">
               {template.description}
             </AnimatedShinyText>
             <div className="flex gap-2 justify-center mt-3">
@@ -73,7 +73,7 @@ export const TemplateCard = ({
                 href={`${config.renderer_url}/${template.id}`}
                 target="_blank"
               >
-                <Button variant={"outline"} size={"sm"}>
+                <Button variant={"outline"} size={"sm"} className="text-xs md:text-sm">
                   Visit Demo <MoveRight />
                 </Button>
               </Link>
@@ -82,6 +82,7 @@ export const TemplateCard = ({
                   setSelectedTemplateId(template.id);
                   localStorage.setItem("selectedTemplateId", template.id);
                 }}
+                className="text-xs md:text-sm"
                 variant={"outline"}
                 size={"sm"}
               >

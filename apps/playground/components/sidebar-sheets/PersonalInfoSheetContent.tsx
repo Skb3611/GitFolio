@@ -83,21 +83,27 @@ const PersonalInfoSheetContent = ({
         {/* <Button size={"sm"} className="playground-white-button">Upload Image</Button> */}
       </div>
       <div className="grid w-full max-w-sm items-center gap-2">
-        <Label>Username</Label>
-        <Input placeholder={`@${data.username}`} disabled />
+        <Label className="text-xs md:text-sm">Username</Label>
+        <Input
+          className="text-sm lg:text-base"
+          placeholder={`@${data.username}`}
+          disabled
+        />
       </div>
       <div className="flex gap-3">
         <div className="grid w-full max-w-sm items-center gap-2">
-          <Label>Full Name</Label>
+          <Label className="text-xs md:text-sm">Full Name</Label>
           <Input
+            className="text-sm lg:text-base"
             placeholder="SKB"
             value={data.full_name}
             onChange={(e) => handleChange("full_name", e.target.value)}
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-2">
-          <Label>Location</Label>
+          <Label className="text-xs md:text-sm">Location</Label>
           <Input
+            className="text-sm lg:text-base"
             placeholder="On Earth"
             value={data.location ?? ""}
             onChange={(e) => handleChange("location", e.target.value)}
@@ -105,16 +111,18 @@ const PersonalInfoSheetContent = ({
         </div>
       </div>
       <div className="grid w-full max-w-sm items-center gap-2">
-        <Label>Tag Line</Label>
+        <Label className="text-xs md:text-sm">Tag Line</Label>
         <Input
+          className="text-sm lg:text-base"
           placeholder="A software engineer"
           value={data.tagline ?? ""}
           onChange={(e) => handleChange("tagline", e.target.value)}
         />
       </div>
       <div className="grid w-full max-w-sm items-center gap-2">
-        <Label>Bio</Label>
+        <Label className="text-xs md:text-sm">Bio</Label>
         <Textarea
+          className="text-sm lg:text-base"
           onChange={(e) => handleChange("bio", e.target.value)}
           value={data.bio ?? ""}
           placeholder="Founder of GitFolio. From Github to Portfolio"

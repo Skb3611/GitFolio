@@ -91,6 +91,7 @@ export function AppSidebar({
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
+            <Link href={config.playground_url}>
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
@@ -106,13 +107,10 @@ export function AppSidebar({
                 <span className="truncate font-medium">
                   GitFolio Playground
                 </span>
-                <span className="truncate text-xs">
-                  <Link href={config.gitfolio_url} target="_blank">
-                    By GitFolio
-                  </Link>
-                </span>
+                <span className="truncate text-xs">By GitFolio</span>
               </div>
             </SidebarMenuButton>
+              </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
