@@ -95,15 +95,24 @@ const Footer = () => {
         </div>
         <div className="w-full bottom-0 flex flex-col gap-2 sm:flex-row items-center justify-between">
           <div>
-            <AnimatedShinyText className="text-sm">
+            <AnimatedShinyText className="text-sm text-center block">
               @{new Date().getFullYear()} GitFolio Playground. All rights
               reserved.
             </AnimatedShinyText>
           </div>
           <div className="flex gap-2 items-center">
-            <Icons.twitter className="size-5 cursor-pointer" />
-            <Icons.github className="size-5 cursor-pointer" />
-            <Icons.linkedin className="size-5 cursor-pointer" />
+            <Link href={LINKS.x} target="_blank">
+              <Icons.twitter className="size-5 cursor-pointer" />
+            </Link>
+            <Link href={LINKS.github} target="_blank">
+              <Icons.github className="size-5 cursor-pointer" />
+            </Link>
+            <Link href={LINKS.linkedin} target="_blank">
+              <Icons.linkedin className="size-5 cursor-pointer" />
+            </Link>
+            <Link href={LINKS.peerlist} target="_blank">
+              <Icons.peerlist className="size-5 cursor-pointer" />
+            </Link>
           </div>
         </div>
       </div>
@@ -112,3 +121,11 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const LINKS = {
+  x: "https://x.com/SKB3611",
+  github: "https://github.com/skb3611/GitFolio",
+  linkedin: "https://www.linkedin.com/in/shubham-bhilare-0a694a309/",
+  peerlist:
+    "https://peerlist.io/skb3611/project/gitfolio--from-github-to-greatness",
+};
