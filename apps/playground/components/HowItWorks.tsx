@@ -20,6 +20,14 @@ import { Spinner } from "@workspace/ui/components/spinner";
 import { Button } from "@workspace/ui/components/button";
 import { useState } from "react";
 import { config } from "@/config";
+import {
+  Autoplay,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@workspace/ui/components/carousel";
+import { Safari } from "@workspace/ui/components/magicui/safari";
+import { Data as TEMPLATES } from "@workspace/templates/metadata";
 
 const HowItWorks = () => {
   const [loading, setLoading] = useState(false);
@@ -241,15 +249,32 @@ const HowItWorks = () => {
           transition={{ duration: 0.3, delay: 0.6 }}
           className="w-full h-full bg-card/30 rounded-lg rounded-r-3xl min-h-96 max-w-sm"
         >
-          <div className="relative h-2/3 w-full perspective-distant [transform-style:preserve-3d] -translate-x-2 translate-y-2 flex justify-center items-center">
+          <div className="relative h-2/3 w-full perspective-distant  flex justify-center items-center">
             {/* <Fingerprint className="border size-30 p-3 rounded-full" /> */}
-            <Image
-              src="/auth.svg"
-              alt="1"
-              height={50}
-              width={50}
-              className="size-2/3"
-            />
+            <Carousel
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: false,
+                }),
+              ]}
+              className="h-full w-full mt-10"
+            >
+              <CarouselContent className="aspect-video p-">
+                {TEMPLATES.map((template, idx) => (
+                  <CarouselItem
+                    key={idx}
+                    className="w-full h-full relative sm:basis-1/2 lg:basis-full aspect-video"
+                  >
+                    <Safari
+                      className="size-full"
+                      imageSrc={template.thumbnail}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
           <div className="p-5">
             <AnimatedShinyText className="text-xl font-bold">
