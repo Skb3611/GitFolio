@@ -82,34 +82,40 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
                     </dl>
                   </div>
 
-                  <div
+                   {experience.description &&  <div
                     className="shrink-0 text-muted-foreground [&_svg]:size-4"
                     aria-hidden
                   >
                     <ChevronsDownUpIcon />
-                  </div>
+                  </div>}
                 </CollapsibleTrigger>
               </div>
             </div>
-
-            <CollapsibleContent className="group overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-              <div className="border-t border-dashed border-edge">
-                <div className="space-y-4 p-4 duration-300 group-data-[state=closed]:animate-fade-out group-data-[state=open]:animate-fade-in">
-                  {experience.description && (
-                    <ul className="list-disc pl-6">
-                      {experience.description
-                        .split(".")
-                        .splice(0, experience.description.split(".").length - 1)
-                        .map((item, idx) => (
-                          <li key={idx}>
-                            <AnimatedShinyText>{item}</AnimatedShinyText>
-                          </li>
-                        ))}
-                    </ul>
-                  )}
+            {experience.description && (
+              <CollapsibleContent className="group overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+                <div className="border-t border-dashed border-edge">
+                  <div className="space-y-4 p-4 duration-300 group-data-[state=closed]:animate-fade-out group-data-[state=open]:animate-fade-in">
+                    {experience.description && (
+                      <ul className="list-disc pl-6">
+                        {experience.description.includes(".")
+                          ? experience.description
+                              .split(".")
+                              .splice(
+                                0,
+                                experience.description.split(".").length - 1
+                              )
+                              .map((item, idx) => (
+                                <li key={idx}>
+                                  <AnimatedShinyText>{item}</AnimatedShinyText>
+                                </li>
+                              ))
+                          : experience.description}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </CollapsibleContent>
+              </CollapsibleContent>
+            )}
           </div>
         </Collapsible>
       </div>
