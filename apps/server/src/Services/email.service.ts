@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import prisma from "@workspace/db";
+import prisma, { User } from "@workspace/db";
 import { emailQueue } from "@workspace/email/queue";
 // 🕒 Schedule a task to run every 2 days at 9 AM
 cron.schedule("0 9 */2 * *", async () => {
@@ -7,9 +7,9 @@ cron.schedule("0 9 */2 * *", async () => {
 
   const users = await prisma.user.findMany({});
   const onBoardingUsers = users.filter(
-    (user) => user.onBoardingStatus == false
+    (user:User) => user.onBoardingStatus == false
   );
-  const templateUsers = users.filter((user) => !user.activeTemplateId);
+  const templateUsers = users.filter((user:User) => !user.activeTemplateId);
   for (const user of onBoardingUsers) {
     await emailQueue.add("onboarding", {
       name: user.firstname,

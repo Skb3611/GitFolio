@@ -1,6 +1,6 @@
 import { createClerkClient } from "@clerk/backend";
 import { config } from "../config";
-import prisma, { SigninType } from "@workspace/db";
+import prisma, { SigninType, User } from "@workspace/db";
 import { emailQueue } from "@workspace/email/queue";
 import corn from "node-cron";
 const client = createClerkClient({

@@ -18,10 +18,6 @@ export const getUserDataById = async (userId: string): Promise<any> => {
       experiences: true,
       educations: true,
     },
-    cacheStrategy: {
-      ttl: 30,
-      swr: 60,
-    },
   });
 };
 export const getUserDataByUsername = async (username: string) => {
@@ -34,10 +30,6 @@ export const getUserDataByUsername = async (username: string) => {
       experiences: true,
       educations: true,
     },
-    cacheStrategy: {
-      ttl: 30,
-      swr: 60,
-    },
   });
 };
 export const getImageData = async (username: string) => {
@@ -45,17 +37,13 @@ export const getImageData = async (username: string) => {
     where: {
       username,
     },
-    cacheStrategy: {
-      ttl: 30,
-      swr: 60,
-    },
   });
   return { profileImg: user?.profileImg, name: user?.firstname };
 };
 
 export const updateUserData = async (
   userId: string,
-  data: any
+  data: any,
 ): Promise<boolean> => {
   try {
     if (data?.activeTemplateId) {
@@ -79,7 +67,7 @@ export const updateUserData = async (
         if (
           (user.publicMetadata?.purchasedTemplates as string[])?.includes(
             data.activeTemplateId,
-            ...data
+            ...data,
           )
         ) {
           let res = await prisma.user.update({
@@ -114,7 +102,7 @@ export const updateUserData = async (
 
 export const createOrUpdateRepo = async (
   userId: string,
-  data: Repo
+  data: Repo,
 ): Promise<boolean> => {
   try {
     let res = await prisma.repo.upsert({
@@ -140,7 +128,7 @@ export const createOrUpdateRepo = async (
 };
 export const deleteRepo = async (
   userId: string,
-  repoId: string
+  repoId: string,
 ): Promise<boolean> => {
   try {
     let res = await prisma.repo.delete({
@@ -159,7 +147,7 @@ export const deleteRepo = async (
 
 export const createOrUpdateExperience = async (
   userId: string,
-  data: Experience
+  data: Experience,
 ): Promise<boolean> => {
   try {
     let res = await prisma.experience.upsert({
@@ -182,7 +170,7 @@ export const createOrUpdateExperience = async (
 
 export const deleteExperience = async (
   userId: string,
-  experienceId: string
+  experienceId: string,
 ): Promise<boolean> => {
   try {
     let res = await prisma.experience.delete({
@@ -201,7 +189,7 @@ export const deleteExperience = async (
 
 export const createOrUpdateEducation = async (
   userId: string,
-  data: Education
+  data: Education,
 ): Promise<boolean> => {
   try {
     let res = await prisma.education.upsert({
@@ -223,7 +211,7 @@ export const createOrUpdateEducation = async (
 };
 export const deleteEducation = async (
   userId: string,
-  educationId: string
+  educationId: string,
 ): Promise<boolean> => {
   try {
     let res = await prisma.education.delete({
@@ -244,10 +232,6 @@ export const getTemplateDetails = async (templateName: string) => {
   try {
     return prisma.template.findFirst({
       where: { id: templateName },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
-      },
     });
   } catch (e) {
     console.log(e);
@@ -265,10 +249,6 @@ export const getUserPayments = async (userId: string) => {
       },
       orderBy: {
         createdAt: "desc",
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60,
       },
     });
   } catch (error) {

@@ -1,18 +1,21 @@
-import { PrismaClient } from "./generated/prisma/index.js";
-import { withAccelerate } from "@prisma/extension-accelerate";
+import { PrismaClient } from "./generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const createPrisma = () => new PrismaClient().$extends(withAccelerate());
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+});
+const createPrisma = () => new PrismaClient({ adapter });
 
 const globalForPrisma = globalThis as unknown as {
   prisma: ReturnType<typeof createPrisma> | undefined;
 };
 
 export const prisma = globalForPrisma.prisma ?? createPrisma();
-  
+
 if (process.env.NODE_ENV !== "prod") globalForPrisma.prisma = prisma;
 
 export default prisma;
-export * from "./generated/prisma/index.js";
+export * from "./generated/prisma/client";
 export type {
   Education,
   Experience,
@@ -20,4 +23,4 @@ export type {
   User,
   SigninType,
   Prisma,
-} from "./generated/prisma/index.js";
+} from "./generated/prisma/client";

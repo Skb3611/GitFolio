@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "commonjs",
   "exports": {
     ".": "./dist/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:generate": "prisma generate --no-engine",
+    "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --skip-generate",
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "db:seed": "ts-node src/seed.ts",
-    "build": "pnpm db:generate && tsc && pnpm copy:prisma",
+    "build": "pnpm db:generate && tsc",
     "copy:prisma": "cpx \"./src/generated/**\" dist/generated"
   },
   "keywords": [],
@@ -21,11 +22,14 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.19.0",
+    "@prisma/adapter-pg": "^7.4.0",
+    "@prisma/client": "^7.4.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@types/node": "^20",
     "@types/uuid": "^10.0.0",
-    "prisma": "^6.19.0",
+    "dotenv": "^16.6.1",
+    "pg": "^8.18.0",
+    "prisma": "^7.4.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

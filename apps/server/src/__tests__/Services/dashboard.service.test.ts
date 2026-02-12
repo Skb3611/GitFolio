@@ -1,4 +1,4 @@
-import { JsonValue } from "../../../../../packages/db/src/generated/prisma/runtime/library";
+import { JsonValue } from "../../../../../packages/db/dist/generated/prisma/internal/prismaNamespace";
 import {
   createOrUpdateEducation,
   createOrUpdateExperience,

@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+dotenv.config()
 import express from "express";
 import cors from "cors";
 import v1Router from "./Routes/v1/index";
@@ -6,6 +8,8 @@ import { config } from "./config";
 import healthRouter from "./Routes/health/index";
 import "./Services/email.service"
 import "./Services/UserSync.service"
+// console.log("DB URL:", process.env.DATABASE_URL);
+
 declare global {
   namespace Express {
     interface Request {
