@@ -4,18 +4,23 @@
   "remoteCache": {
     "signature": true
   },
-  "globalEnv": [
-    "NODE_ENV"
-  ],
+  "globalEnv": ["NODE_ENV"],
   "tasks": {
     "build": {
+      "env": [
+        "TURBO_REMOTE_CACHE_SIGNATURE_KEY",
+        "CLERK_SECRET_KEY ",
+        "CLERK_FRONTEND_API ",
+        "CLERK_API_URL ",
+        "DATABASE_URL "
+      ],
       "dependsOn": ["^build"],
       "outputs": [
         ".next/**",
         "dist/**",
-        "!**/.next/cache/**",   
-        "!**/*.map",            
-        "!build/temp/**"        
+        "!**/.next/cache/**",
+        "!**/*.map",
+        "!build/temp/**"
       ],
       "cache": true
     },
