@@ -200,7 +200,7 @@ export default function TemplatePage({
                   <Button
                     size={isMobile ? "sm" : "lg"}
                     variant={"outline"}
-                    className="cursor-pointer bg-white text-black hover:bg-white/80 hover:text-black"
+                    className="cursor-pointer bg-neutral-200! text-black hover:text-black"
                     onClick={() => handleClick(template.id)}
                   >
                     {" "}
