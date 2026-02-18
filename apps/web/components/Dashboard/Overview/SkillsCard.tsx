@@ -39,15 +39,16 @@ const SkillsCard = ({
               return <Skill key={idx} label={skill} animate={false} />;
             })
           ) : (
-            skills.splice(0, 10).map((skill, idx) => {
-              return <Skill key={idx} label={skill} animate={false} />;
-            }) && (
+            <>
+              {skills.slice(0, 10).map((skill, idx) => {
+                return <Skill key={idx} label={skill} animate={false} />;
+              })}
               <Skill
                 key={10}
                 label={`+${skills.length - 10}`}
                 animate={false}
               />
-            )
+            </>
           )
         ) : (
           <div className="text-center py-8 text-muted-foreground">
