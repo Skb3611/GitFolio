@@ -26,12 +26,12 @@ const HeroSection = () => {
         repeatDelay={1}
         className={cn(
           "max-h-screen md:[mask-image:radial-gradient(600px_circle_at_center,white,transparent)] [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
-          "inset-x-0 h-[200%] skew-y-12"
+          "inset-x-0 h-[200%] skew-y-12",
         )}
       />
       <main className="flex flex-col mx-auto min-w-full lg:max-w-[85%] justify-center items-center md:mt-20 mt-30">
-        <Link href={"/templates/notion-theme"}>
-          <SectionLabel badge="New" title={"Notion Theme Template ✨"} />
+        <Link href={"https://playground.gitfolio.in"} target="_blank">
+          <SectionLabel badge="New" title={"GitFolio Playground ✨"} />
         </Link>
         <SplitTextAnimation
           highlightWord="Seconds"

@@ -1,11 +1,10 @@
 import React, { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Safari } from "@workspace/ui/components/magicui/safari";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Link from "next/link";
+
+const URL = "https://playground.gitfolio.in";
 const AnimatedScrollSection = () => {
   const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
@@ -14,7 +13,7 @@ const AnimatedScrollSection = () => {
     offset: ["start end", "end start"],
   });
   const setScale = () => {
-    return isMobile ? [0.8, 1] : [0.7, 1.035];
+    return isMobile ? [0.8, 1] : [0.7, 1];
   };
   const setTranslateY = () => {
     return isMobile ? [0, 100] : [0, 200];
@@ -27,41 +26,44 @@ const AnimatedScrollSection = () => {
   const scale = useTransform(scrollYProgress, [0, 0.2], setScale());
   const translateY = useTransform(scrollYProgress, [0, 0.7], setTranslateY());
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: 20,
-        filter: "blur(5px)",
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-      }}
-      transition={{
-        duration: 0.3,
-        delay: 0.1,
-      }}
-      ref={ref}
-      className="[perspective:500px] [transform-style:preserve-3d] md:-mt-10 mb-20"
-    >
+    <Link href={URL} target="_blank">
       <motion.div
-        style={{
-          rotateX: rotateX,
-          scale,
-          translateY,
+        initial={{
+          opacity: 0,
+          y: 20,
+          filter: "blur(5px)",
         }}
-        className="mt-20 mb-10 relative md:rounded-xl   z-20"
+        animate={{
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        }}
+        transition={{
+          duration: 0.3,
+          delay: 0.1,
+        }}
+        ref={ref}
+        className="[perspective:500px] [transform-style:preserve-3d] md:-mt-10 mb-20"
       >
-        <Safari
-          url="portfolio.gitfolio.in/notion-theme"
-          mode="simple"
-          videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/notion-theme/preview/vid.mp4"
-          className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"
-          // height={650}
-        />
+        <motion.div
+          style={{
+            rotateX: rotateX,
+            scale,
+            translateY,
+          }}
+          className="mt-20 mb-10 relative md:rounded-xl   z-20"
+        >
+          <Safari
+            url={URL}
+            mode="simple"
+            // videoSrc="https://pub-7e33da773f24477fad91084ffacf40cb.r2.dev/templates/notion-theme/preview/vid.mp4"
+            imageSrc="https://playground.gitfolio.in/og.png"
+            className="size-full rounded-b-sm md:rounded-b-xl max-w-full md:max-w-6xl"
+            // height={650}
+          />
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </Link>
   );
 };
 
